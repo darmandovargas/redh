@@ -1,0 +1,7 @@
+
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^redh\.thinkcloudgroup\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.redh\.thinkcloudgroup\.com$
+RewriteRule ^/?$ "http\:\/\/redh\.thinkcloudgroup\.com\/home" [R=301,L]
+
