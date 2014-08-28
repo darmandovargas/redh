@@ -19,7 +19,7 @@ if($_SESSION['errStr'])
 $success='';
 if($_SESSION['sent'])
 {
-	$success='<h1>Gracias!</h1>';
+	$success='<div align="center"><h1>Gracias!</h1></div>';
 	
 	$css='<style type="text/css">#contact-form{display:none;}</style>';
 	
@@ -135,7 +135,7 @@ if($_SESSION['sent'])
         </tr>
       </table>
       </form>
-      <?=$success?>
+      <?=$success?> 
     </div>
 </div>
 
