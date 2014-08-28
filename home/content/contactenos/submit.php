@@ -38,9 +38,9 @@ if(!checkLen('subject'))
 if(!checkLen('message'))
 	$err[]='The message field is too short or empty!';
 
-if((int)$_POST['captcha'] != $_SESSION['expect'])
+/*if((int)$_POST['captcha'] != $_SESSION['expect'])
 	$err[]='The captcha code is wrong!';
-
+*/
 
 if(count($err))
 {

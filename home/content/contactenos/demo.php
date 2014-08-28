@@ -19,7 +19,7 @@ if($_SESSION['errStr'])
 $success='';
 if($_SESSION['sent'])
 {
-	$success='<h1>Thank you!</h1>';
+	$success='<h1>Gracias!</h1>';
 	
 	$css='<style type="text/css">#contact-form{display:none;}</style>';
 	
@@ -39,12 +39,17 @@ if($_SESSION['sent'])
 <link rel="stylesheet" type="text/css" href="demo.css" />
 
 <?=$css?>
-
+<!--
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+-->
+<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
 <script type="text/javascript" src="jqtransformplugin/jquery.jqtransform.js"></script>
 <script type="text/javascript" src="formValidator/jquery.validationEngine.js"></script>
-
+<!--
 <script type="text/javascript" src="script.js"></script>
+-->
+<script type="text/javascript" src="js/contactus.js"></script>
+
 
 </head>
 
@@ -71,12 +76,17 @@ if($_SESSION['sent'])
         </tr>
         <tr>
           <td><label for="subject">Asunto</label></td>
-          <td><input type="text" class="validate[required]" name="asunto" id="asunto" value="<?=$_SESSION['post']['email']?>" /> </td>
+          <td><input type="text" class="validate[required]" name="subject" id="subject" value="<?=$_SESSION['post']['subject']?>" /> </td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td valign="top"><label for="message">Message</label></td>
-          <td><textarea name="message" id="message" class="validate[required]" cols="35" rows="5"><?=$_SESSION['post']['message']?></textarea></td>
+          <td>
+          	<textarea name="message" id="message" class="validate[required]" cols="35" rows="5"><?=$_SESSION['post']['message']?></textarea>
+          	<span id="loading_black" hidden  style="z-index:2; position:fixed; top:120px; left:<?= $isCom?'113px':'103px'; ?>">
+				<img src="loading_black.gif" width="30%" alt="loading" />									
+			</span>	
+          </td>
           <td valign="top">&nbsp;</td>
         </tr>
         <tr>       
