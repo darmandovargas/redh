@@ -27,7 +27,7 @@ $(document).ready(function() {
 	hasSubmited = false;
 
 	$("#contact-form").submit(function(e) {
-		loadingObj = $('#loading_black'); 
+		loadingObj = $('.loader');//$('#loading_black'); 
 		speed = 'slow';		
 		//Show loading
 		loadingObj.fadeIn(speed);

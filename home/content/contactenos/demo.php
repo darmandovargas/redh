@@ -50,7 +50,49 @@ if($_SESSION['sent'])
 -->
 <script type="text/javascript" src="js/contactus.js"></script>
 
+<style>
+			.loader {
+				opacity: 0.4;
+				filter: alpha(opacity=40); /* For IE8 and earlier */
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				background: url('wait.gif') 50% 50% no-repeat rgb(249,249,249);
+			}
 
+			.confirm {
+				opacity: 0.8;
+				filter: alpha(opacity=40); /* For IE8 and earlier */
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				font-size: 24px;
+				font-weight: 500;
+				background: url('img/white.jpg') 50% 50% no-repeat rgb(249,249,249);
+			}
+
+			.errorMsg {
+				opacity: 0.8;
+				filter: alpha(opacity=40); /* For IE8 and earlier */
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				font-size: 24px;
+				font-weight: 500;
+				/*background: url('img/white.jpg') 50% 50% no-repeat rgb(249,249,249);*/
+				background-color: #F75D59;
+			}
+		</style>
+		
 </head>
 
 <body>
@@ -58,6 +100,8 @@ if($_SESSION['sent'])
 <div id="main-container">
 
 	<div id="form-container">
+		<!-- Loading Gif -->
+		<div class="loader" style="display: none"></div>
 	<!--	
     <h1>Contactenos</h1>    
     <h2>Drop us a line and we will get back to you</h2>
