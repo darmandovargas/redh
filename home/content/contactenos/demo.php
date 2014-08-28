@@ -80,7 +80,7 @@ if($_SESSION['sent'])
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td valign="top"><label for="message">Message</label></td>
+          <td valign="top"><label for="message">Mensaje</label></td>
           <td>
           	<textarea name="message" id="message" class="validate[required]" cols="35" rows="5"><?=$_SESSION['post']['message']?></textarea>
           	<span id="loading_black" hidden  style="z-index:2; position:fixed; top:120px; left:<?= $isCom?'113px':'103px'; ?>">
@@ -135,9 +135,17 @@ if($_SESSION['sent'])
         </tr>
       </table>
       </form>
-      <?=$success?> 
+      <?=$success?>
+      
+      <div align="center">
+      	</br></br>
+    Mayor Información: </br></br>
+    Facultad de Ciencas Ambientales Of f-213 </br> 
+	Email: redhidroclimatologica@utp.edu.co </br>
+	Juan Camilo Berrio Carvajal </br>
+	Telefono: 3137249 </br></br></br>
+	</div> 
     </div>
 </div>
-
 </body>
 </html>
