@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 	$("#contact-form").validationEngine({
 		inlineValidation : true,
-		promptPosition : "CenterRight",
+		promptPosition : "centerRight",
 		success : function() {
 			use_ajax = true;
 		},
@@ -57,7 +57,7 @@ $(document).ready(function() {
 						//reload captcha and empty field
 						Recaptcha.reload();						
 						//set the validation tooltip manually (was much easier this way than through the library)
-						errorMsg = '<div id="captchaValidation" class="formError recaptcha_response_fieldformError" style="top: 319px; left: 96px; opacity: 0.87;"><div class="formErrorContent">* Wrong Captcha Text<br></div><div class="formErrorArrow"></div></div>';
+						errorMsg = '<div id="captchaValidation" class="formError recaptcha_response_fieldformError" style="top: 319px; left: 407px; opacity: 0.87;"><div class="formErrorContent">* Wrong Captcha Text<br></div><div class="formErrorArrow"></div></div>';
 						$('body').append(errorMsg);	
 						//Hide loading
 						loadingObj.fadeOut(speed);					
@@ -76,7 +76,7 @@ $(document).ready(function() {
 								$("#contact-form").hide('slow').after('<h1>Gracias!</h1>');
 								//Hide loading
 								loadingObj.fadeOut(speed);
-								document.forms["contact-form"].submit();								
+								//document.forms["contact-form"].submit();								
 						});
 					}
 				}
