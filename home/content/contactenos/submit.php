@@ -2,7 +2,8 @@
 
 /* config start */
 
-$emailAddress = 'darmandovargas@gmail.com';
+$emailAddress = 'redhidroclimatologica@utp.edu.co'; 
+//'darmandovargas@gmail.com';
 
 /* config end */
 
