@@ -38,6 +38,7 @@ $(document).ready(function() {
         // other available options: 
         url:       'login.php',         // override for form's 'action' attribute 
         type:      'post',        // 'get' or 'post', override for form's 'method' attribute 
+        //data:       [username:'eepereira', password:'eepereira'],  // post-submit callback 
         //dataType:  'text',        // 'xml', 'script', or 'json' (expected server response type) 
         //clearForm: true        // clear all form fields after successful submit 
         //resetForm: true        // reset the form after successful submit 
@@ -65,11 +66,11 @@ function validate(formData, jqForm, options) {
  
     for (var i=0; i < formData.length; i++) { 
         if (!formData[i].value) { 
-            alert('Please enter a value for both Username and Password'); 
+            alert('Por favor ingrese un valor en el usuario y el password'); 
             return false; 
         } 
     } 
-    alert('Both fields contain values.'); 
+    //alert('Both fields contain values.'); 
 }
  
 // pre-submit callback 
@@ -110,35 +111,49 @@ function showResponse(responseText, statusText, xhr, $form)  {
     // property set to 'json' then the first argument to the success callback 
     // is the json data object returned by the server 
  
-    //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.'); 
+    //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.');
+    if(responseText == "success"){
+    	$("#container").hide();    	
+    	$("#welcome").fadeIn("slow");
+    	//$("#logout").html("<span id='logoutImage'><a href='#' onclick='logout();'><img src='/home/img/logout.png' width='22%'></a></span>").fadeIn("slow");
+    	/*setTimeout(function (){
+    		
+    	},2000);
+    	*/
+    } 
 } 
 </script> 
+
 </head>
 
 	<!-- Main HTML -->
 	
 <body>
-	
+	<?php session_start(); ?>
+	<div id="welcome" <?php echo ($_SESSION['sessid']== session_id())?'':'style="display: none"' ?> > 
+		<img src='/home/img/banner_bienvenido.jpg'>
+	</div>
+		
 	<!-- Begin Page Content -->
 	
-	<div id="container">
+	<div id="container" <?php echo ($_SESSION['sessid']== session_id())?'style="display: none"':'' ?>>
 		
 		<form id="login" action="login.php" method="post">
 		
 		<label for="name">Usuario:</label>
 		
-		<input type="name">
+		<input name="username" id="username" type="name">
 		
 		<label for="username">Contraseña:</label>
-		
+		<!--
 		<p><a href="#">Olvidó su contraseña?</a>
-		
-		<input type="password">
+		-->
+		<input name="password" id="password" type="password">
 		
 		<div id="lower">
-		
+		<!--
 		<input type="checkbox"><label class="check" for="checkbox">Mantenerme logueado</label>
-		
+		-->
 		<input type="submit" value="Login">
 		<div id="output"></div>		
 		</div>

@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -59,11 +62,124 @@
     	<script src="../mapa/js/estaciones.js"></script>
 		<script src="js/mapa/mapa.js"></script>
 		
+		<style>
+			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
+			.logout {			    
+			   	position: absolute;
+				top: -85px;
+				right: 38px;
+				/*background-color: #333333;
+				background-color: rgba(51, 51, 51, 0.8);
+				*/height: 50px;
+				margin: 0 -45px;
+				margin-top: 20px;
+			}
+			.waitLogout {	
+				opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */		    
+			   	position: absolute;
+				top: -85px;
+				right: 130px;
+				/*background-color: #333333;
+				background-color: rgba(51, 51, 51, 0.8);
+				*/height: 50px;
+				margin: 0 -45px;
+				margin-top: 20px;
+			}
+		</style>
+		
+		<script>			
+			var session = false;
+					
+			$( document ).ready(function() {
+			    lookForSession();
+			    //showLogout(true);
+			    //showLogout(false);		    
+			});
+			
+			/**
+			 * This function will render the logout button by checking if there is session each 5 seconds 
+			 */
+			function lookForSession() {
+			    setTimeout(function() {
+			    	doit = !checkSession();	
+			    	//console.log("doit:"+doit);
+			        if(doit){
+			        	//console.log("lookForSession()");  
+				        // start the timer again
+					    lookForSession();
+			        }
+			    }, 10000);
+			}
+			
+			/**
+			 * This function will do the ajax call to see if there is session
+			 * @return boolean 
+			 */
+			function checkSession(){
+				isSession = false;
+				$.ajax({
+				  type: "POST",
+				  url: "content/login/validate.php",
+				  async:   false
+				}).success(function (msg){
+					if(msg=="success"){						
+						isSession = session = true;													
+					}else{						
+						isSession = session = false;						
+					}												
+				});
+				
+				if(isSession){
+					showLogout(true);
+				}else{
+					lookForSession();
+				}
+				
+				return isSession;
+			}
+			
+			/**
+			 * This function will logout and will hide the icon smoothly, if the logout is 
+			 * successful, then the lookForSession function will start looking for a new session
+			 */
+			function logout(){
+				showLogout(false);
+				isSession = true;
+				$.ajax({
+				  type: "POST",
+				  url: "content/login/logout.php"
+				})
+				.success(function (msg){});
+				
+				lookForSession();					
+			}
+			
+			/**
+			 * Show or Hide logout icon 
+			 */
+			function showLogout(showIcon){
+				if(showIcon){
+					$("#logout").removeClass("waitLogout").addClass("logout").hide().html("<span id='logoutImage'><a href='#' onclick='logout();'><img src='/home/img/logout.png' width='22%'></a></span>").fadeIn("slow");
+				}else{
+					$("#logout").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='/home/img/wait_logout.gif' width='70%'>");
+				}				
+			}			
+		</script>
+		
 	</head>
 	<body>
+		<?php  //if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){ ?>
+								<!-- <span id="logoutImage">
+									<a href="#" onclick="logout();"><img src='/home/img/logout.png' width="22%"></a>	
+								</span>
+							-->
+								<?php 
+								//} 
+								?>	 
 		<div class="container-fluid">
 			<div class="row-fluid main-row">
 				<div class="span5 main-wrapper">
+					
 					<div class="row-fluid logo">
 						<div class="span12">
 							<img src="img/logos/red_hidroclimatologica.jpg" width="50%" />
@@ -218,8 +334,9 @@
 											<div class="row-fluid">
 												<div class="span6">
 													<div class="media">
-														<div class="media-body">
-															<iframe src="content/estado_del_tiempo.html" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+														<div class="media-body">	
+															<div class="loader"></div>														
+															<iframe src="content/estado_del_tiempo.php" onload="$('.loader').fadeOut('slow');" width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>
 														</div>
 													</div>
 												</div>
@@ -303,7 +420,7 @@
 												<div class="span6">
 													<div class="media">
 														<div class="media-body">
-															<iframe src="content/login/index.html" width="100%" height="500px" scrolling="yes" frameBorder="0"></iframe>
+															<iframe src="content/login/index.php" width="100%" height="500px" scrolling="yes" frameBorder="0"></iframe>
 														</div>
 													</div>
 												</div>
@@ -389,6 +506,9 @@
 							-->
 							
 							<!-- -->
+							<span id="logout" class="logout">
+								
+							</span>
 							<input id="search"  type="text" placeholder="Ingrese Ubicación">
 						    <div id="type-selector" class="controls" hidden="hidden">
 						      <input type="radio" name="type" id="changetype-all" checked="checked">
