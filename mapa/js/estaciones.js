@@ -5,6 +5,7 @@ iconoSN  = 'http://'+window.location.host+'/mapa/img/SN28.png';
 iconoPD  = 'http://'+window.location.host+'/mapa/img/PD30.png';
 estacionesJSON = [
   		{
+  			"id" : "11",
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT001 (El Lago)",
 		    "variables": {
@@ -20,6 +21,7 @@ estacionesJSON = [
 		      "latitud": 4.814751659,
 		      "longitud": -75.69949032
 		    },
+		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "1450 m.s.n.m",
 		    "ubicacion": "Centro Administrativo el Lago, Centro del municipio de Pereira",
@@ -27,6 +29,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  
 		},
 		{
+			"id" : "6",
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT002 (Cortaderal)",
 		    "variables": {
@@ -42,6 +45,7 @@ estacionesJSON = [
 		      "latitud": 4.750273723,
 		      "longitud": -75.490426
 		    },
+		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "3700 m.s.n.m",
 		    "ubicacion": "Cuenca alta del Río Otún, Parque NN Los Nevados",
@@ -49,6 +53,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},		
 		{
+			"id" : "16",
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT003 (San José)",
 		    "variables": {
@@ -64,6 +69,7 @@ estacionesJSON = [
 		      "latitud": 4.815287772,
 		      "longitud": -75.59604566
 		    },
+		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "1900 m.s.n.m",
 		    "ubicacion": "Finca San José, municipio de Santa Rosa de Cabal",
@@ -71,6 +77,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id" : "26",
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT004 (Alto del Nudo)",
 		    "variables": {
@@ -86,6 +93,7 @@ estacionesJSON = [
 		      "latitud": 4.872101755,
 		      "longitud": -75.70935144
 		    },
+		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "2002 m.s.n.m",
 		    "ubicacion": "Vereda Las Hortensias, PRN Alto del Nudo",
@@ -93,6 +101,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id" : "30",
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT005 (Quinchía - Seafield)",
 		    "variables": {
@@ -108,6 +117,7 @@ estacionesJSON = [
 		      "latitud": 5.295278392,
 		      "longitud": -75.69944588
 		    },
+		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "1673 m.s.n.m",
 		    "ubicacion": "Vereda Miraflores, Municipo de Quinchia, Risaralda",
@@ -115,6 +125,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id" : "14",
   			"tipo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT001   (El Cedral)",
 		    "variables": {
@@ -126,13 +137,16 @@ estacionesJSON = [
 		      "latitud": 4.70317919,
 		      "longitud": -75.53658441
 		    },
+		    "tipo":"EHT",
 		    "icono": iconoEHT,
 		    "altitud": "2080 m.s.n.m",
 		    "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
 		    "fecha": "27 de Marzo de 2010",
 		    "estado": "Activa"	  		  
-		},
+		}/*,
+		
 		{
+			"id" : "0",
   			"tipo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC001 (Acuaseo)",
 		    "variables": {
@@ -155,6 +169,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id" : "0",
   			"tipo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC002 (Mundo Nuevo)",
 		    "variables": {
@@ -177,6 +192,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id" : "0",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN001 (Quebrada Dalí)",
 		    "variables": {
@@ -193,6 +209,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id" : "0",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN002 (Quebrada Negra)",
 		    "variables": {
@@ -209,6 +226,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},
 		{
+			"id" : "",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN003 (Quebrada El Manzano)",
 		    "variables": {
@@ -225,6 +243,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},
 		{
+			"id" : "",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN004 (Quebrada Volcanes) ",
 		    "variables": {

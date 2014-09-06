@@ -304,7 +304,7 @@ function initialize(isRefresh, dynamicImage) {
 		});
 		google.maps.event.addListener(marker, 'click', toggleBounce);
 		marker.setTitle(obj.tipo + ": " + obj.nombre);
-		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud);
+		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id);
 
 		function toggleBounce() {
 			if (marker.getAnimation() != null) {
@@ -369,18 +369,18 @@ DebugOverlay.prototype.onRemove = function() {
 
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data
-function attachSecretMessage(marker, message) {
+function attachSecretMessage(marker, message, id) {
 
 	var infowindow = new google.maps.InfoWindow({
 		//style: 'position: absolute; left: 12px; top: 9px; overflow: auto; width: 250%; height: 412px;',
 		//width: '2500px',
-		content : '<iframe src="../tabs/tabs.html" height="560px" width="800px"></iframe>'
+		content : '<iframe src="../tabs/tabs.php?id="'+id+' height="560px" width="800px"></iframe>'
 	});
 	//console.log(htmlraw);
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.open(marker.get('map'), marker);
 		$.get({
-			url : "../tabs/tabs.html",
+			url : "../tabs/tabs.php?id="+id,
 			success : function(data) {
 
 				htmlraw = data;

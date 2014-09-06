@@ -96,7 +96,7 @@ function initialize() {
 		});
 		google.maps.event.addListener(marker, 'click', toggleBounce);
 		marker.setTitle(obj.tipo + ": " + obj.nombre);
-		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud);
+		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id);
 
 		function toggleBounce() {
 			if (marker.getAnimation() != null) {
@@ -180,10 +180,10 @@ DebugOverlay.prototype.onRemove = function() {
 
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data
-function attachSecretMessage(marker, message) {
+function attachSecretMessage(marker, message, id) {
 
 	var infowindow = new google.maps.InfoWindow({
-		content : '<iframe src="../tabs/tabs.html" height="560px" width="800px"></iframe>'
+		content : '<iframe src="../tabs/tabs.php?id='+id+'" height="560px" width="800px"></iframe>'
 	});
 
 	google.maps.event.addListener(marker, 'click', function() {
