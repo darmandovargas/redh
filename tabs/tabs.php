@@ -182,7 +182,6 @@ $oMySQL -> closeConnection();
 	
 	<body class="bg-cyan">		
 		<div class="body">
-		
 			<!-- tabs -->
 			<div class="sky-tabs sky-tabs-pos-top-left sky-tabs-anim-slide-down sky-tabs-response-to-icons">
 				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
@@ -213,7 +212,7 @@ $oMySQL -> closeConnection();
 					
 					<li class="sky-tab-content-2">
 						<div class="typography" style="margin: 0 0 0 60px">
-							<iframe src="../galeria/" height="500px" width="420px"></iframe>
+							<iframe src="../galeria/index.php?id=<?php echo $idEstacion; ?>" height="500px" width="420px"></iframe>
 							<!--
 							<h1>Leonardo da Vinci</h1>	
 							<p>Italian Renaissance polymath: painter, sculptor, architect, musician, mathematician, engineer, inventor, anatomist, geologist, cartographer, botanist, and writer. His genius, perhaps more than that of any other figure, epitomized the Renaissance humanist ideal. Leonardo has often been described as the archetype of the Renaissance Man, a man of "unquenchable curiosity" and "feverishly inventive imagination". He is widely considered to be one of the greatest painters of all time and perhaps the most diversely talented person ever to have lived. According to art historian Helen Gardner, the scope and depth of his interests were without precedent and "his mind and personality seem to us superhuman, the man himself mysterious and remote". Marco Rosci states that while there is much speculation about Leonardo, his vision of the world is essentially logical rather than mysterious, and that the empirical methods he employed were unusual for his time.</p>
@@ -225,7 +224,7 @@ $oMySQL -> closeConnection();
 					
 					<li class="sky-tab-content-3">
 						<div class="typography">
-							<iframe src="../report_test" height="1500px" width="540px"></iframe>
+							<iframe src="../reportes" height="1500px" width="540px"></iframe>
 							<!--
 							<h1>Albert Einstein</h1>
 							<p>German-born theoretical physicist who developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). While best known for his mass–energy equivalence formula E = mc2 (which has been dubbed "the world's most famous equation"), he received the 1921 Nobel Prize in Physics "for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect". The latter was pivotal in establishing quantum theory.</p>
