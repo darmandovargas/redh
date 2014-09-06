@@ -65,11 +65,26 @@ function initialize(isRefresh, dynamicImage) {
 	};
 
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	
 
 	var northEast = new google.maps.LatLng(5.295278392, -75.490426);
 	var southWest = new google.maps.LatLng(4.70917919, -75.78304604);
 
 	var bounds = new google.maps.LatLngBounds(southWest, northEast);
+	
+	/*
+	console.log("dynamicImage");
+	console.log(dynamicImage);
+	console.log("isRefresh: "+isRefresh);
+	console.log("dynamicImage[0].type: "+dynamicImage[0].type);
+	*/
+	if(isRefresh && dynamicImage[0].type == "kml"){
+		console.log(dynamicImage[0].type);	
+		var ctaLayer = new google.maps.KmlLayer({
+	    	url: dynamicImage[0].url//'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/blackbirds.kml' // 'http://localhost/mapa/uploads/MedellnAntioquia.kml'//dynamicImage[0].url//
+	    });
+  		ctaLayer.setMap(map);
+  }
 
 	// Search Box
 	if (!isRefresh) {
@@ -440,9 +455,10 @@ function refreshMap() {
 	location.reload();
 }
 
-function loadImage(url) {
-	initialize(true,url);
+function loadImageOrKml(imageInfo) {
+	initialize(true,imageInfo);
 }
+
 
 // Upload Image
 
@@ -537,7 +553,12 @@ function submitForm(event, data)
         	{
         		// Success so call function to process the form
         		console.log('SUCCESS: ' + data.success);
-        		loadImage("uploads/"+imageName);
+        		console.log(imageName);
+        		tipo = imageName.split(".");
+        		tipo = tipo[1];
+        		console.log(tipo);
+        		imageInfo = [{'url':'uploads/'+imageName, 'type':tipo}];        		
+        		loadImageOrKml(imageInfo);
         	}
         	else
         	{
