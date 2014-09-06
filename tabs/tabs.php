@@ -66,7 +66,7 @@ $xAxis = $series = array();
 		$seriesTemp[] = array("name" => $est["estNombre"], "data" => $jsonData);
 //}		
 $xAxis = $series = array();
-$xAxis = json_encode($xAxisTemp);
+$xAxis = json_encode(array_reverse($xAxisTemp));
 //foreach ($seriesTemp as $ser) {
 	
 	echo $xAxis;
@@ -74,7 +74,7 @@ $xAxis = json_encode($xAxisTemp);
 	
 	//echo $series;
 //}
-$series = json_encode(array("name" => $est["estNombre"], "data" => $jsonData ));
+$series = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData) ));
 		echo $series;
 		//return array($xAxis, $series);	
 		//var_dump($series);
