@@ -69,13 +69,13 @@ $xAxis = $series = array();
 $xAxis = json_encode(array_reverse($xAxisTemp));
 //foreach ($seriesTemp as $ser) {
 	
-	echo $xAxis;
+//	echo $xAxis;
 	//$series[] = json_encode(array("name" => $seriesTemp["name"], "data" => $ser["data"]));
 	
 	//echo $series;
 //}
 $series = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData) ));
-		echo $series;
+//		echo $series;
 		//return array($xAxis, $series);	
 		//var_dump($series);
 //}
