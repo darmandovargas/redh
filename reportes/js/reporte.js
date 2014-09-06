@@ -22,7 +22,8 @@ $(function(){
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
-                                $('#archive').html("<h4>No se encontraron resultados en la busqueda</h4>");
+                                $('#archive').html("<div class='alert alert-info'>No se encontraron resultados en la busqueda</div>");
+                                $("#mensaje").hide();
                         }else{
                                 $('#archive').html(response.salida);
                                 $("#mensaje").hide();
@@ -127,4 +128,94 @@ $(function(){
 });
 
 
-
+function preseleccionar(name){
+     var estacion = ["San Jose", "El Lago", "Cortaderal", "El Cedral", "San Juan", "El Nudo", "Quinchia Seafield", "Acuaseo", "Mundo Nuevo", "UTP"];
+     var sensores = ["Rio barbo", "Quebrada el oso", "Quebrada san eustaquio", "Quebrada negra", "Quebrada el manzano", "Humedal lisbran", "Quebrada volcanes", "Quebrada dali"];
+     var pluviometros = ["CAI Villaverde", "Pluv_UTP", "Boc acueducto acuasat tinajas", "Pluv_02_finca_lisbran", "Tanque Villasantana", "Boc acueducto la honda", "Pluv_01_finca_lisbran", "Boc acueducto la bella", "Boc acueducto perez alto"
+                , "Parque Industrial","Pluv_Bosques de Cuba","CAI Poblado","CAI Consota","Bomberos ormaza","Cruz Roja","Pluv_Colegio Saint George","CAI Galan","Boc acueducto la florida"];
+     var cant = 0;
+     var lista = "";
+     var i;
+     var fecha = new Date();
+     var ano = fecha.getFullYear();
+     if(name != ""){
+         var index = estacion.indexOf(name);
+         if(index != -1){
+             lista = "<option value=''>Seleccione estacion</option>";
+             $("#boletin option[value=estaciones]").attr("selected",true);
+             cant = estacion.length;
+             for(i=0;i<cant;i++){
+                    selected = "";
+                    if(name.toLowerCase() == estacion[i].toLowerCase())
+                        selected = "selected";
+                    lista = lista + "<option value='" +estacion[i].toLowerCase()+ "' "+selected+">" +estacion[i]+"</option>"
+             }             
+             $("#estacion").html("");
+             $("#estacion").append(lista);
+             lista = "";
+             lista = "<option value=''>Seleccione fecha</option>";
+             for(i=ano;i>=2007;i--){
+                    selected = "";
+                    if(i == ano)
+                        selected = "selected";
+                    lista = lista + "<option value='" +i+ "' "+selected+">" +i+"</option>"
+             }
+             $("#fecha").html("");
+             $("#fecha").html(lista);
+             $("#periocidad").html("<option value=''>Seleccione periodo</option><option value='diarios' selected>Diarios</option><option value='mensual'>Mensual</option><option value='anual'>Anual</option>");
+             return false;
+             
+         }
+         index = sensores.indexOf(name);
+         if(index != -1){
+             $("#boletin option[value=sensores]").attr("selected",true);
+             cant = sensores.length;
+             for(i=0;i<cant;i++){
+                    selected = "";
+                    if(name.toLowerCase() == sensores[i].toLowerCase())
+                        selected = "selected";
+                    lista = lista + "<option value='" +sensores[i].toLowerCase()+ "' "+selected+">" +sensores[i]+"</option>"
+             }
+             $("#estacion").html("");
+             $("#estacion").append(lista);
+             lista = "";
+             lista = "<option value=''>Seleccione fecha</option>";
+             for(i=ano;i>=2007;i--){
+                    selected = "";
+                    if(i == ano)
+                        selected = "selected";
+                    lista = lista + "<option value='" +i+ "' "+selected+">" +i+"</option>"
+             }
+             $("#fecha").html("");
+             $("#fecha").html(lista);
+             $("#periocidad").html("<option value=''>Seleccione periodo</option><option value='diarios' selected>Diarios</option><option value='mensual'>Mensual</option><option value='anual'>Anual</option>");
+             return false;
+         }
+         index = pluviometros.indexOf(name);
+         if(index != -1){
+             $("#boletin option[value=pluviometros]").attr("selected",true);
+             cant = pluviometros.length;
+             for(i=0;i<cant;i++){
+                    selected = "";
+                    if(name.toLowerCase() == pluviometros[i].toLowerCase())
+                        selected = "selected";
+                    lista = lista + "<option value='" +pluviometros[i].toLowerCase()+ "' "+selected+">" +pluviometros[i]+"</option>"
+             }
+             $("#estacion").html("");
+             $("#estacion").append(lista);
+             lista = "";
+             lista = "<option value=''>Seleccione fecha</option>";
+             for(i=ano;i>=2007;i--){
+                    selected = "";
+                    if(i == ano)
+                        selected = "selected";
+                    lista = lista + "<option value='" +i+ "' "+selected+">" +i+"</option>"
+             }
+             $("#fecha").html("");
+             $("#fecha").html(lista);
+             $("#periocidad").html("<option value=''>Seleccione periodo</option><option value='diarios' selected>Diarios</option><option value='mensuales'>Mensuales</option><option value='anuales'>Anuales</option>");
+             return false;
+         }         
+     }            
+     return true;           
+}

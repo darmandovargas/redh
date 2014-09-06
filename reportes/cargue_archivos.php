@@ -15,20 +15,25 @@
  *      JSON = Retorna un vector en json con la respuesta y un cadena con el listado de archivos en html
  * 
  */
-$directory = "boletines/".$_REQUEST["boletin"]."/".$_REQUEST["estacion"]."/".$_REQUEST["periocidad"]."/".$_REQUEST["fecha"];
-//$directory= "images/estaciones/".$estacion;
-$dirint = dir($directory);
 $respuesta = false;
-$salida = "<ul>";
-while (($archivo = $dirint->read()) !== false)
-{    
-    $respuesta = true;
-    if (eregi("pdf", $archivo)){
-          $salida .= '<li><a target="_blank" href="'.$directory."/".$archivo.'">'.$archivo.'</a></li>';                            
+$salida = "";
+if($_REQUEST["boletin"] != "" && $_REQUEST["estacion"] != "" && $_REQUEST["periocidad"] != "" && $_REQUEST["fecha"] != ""){
+    $directory = "boletines/".$_REQUEST["boletin"]."/".$_REQUEST["estacion"]."/".$_REQUEST["periocidad"]."/".$_REQUEST["fecha"];
+    //$directory= "images/estaciones/".$estacion;
+    $dirint = dir($directory);
+    if(!empty($dirint)){
+        $salida = "<ul>";
+        while (($archivo = $dirint->read()) !== false)
+        {    
+            $respuesta = true;
+            if (eregi("pdf", $archivo)){
+                  $salida .= '<li><a target="_blank" href="'.$directory."/".$archivo.'">'.$archivo.'</a></li>';                            
+            }
+        }
+        $salida .= "</ul>";
+        $dirint->close();
     }
 }
-$salida .= "</ul>";
-$dirint->close();
 $salidaJson = array("respuesta" => $respuesta, "salida" => $salida);
 echo json_encode($salidaJson);
 ?>
