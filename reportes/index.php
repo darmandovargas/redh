@@ -1,3 +1,10 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
@@ -20,7 +27,7 @@
 	
         </script>
     </head>
-    <body onLoad="preseleccionar(name)" style="background-color: #EAF5F3;height: 400px;">
+    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>')" style="background-color: #EAF5F3;height: 400px;">
         <div id="content">
                 <fieldset>
                     <select class="input-xlarge" id="boletin">
@@ -29,13 +36,11 @@
                         <option value="sensores">Sensores de Nivel por Presión </option>
                         <option value="pluviometros">Pluviometros con Data Logger</option>
                     </select>
-                    <br>
-                    <select class="input-xlarge" id="estacion">
+                    <select class="input-large" id="estacion">
                     </select>
                     <br>
                     <select class="input-medium" id="fecha">
                     </select>
-                    <br>
                     <select class="input-medium" id="periocidad">
                     </select>
                     <br>

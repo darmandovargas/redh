@@ -11,8 +11,8 @@
 <title>Estaciones</title>
 
 <style type="text/css">
-body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #000000;*/ color: #ffffff;}
-#content {/*width:620px; margin:0px auto;*/}
+body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #000000;*/background-color: #EAF5F3; color: #ffffff;}
+#content {/*width:620px; margin:0px auto;*/background-color: #EAF5F3;}
 #desc {/*margin:10px;*/margin:0px; float:left; font-family: Arial, sans-serif; font-size: 12px;}
 </style>
 
@@ -80,21 +80,35 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
                     * 
                     */
                     $estacion = $_REQUEST["id"];
+                    $nombre  = $_REQUEST["name"];
                     $directory= "images/estaciones/".$estacion;
                     $dirint = dir($directory);
-                    while (($archivo = $dirint->read()) !== false)
-                    {
-                        if (eregi("gif", $archivo) || eregi("jpg", $archivo) || eregi("png", $archivo)){
-                            ?>
-                            <li>
-                                <h4>Hohensalzburg Castle</h4>
-                                <div class="tn3 description"><?php echo $archivo; ?></div>
-                                <a href="<?php echo $directory."/".$archivo; ?>" >
-                                    <?php  echo '<img src="'.$directory."/".$archivo.'" />'; ?>
-                                </a>
-                            </li>     
-                             <?php                            
+                    if(!empty($dirint)){
+                        while (($archivo = $dirint->read()) !== false)
+                        {
+                            if (eregi("gif", $archivo) || eregi("jpg", $archivo) || eregi("png", $archivo)){
+                                ?>
+                                <li>
+                                    <h4><?php echo $nombre; ?></h4>
+                                    <?php $descripcion = explode("_", $archivo); ?>
+                                    <div class="tn3 description"><?php echo $descripcion[0]; ?></div>
+                                    <a href="<?php echo $directory."/".$archivo; ?>" >
+                                        <?php  echo '<img src="'.$directory."/".$archivo.'" />'; ?>
+                                    </a>
+                                </li>     
+                                 <?php                            
+                            }
                         }
+                    }else{
+                        ?>
+                                <li>
+                                    <h4></h4>
+                                    <div class="tn3 description"></div>
+                                    <a href="images/nodisponible.gif" >
+                                        <?php  echo '<img src="images/nodisponible.gif" >'; ?>
+                                    </a>
+                                </li>     
+                                 <?php   
                     }
                     $dirint->close();
                 ?>
