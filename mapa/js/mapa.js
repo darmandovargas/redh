@@ -78,13 +78,14 @@ function initialize(isRefresh, dynamicImage) {
 	console.log("isRefresh: "+isRefresh);
 	console.log("dynamicImage[0].type: "+dynamicImage[0].type);
 	*/
-	if(isRefresh && dynamicImage[0].type == "kml"){
+	//if(isRefresh && dynamicImage[0].type == "kml"){
 		console.log(dynamicImage[0].type);	
 		var ctaLayer = new google.maps.KmlLayer({
-	    	url: dynamicImage[0].url//'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/blackbirds.kml' // 'http://localhost/mapa/uploads/MedellnAntioquia.kml'//dynamicImage[0].url//
+	    	url: 'uploads/kml.kml' //dynamicImage[0].url
 	    });
   		ctaLayer.setMap(map);
-  }
+  		console.log("after layer");
+  //}
 
 	// Search Box
 	if (!isRefresh) {
@@ -149,6 +150,7 @@ function initialize(isRefresh, dynamicImage) {
 		setupClickListener('changetype-geocode', ['geocode']);
 
 	}
+	console.log("debug1");
 	//End Search Box
 
 	// Clima
@@ -160,7 +162,7 @@ function initialize(isRefresh, dynamicImage) {
 	var cloudLayer = new google.maps.weather.CloudLayer();
 	cloudLayer.setMap(map);
 	// End Clima
-
+console.log("debug2");
 	// Tools
 	var drawingManager = new google.maps.drawing.DrawingManager({
 		//drawingMode : google.maps.drawing.OverlayType.MARKER,
@@ -182,7 +184,7 @@ function initialize(isRefresh, dynamicImage) {
 		}
 	});
 	drawingManager.setMap(map);
-
+console.log("debug3");
 	// End Tools
 	
 	// Superposición de Imagenes
@@ -255,7 +257,7 @@ function initialize(isRefresh, dynamicImage) {
 		var newPointB = markerB.getPosition();
 		
 	});
-
+console.log("debug4");
 	// Fin Superposición de Imágenes
 
 	/*
@@ -306,7 +308,7 @@ function initialize(isRefresh, dynamicImage) {
 	infoWindow = new google.maps.InfoWindow();
 
 	map.fitBounds(bounds);
-
+console.log("debug5");
 	$.each(estacionesJSON, function(idx, obj) {
 		//console.log(obj.coordenadas.latitud + "," + obj.coordenadas.longitud);
 		var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
@@ -330,6 +332,7 @@ function initialize(isRefresh, dynamicImage) {
 		}
 
 	});
+	console.log("debug6");
 }
 
 // Superposición Funciones
@@ -553,11 +556,15 @@ function submitForm(event, data)
         	{
         		// Success so call function to process the form
         		console.log('SUCCESS: ' + data.success);
-        		console.log(imageName);
+        		console.log("data");
+        		console.log(data);
+        		//console.log(imageName);
         		tipo = imageName.split(".");
         		tipo = tipo[1];
         		console.log(tipo);
-        		imageInfo = [{'url':'uploads/'+imageName, 'type':tipo}];        		
+        		imageInfo = [{'url':'uploads/kml.kml', 'type':'kml'}];
+        		console.log("imageName");
+        		console.log(imageName);        		
         		loadImageOrKml(imageInfo);
         	}
         	else
