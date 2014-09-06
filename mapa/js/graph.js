@@ -5,7 +5,7 @@ $('#container').highcharts({
             title: {
                 text: 'Monthly Average Temperature',
                 x: -20 //center
-            },
+            }, 
             subtitle: {
                 text: 'Source: WorldClimate.com',
                 x: -20

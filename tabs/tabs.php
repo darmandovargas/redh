@@ -8,6 +8,29 @@ $estationTable = $privateEstationTable = array();
 
 $idEstacion = $_GET['id'];
 
+if($idEstacion!=0){
+	
+
+$tipoEstacion = $_GET['tipo'];
+
+$tablaEstaciones = "estaciones";
+
+switch ($tipoEstacion) {
+	case 'ECT':
+		$tablaEstaciones = "estaciones";
+		break;
+	case 'EHT':
+		$tablaEstaciones = "estaciones";
+		break;
+	case 'EC':
+		$tablaEstaciones = "estaciones_sensores";
+		break;
+	
+	default:
+		$tablaEstaciones = "estaciones_sensores";
+		break;
+}
+
 $xAxis = $series = array();
 
 //echo "ID: ".$idEstacion;
@@ -83,7 +106,7 @@ $series = json_encode(array("name" => $est["estNombre"], "data" => array_reverse
 
 $oMySQL -> closeConnection();		
 		 	
-	
+		 	}	
 
 ?>
 <!DOCTYPE html> 
@@ -105,9 +128,11 @@ $oMySQL -> closeConnection();
 		<![endif]-->
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="js/highcharts.js"></script>
 	    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+	    <?php if($idEstacion!=0){ ?>
 	    <script>
+	    
 		$(function () {
 			
 		
@@ -130,11 +155,11 @@ $oMySQL -> closeConnection();
             
         $('#container').highcharts({
             title: {
-                text: 'Mediciones últimas 24 horas',
+                text: 'Mediciones últimas 24 horas de '+ '<?php echo  $est["estNombre"];?>',
                 x: -20 //center
             },
             subtitle: {
-                text: 'Origen: Red Climatológica de Risaralda',
+                text: 'Origen: Red Hidroclimatológica de Risaralda',
                 x: -20
             },
             xAxis: {
@@ -178,6 +203,7 @@ $oMySQL -> closeConnection();
     });
 		
 	</script>
+	<?php } ?>
 	</head>
 	
 	<body class="bg-cyan">		
@@ -197,9 +223,14 @@ $oMySQL -> closeConnection();
 				<label for="sky-tab4"><span><span><i class="fa fa-globe"></i>Newton</span></span></label>
 				-->
 				<ul>
+					
 					<li class="sky-tab-content-1">					
 						<div class="typography">
+							<?php if($idEstacion!=0){ ?>
 							<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+							<?php }else{ ?>
+									No hay variables disponibles para graficar
+							<?php } ?>
 							<!--
 							<h1>Nikola Tesla</h1>
 							<p>Serbian-American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electrical supply system.</p>
