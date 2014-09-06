@@ -1,40 +1,47 @@
 <?php 
 
+include_once ('../lib/class.MySQL.php');
+
 $publicEstations = array("tb_san_jose", "tb_ellago", "tb_Cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
 
 $estationTable = $privateEstationTable = array();
 
 $idEstacion = $_GET['id'];
 
+$xAxis = $series = array();
+
 //echo "ID: ".$idEstacion;
 
-if (!empty($idEstacion)) {
-
-	include_once ('../lib/class.MySQL.php');
+//function getEstation($idEst){
+		
 	// Obtiene la estación segú parámetro get
-	$query = "SELECT * FROM estaciones where id=" . $idEstacion;
-	$estacion = $oMySQL -> ExecuteSQL($query);
-	//foreach ($estaciones as $estacion) {
+	$query = "SELECT * FROM estaciones WHERE id=".$idEstacion;//." and activo='true'";
+	//$query2 = "SELECT * FROM estaciones where activo='true'";
+	$est = $oMySQL -> ExecuteSQL($query);
+	$estaciones= $oMySQL -> ExecuteSQL($query2);
+	//$est = $estacion;
+//	foreach ($estaciones as $est) {
 		// Obtiene el nombre de la estación
-		$tabla = $estacion["estNombreTb"];
+		$tabla = $est["estNombreTb"];
 		// Obtiene datos de la tabla de la estación del último día (aproximadamente 285 últimos datos)
 		$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 285";
 		//echo $query."</br>";
-		$estacioneInfo = $oMySQL -> ExecuteSQL($query);
+		$estacionInfo = $oMySQL -> ExecuteSQL($query);
 		// Inicializa variables para guardar el promedio por hora y un contador
 		$promedio = $contador = $ultimaHora = 0;
 		// Itero la informatión de la tabla de la estación
-		foreach ($estacioneInfo as $data) {
+		foreach ($estacionInfo as $data) {
 			// Obtengo la hora de la medición
 			$horaX = substr($data['hora'], 0, 2);
 			// Valido que la hora actual y la anterior sean la misma para sumar al promedio y al contador
-			if ($ultimaHora == $horaX || $contador == 0) {
+			if ($ultimaHora == intval($horaX) || $contador == 0) {
 				$contador++;
 				$promedio += $data['temperatura'];
 			} else {
 				// Si la hora anterior y la actual son diferentes, agrego el valor a un array y 
 				// renuevo el valor del promedio y el contador 
 				$promedio = $promedio / $contador;
+				$promedio = substr($promedio, 0, 4);
 				$estationTable[] = array("hora" => intval($horaX), "data" => floatval($promedio));
 				$promedio = $data['temperatura'];
 				$contador=0;
@@ -42,29 +49,42 @@ if (!empty($idEstacion)) {
 			// Actualizo variable de última hora
 			$ultimaHora = $horaX;
 		}
+		//var_dump($estationTable);
 		// Inicializo variable de datos json y eje x
-		$jsonData = array();
+		$x = $jsonData = array();
 		foreach ($estationTable as $data) {
 			// Obtengo un solo array de datos y uno solo de horas en el eje x
-			$jsonData[] = $data["data"];
+			$jsonData[] = $data["data"];			
 			$x[] = $data["hora"];
 		}
+		
 		//$jsonString[] = array("name" => $estacion["estNombre"], "data" => $jsonData, "visible"=>($estacion["id"]==$idEstacion)?true:false);
-		//$xAxis[] = 	
-	//}
+		//$xAxis[] =	
+		//if(isset($xAxisTemp))	
+		$xAxisTemp = $x;
+		
+		$seriesTemp[] = array("name" => $est["estNombre"], "data" => $jsonData);
+//}		
+$xAxis = $series = array();
+$xAxis = json_encode($xAxisTemp);
+//foreach ($seriesTemp as $ser) {
 	
+	echo $xAxis;
+	//$series[] = json_encode(array("name" => $seriesTemp["name"], "data" => $ser["data"]));
 	
-	// codifico los array en el formato json correspondiente para que el highchart lo lea
-	// y luego lo uso en el json de la estructura del gráfico
-	$x = json_encode($x);
-//	echo $x;
-	//$jsonString = json_encode($jsonString);
-	$jsonString = json_encode(array("name" => $estacion["estNombre"], "data" => $jsonData));
-	
-	//echo $jsonString;
+	//echo $series;
+//}
+$series = json_encode(array("name" => $est["estNombre"], "data" => $jsonData ));
+		echo $series;
+		//return array($xAxis, $series);	
+		//var_dump($series);
+//}
 
-	$oMySQL -> closeConnection();
-}
+
+$oMySQL -> closeConnection();		
+		 	
+	
+
 ?>
 <!DOCTYPE html> 
 <html>
@@ -90,11 +110,12 @@ if (!empty($idEstacion)) {
 	    <script>
 		$(function () {
 			
-		tempEst = <?php echo $jsonString; ?>;
+		
 			
-		console.log(tempEst);
-			
-		temperaturasEstaciones = [<?php echo $jsonString; ?>]/*, {
+		temperaturasEstaciones =[<?php echo $series; ?>]/*,{
+                name: 'New York',
+                data: [0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5,0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            }]/*, {
                 name: 'New York',
                 data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
             }, {
@@ -117,10 +138,10 @@ if (!empty($idEstacion)) {
                 x: -20
             },
             xAxis: {
-                categories: <?php echo $x; ?>/*['1', '2', '3', '4', '5', '6',
+                categories: <?php echo $xAxis; ?>/*['1', '2', '3', '4', '5', '6',
                     '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18',
-                    '19', '20', '21', '22', '23', '24']*/
-            },
+                    '19', '20', '21', '22', '23', '24']
+            */},
             yAxis: {
                 title: {
                     text: 'Temperatura (°C)'
@@ -140,7 +161,7 @@ if (!empty($idEstacion)) {
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series: temperaturasEstaciones/*[{
+            series:temperaturasEstaciones/*[{
                 name: 'Tokyo',
                 data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
             }, {
