@@ -143,10 +143,9 @@ estacionesJSON = [
 		    "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
 		    "fecha": "27 de Marzo de 2010",
 		    "estado": "Activa"	  		  
-		}/*,
-		
+		},		
 		{
-			"id" : "0",
+			"id" : "37",
   			"tipo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC001 (Acuaseo)",
 		    "variables": {
@@ -162,6 +161,7 @@ estacionesJSON = [
 		      "latitud": 4.861723969,
 		      "longitud": -75.65464021
 		    },
+		    "tipo":"EC",
 		    "icono": iconoEC,
 		    "altitud": "1550 m.s.n.m",
 		    "ubicacion": "Planta de Tratamiento de Agua, compañía de servicios públicos Acuaseo, Dosquebradas",
@@ -169,7 +169,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "0",
+			"id" : "38",
   			"tipo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC002 (Mundo Nuevo)",
 		    "variables": {
@@ -185,6 +185,7 @@ estacionesJSON = [
 		      "latitud": 4.873557316,
 		      "longitud": -75.66111246
 		    },
+		    "tipo":"EC",
 		    "icono": iconoEC,
 		    "altitud": "1550 m.s.n.m",
 		    "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
@@ -192,7 +193,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "0",
+			"id" : "32",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN001 (Quebrada Dalí)",
 		    "variables": {
@@ -202,6 +203,7 @@ estacionesJSON = [
 		      "latitud": 4.741718167,
 		      "longitud": -75.59009842
 		    },
+		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1800 m.s.n.m",
 		    "ubicacion": "Finca Lisbrán, Cuenca Media Río Otún ",
@@ -209,7 +211,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "0",
+			"id" : "34",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN002 (Quebrada Negra)",
 		    "variables": {
@@ -219,6 +221,7 @@ estacionesJSON = [
 		      "latitud": 4.744059843,
 		      "longitud": -75.60326232
 		    },
+		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1750 m.s.n.m",
 		    "ubicacion": "Cerca al Centro Aguas y Aguas Vía al Cedral.",
@@ -226,7 +229,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},
 		{
-			"id" : "",
+			"id" : "31",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN003 (Quebrada El Manzano)",
 		    "variables": {
@@ -236,6 +239,7 @@ estacionesJSON = [
 		      "latitud": 4.759279315,
 		      "longitud": -75.61186236
 		    },
+		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1700 m.s.n.m",
 		    "ubicacion": "Corregimiento de La Florida, Cuenca Media Río Otún ",
@@ -243,7 +247,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},
 		{
-			"id" : "",
+			"id" : "35",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN004 (Quebrada Volcanes) ",
 		    "variables": {
@@ -253,6 +257,7 @@ estacionesJSON = [
 		      "latitud": 4.783696013,
 		      "longitud": -75.63461238
 		    },
+		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1600 m.s.n.m",
 		    "ubicacion": "Cuenca media Río Otún ",
@@ -260,6 +265,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id": "30",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN005  (Quebrada San Eustaquio)",
 		    "variables": {
@@ -269,6 +275,7 @@ estacionesJSON = [
 		      "latitud": 4.769723768,
 		      "longitud": -75.60855679
 		    },
+		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1700 m.s.n.m",
 		    "ubicacion": "Cuenca media Río Otún ",
@@ -276,6 +283,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},
 		{
+			"id":"33",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN006  (Quebrada El Oso)",
 		    "variables": {
@@ -285,6 +293,7 @@ estacionesJSON = [
 		      "latitud": 4.800371046,
 		      "longitud": -75.73376536
 		    },
+		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1290 m.s.n.m",
 		    "ubicacion": "Barrio La Habana Cuba.",
@@ -292,6 +301,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN007  (Humedal Llisbran)",
 		    "variables": {
@@ -301,6 +311,7 @@ estacionesJSON = [
 		      "latitud": 4.738834822,
 		      "longitud": -75.58364006
 		    },
+		    "tipo":"SNNT",
 		    "icono": iconoSN,
 		    "altitud": "1847 m.s.n.m",
 		    "ubicacion": "Finca Lisbran",
@@ -308,6 +319,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN008 (Humedal Lisbran 2)",
 		    "variables": {
@@ -317,6 +329,7 @@ estacionesJSON = [
 		      "latitud": 0,
 		      "longitud": 0
 		    },
+		    "tipo":"SNNT",
 		    "icono": iconoSN,
 		    "altitud": "",
 		    "ubicacion": "Finca Lisbran",
@@ -324,6 +337,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
 		    "variables": {
@@ -333,6 +347,7 @@ estacionesJSON = [
 		      "latitud": 4.744045954,
 		      "longitud": -75.60941513
 		    },
+		    "tipo":"PDNT",
 		    "icono": iconoPD, 
 		    "altitud": "1750 m.s.n.m",
 		    "ubicacion": "Corregimiento de la Florida ",
@@ -340,6 +355,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
 		    "variables": {
@@ -349,6 +365,7 @@ estacionesJSON = [
 		      "latitud": 4.738934822,
 		      "longitud": -75.6177679
 		    },
+		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1950 m.s.n.m",
 		    "ubicacion": "Vereda La Bella",
@@ -356,6 +373,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD003 (Bocatoma Acueducto Pérez Alto) ",
 		    "variables": {
@@ -365,6 +383,7 @@ estacionesJSON = [
 		      "latitud": 4.711854225,
 		      "longitud": -75.66235135
 		    },
+		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1700 m.s.n.m",
 		    "ubicacion": "Vereda Yarumal ",
@@ -372,6 +391,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
 		    "variables": {
@@ -381,6 +401,7 @@ estacionesJSON = [
 		      "latitud": 4.744709846,
 		      "longitud": -75.70915421
 		    },
+		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1500 m.s.n.m",
 		    "ubicacion": "Corregimiento de Altagracia",
@@ -388,6 +409,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
 		    "variables": {
@@ -397,6 +419,7 @@ estacionesJSON = [
 		      "latitud": 4.874440653,
 		      "longitud": -75.78304604
 		    },
+		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1250 m.s.n.m",
 		    "ubicacion": "Vereda La Honda",
@@ -404,6 +427,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD006 (Finca Lisbran)",
 		    "variables": {
@@ -413,6 +437,7 @@ estacionesJSON = [
 		      "latitud": 4.740557051,
 		      "longitud": -75.58052897
 		    },
+		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1890 m.s.n.m.",
 		    "ubicacion": "Finca Lisbran",
@@ -420,6 +445,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD007 (Finca Lisbran)",
 		    "variables": {
@@ -429,6 +455,7 @@ estacionesJSON = [
 		      "latitud": 4.742445948,
 		      "longitud": 75.58047341
 		    },
+		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1861 m.s.n.m.",
 		    "ubicacion": "Finca Lisbran",
