@@ -1,5 +1,6 @@
 //Script para manejar los dropdown de Reportes, realizar la busqueda y listar los archivos de la carpeta
 $(function(){
+    $( "#mes" ).fadeOut( "slow" );
     $( "#buscar" ).click(function(){ 
         $('#archive').html("");
         $("#mensaje").show();
@@ -7,12 +8,18 @@ $(function(){
         var estacion = $("#estacion").val();
         var periocidad = $("#periocidad").val();
         var fecha = $("#fecha").val();
+        var mes = $("#mes").val();
+        var path = "";
         if(boletin == "" || estacion == "" || periocidad == "" || fecha == ""){
             $('#archive').html("<div class='alert alert-info'>Seleccione cada uno de los parametros para realizar la busqueda<div>");
             $("#mensaje").hide();
             return false;
         }
-        var data = "boletin="+boletin+"&estacion="+estacion+"&periocidad="+periocidad+"&fecha="+fecha;
+        if(periocidad == 'diarios'){
+            path = "&mes=" + mes;
+        }
+        var data = "boletin="+boletin+"&estacion="+estacion+"&periocidad="+periocidad+"&fecha="+fecha+path;
+        
         $.ajax({					
                 cache: false,
                 type: "POST",
@@ -38,6 +45,108 @@ $(function(){
         });
     });
     
+    $( "#boletin" ).change(function() {
+           var valor = $("#boletin").val();
+           var nombre = $("#name").val();
+           if(valor != ''){
+                $.ajax({					
+                     cache: false,
+                     type: "POST",
+                     dataType: "json",
+                     url: "load_directory.php",
+                     data: {path : valor,actionID : 'chargue_dp',name : nombre},
+                     success: function(response){
+                             // Validar mensaje de error
+                             if(response.respuesta == false){
+                                     $("#estacion").html("");
+                                     $('#archive').html("<div class='alert alert-info'>No se encontraron directorios</div>");                                
+                             }else{
+                                     $("#estacion").html("");
+                                     $('#estacion').html(response.salida);
+                             }
+                     },
+                     error:function(xhr,ajaxOptions,thrownError){
+     //						alert('Error General del Sistema, Intente Mas Tarde');
+                             alert(xhr.responseText);
+                             alert(thrownError);
+                             return false;
+                     }
+                 });
+           }
+    });
+    
+    $( "#estacion" ).change(function() {
+           var boletin = $("#boletin").val();
+           var estacion = $("#estacion").val();
+           var path = boletin + '/' + estacion;
+           $.ajax({					
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                url: "load_directory.php",
+                data: {path : path,actionID : 'chargue_dp'},
+                success: function(response){
+                        // Validar mensaje de error
+                        if(response.respuesta == false){
+                                $("#fecha").html("");
+                                $('#archive').html("<div class='alert alert-info'>No se encontraron directorios</div>");                                
+                        }else{
+                                $("#fecha").html("");
+                                $('#fecha').html(response.salida);
+                        }
+                },
+                error:function(xhr,ajaxOptions,thrownError){
+//						alert('Error General del Sistema, Intente Mas Tarde');
+                        alert(xhr.responseText);
+                        alert(thrownError);
+                        return false;
+                }
+            });
+    });
+    
+    $( "#fecha" ).change(function() {
+           var boletin = $("#boletin").val();
+           var estacion = $("#estacion").val();
+           var fecha = $("#fecha").val();
+           var path = boletin + '/' + estacion + '/' + fecha;
+           $.ajax({					
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                url: "load_directory.php",
+                data: {path : path,actionID : 'chargue_dp'},
+                success: function(response){
+                        // Validar mensaje de error
+                        if(response.respuesta == false){
+                                $("#periocidad").html("");
+                                $('#archive').html("<div class='alert alert-info'>No se encontraron directorios</div>");                                
+                        }else{
+                                $("#periocidad").html("");
+                                $('#periocidad').html(response.salida);
+                        }
+                },
+                error:function(xhr,ajaxOptions,thrownError){
+//						alert('Error General del Sistema, Intente Mas Tarde');
+                        alert(xhr.responseText);
+                        alert(thrownError);
+                        return false;
+                }
+            });
+    });
+    
+    $( "#periocidad" ).change(function() {
+        var periocidad = $( "#periocidad" ).val();
+        if(periocidad != "diarios"){
+            $( "#mes" ).fadeOut( "slow" );
+        }else{
+            $( "#mes" ).fadeIn( "slow" );
+        }   
+    });
+    
+    
+
+/* Para cargar dropdown por vectores
+
     $( "#boletin" ).change(function() {
             var valor = $("#boletin").val();
             var estacion = ["San Jose", "El Lago", "Cortaderal", "El Cedral", "San Juan", "El Nudo", "Quinchia Seafield", "Acuaseo", "Mundo Nuevo", "UTP"];
@@ -126,8 +235,7 @@ $(function(){
     });
     
 });
-
-
+    
 function preseleccionar(name){
      var estacion = ["San Jose", "El Lago", "Cortaderal", "El Cedral", "San Juan", "El Nudo", "Quinchia Seafield", "Acuaseo", "Mundo Nuevo", "UTP"];
      var sensores = ["Rio barbo", "Quebrada el oso", "Quebrada san eustaquio", "Quebrada negra", "Quebrada el manzano", "Humedal lisbran", "Quebrada volcanes", "Quebrada dali"];
@@ -218,4 +326,88 @@ function preseleccionar(name){
          }         
      }            
      return true;           
+}    
+
+*/
+
+});
+
+function preseleccionar(name){
+           var estacion = name;
+           $.ajax({					
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                url: "load_directory.php",
+                data: {name : estacion,actionID : 'search_directory'},
+                success: function(response){
+                        // Validar mensaje de error
+                        if(response.respuesta == false){
+                                $("#archive").html("");
+                                $('#archive').html("<div class='alert alert-info'>No se encontro directorio</div>");                              
+                                $("#estacion").html("");
+                                $("#fecha").html("");
+                                $("#periocidad").html("");
+                        }else{
+                                $("#archive").html("");
+                                $('#archive').html(response.salida);
+                                $("#boletin option[value="+ response.salida +"]").attr("selected",true);
+                                $( "#boletin" ).trigger( "change" ); 
+                                search_preselect();
+                        }
+                },
+                error:function(xhr,ajaxOptions,thrownError){
+//						alert('Error General del Sistema, Intente Mas Tarde');
+                        alert(xhr.responseText);
+                        alert(thrownError);
+                        return false;
+                }
+            }); 
+            
+}
+
+function search_preselect(){
+        $('#archive').html("");
+        $("#mensaje").show();
+        var boletin = $("#boletin").val();
+        var estacion = $("#name").val();
+        var periocidad = $("#periocidad").val();
+        var fecha = $("#fecha").val();
+        var mes = $("#mes").val();
+        var path = "";
+        if(boletin == "" || estacion == "" || periocidad == "" || fecha == ""){
+            $('#archive').html("<div class='alert alert-info'>Seleccione cada uno de los parametros para realizar la busqueda<div>");
+            $("#mensaje").hide();
+            return false;
+        }
+        if(periocidad == 'diarios'){
+            path = "&mes=" + mes;
+        }
+        var data = "boletin="+boletin+"&estacion="+estacion+"&periocidad="+periocidad+"&fecha="+fecha+path;
+        
+        $.ajax({					
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                url: "cargue_archivos.php",
+                data: data,
+                success: function(response){
+                        // Validar mensaje de error
+                        if(response.respuesta == false){
+                                $('#archive').html("<div class='alert alert-info'>No se encontraron resultados en la busqueda</div>");
+                                $("#mensaje").hide();
+                        }else{
+                                $('#archive').html(response.salida);
+                                $("#mensaje").hide();
+                        }
+                },
+                error:function(xhr,ajaxOptions,thrownError){
+//						alert('Error General del Sistema, Intente Mas Tarde');
+                        alert(xhr.responseText);
+                        alert(thrownError);
+                        return false;
+                }
+        });
+        
+        return true;
 }
