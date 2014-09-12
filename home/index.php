@@ -91,7 +91,7 @@ session_start();
 			var session = false;
 					
 			$( document ).ready(function() {
-			    //lookForSession();
+			    lookForSession();
 			    //showLogout(true);
 			    //showLogout(false);		    
 			});

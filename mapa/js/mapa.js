@@ -321,7 +321,7 @@ console.log("debug5");
 		});
 		google.maps.event.addListener(marker, 'click', toggleBounce);
 		marker.setTitle(obj.tipo + ": " + obj.nombre);
-		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.id, obj.tipo);
+		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
 
 		function toggleBounce() {
 			if (marker.getAnimation() != null) {

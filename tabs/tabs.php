@@ -1,113 +1,133 @@
-<?php 
-
+<?php
+// Obtiene la conexión a la bd
 include_once ('../lib/class.MySQL.php');
-
+// Estaciones públicas
 $publicEstations = array("tb_san_jose", "tb_ellago", "tb_Cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
-
+// Inicializa variables
 $estationTable = $privateEstationTable = array();
-
+// Obtiene id de la estación
 $idEstacion = $_GET['id'];
-
-if($idEstacion!=0){
-	
-
-$tipoEstacion = $_GET['tipo'];
-
-$tablaEstaciones = "estaciones";
-
-switch ($tipoEstacion) {
-	case 'ECT':
-		$tablaEstaciones = "estaciones";
-		break;
-	case 'EHT':
-		$tablaEstaciones = "estaciones";
-		break;
-	case 'EC':
-		$tablaEstaciones = "estaciones_sensores";
-		break;
-	
-	default:
-		$tablaEstaciones = "estaciones_sensores";
-		break;
-}
-
-$xAxis = $series = array();
-
-//echo "ID: ".$idEstacion;
-
-//function getEstation($idEst){
-		
-	// Obtiene la estación segú parámetro get
-	$query = "SELECT * FROM estaciones WHERE id=".$idEstacion;//." and activo='true'";
-	//$query2 = "SELECT * FROM estaciones where activo='true'";
+// Si la estación existe en la base de datos entonces arme el json para graficar
+if ($idEstacion != 0) {
+	// Obtiene el tipo de estacion
+	$tipoEstacion = $_GET['tipo'];
+	// Dependiendo del tipo de estación, se debe revisar en estaciones o estacion_sensores
+	switch ($tipoEstacion) {
+		case 'ECT' :
+			$tablaEstaciones = "estaciones"; break;
+		case 'EHT' :
+			$tablaEstaciones = "estaciones"; break;
+		case 'EC' :
+			$tablaEstaciones = "estacion_sensores"; break;
+		case 'SN' :
+			$tablaEstaciones = "estacion_sensores"; break;
+		default :
+			$tablaEstaciones = "estaciones"; break;
+	}
+	// Inicializa variables para la gráfica
+	$xAxis = $series = array();
+	// Obtiene la estación según el tipo que define la tabla
+	$query = "SELECT * FROM " . $tablaEstaciones . " WHERE id=" . $idEstacion;	//." and activo='true'";
 	$est = $oMySQL -> ExecuteSQL($query);
-	$estaciones= $oMySQL -> ExecuteSQL($query2);
-	//$est = $estacion;
-//	foreach ($estaciones as $est) {
-		// Obtiene el nombre de la estación
-		$tabla = $est["estNombreTb"];
-		// Obtiene datos de la tabla de la estación del último día (aproximadamente 285 últimos datos)
-		$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 285";
-		//echo $query."</br>";
-		$estacionInfo = $oMySQL -> ExecuteSQL($query);
-		// Inicializa variables para guardar el promedio por hora y un contador
-		$promedio = $contador = $ultimaHora = 0;
-		// Itero la informatión de la tabla de la estación
-		foreach ($estacionInfo as $data) {
-			// Obtengo la hora de la medición
-			$horaX = substr($data['hora'], 0, 2);
-			// Valido que la hora actual y la anterior sean la misma para sumar al promedio y al contador
-			if ($ultimaHora == intval($horaX) || $contador == 0) {
-				$contador++;
-				$promedio += $data['temperatura'];
-			} else {
-				// Si la hora anterior y la actual son diferentes, agrego el valor a un array y 
-				// renuevo el valor del promedio y el contador 
-				$promedio = $promedio / $contador;
-				$promedio = substr($promedio, 0, 4);
-				$estationTable[] = array("hora" => intval($horaX), "data" => floatval($promedio));
-				$promedio = $data['temperatura'];
-				$contador=0;
-			}
-			// Actualizo variable de última hora
-			$ultimaHora = $horaX;
-		}
-		//var_dump($estationTable);
-		// Inicializo variable de datos json y eje x
-		$x = $jsonData = array();
-		foreach ($estationTable as $data) {
-			// Obtengo un solo array de datos y uno solo de horas en el eje x
-			$jsonData[] = $data["data"];			
-			$x[] = $data["hora"];
-		}
+	// Obtiene el nombre de la estación
+	$tabla = $est["estNombreTb"];
+	// Obtiene datos de la tabla de la estación del último día (aproximadamente 285 últimos datos)
+	$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 285";
+	$estacionInfo = $oMySQL -> ExecuteSQL($query);
+	// Inicializa variables para guardar el promedio por hora y un contador
+	$contador = $ultimaHora = $contadorPresion = 0;
+	$promedio = $promedioPresion = floatval(0);
+	$isFirstVal = true;
+	// Itero la informatión de la tabla de la estación
+	foreach ($estacionInfo as $data) {
+		// Obtengo la hora de la medición
+		$horaX = substr($data['hora'], 0, 2);
 		
-		//$jsonString[] = array("name" => $estacion["estNombre"], "data" => $jsonData, "visible"=>($estacion["id"]==$idEstacion)?true:false);
-		//$xAxis[] =	
-		//if(isset($xAxisTemp))	
-		$xAxisTemp = $x;
-		$nombre_estacion = $est["estNombre"];
-		$seriesTemp[] = array("name" => $est["estNombre"], "data" => $jsonData);
-//}		
-$xAxis = $series = array();
-$xAxis = json_encode(array_reverse($xAxisTemp));
-//foreach ($seriesTemp as $ser) {
+		// Valido que la hora actual y la anterior sean la misma para sumar al promedio y al contador
+		if ($ultimaHora == $horaX || $isFirstVal) {
+			
+			if($data['temperatura']!="-"){
+				$contador++;
+				$promedio += floatval($data['temperatura']);
+			}
+			
+			if($data['presion']!="-"){
+				$contadorPresion++;
+				$promedioPresion += floatval($data['presion']);
+			}
+						
+			$isFirstVal=false;
+		} else {
+			//Temperatura	
+			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
+			// renuevo el valor del promedio y el contador
+			if($contador==0)
+				$contador = 1;
+				
+			$promedio = $promedio / $contador;
+			$promedio = substr($promedio, 0, 4);
+			$estationTable[] = array("hora" => intval($ultimaHora), "data" => floatval($promedio));			
+			$promedio = $contador = 0;
+			$isFirstVal=true;
+			if($data['temperatura']!="-"){
+				$contador++;
+				$promedio += floatval($data['temperatura']);
+			}
+			
+			//Presion
+			//Temperatura	
+			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
+			// renuevo el valor del promedio y el contador
+			if($contadorPresion==0)
+				$contadorPresion = 1;
+				
+			$promedioPresion = $promedioPresion / $contadorPresion;
+			$promedioPresion = substr($promedioPresion, 0, 4);
+			$estationTablePresion[] = array("hora" => intval($ultimaHora), "data" => floatval($promedioPresion));			
+			$promedioPresion = $contadorPresion = 0;
+			$isFirstVal=true;
+			if($data['presion']!="-"){
+				$contadorPresion++;
+				$promedioPresion += floatval($data['presion']);
+			}
+		}
+		// Actualizo variable de última hora
+		$ultimaHora = $horaX;
+	}
+	// Inicializo variable de datos json y eje x
+	$x = $jsonData = $jsonDataPresion = array();
+	foreach ($estationTable as $data) {
+		// Obtengo un solo array de datos y uno solo de horas en el eje x
+		$jsonData[] = $data["data"];
+		$x[] = $data["hora"];
+	}
+
+	foreach ($estationTablePresion as $data) {
+		// Obtengo un solo array de datos y uno solo de horas en el eje x
+		$jsonDataPresion[] = $data["data"];	
+	}
 	
-//	echo $xAxis;
-	//$series[] = json_encode(array("name" => $seriesTemp["name"], "data" => $ser["data"]));
+	$xAxisTemp = $x;
+	$nombre_estacion = $est["estNombre"];
+	$seriesTemp[] = array("name" => $est["estNombre"], "data" => $jsonData);
+	$xAxis = $series = array();
+	$xAxis = json_encode(array_reverse($xAxisTemp));
+
+	if (!empty($jsonData)) {
+		$series = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData)));
+	} else {
+		$series = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+	}
 	
-	//echo $series;
-//}
-$series = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData) ));
-//		echo $series;
-		//return array($xAxis, $series);	
-		//var_dump($series);
-//}
+	if (!empty($jsonDataPresion)) {
+		$seriesPresion = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonDataPresion)));
+	} else {
+		$series = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+	}
 
+	$oMySQL -> closeConnection();
 
-$oMySQL -> closeConnection();		
-		 	
-		 	}	
-
+}
 ?>
 <!DOCTYPE html> 
 <html>
@@ -130,30 +150,18 @@ $oMySQL -> closeConnection();
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="js/highcharts.js"></script>
 	    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-	    <?php if($idEstacion!=0){ ?>
+<?php 
+	if($idEstacion!=0){ 
+?>
 	    <script>
 	    
 		$(function () {
-			
-		
-			
-		temperaturasEstaciones =[<?php echo $series; ?>]/*,{
-                name: 'New York',
-                data: [0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5,0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-            }]/*, {
-                name: 'New York',
-                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-            }, {
-                name: 'Berlin',
-                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-            }, {
-                name: 'London',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-            }*/;
+/*					
+		temperaturasEstaciones =[<?php echo $series; ?>];
             
-         console.log(temperaturasEstaciones);
+         //console.log(temperaturasEstaciones);
             
-        $('#container').highcharts({
+        $('#container-1').highcharts({
             title: {
                 text: 'Mediciones últimas 24 horas de '+ '<?php echo  $est["estNombre"];?>',
                 x: -20 //center
@@ -163,10 +171,8 @@ $oMySQL -> closeConnection();
                 x: -20
             },
             xAxis: {
-                categories: <?php echo $xAxis; ?>/*['1', '2', '3', '4', '5', '6',
-                    '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18',
-                    '19', '20', '21', '22', '23', '24']
-            */},
+                categories: <?php echo $xAxis; ?>
+            },
             yAxis: {
                 title: {
                     text: 'Temperatura (°C)'
@@ -186,32 +192,139 @@ $oMySQL -> closeConnection();
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series:temperaturasEstaciones/*[{
-                name: 'Tokyo',
-                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-            }, {
-                name: 'New York',
-                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-            }, {
-                name: 'Berlin',
-                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-            }, {
-                name: 'London',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-            }]*/
+            series:temperaturasEstaciones
         });
-    });
-		
+  */      
+        
+        
+        
+        
+        
+        		temperaturasEstaciones =[<?php echo $series; ?>];
+            presionEstaciones = [<?php echo $seriesPresion; ?>];
+            
+        
+        Highcharts.setOptions({
+        	
+            title: {
+                text: 'Mediciones últimas 24 horas de '+ '<?php echo  $est["estNombre"];?>',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Origen: Red Hidroclimatológica de Risaralda',
+                x: -20
+            },            
+            yAxis: {                
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            credits: { style: {right: '10px'} }
+        });
+        
+        
+        
+        
+        
+        
+  // default options
+  var optionsChart1 = { 
+  	yAxis: {
+  		title: {
+  			text: 'Temperatura (°C)'
+        }
+    },
+    tooltip: {
+    	valueSuffix: '°C'
+    },  
+    xAxis: {
+    	categories: <?php echo $xAxis; ?>
+    }    
+  };
+
+  // create the chart
+  var chart1Options = {
+    chart: {
+      renderTo: 'container-1'
+    },
+    series: temperaturasEstaciones
+  };
+  chart1Options = jQuery.extend(true, {}, optionsChart1, chart1Options);
+  var chart1 = new Highcharts.Chart(chart1Options);
+        
+   
+  // default options
+  var optionsChart2 = { 
+  	yAxis: {
+  		title: {
+  			text: 'Presión (Pa)'
+        }
+    },
+    tooltip: {
+    	valueSuffix: 'Pa'
+    },  
+    xAxis: {
+    	categories: <?php echo $xAxis; ?>
+    }    
+  };
+   // create the chart
+  var chart2Options = {
+    chart: {
+      renderTo: 'container-2'
+    },
+    series: presionEstaciones
+  };
+  chart2Options = jQuery.extend(true, {}, optionsChart2, chart2Options);
+  var chart2 = new Highcharts.Chart(chart2Options);  
+  
+  
+  
+    // default options
+  var optionsChart3 = { 
+  	yAxis: {
+  		title: {
+  			text: 'Dirección del Viento'
+        }
+    },
+    tooltip: {
+    	valueSuffix: ''
+    },  
+    xAxis: {
+    	categories: <?php echo $xAxis; ?>
+    }    
+  };
+   // create the chart
+  var chart3Options = {
+    chart: {
+      renderTo: 'container-3'
+    },
+    series: temperaturasEstaciones
+  };
+  chart3Options = jQuery.extend(true, {}, optionsChart3, chart3Options);
+  var chart3 = new Highcharts.Chart(chart3Options);  
+        
+        
+    });		
 	</script>
-	<?php } ?>
+<?php 
+	} 
+?>
 	</head>
 	
 	<body class="bg-cyan">		
 		<div class="body">
 			<!-- tabs -->
-			<div class="sky-tabs sky-tabs-pos-top-left sky-tabs-anim-slide-down sky-tabs-response-to-icons">
+			<div class="sky-tabs sky-tabs-external sky-tabs-position sky-tabs-pos-top-left sky-tabs-anim-slide-down sky-tabs-response-to-icons">
 				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
-				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Temperatura</span></span></label>
+				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Variables</span></span></label>
 				
 				<input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
 				<label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>Galería</span></span></label>
@@ -224,13 +337,60 @@ $oMySQL -> closeConnection();
 				-->
 				<ul>
 					
-					<li class="sky-tab-content-1">					
-						<div class="typography">
-							<?php if($idEstacion!=0){ ?>
-							<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+					<li class="sky-tab-content-1">	
+						
+						
+						
+						
+						
+						
+						<div class="sky-tabs sky-tabs-internal sky-tabs-pos-top-left sky-tabs-anim-slide-top sky-tabs-response-to-stack background">
+							<input type="radio" name="sky-tabs-1" checked id="sky-tab1-1" class="sky-tab-content-1">
+							<label for="sky-tab1-1"><span><span>Temperatura</span></span></label>
+							
+							<input type="radio" name="sky-tabs-1" id="sky-tab-1-2" class="sky-tab-content-2">
+							<label for="sky-tab-1-2"><span><span>Presión</span></span></label>
+							
+							<input type="radio" name="sky-tabs-1" id="sky-tab1-3" class="sky-tab-content-3">
+							<label for="sky-tab1-3"><span><span>Dirección del Viento</span></span></label>
+							
+							<ul>
+								<li class="sky-tab-content-1">
+									<div class="typography">
+										<?php if($idEstacion!=0){ ?>
+							<div id="container-1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 							<?php }else{ ?>
 									No hay variables disponibles para graficar
 							<?php } ?>
+									</div>
+								</li>
+								<li class="sky-tab-content-2">
+									<div class="typography">
+										<?php if($idEstacion!=0){ ?>
+										<div id="container-2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+										<?php }else{ ?>
+												No hay variables disponibles para graficar
+										<?php } ?>
+									</div>
+								</li>
+								<li class="sky-tab-content-3">
+									<div class="typography">
+										<?php if($idEstacion!=0){ ?>
+										<div id="container-3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+										<?php }else{ ?>
+												No hay variables disponibles para graficar
+										<?php } ?>
+									</div>									
+								</li>
+							</ul>
+						</div>		
+						
+						
+						
+						
+										
+						<div class="typography">
+							
 							<!--
 							<h1>Nikola Tesla</h1>
 							<p>Serbian-American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electrical supply system.</p>

@@ -679,7 +679,7 @@
 				padding : "8px",
 				whiteSpace : "nowrap"
 			}
-		},
+		}/*,
 		credits : {
 			enabled : !0,
 			text : "Highcharts.com",
@@ -695,7 +695,7 @@
 				color : "#909090",
 				fontSize : "9px"
 			}
-		}
+		}*/
 	};
 	var ca = E.plotOptions, T = ca.line;
 	Bb();

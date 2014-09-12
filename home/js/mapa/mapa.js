@@ -96,7 +96,7 @@ function initialize() {
 		});
 		google.maps.event.addListener(marker, 'click', toggleBounce);
 		marker.setTitle(obj.tipo + ": " + obj.nombre);
-		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id);
+		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
 
 		function toggleBounce() {
 			if (marker.getAnimation() != null) {
@@ -180,19 +180,22 @@ DebugOverlay.prototype.onRemove = function() {
 
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data
-function attachSecretMessage(marker, message, id) {
+function attachSecretMessage(marker, message, id, tipo) {
 
 	var infowindow = new google.maps.InfoWindow({
-		content : '<iframe src="../tabs/tabs.php?id='+id+'" height="560px" width="800px"></iframe>'
+		//style: 'position: absolute; left: 12px; top: 9px; overflow: auto; width: 250%; height: 412px;',
+		//width: '2500px',
+		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'" height="560px" width="800px"></iframe>'
 	});
-
+	//console.log(htmlraw);
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.open(marker.get('map'), marker);
 		$.get({
-			url : "../tabs/tabs.html",
+			url : "../tabs/tabs.php?id="+id+"&tipo="+tipo,
 			success : function(data) {
+
 				htmlraw = data;
-				// should print the raw test.html
+				//alert(htmlraw)  /// should print the raw test.html
 				$("#ta").html(htmlraw);
 			}
 		});
