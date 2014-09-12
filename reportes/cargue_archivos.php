@@ -18,15 +18,18 @@
 $respuesta = false;
 $salida = "";
 if($_REQUEST["boletin"] != "" && $_REQUEST["estacion"] != "" && $_REQUEST["periocidad"] != "" && $_REQUEST["fecha"] != ""){
-    $directory = "boletines/".$_REQUEST["boletin"]."/".$_REQUEST["estacion"]."/".$_REQUEST["periocidad"]."/".$_REQUEST["fecha"];
+    $path = "";
+    if(isset($_REQUEST['mes']))
+        $path = "/".$_REQUEST['mes'];
+    $directory = "boletines/".$_REQUEST["boletin"]."/".$_REQUEST["estacion"]."/".$_REQUEST["fecha"]."/".$_REQUEST["periocidad"].$path;
     //$directory= "images/estaciones/".$estacion;
     $dirint = dir($directory);
     if(!empty($dirint)){
         $salida = "<ul>";
         while (($archivo = $dirint->read()) !== false)
-        {    
-            $respuesta = true;
+        {               
             if (eregi("pdf", $archivo)){
+                  $respuesta = true;
                   $salida .= '<li><a target="_blank" href="'.$directory."/".$archivo.'">'.$archivo.'</a></li>';                            
             }
         }

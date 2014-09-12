@@ -28,10 +28,12 @@
         </script>
     </head>
     <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>')" style="background-color: #EAF5F3;height: 400px;">
+        <?php $hasta = "2007"; ?>
         <div id="content">
                 <fieldset>
+                    <input type="hidden" value="<?php echo $_REQUEST['name']; ?>" id="name" name="name" />
                     <select class="input-xlarge" id="boletin">
-                        <option value="">Seleccione boletin</option>
+                        <option value="">Seleccione tipo de boletin</option>
                         <option value="estaciones">Estaciones Hidroclimatológicas</option>
                         <option value="sensores">Sensores de Nivel por Presión </option>
                         <option value="pluviometros">Pluviometros con Data Logger</option>
@@ -40,8 +42,31 @@
                     </select>
                     <br>
                     <select class="input-medium" id="fecha">
+                        <?php 
+                            $ano = date('Y');
+                            for($i = $ano;$i >= $hasta;$i--){
+                                echo "<option value='".$i."' >".$i."</option>";
+                            }
+                        ?>
                     </select>
                     <select class="input-medium" id="periocidad">
+                        <option value="diarios">Diario</option>
+                        <option value="mensual" selected="selected">Mensual</option>
+                        <option value="anual">Anual</option>
+                    </select>
+                    <select class="input-medium" id="mes">
+                        <option value="enero">Enero</option>
+                        <option value="febrero">Febrero</option>
+                        <option value="marzo">Marzo</option>
+                        <option value="abril">Abril</option>
+                        <option value="mayo">Mayo</option>
+                        <option value="junio">Junio</option>
+                        <option value="julio">Julio</option>
+                        <option value="agosto">Agosto</option>
+                        <option value="septiembre">Septiembre</option>
+                        <option value="octubre">Octubre</option>
+                        <option value="noviembre">Noviembre</option>
+                        <option value="diciembre">Diciembre</option>
                     </select>
                     <br>
                     <button class="btn btn-primary" id="buscar">Buscar</button>
