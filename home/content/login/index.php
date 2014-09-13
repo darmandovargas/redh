@@ -90,7 +90,7 @@ function validate(formData, jqForm, options) {
 // pre-submit callback 
 function showRequest(formData, jqForm, options) {
 	
-	updateFields();
+	updateFields('all');
 	
 	if($("#username").val()=="")
 		return false;
@@ -159,19 +159,27 @@ function showResponse(responseText, statusText, xhr, $form)  {
 
  function updateFields(fieldName){ 
  		
- 		if(fieldName=="username"){
+ 		if(fieldName=="username" || fieldName=="all"){
  			if($("#username").val()=="" ){
-	    		$("#username").addClass('form-error');	
+	    		$("#username").addClass('form-error');
+	    		$("#output").html('<span class="error-msg">Debe ingresar un usuario</span>').fadeIn("slow");	
 	    	}else{	    		
 	    		$("#username").removeClass('form-error');    		
 	    	}	
- 		}else if(fieldName=="password"){
+ 		} 
+ 		
+ 		if(fieldName=="password" || fieldName=="all"){
  			if($("#password").val()==""){
 	    		$("#password").addClass('form-error');
+	    		$("#output").html('<span class="error-msg">Debe Ingresar un password</span>').fadeIn("slow");
 	    	}else{
-	    		$("#password").removeClass('form-error');
+	    		$("#password").removeClass('form-error');	    		
 	    	}
- 		}	
+ 		}
+ 		
+ 		if($("#username").val()=="" && $("#password").val()==""){
+ 			$("#output").html('<span class="error-msg">Debe Ingresar un usuario y un password</span>').fadeIn("slow");
+ 		}
     }
 </script> 
 
