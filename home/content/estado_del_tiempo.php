@@ -97,14 +97,15 @@ $oMySQL -> closeConnection();
 				<tbody id="estado">
 					<tr align="center">
 						<th>Estación</th>
-						<th><b>Temperatura</b></th>
+						<th><b>Temperatura (°C)</b></th>
 						<th><b>Fecha Última Transmisión</b></th>
 						<th><b>Hora Última Transmisión</b></th>
 						<th>Dirección</th>
-						<th>Presión</th>
-						<th>Humedad</th>
-						<th>Precipitación</th>
-						<th>Radiación</th>				
+						<th>Presión Barométrica (Pa)</th>
+						<th>Humedad Relativa</th>
+						<th>Precipitación (mm)</th>
+						<th>Nivel (Nm3/h)</th>
+						<th>Radiación Solar ( W/m²)</th>				
 						
 						<!-- <th><b>Enlaces</b></th>
 						<th><b>Símbolo</b></th> -->
@@ -114,13 +115,14 @@ $oMySQL -> closeConnection();
 					echo "
 					<tr align='center'>
 						<td>".$et['estacion']['estNombre']."</td>
-						<td>".$et['info']['temperatura']." °C</td>
+						<td>".$et['info']['temperatura']."</td>
 						<td>".$et['info']['fecha']."</td>
 						<td>".$et['info']['hora']."</td>
 						<td>".$et['info']['direccion']."</td>
-						<td>".$et['info']['presion']."</td>
+						<td>".$et['info']['presion']." </td>
 						<td>".$et['info']['humedad']."</td>						
 						<td>".$et['info']['precipitacion']."</td>
+						<td>".$et['info']['nivel']."</td>
 						<td>".$et['info']['radiacion']."</td>						
 					</tr>
 					";
@@ -143,7 +145,7 @@ $oMySQL -> closeConnection();
 				<tbody id="estado">
 					<tr align="center">
 						<th>Estación</th>
-						<th>Nivel</th>
+						<th>Nivel (Nm3/h)</th>
 						<th>Fecha Última Transmisión</th>
 						<th>Hora Última Transmisión</th>
 					</tr>
@@ -152,7 +154,7 @@ $oMySQL -> closeConnection();
 					echo "
 					<tr align='center'>
 						<td>".$pet['estacion']['estNombre']."</td>
-						<td>".$pet['info']['nivel']." cm</td>
+						<td>".$pet['info']['nivel']."</td>
 						<td>".$pet['info']['fecha']."</td>
 						<td>".$pet['info']['hora']."</td>											
 					</tr>
