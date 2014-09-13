@@ -150,17 +150,26 @@ session_start();
 				return isSession;
 			}
 			
-			function checkSessionClick(){
+			function checkSessionClick(url){
 				isSession = false;
+				
 				$.ajax({
 				  type: "POST",
 				  url: "content/login/validate.php",
 				  async:   false
 				}).success(function (msg){
-					if(msg=="success"){	
+					if(msg=="success"){
+						//console.log("URL: "+url);						
+						if(url=="login"){
+							setTimeout(function(){
+								closePage(); 
+								$('#estado_tiempo').click();
+							 },1000);								
+						}	
 						session = true;											
 						showLogout(true);																			
-					}else{	
+					}else{
+													
 						session = false;					
 						showLogout(false);						
 					}												
@@ -271,7 +280,7 @@ session_start();
 								</div>
 								
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();<?php echo ($_SESSION['sessid']== session_id())?'setTimeout(function(){closePage(); $(\'#estado_tiempo\').click();}, 1000);':'';?>" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
+									<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
 								</div>
 								
 								<div align="center">
@@ -370,7 +379,7 @@ session_start();
 							<div class="row-fluid leave-gap">
 								<div class="span12">
 									<div class="section-content">
-										<div >
+										<div>
 											<div class="row-fluid">
 												<div class="span6">
 													<div class="media">
