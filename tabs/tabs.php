@@ -70,6 +70,11 @@ if ($idEstacion != 0) {
 				$contador['radiacion']++;
 				$promedio['radiacion'] += floatval($data['radiacion']);
 			}
+			
+			if($data['nivel']!="-"){
+				$contador['nivel']++;
+				$promedio['nivel'] += floatval($data['nivel']);
+			}
 					
 			$isFirstVal=false;
 		} else {
@@ -137,6 +142,22 @@ if ($idEstacion != 0) {
 				$promedio['precipitacion'] += floatval($data['precipitacion']);
 			}
 			
+			//Nivel
+			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
+			// renuevo el valor del promedio y el contador
+			if($contador['nivel']==0)
+				$contador['nivel'] = 1;
+				
+			$promedio['nivel'] = $promedio['nivel'] / $contador['nivel'];
+			$promedio['nivel'] = substr($promedio['nivel'], 0, 4);
+			$estationTable['nivel'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['nivel']));			
+			$promedio['nivel'] = $contador['nivel']= 0;
+			//$isFirstVal=true;
+			if($data['nivel']!="-"){
+				$contador['nivel']++;
+				$promedio['nivel'] += floatval($data['nivel']);
+			}
+			
 			//Radiacion
 			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
 			// renuevo el valor del promedio y el contador
@@ -182,6 +203,13 @@ if ($idEstacion != 0) {
 		// Obtengo un solo array de datos y uno solo de horas en el eje x
 		$jsonData['precipitacion'][] = $data["data"];	
 	}
+	
+	// Nivel
+	foreach ($estationTable['nivel'] as $data) {
+		// Obtengo un solo array de datos y uno solo de horas en el eje x
+		$jsonData['nivel'][] = $data["data"];	
+	}
+	
 	// Radiacion
 	foreach ($estationTable['radiacion'] as $data) {
 		// Obtengo un solo array de datos y uno solo de horas en el eje x
@@ -216,6 +244,12 @@ if ($idEstacion != 0) {
 		$series['precipitacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['precipitacion'])));
 	} else {
 		$series['precipitacion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+	}
+	
+	if (!empty($jsonData['nivel'])) {
+		$series['nivel'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['nivel'])));
+	} else {
+		$series['nivel'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
 	}
 	
 	if (!empty($jsonData['radiacion'])) {
@@ -296,11 +330,12 @@ if ($idEstacion != 0) {
   */      
         
         
-        		temperaturasEstaciones =[<?php echo $series['temperatura']; ?>];
-            presionEstaciones = [<?php echo $series['presion']; ?>];
-             humedadEstaciones = [<?php echo $series['humedad']; ?>];
-             precipitacionEstaciones = [<?php echo $series['precipitacion']; ?>];
-               radiacionEstaciones = [<?php echo $series['radiacion']; ?>];
+	temperaturasEstaciones =[<?php echo $series['temperatura']; ?>];
+    presionEstaciones = [<?php echo $series['presion']; ?>];
+    humedadEstaciones = [<?php echo $series['humedad']; ?>];
+    precipitacionEstaciones = [<?php echo $series['precipitacion']; ?>];
+    nivelEstaciones = [<?php echo $series['nivel']; ?>];
+    radiacionEstaciones = [<?php echo $series['radiacion']; ?>];
             
         
         Highcharts.setOptions({
@@ -415,7 +450,7 @@ if ($idEstacion != 0) {
   var optionsChart4 = { 
   	yAxis: {
   		title: {
-  			text: 'Precipitación'
+  			text: 'Precipitación (mm)'
         }
     },
     tooltip: {
@@ -441,7 +476,7 @@ if ($idEstacion != 0) {
   var optionsChart5 = { 
   	yAxis: {
   		title: {
-  			text: 'Radiación'
+  			text: 'Radiación (Gy)'
         }
     },
     tooltip: {
@@ -461,7 +496,33 @@ if ($idEstacion != 0) {
   chart5Options = jQuery.extend(true, {}, optionsChart5, chart5Options);
   var chart5 = new Highcharts.Chart(chart5Options);  
        
-        
+
+  
+  
+     // default options
+  var optionsChart6 = { 
+  	yAxis: {
+  		title: {
+  			text: 'Nivel (Nm3/h)'
+        }
+    },
+    tooltip: {
+    	valueSuffix: 'Nm3/h'
+    },  
+    xAxis: {
+    	categories: <?php echo $xAxis; ?>
+    }    
+  };
+   // create the chart
+  var chart6Options = {
+    chart: {
+      renderTo: 'container-6'
+    },
+    series: nivelEstaciones
+  };
+  chart6Options = jQuery.extend(true, {}, optionsChart6, chart6Options);
+  var chart6 = new Highcharts.Chart(chart6Options); 
+          
     });		
 	</script>
 <?php 
@@ -496,19 +557,24 @@ if ($idEstacion != 0) {
 						
 						<div class="sky-tabs sky-tabs-internal sky-tabs-pos-top-left sky-tabs-anim-slide-top sky-tabs-response-to-stack background">
 							<input type="radio" name="sky-tabs-1" checked id="sky-tab1-1" class="sky-tab-content-1">
-							<label for="sky-tab1-1"><span><span>Temperatura</span></span></label>
+							<label for="sky-tab1-1"><span class="sky-tabs_custom_pad"><span>Temperatura</span></span></label>
 							
 							<input type="radio" name="sky-tabs-1" id="sky-tab-1-2" class="sky-tab-content-2">
-							<label for="sky-tab-1-2"><span><span>Presión</span></span></label>
+							<label for="sky-tab-1-2"><span  class="sky-tabs_custom_pad"><span>Presión</span></span></label>
 							
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-3" class="sky-tab-content-3">
-							<label for="sky-tab1-3"><span><span>Humedad</span></span></label>
+							<label for="sky-tab1-3"><span  class="sky-tabs_custom_pad"><span>Humedad</span></span></label>
 							
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-4" class="sky-tab-content-4">
-							<label for="sky-tab1-4"><span><span>Precipitación</span></span></label>
+							<label for="sky-tab1-4"><span  class="sky-tabs_custom_pad"><span>Precipitación</span></span></label>
+							
+							<input type="radio" name="sky-tabs-1" id="sky-tab1-6" class="sky-tab-content-6">
+							<label for="sky-tab1-6"><span  class="sky-tabs_custom_pad"><span>Nivel</span></span></label>
 							
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-5" class="sky-tab-content-5">
-							<label for="sky-tab1-5"><span><span>Radiación</span></span></label>
+							<label for="sky-tab1-5"><span  class="sky-tabs_custom_pad"><span>Radiación</span></span></label>
+							
+							
 							
 							<ul>
 								<li class="sky-tab-content-1">
@@ -549,6 +615,16 @@ if ($idEstacion != 0) {
 									</div>									
 								</li>
 								
+								<li class="sky-tab-content-6">
+									<div class="typography">
+										<?php if($idEstacion!=0){ ?>
+										<div id="container-6" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+										<?php }else{ ?>
+												No hay variables disponibles para graficar
+										<?php } ?>
+									</div>									
+								</li>
+								
 								<li class="sky-tab-content-5">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
@@ -558,6 +634,7 @@ if ($idEstacion != 0) {
 										<?php } ?>
 									</div>									
 								</li>
+								
 								
 								
 							</ul>

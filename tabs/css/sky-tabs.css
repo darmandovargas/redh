@@ -649,7 +649,7 @@
 /**/
 @media screen and (max-width: 1000px) {
 	.sky-tabs > label span span {
-		padding: 0 15px;
+		padding: 0 10px;
 	}
 	.sky-tabs > label .fa {
 		margin-right: 10px;
