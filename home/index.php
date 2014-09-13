@@ -60,7 +60,7 @@ session_start();
 		-->
 		
     	<script src="../mapa/js/estaciones.js"></script>
-		<script src="js/mapa/mapa.js"></script>
+		
 		
 		<style>
 			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
@@ -89,13 +89,11 @@ session_start();
 		
 		<script>			
 			var session = false;
+			var isMapOutOfDate = true;
+			
+			
 					
-			$( document ).ready(function() {
-				checkSessionClick();
-			    //lookForSession();
-			    //showLogout(true);
-			    //showLogout(false);		    
-			});
+			
 			
 			
 			/**
@@ -165,14 +163,26 @@ session_start();
 								closePage(); 
 								$('#estado_tiempo').click();
 							 },1000);								
-						}	
+						}
+						setTimeout(function(){
+							/*$('.close').click(function (){
+								checkSessionClick();
+							});*/
+						 },1500);
+						
 						session = true;											
-						showLogout(true);																			
-					}else{
-													
+						showLogout(true);
+						if(isMapOutOfDate && url!='isFirstLoad'){
+							initialize();
+							isMapOutOfDate = false;
+						}
+							
+																									
+					}else{																			
 						session = false;					
 						showLogout(false);						
-					}												
+					}
+					//google.maps.event.addDomListener(window, 'load', initialize);												
 				});
 				/*
 				if(isSession){
@@ -195,9 +205,14 @@ session_start();
 				  type: "POST",
 				  url: "content/login/logout.php"
 				})
-				.success(function (msg){});
+				.success(function (msg){	
+						session = false;				
+						initialize();
+						isMapOutOfDate = true;					
+					
+				});
 				
-				lookForSession();					
+				//lookForSession();					
 			}
 			
 			/**
@@ -211,7 +226,7 @@ session_start();
 				}				
 			}			
 		</script>
-		
+		<script src="js/mapa/mapa.js"></script>
 	</head>
 	<body>
 		<?php  //if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){ ?>

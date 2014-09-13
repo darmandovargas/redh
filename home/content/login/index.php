@@ -164,7 +164,8 @@ function showResponse(responseText, statusText, xhr, $form)  {
 	    		$("#username").addClass('form-error');
 	    		$("#output").html('<span class="error-msg">Debe ingresar un usuario</span>').fadeIn("slow");	
 	    	}else{	    		
-	    		$("#username").removeClass('form-error');    		
+	    		$("#username").removeClass('form-error');
+	    		$("#output").html('').fadeIn("slow");    		
 	    	}	
  		} 
  		
@@ -173,6 +174,7 @@ function showResponse(responseText, statusText, xhr, $form)  {
 	    		$("#password").addClass('form-error');
 	    		$("#output").html('<span class="error-msg">Debe Ingresar un password</span>').fadeIn("slow");
 	    	}else{
+	    		$("#output").html('').fadeIn("slow");
 	    		$("#password").removeClass('form-error');	    		
 	    	}
  		}

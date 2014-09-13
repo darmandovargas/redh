@@ -222,40 +222,49 @@ if ($idEstacion != 0) {
 	$xAxis = $series = array();
 	$xAxis = json_encode(array_reverse($xAxisTemp));
 
+	$emptyTableGraph = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+	$series['temperaturaJson'] = $series['presionJson'] = $series['humedadJson'] = $series['precipitacionJson']  = $series['nivelJson'] = $series['radiacionJson'] = true;
+
 	if (!empty($jsonData['temperatura'])) {
 		$series['temperatura'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['temperatura'])));
 	} else {
-		$series['temperatura'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['temperatura'] = $emptyTableGraph;
+		$series['temperaturaJson'] = false;
 	}
 	
 	if (!empty($jsonData['presion'])) {
 		$series['presion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['presion'])));
 	} else {
-		$series['presion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['presion'] = $emptyTableGraph;
+		$series['presionJson'] = false;
 	}
 	
 	if (!empty($jsonData['humedad'])) {
 		$series['humedad'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['humedad'])));
 	} else {
-		$series['humedad'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['humedad'] = $emptyTableGraph;
+		$series['humedadJson'] = false;
 	}
 	
 	if (!empty($jsonData['precipitacion'])) {
 		$series['precipitacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['precipitacion'])));
 	} else {
-		$series['precipitacion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['precipitacion'] = $emptyTableGraph;
+		$series['precipitacionJson'] = false;
 	}
 	
 	if (!empty($jsonData['nivel'])) {
 		$series['nivel'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['nivel'])));
 	} else {
-		$series['nivel'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['nivel'] = $emptyTableGraph;
+		$series['nivelJson'] = false;
 	}
 	
 	if (!empty($jsonData['radiacion'])) {
 		$series['radiacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['radiacion'])));
 	} else {
-		$series['radiacion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['radiacion'] = $emptyTableGraph;
+		$series['radiacionJson'] = false;
 	}
 
 	$oMySQL -> closeConnection();
@@ -288,47 +297,7 @@ if ($idEstacion != 0) {
 ?>
 	    <script>
 	    
-		$(function () {
-/*					
-		temperaturasEstaciones =[<?php echo $series; ?>];
-            
-         //console.log(temperaturasEstaciones);
-            
-        $('#container-1').highcharts({
-            title: {
-                text: 'Mediciones últimas 24 horas de '+ '<?php echo  $est["estNombre"];?>',
-                x: -20 //center
-            },
-            subtitle: {
-                text: 'Origen: Red Hidroclimatológica de Risaralda',
-                x: -20
-            },
-            xAxis: {
-                categories: <?php echo $xAxis; ?>
-            },
-            yAxis: {
-                title: {
-                    text: 'Temperatura (°C)'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                valueSuffix: '°C'
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
-            series:temperaturasEstaciones
-        });
-  */      
-        
+		$(function () {          
         
 	temperaturasEstaciones =[<?php echo $series['temperatura']; ?>];
     presionEstaciones = [<?php echo $series['presion']; ?>];
@@ -535,6 +504,7 @@ if ($idEstacion != 0) {
 		<div class="body">
 			<!-- tabs -->
 			<div class="sky-tabs sky-tabs-external sky-tabs-position sky-tabs-pos-top-left sky-tabs-anim-slide-down sky-tabs-response-to-icons">
+				
 				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
 				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Variables</span></span></label>
 				
@@ -549,35 +519,56 @@ if ($idEstacion != 0) {
 				-->
 				<ul>
 					
-					<li class="sky-tab-content-1">	
-						
-						
-						
-						
-						
-						
+					<li class="sky-tab-content-1">
+						<?php
+					if($series['temperaturaJson'] || $series['presionJson'] || $series['humedadJson'] || $series['precipitacionJson'] || $series['nivelJson'] || $series['radiacionJson']){
+						?>
 						<div class="sky-tabs sky-tabs-internal sky-tabs-pos-top-left sky-tabs-anim-slide-top sky-tabs-response-to-stack background">
+						<?php	
+												
+							//if($series['temperaturaJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" checked id="sky-tab1-1" class="sky-tab-content-1">
 							<label for="sky-tab1-1"><span class="sky-tabs_custom_pad"><span>Temperatura</span></span></label>
-							
+							<?php
+							//}		
+							//if($series['presionJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab-1-2" class="sky-tab-content-2">
-							<label for="sky-tab-1-2"><span  class="sky-tabs_custom_pad"><span>Presión</span></span></label>
-							
+							<label for="sky-tab-1-2"><span  class="sky-tabs_custom_pad"><span>Presión</span></span></label>							
+							<?php							
+							//}
+							//if($series['humedadJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-3" class="sky-tab-content-3">
-							<label for="sky-tab1-3"><span  class="sky-tabs_custom_pad"><span>Humedad</span></span></label>
-							
+							<label for="sky-tab1-3"><span  class="sky-tabs_custom_pad"><span>Humedad</span></span></label>							
+							<?php							
+							//}
+							//if($series['precipitacionJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-4" class="sky-tab-content-4">
 							<label for="sky-tab1-4"><span  class="sky-tabs_custom_pad"><span>Precipitación</span></span></label>
-							
+							<?php
+							//}
+							if($series['nivelJson'] && $tipoEstacion=='EHT'){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-6" class="sky-tab-content-6">
 							<label for="sky-tab1-6"><span  class="sky-tabs_custom_pad"><span>Nivel</span></span></label>
-							
+							<?php
+							}
+							//if($series['radiacionJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-5" class="sky-tab-content-5">
 							<label for="sky-tab1-5"><span  class="sky-tabs_custom_pad"><span>Radiación</span></span></label>
-							
+							<?php
+							//}							
+							?>
 							
 							
 							<ul>
+								<?php								
+								//if($series['temperaturaJson']){
+								?>
 								<li class="sky-tab-content-1">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
@@ -588,6 +579,10 @@ if ($idEstacion != 0) {
 							<?php } ?>
 									</div>
 								</li>
+								<?php
+								//}
+								//if($series['presionJson']){
+								?>
 								<li class="sky-tab-content-2">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
@@ -598,6 +593,10 @@ if ($idEstacion != 0) {
 										<?php } ?>
 									</div>
 								</li>
+								<?php
+								//}
+								//if($series['humedadJson']){
+								?>
 								<li class="sky-tab-content-3">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
@@ -608,7 +607,10 @@ if ($idEstacion != 0) {
 										<?php } ?>
 									</div>									
 								</li>
-								
+								<?php
+								//}
+								//if($series['precipitacionJson']){
+								?>
 								<li class="sky-tab-content-4">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
@@ -619,10 +621,13 @@ if ($idEstacion != 0) {
 										<?php } ?>
 									</div>									
 								</li>
-								
+								<?php
+								//}
+								if($series['nivelJson'] && $tipoEstacion=='EHT'){
+								?>
 								<li class="sky-tab-content-6">
 									<div class="typography">
-										<?php if($idEstacion!=0){ ?>
+										<?php if($idEstacion!=0 ){ ?>
 										<div id="container-6" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
 												<h1><?php echo $nombre_estacion;?><h1>
@@ -630,7 +635,10 @@ if ($idEstacion != 0) {
 										<?php } ?>
 									</div>									
 								</li>
-								
+								<?php
+								}
+								//if($series['radiacionJson']){
+								?>
 								<li class="sky-tab-content-5">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
@@ -641,28 +649,31 @@ if ($idEstacion != 0) {
 										<?php } ?>
 									</div>									
 								</li>
-								
+								<?php
+								//}
+								?>
 								
 								
 							</ul>
+							
+					
 						</div>		
 						
-						
+						<?php
+	  			}else{?>
+					<h1><?php echo $nombre_estacion;?><h1>
+					No hay variables disponibles para graficar
+				<?php	  				
+	  			}
+	  			?>	
 						
 						
 										
-						<div class="typography">
-							
-							<!--
-							<h1>Nikola Tesla</h1>
-							<p>Serbian-American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electrical supply system.</p>
-							<p>Tesla started working in the telephony and electrical fields before emigrating to the United States in 1884 to work for Thomas Edison. He soon struck out on his own with financial backers, setting up laboratories/companies to develop a range of electrical devices. His patented AC induction motor and transformer were licensed by George Westinghouse, who also hired Tesla as a consultant to help develop an alternating current system. Tesla is also known for his high-voltage, high-frequency power experiments in New York and Colorado Springs which included patented devices and theoretical work used in the invention of radio communication, for his X-ray experiments, and for his ill-fated attempt at intercontinental wireless transmission in his unfinished Wardenclyffe Tower project.</p>
-							<p>Tesla's achievements and his abilities as a showman demonstrating his seemingly miraculous inventions made him world-famous. Although he made a great deal of money from his patents, he spent a lot on numerous experiments. He lived for most of his life in a series of New York hotels although the end of his patent income and eventual bankruptcy led him to live in diminished circumstances. Tesla still continued to invite the press to parties he held on his birthday to announce new inventions he was working and make (sometimes unusual) statements. Because of his pronouncements and the nature of his work over the years, Tesla gained a reputation in popular culture as the archetypal "mad scientist". He died in room 3327 of the New Yorker Hotel on 7 January 1943.</p>
-							<p class="text-right"><em>Find out more about Nikola Tesla from <a href="http://en.wikipedia.org/wiki/Nikola_Tesla" target="_blank">Wikipedia</a>.</em></p>
-							-->
-						</div>
+						
 					</li>
-					
+					<?php
+					//}
+					?>
 					<li class="sky-tab-content-2">
 						<div class="typography" style="margin: 0 0 0 60px;">
 							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion; ?>" height="500px" width="420px"></iframe>
