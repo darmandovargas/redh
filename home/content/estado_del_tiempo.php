@@ -59,7 +59,7 @@
 		<script>
 		$( document ).ready(function() {
 		    $(".loader").fadeOut("slow");
-		   setTimeout("location.reload();",60000);//300000);		   		    
+		   setTimeout("location.reload();",60000);		   		    
 		});	
 			
 		</script>

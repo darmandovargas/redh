@@ -38,8 +38,8 @@ $(function(){
                 },
                 error:function(xhr,ajaxOptions,thrownError){
 //						alert('Error General del Sistema, Intente Mas Tarde');
-                        alert(xhr.responseText);
-                        alert(thrownError);
+                        //alert(xhr.responseText);
+                        //alert(thrownError);
                         return false;
                 }
         });
@@ -67,8 +67,8 @@ $(function(){
                      },
                      error:function(xhr,ajaxOptions,thrownError){
      //						alert('Error General del Sistema, Intente Mas Tarde');
-                             alert(xhr.responseText);
-                             alert(thrownError);
+                        //     alert(xhr.responseText);
+                        //     alert(thrownError);
                              return false;
                      }
                  });
