@@ -35,8 +35,8 @@ if ($idEstacion != 0) {
 	$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 285";
 	$estacionInfo = $oMySQL -> ExecuteSQL($query);
 	// Inicializa variables para guardar el promedio por hora y un contador
-	$contador = $ultimaHora = $contadorPresion = 0;
-	$promedio = $promedioPresion = floatval(0);
+	$contador['temperatura'] = $contador['presion'] = $contador['humedad'] = /*$contador['precipitacion'] = $contador['radiacion'] =*/ $ultimaHora = 0;
+	$promedio['temperatura'] = $promedio['presion'] = $promedio['humedad'] = /*$promedio['precipitacion'] = $promedio['radiacion'] =*/ floatval(0);
 	$isFirstVal = true;
 	// Itero la informatión de la tabla de la estación
 	foreach ($estacionInfo as $data) {
@@ -47,84 +47,183 @@ if ($idEstacion != 0) {
 		if ($ultimaHora == $horaX || $isFirstVal) {
 			
 			if($data['temperatura']!="-"){
-				$contador++;
-				$promedio += floatval($data['temperatura']);
+				$contador['temperatura']++;
+				$promedio['temperatura'] += floatval($data['temperatura']);
 			}
 			
 			if($data['presion']!="-"){
-				$contadorPresion++;
-				$promedioPresion += floatval($data['presion']);
+				$contador['presion']++;
+				$promedio['presion'] += floatval($data['presion']);
 			}
-						
+			
+			if($data['humedad']!="-"){
+				$contador['humedad']++;
+				$promedio['humedad'] += floatval($data['humedad']);
+			}
+			/*
+			if($data['precipitacion']!="-"){
+				$contador['precipitacion']++;
+				$promedio['precipitacion'] += floatval($data['precipitacion']);
+			}
+			
+			if($data['radiacion']!="-"){
+				$contador['radiacion']++;
+				$promedio['radiacion'] += floatval($data['radiacion']);
+			}
+				*/		
 			$isFirstVal=false;
 		} else {
 			//Temperatura	
 			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
 			// renuevo el valor del promedio y el contador
-			if($contador==0)
-				$contador = 1;
+			if($contador['temperatura']==0)
+				$contador['temperatura'] = 1;
 				
-			$promedio = $promedio / $contador;
-			$promedio = substr($promedio, 0, 4);
-			$estationTable[] = array("hora" => intval($ultimaHora), "data" => floatval($promedio));			
-			$promedio = $contador = 0;
+			$promedio['temperatura'] = $promedio['temperatura'] / $contador['temperatura'];
+			$promedio['temperatura'] = substr($promedio['temperatura'], 0, 4);
+			$estationTable['temperatura'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['temperatura']));			
+			$promedio['temperatura'] = $contador['temperatura'] = 0;
 			$isFirstVal=true;
 			if($data['temperatura']!="-"){
-				$contador++;
-				$promedio += floatval($data['temperatura']);
+				$contador['temperatura']++;
+				$promedio['temperatura'] += floatval($data['temperatura']);
 			}
 			
 			//Presion
-			//Temperatura	
 			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
 			// renuevo el valor del promedio y el contador
-			if($contadorPresion==0)
-				$contadorPresion = 1;
+			if($contador['presion']==0)
+				$contador['presion'] = 1;
 				
-			$promedioPresion = $promedioPresion / $contadorPresion;
-			$promedioPresion = substr($promedioPresion, 0, 4);
-			$estationTablePresion[] = array("hora" => intval($ultimaHora), "data" => floatval($promedioPresion));			
-			$promedioPresion = $contadorPresion = 0;
-			$isFirstVal=true;
+			$promedio['presion'] = $promedio['presion'] / $contador['presion'];
+			$promedio['presion'] = substr($promedio['presion'], 0, 4);
+			$estationTable['presion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['presion']));			
+			$promedio['presion'] = $contador['presion']= 0;
+			//$isFirstVal=true;
 			if($data['presion']!="-"){
-				$contadorPresion++;
-				$promedioPresion += floatval($data['presion']);
+				$contador['presion']++;
+				$promedio['presion'] += floatval($data['presion']);
 			}
+			
+			//Humedad
+			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
+			// renuevo el valor del promedio y el contador
+			if($contador['humedad']==0)
+				$contador['humedad'] = 1;
+				
+			$promedio['humedad'] = $promedio['humedad'] / $contador['humedad'];
+			$promedio['humedad'] = substr($promedio['humedad'], 0, 4);
+			$estationTable['humedad'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['humedad']));			
+			$promedio['humedad'] = $contador['humedad']= 0;
+			//$isFirstVal=true;
+			if($data['humedad']!="-"){
+				$contador['humedad']++;
+				$promedio['humedad'] += floatval($data['humedad']);
+			}
+			/*
+			//Precipitacion
+			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
+			// renuevo el valor del promedio y el contador
+			if($contador['precipitacion']==0)
+				$contador['precipitacion'] = 1;
+				
+			$promedio['precipitacion'] = $promedio['precipitacion'] / $contador['precipitacion'];
+			$promedio['precipitacion'] = substr($promedio['precipitacion'], 0, 4);
+			$estationTable['precipitacion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['precipitacion']));			
+			$promedio['precipitacion'] = $contador['precipitacion']= 0;
+			//$isFirstVal=true;
+			if($data['precipitacion']!="-"){
+				$contador['precipitacion']++;
+				$promedio['precipitacion'] += floatval($data['precipitacion']);
+			}
+			
+			//Radiacion
+			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
+			// renuevo el valor del promedio y el contador
+			if($contador['radiacion']==0)
+				$contador['radiacion'] = 1;
+				
+			$promedio['radiacion'] = $promedio['radiacion'] / $contador['radiacion'];
+			$promedio['radiacion'] = substr($promedio['radiacion'], 0, 4);
+			$estationTable['radiacion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['radiacion']));			
+			$promedio['radiacion'] = $contador['radiacion']= 0;
+			//$isFirstVal=true;
+			if($data['radiacion']!="-"){
+				$contador['radiacion']++;
+				$promedio['radiacion'] += floatval($data['radiacion']);
+			}
+			 */ 
 		}
+			 
 		// Actualizo variable de última hora
 		$ultimaHora = $horaX;
 	}
 	// Inicializo variable de datos json y eje x
-	$x = $jsonData = $jsonDataPresion = array();
-	foreach ($estationTable as $data) {
+	$x = $jsonData['temperatura'] = $jsonData['presion'] = array();
+	// Temperatura
+	foreach ($estationTable['temperatura'] as $data) {
 		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData[] = $data["data"];
+		$jsonData['temperatura'][] = $data["data"];
 		$x[] = $data["hora"];
 	}
-
-	foreach ($estationTablePresion as $data) {
+	// Presion
+	foreach ($estationTable['presion'] as $data) {
 		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonDataPresion[] = $data["data"];	
+		$jsonData['presion'][] = $data["data"];	
 	}
-	
+	// Humedad
+	foreach ($estationTable['humedad'] as $data) {
+		// Obtengo un solo array de datos y uno solo de horas en el eje x
+		$jsonData['humedad'][] = $data["data"];	
+	}
+	/*
+	// Precipitacion
+	foreach ($estationTable['precipitacion'] as $data) {
+		// Obtengo un solo array de datos y uno solo de horas en el eje x
+		$jsonData['precipitacion'][] = $data["data"];	
+	}
+	// Radiacion
+	foreach ($estationTable['radiacion'] as $data) {
+		// Obtengo un solo array de datos y uno solo de horas en el eje x
+		$jsonData['radiacion'][] = $data["data"];	
+	}
+	*/
 	$xAxisTemp = $x;
 	$nombre_estacion = $est["estNombre"];
-	$seriesTemp[] = array("name" => $est["estNombre"], "data" => $jsonData);
+	$seriesTemp[] = array("name" => $est["estNombre"], "data" => $jsonData['temperatura']);
 	$xAxis = $series = array();
 	$xAxis = json_encode(array_reverse($xAxisTemp));
 
-	if (!empty($jsonData)) {
-		$series = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData)));
+	if (!empty($jsonData['temperatura'])) {
+		$series['temperatura'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['temperatura'])));
 	} else {
-		$series = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['temperatura'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
 	}
 	
-	if (!empty($jsonDataPresion)) {
-		$seriesPresion = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonDataPresion)));
+	if (!empty($jsonData['presion'])) {
+		$series['presion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['presion'])));
 	} else {
-		$series = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['presion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
 	}
-
+	
+	if (!empty($jsonData['humedad'])) {
+		$series['humedad'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['humedad'])));
+	} else {
+		$series['humedad'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+	}
+	/*
+	if (!empty($jsonData['precipitacion'])) {
+		$series['precipitacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['precipitacion'])));
+	} else {
+		$series['precipitacion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+	}
+	
+	if (!empty($jsonData['radiacion'])) {
+		$series['radiacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['radiacion'])));
+	} else {
+		$series['radiacion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+	}
+*/
 	$oMySQL -> closeConnection();
 
 }
@@ -200,8 +299,11 @@ if ($idEstacion != 0) {
         
         
         
-        		temperaturasEstaciones =[<?php echo $series; ?>];
-            presionEstaciones = [<?php echo $seriesPresion; ?>];
+        		temperaturasEstaciones =[<?php echo $series['temperatura']; ?>];
+            presionEstaciones = [<?php echo $series['presion']; ?>];
+             humedadEstaciones = [<?php echo $series['humedad']; ?>];
+            //  precipitacionEstaciones = [<?php //echo $series['precipitacion']; ?>];
+             //  radiacionEstaciones = [<?php //echo $series['radiacion']; ?>];
             
         
         Highcharts.setOptions({
@@ -291,11 +393,11 @@ if ($idEstacion != 0) {
   var optionsChart3 = { 
   	yAxis: {
   		title: {
-  			text: 'Dirección del Viento'
+  			text: 'Humedad'
         }
     },
     tooltip: {
-    	valueSuffix: ''
+    	valueSuffix: 'HR'
     },  
     xAxis: {
     	categories: <?php echo $xAxis; ?>
@@ -306,11 +408,62 @@ if ($idEstacion != 0) {
     chart: {
       renderTo: 'container-3'
     },
-    series: temperaturasEstaciones
+    series: humedadEstaciones
   };
   chart3Options = jQuery.extend(true, {}, optionsChart3, chart3Options);
-  var chart3 = new Highcharts.Chart(chart3Options);  
-        
+  var chart3 = new Highcharts.Chart(chart3Options);
+  
+/*  
+     // default options
+  var optionsChart4 = { 
+  	yAxis: {
+  		title: {
+  			text: 'Precipitación'
+        }
+    },
+    tooltip: {
+    	valueSuffix: 'mm'
+    },  
+    xAxis: {
+    	categories: <?php //echo $xAxis; ?>
+    }    
+  };
+   // create the chart
+  var chart4Options = {
+    chart: {
+      renderTo: 'container-4'
+    },
+    series: precipitacionEstaciones
+  };
+  chart4Options = jQuery.extend(true, {}, optionsChart4, chart4Options);
+  var chart4 = new Highcharts.Chart(chart4Options);
+  
+  
+  
+     // default options
+  var optionsChart5 = { 
+  	yAxis: {
+  		title: {
+  			text: 'Radiación'
+        }
+    },
+    tooltip: {
+    	valueSuffix: 'Gy'
+    },  
+    xAxis: {
+    	categories: <?php //echo $xAxis; ?>
+    }    
+  };
+   // create the chart
+  var chart5Options = {
+    chart: {
+      renderTo: 'container-5'
+    },
+    series: radiacionEstaciones
+  };
+  chart5Options = jQuery.extend(true, {}, optionsChart5, chart5Options);
+  var chart5 = new Highcharts.Chart(chart5Options);  
+ */       
         
     });		
 	</script>
@@ -352,8 +505,14 @@ if ($idEstacion != 0) {
 							<label for="sky-tab-1-2"><span><span>Presión</span></span></label>
 							
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-3" class="sky-tab-content-3">
-							<label for="sky-tab1-3"><span><span>Dirección del Viento</span></span></label>
+							<label for="sky-tab1-3"><span><span>Humedad</span></span></label>
+							<!--
+							<input type="radio" name="sky-tabs-1" id="sky-tab1-4" class="sky-tab-content-4">
+							<label for="sky-tab1-4"><span><span>Precipitación</span></span></label>
 							
+							<input type="radio" name="sky-tabs-1" id="sky-tab1-5" class="sky-tab-content-5">
+							<label for="sky-tab1-5"><span><span>Radiación</span></span></label>
+							-->
 							<ul>
 								<li class="sky-tab-content-1">
 									<div class="typography">
@@ -382,6 +541,8 @@ if ($idEstacion != 0) {
 										<?php } ?>
 									</div>									
 								</li>
+								
+								
 							</ul>
 						</div>		
 						
