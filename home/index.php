@@ -182,7 +182,10 @@ session_start();
 					
 					<div class="row-fluid logo">
 						<div class="span12">
+							<img src="img/logos/ciencias ambientales.png" width="20%" />							
 							<img src="img/logos/red_hidroclimatologica.jpg" width="50%" />
+							<img src="img/logos/logo_utp.jpg" width="20%">
+							
 							<!-- <h1>Red Hidroclimatológica de Risaralda</h1>-->
 						</div>
 					</div><!--/logo-->
@@ -462,20 +465,20 @@ session_start();
 							<div style="text-align: center; ">
 								
 								
-								<img src="img/logos/logo_acuaseo.jpg" width="10%">
-								<img src="img/logos/Alcaldia Pereira.jpg" width="10%">
-								<img src="img/logos/logo_utp.jpg" width="15%">
-								<img src="img/logos/Carder.png" width="18%">
+								<img src="img/logos/logo_acuaseo.jpg" width="13%">
+								<img src="img/logos/Alcaldia Pereira.jpg" width="15%">
+								
+								<img src="img/logos/Carder.png" width="20%">
 								
 								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="22%">
 								
 								<img src="img/logos/dopad.bmp" width="15%">
 								
 								
-								<img src="img/logos/Seafield_colour.jpg" width="22%">
-								<img src="img/logos/EEP.jpg" width="18%" style="margin: 0 0 0 10px;">
+								<img src="img/logos/Seafield_colour.jpg" width="25%">
+								<img src="img/logos/EEP.jpg" width="20%" style="margin: 0 0 0 10px;">
 								<img src="img/logos/Grupos EIS.png" width="12%">
-								<img src="img/logos/LOGO ASAMUN.jpg" width="25%">
+								<img src="img/logos/LOGO ASAMUN.jpg" width="30%">
 							</div>
 						</div>
 					</div><!--/page-footer-->

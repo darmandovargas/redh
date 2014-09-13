@@ -35,9 +35,9 @@ if ($idEstacion != 0) {
 	$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 285";
 	$estacionInfo = $oMySQL -> ExecuteSQL($query);
 	// Inicializa variables para guardar el promedio por hora y un contador
-	$contador['temperatura'] = $contador['presion'] = $contador['humedad'] = $contador['precipitacion'] = $contador['radiacion'] = $ultimaHora = 0;
+	/*$contador['temperatura'] = $contador['presion'] = $contador['humedad'] = $contador['precipitacion'] = $contador['radiacion'] = $ultimaHora = 0;
 	$promedio['temperatura'] = $promedio['presion'] = $promedio['humedad'] = $promedio['precipitacion'] = $promedio['radiacion'] = floatval(0);
-	$isFirstVal = true;
+	*/$isFirstVal = true;
 	// Itero la informatión de la tabla de la estación
 	foreach ($estacionInfo as $data) {
 		// Obtengo la hora de la medición
