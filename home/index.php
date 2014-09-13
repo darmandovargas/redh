@@ -271,7 +271,7 @@ session_start();
 								</div>
 								
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();<?php echo ($_SESSION['sess'])?'setTimeout(function(){closePage(); $(\'#estado_tiempo\').click();}, 1000);':'';?>" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
+									<a href="#" onclick="checkSessionClick();<?php echo ($_SESSION['sessid']== session_id())?'setTimeout(function(){closePage(); $(\'#estado_tiempo\').click();}, 1000);':'';?>" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
 								</div>
 								
 								<div align="center">

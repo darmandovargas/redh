@@ -135,7 +135,7 @@ $oMySQL -> closeConnection();
 ?>		
 			</br></br>
 			<div align="center">
-			<h3> Sección de Empresa </h3>
+			<h3 style="font-family: Helvetica, Arial, Sans-Serif; font-weight: 100"> Sección de Empresa </h3>
 			</div>
 			</br></br>
 			<span style="font-family: Helvetica, Arial, Sans-Serif; font-weight: 100">
