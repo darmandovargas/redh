@@ -341,11 +341,12 @@ if ($idEstacion != 0) {
         Highcharts.setOptions({
         	
             title: {
-                text: 'Mediciones últimas 24 horas de '+ '<?php echo  $est["estNombre"];?>',
+                text: '<?php echo  $est["estNombre"];?>',
                 x: -20 //center
             },
             subtitle: {
-                text: 'Origen: Red Hidroclimatológica de Risaralda',
+            	userHTML:true,
+                text: 'Mediciones últimas 24 horas<br/>Origen: Red Hidroclimatológica de Risaralda',
                 x: -20
             },            
             yAxis: {                
@@ -582,6 +583,7 @@ if ($idEstacion != 0) {
 										<?php if($idEstacion!=0){ ?>
 							<div id="container-1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 							<?php }else{ ?>
+									<h1><?php echo $nombre_estacion;?><h1>
 									No hay variables disponibles para graficar
 							<?php } ?>
 									</div>
@@ -591,6 +593,7 @@ if ($idEstacion != 0) {
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>
@@ -600,6 +603,7 @@ if ($idEstacion != 0) {
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>									
@@ -610,6 +614,7 @@ if ($idEstacion != 0) {
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-4" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>									
@@ -620,6 +625,7 @@ if ($idEstacion != 0) {
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-6" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>									
@@ -630,6 +636,7 @@ if ($idEstacion != 0) {
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-5" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>									
