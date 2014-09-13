@@ -370,11 +370,11 @@ session_start();
 							<div class="row-fluid leave-gap">
 								<div class="span12">
 									<div class="section-content">
-										<div class="span10 offset1 gallery">
+										<div >
 											<div class="row-fluid">
 												<div class="span6">
 													<div class="media">
-														<div class="media-body">	
+														<div class="media-body" style="margin: 0 0 0 -30px;">	
 															<div class="loader"></div>														
 															<iframe src="content/estado_del_tiempo.php" onload="$('.loader').fadeOut('slow');" width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>
 														</div>
