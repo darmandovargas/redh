@@ -399,7 +399,7 @@ if ($idEstacion != 0) {
   var optionsChart2 = { 
   	yAxis: {
   		title: {
-  			text: 'Presión (Pa)'
+  			text: 'Presión Barométrica (Pa)'
         }
     },
     tooltip: {
@@ -476,11 +476,11 @@ if ($idEstacion != 0) {
   var optionsChart5 = { 
   	yAxis: {
   		title: {
-  			text: 'Radiación (Gy)'
+  			text: 'Radiación Solar ( W/m²)'
         }
     },
     tooltip: {
-    	valueSuffix: 'Gy'
+    	valueSuffix: ' W/m²'
     },  
     xAxis: {
     	categories: <?php echo $xAxis; ?>
