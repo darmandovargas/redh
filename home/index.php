@@ -91,15 +91,26 @@ session_start();
 			var session = false;
 					
 			$( document ).ready(function() {
+				checkSessionClick();
 			    //lookForSession();
 			    //showLogout(true);
 			    //showLogout(false);		    
 			});
 			
+			
+			/**
+			 * Close the link
+			 *  
+			 */
+			function closePage(){
+				$('.close').click();
+			}
+			
 			/**
 			 * This function will render the logout button by checking if there is session each 5 seconds 
 			 */
 			function lookForSession() {
+				/*
 			    setTimeout(function() {
 			    	doit = !checkSession();	
 			    	//console.log("doit:"+doit);
@@ -109,6 +120,7 @@ session_start();
 					    lookForSession();
 			        }
 			    }, 60000);
+			    */
 			}
 			
 			/**
@@ -135,6 +147,31 @@ session_start();
 					lookForSession();
 				}
 				
+				return isSession;
+			}
+			
+			function checkSessionClick(){
+				isSession = false;
+				$.ajax({
+				  type: "POST",
+				  url: "content/login/validate.php",
+				  async:   false
+				}).success(function (msg){
+					if(msg=="success"){	
+						session = true;											
+						showLogout(true);																			
+					}else{	
+						session = false;					
+						showLogout(false);						
+					}												
+				});
+				/*
+				if(isSession){
+					showLogout(true);
+				}else{
+					lookForSession();
+				}
+				*/
 				return isSession;
 			}
 			
@@ -195,11 +232,11 @@ session_start();
 							<!--/floating-wrapper-->
 							<div class="row-fluid floating-boxes">
 								<div align="center">
-									<a href="#" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
 								</div>
 
 								<!--
@@ -209,11 +246,11 @@ session_start();
 								</div>
 								-->
 								<div align="center">
-									<a href="#" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
+									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
 								</div>
 								<!--
 								<div align="center">
@@ -221,11 +258,11 @@ session_start();
 								</div>
 								-->
 								<div align="center">
-									<a href="#" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" data-section="8" data-title="" class="floating-box"> <h3>Contáctenos</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="8" data-title="" class="floating-box"> <h3>Contáctenos</h3> </a>
 								</div>
 
 								<div align="center">
@@ -234,11 +271,11 @@ session_start();
 								</div>
 								
 								<div align="center">
-									<a href="#" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
+									<a href="#" onclick="checkSessionClick();<?php echo ($_SESSION['sess'])?'setTimeout(function(){closePage(); $(\'#estado_tiempo\').click();}, 1000);':'';?>" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
 								</div>
 								
 							</div>
