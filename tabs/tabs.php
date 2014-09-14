@@ -26,6 +26,10 @@ if ($idEstacion != 0) {
 	}
 	// Inicializa variables para la gráfica
 	$xAxis = $series = array();
+	// TODO: improve code with for's
+	// Inicializa array de variables a sensar y graficar
+	$variables = array("temperatura", "presion", "humedad", "precipitacion", "nivel", "radiacion");
+	
 	// Obtiene la estación según el tipo que define la tabla
 	$query = "SELECT * FROM " . $tablaEstaciones . " WHERE id=" . $idEstacion;	//." and activo='true'";
 	$est = $oMySQL -> ExecuteSQL($query);
@@ -34,234 +38,124 @@ if ($idEstacion != 0) {
 	// Obtiene datos de la tabla de la estación del último día (aproximadamente 285 últimos datos)
 	$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 285";
 	$estacionInfo = $oMySQL -> ExecuteSQL($query);
-	// Inicializa variables para guardar el promedio por hora y un contador
-	/*$contador['temperatura'] = $contador['presion'] = $contador['humedad'] = $contador['precipitacion'] = $contador['radiacion'] = $ultimaHora = 0;
-	$promedio['temperatura'] = $promedio['presion'] = $promedio['humedad'] = $promedio['precipitacion'] = $promedio['radiacion'] = floatval(0);
-	*/$isFirstVal = true;
+	$isFirstVal = true;
+	//$contadorHoras = 0;
 	// Itero la informatión de la tabla de la estación
 	foreach ($estacionInfo as $data) {
 		// Obtengo la hora de la medición
-		$horaX = substr($data['hora'], 0, 2);
-		
+		$horaX = substr($data['hora'], 0, 2);		
 		// Valido que la hora actual y la anterior sean la misma para sumar al promedio y al contador
-		if ($ultimaHora == $horaX || $isFirstVal) {
-			
-			if($data['temperatura']!="-"){
-				$contador['temperatura']++;
-				$promedio['temperatura'] += floatval($data['temperatura']);
-			}
-			
-			if($data['presion']!="-"){
-				$contador['presion']++;
-				$promedio['presion'] += floatval($data['presion']);
-			}
-			
-			if($data['humedad']!="-"){
-				$contador['humedad']++;
-				$promedio['humedad'] += floatval($data['humedad']);
-			}
-			
-			if($data['precipitacion']!="-"){
-				$contador['precipitacion']++;
-				$promedio['precipitacion'] += floatval($data['precipitacion']);
-			}
-			
-			if($data['radiacion']!="-"){
-				$contador['radiacion']++;
-				$promedio['radiacion'] += floatval($data['radiacion']);
-			}
-			
-			if($data['nivel']!="-"){
-				$contador['nivel']++;
-				$promedio['nivel'] += floatval($data['nivel']);
-			}
-					
+		if ($ultimaHora == $horaX || $isFirstVal) {				
+			foreach($variables as $vars){
+				if(!empty($var)){
+					if($data[$vars]!="-"){
+						$contador[$vars]++;
+						$promedio[$vars] += floatval($data[$vars]);
+					}	
+				}				
+			}	
 			$isFirstVal=false;
 		} else {
-			//Temperatura	
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['temperatura']==0)
-				$contador['temperatura'] = 1;
+			foreach($variables as $var){
+				//Variable $var	
+				// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
+				// renuevo el valor del promedio y el contador
+				if($contador[$var]==0)
+					$contador[$var] = 1;
+					
+				$promedio[$var] = $promedio[$var] / $contador[$var];
+				$promedio[$var] = substr($promedio[$var], 0, 4);
+				$estationTable[$var][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio[$var]));
 				
-			$promedio['temperatura'] = $promedio['temperatura'] / $contador['temperatura'];
-			$promedio['temperatura'] = substr($promedio['temperatura'], 0, 4);
-			$estationTable['temperatura'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['temperatura']));			
-			$promedio['temperatura'] = $contador['temperatura'] = 0;
-			$isFirstVal=true;
-			if($data['temperatura']!="-"){
-				$contador['temperatura']++;
-				$promedio['temperatura'] += floatval($data['temperatura']);
+				$estationTable[$var.'_visible'] = true;
+				/*TODO switch visibility to false if all the estation averages are 0 for an specific variable
+				 * $cuentaPromedio[] = 
+				if(floatval($promedio[$var])>0 && $contadorHoras>24){
+					$estationTable[$var.'_visible'] = flase;
+					$contadorHoras = 0;
+				}else{
+					$contadorHoras++;
+				}*/				
+				$promedio[$var] = $contador[$var] = 0;
+				$isFirstVal=true;
+				if($data[$var]!="-"){
+					$contador[$var]++;
+					$promedio[$var] += floatval($data[$var]);				
+				}		
 			}
-			
-			//Presion
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['presion']==0)
-				$contador['presion'] = 1;
-				
-			$promedio['presion'] = $promedio['presion'] / $contador['presion'];
-			$promedio['presion'] = substr($promedio['presion'], 0, 4);
-			$estationTable['presion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['presion']));			
-			$promedio['presion'] = $contador['presion']= 0;
-			//$isFirstVal=true;
-			if($data['presion']!="-"){
-				$contador['presion']++;
-				$promedio['presion'] += floatval($data['presion']);
-			}
-			
-			//Humedad
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['humedad']==0)
-				$contador['humedad'] = 1;
-				
-			$promedio['humedad'] = $promedio['humedad'] / $contador['humedad'];
-			$promedio['humedad'] = substr($promedio['humedad'], 0, 4);
-			$estationTable['humedad'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['humedad']));			
-			$promedio['humedad'] = $contador['humedad']= 0;
-			//$isFirstVal=true;
-			if($data['humedad']!="-"){
-				$contador['humedad']++;
-				$promedio['humedad'] += floatval($data['humedad']);
-			}
-			
-			//Precipitacion
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['precipitacion']==0)
-				$contador['precipitacion'] = 1;
-				
-			$promedio['precipitacion'] = $promedio['precipitacion'] / $contador['precipitacion'];
-			$promedio['precipitacion'] = substr($promedio['precipitacion'], 0, 4);
-			$estationTable['precipitacion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['precipitacion']));			
-			$promedio['precipitacion'] = $contador['precipitacion']= 0;
-			//$isFirstVal=true;
-			if($data['precipitacion']!="-"){
-				$contador['precipitacion']++;
-				$promedio['precipitacion'] += floatval($data['precipitacion']);
-			}
-			
-			//Nivel
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['nivel']==0)
-				$contador['nivel'] = 1;
-				
-			$promedio['nivel'] = $promedio['nivel'] / $contador['nivel'];
-			$promedio['nivel'] = substr($promedio['nivel'], 0, 4);
-			$estationTable['nivel'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['nivel']));			
-			$promedio['nivel'] = $contador['nivel']= 0;
-			//$isFirstVal=true;
-			if($data['nivel']!="-"){
-				$contador['nivel']++;
-				$promedio['nivel'] += floatval($data['nivel']);
-			}
-			
-			//Radiacion
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['radiacion']==0)
-				$contador['radiacion'] = 1;
-				
-			$promedio['radiacion'] = $promedio['radiacion'] / $contador['radiacion'];
-			$promedio['radiacion'] = substr($promedio['radiacion'], 0, 4);
-			$estationTable['radiacion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['radiacion']));			
-			$promedio['radiacion'] = $contador['radiacion']= 0;
-			//$isFirstVal=true;
-			if($data['radiacion']!="-"){
-				$contador['radiacion']++;
-				$promedio['radiacion'] += floatval($data['radiacion']);
-			}
-
 		}
-			 
 		// Actualizo variable de última hora
 		$ultimaHora = $horaX;
 	}
-	// Inicializo variable de datos json y eje x
-	$x = $jsonData['temperatura'] = $jsonData['presion'] = array();
-	// Temperatura
-	foreach ($estationTable['temperatura'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['temperatura'][] = $data["data"];
-		$x[] = $data["hora"];
-	}
-	// Presion
-	foreach ($estationTable['presion'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['presion'][] = $data["data"];	
-	}
-	// Humedad
-	foreach ($estationTable['humedad'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['humedad'][] = $data["data"];	
-	}
-	
-	// Precipitacion
-	foreach ($estationTable['precipitacion'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['precipitacion'][] = $data["data"];	
-	}
-	
-	// Nivel
-	foreach ($estationTable['nivel'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['nivel'][] = $data["data"];	
-	}
-	
-	// Radiacion
-	foreach ($estationTable['radiacion'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['radiacion'][] = $data["data"];	
+
+	foreach($variables as $var){		
+		foreach ($estationTable[$var] as $data) {
+			// Obtengo un solo array de datos y uno solo de horas en el eje x
+			$jsonData[$var][] = $data["data"];
+			$x[] = $data["hora"];
+		}
 	}
 	
 	$xAxisTemp = $x;
 	$nombre_estacion = $est["estNombre"];
 	$seriesTemp[] = array("name" => $est["estNombre"], "data" => $jsonData['temperatura']);
-	$xAxis = $series = array();
+	//$xAxis = $series = array();
 	$xAxis = json_encode(array_reverse($xAxisTemp));
 
 	$emptyTableGraph = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+/*	
+	foreach($variables as $var){
+		if(!empty($var)){
+			$series[$var] = true;
+			if (!empty($jsonData[$var])) {
+				$series[$var] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData[$var]), "visible"=>$estationTable[$var.'_visible']));
+			} else {
+				$series[$var] = $emptyTableGraph;
+				$series[$var.'Json'] = false;
+			}	
+		}
+			
+	}	
+*/
 	$series['temperaturaJson'] = $series['presionJson'] = $series['humedadJson'] = $series['precipitacionJson']  = $series['nivelJson'] = $series['radiacionJson'] = true;
 
 	if (!empty($jsonData['temperatura'])) {
-		$series['temperatura'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['temperatura'])));
+		$series['temperatura'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['temperatura']), "visible"=>$estationTable['temperatura_visible']));
 	} else {
 		$series['temperatura'] = $emptyTableGraph;
 		$series['temperaturaJson'] = false;
 	}
 	
 	if (!empty($jsonData['presion'])) {
-		$series['presion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['presion'])));
+		$series['presion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['presion']), "visible"=>$estationTable['presion_visible'] ) );
 	} else {
 		$series['presion'] = $emptyTableGraph;
 		$series['presionJson'] = false;
 	}
 	
 	if (!empty($jsonData['humedad'])) {
-		$series['humedad'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['humedad'])));
+		$series['humedad'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['humedad']), "visible"=>$estationTable['humedad_visible']));
 	} else {
 		$series['humedad'] = $emptyTableGraph;
 		$series['humedadJson'] = false;
 	}
 	
 	if (!empty($jsonData['precipitacion'])) {
-		$series['precipitacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['precipitacion'])));
+		$series['precipitacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['precipitacion']), "visible"=>$estationTable['precipitacion_visible']));
 	} else {
 		$series['precipitacion'] = $emptyTableGraph;
 		$series['precipitacionJson'] = false;
 	}
 	
 	if (!empty($jsonData['nivel'])) {
-		$series['nivel'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['nivel'])));
+		$series['nivel'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['nivel']), "visible"=>$estationTable['nivel_visible']));
 	} else {
 		$series['nivel'] = $emptyTableGraph;
 		$series['nivelJson'] = false;
 	}
 	
 	if (!empty($jsonData['radiacion'])) {
-		$series['radiacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['radiacion'])));
+		$series['radiacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['radiacion']), "visible"=>$estationTable['radiacion_visible']));
 	} else {
 		$series['radiacion'] = $emptyTableGraph;
 		$series['radiacionJson'] = false;
@@ -351,13 +245,14 @@ if ($idEstacion != 0) {
     },  
     xAxis: {
     	categories: <?php echo $xAxis; ?>
+    	
     }    
   };
 
   // create the chart
   var chart1Options = {
     chart: {
-      renderTo: 'container-1'
+      renderTo: 'container-1'        
     },
     series: temperaturasEstaciones
   };
