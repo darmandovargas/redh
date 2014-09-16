@@ -77,9 +77,16 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
                     *      Se crea el ciclo para leer el directorio de la estacion para mostrar en la galeria
                     * @param 
                     *      $_REQUEST['id'] = Id de la estacion
-                    * 
+                    *      $_REQUEST['tipo'] = Tipo de la estacion 
                     */
                     $estacion = $_REQUEST["id"];
+                    $tipoEstacion = $_REQUEST["tipo"];
+                    if($tipoEstacion == "PDNT")
+                        $estacion = "pluv";
+//                    else if($tipoEstacion == "SNNT" || $tipoEstacion == "SN")
+//                        $estacion = "sensor";
+//                    else
+//                        $estacion = "sensor";
                     $nombre  = $_REQUEST["name"];
                     $directory= "images/estaciones/".$estacion;
                     $dirint = dir($directory);

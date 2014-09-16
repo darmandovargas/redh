@@ -163,7 +163,11 @@ session_start();
 				}else{
 					$("#logout").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='/home/img/wait_logout.gif' width='70%'>");
 				}				
-			}			
+			}
+
+                        function showTime(){
+                            $( "#time" ).trigger( "click" );
+                        }
 		</script>
 		
 	</head>
@@ -206,7 +210,7 @@ session_start();
 								</div>
 								-->
 								<div align="center">
-									<a href="#" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
+									<a href="#" id="time" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
 								</div>
 								
 								<div align="center">
