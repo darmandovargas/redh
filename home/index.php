@@ -91,7 +91,7 @@ session_start();
 			var session = false;
 					
 			$( document ).ready(function() {
-			    lookForSession();
+			    //lookForSession();
 			    //showLogout(true);
 			    //showLogout(false);		    
 			});
@@ -168,6 +168,15 @@ session_start();
                         function showTime(){
                             $( "#time" ).trigger( "click" );
                         }
+                        
+                        function showNotice(){
+                            $( "#notice_boton" ).trigger( "click" );
+                        }
+                        
+                        function showRecursos(){
+                            $( "#recursos_boton" ).trigger( "click" );
+                        }
+                        
 		</script>
 		
 	</head>
@@ -186,7 +195,10 @@ session_start();
 					
 					<div class="row-fluid logo">
 						<div class="span12">
+							<img src="img/logos/ciencias ambientales.png" width="20%" />							
 							<img src="img/logos/red_hidroclimatologica.jpg" width="50%" />
+							<img src="img/logos/logo_utp.jpg" width="20%">
+							
 							<!-- <h1>Red Hidroclimatológica de Risaralda</h1>-->
 						</div>
 					</div><!--/logo-->
@@ -200,7 +212,7 @@ session_start();
 								</div>
 
 								<div align="center">
-									<a href="#" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
+									<a href="#" id="notice_boton" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
 								</div>
 
 								<!--
@@ -239,7 +251,7 @@ session_start();
 								</div>
 								
 								<div align="center">
-									<a href="#" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
+									<a href="#" id="recursos_boton" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
 								</div>
 								
 							</div>
@@ -277,7 +289,7 @@ session_start();
 											<div class="span6">
 												<div class="media">
 													<div class="media-body">
-														<iframe src="content/noticias.html" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+														<iframe src="content/noticias.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
 													</div>
 												</div>
 											</div>
@@ -297,7 +309,7 @@ session_start();
 												<div class="span6">
 													<div class="media">
 														<div class="media-body">
-															<iframe src="content/recursos_humanos.html" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+															<iframe src="content/recursos_humanos.php" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
 														</div>
 													</div>
 												</div>
@@ -466,20 +478,20 @@ session_start();
 							<div style="text-align: center; ">
 								
 								
-								<img src="img/logos/logo_acuaseo.jpg" width="10%">
-								<img src="img/logos/Alcaldia Pereira.jpg" width="10%">
-								<img src="img/logos/logo_utp.jpg" width="15%">
-								<img src="img/logos/Carder.png" width="18%">
+								<img src="img/logos/logo_acuaseo.jpg" width="13%">
+								<img src="img/logos/Alcaldia Pereira.jpg" width="15%">
+								
+								<img src="img/logos/Carder.png" width="20%">
 								
 								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="22%">
 								
 								<img src="img/logos/dopad.bmp" width="15%">
 								
 								
-								<img src="img/logos/Seafield_colour.jpg" width="22%">
-								<img src="img/logos/EEP.jpg" width="18%" style="margin: 0 0 0 10px;">
+								<img src="img/logos/Seafield_colour.jpg" width="25%">
+								<img src="img/logos/EEP.jpg" width="20%" style="margin: 0 0 0 10px;">
 								<img src="img/logos/Grupos EIS.png" width="12%">
-								<img src="img/logos/LOGO ASAMUN.jpg" width="25%">
+								<img src="img/logos/LOGO ASAMUN.jpg" width="30%">
 							</div>
 						</div>
 					</div><!--/page-footer-->
