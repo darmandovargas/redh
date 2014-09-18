@@ -183,6 +183,11 @@ function showResponse(responseText, statusText, xhr, $form)  {
  			$("#output").html('<span class="error-msg">Debe Ingresar un usuario y un password</span>').fadeIn("slow");
  		}
     }
+    
+    function close(){
+        alert("Llega");
+        $(".top-span").hide();
+ 	}
 </script> 
 
 </head>
@@ -193,6 +198,10 @@ function showResponse(responseText, statusText, xhr, $form)  {
 	<?php session_start(); ?>
 	<div id="welcome" <?php echo ($_SESSION['sessid']== session_id())?'':'style="display: none"' ?> > 
 		<img src='/home/img/banner_bienvenido.jpg'>
+                <div id="button_mapa" style="margin-top: 60px;margin-left: 180px;">
+                    <a class="btn btn-large btn-primary" href="javascript:parent.location.reload();">Ver mapa</a>
+                    <a class="btn btn-large btn-success" href="javascript:parent.showTime();">Ver estado del tiempo</a>
+                </div>
 	</div>
 		
 	<!-- Begin Page Content -->

@@ -38,8 +38,7 @@ $(function(){
                 },
                 error:function(xhr,ajaxOptions,thrownError){
 //						alert('Error General del Sistema, Intente Mas Tarde');
-                        //alert(xhr.responseText);
-                        //alert(thrownError);
+                        $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }
         });
@@ -59,7 +58,7 @@ $(function(){
                              // Validar mensaje de error
                              if(response.respuesta == false){
                                      $("#estacion").html("");
-                                     $('#archive').html("<div class='alert alert-info'>No se encontraron directorios</div>");                                
+                                     $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");                                
                              }else{
                                      $("#estacion").html("");
                                      $('#estacion').html(response.salida);
@@ -67,8 +66,7 @@ $(function(){
                      },
                      error:function(xhr,ajaxOptions,thrownError){
      //						alert('Error General del Sistema, Intente Mas Tarde');
-                        //     alert(xhr.responseText);
-                        //     alert(thrownError);
+                             $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                              return false;
                      }
                  });
@@ -89,7 +87,7 @@ $(function(){
                         // Validar mensaje de error
                         if(response.respuesta == false){
                                 $("#fecha").html("");
-                                $('#archive').html("<div class='alert alert-info'>No se encontraron directorios</div>");                                
+                                $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");                                
                         }else{
                                 $("#fecha").html("");
                                 $('#fecha').html(response.salida);
@@ -97,8 +95,7 @@ $(function(){
                 },
                 error:function(xhr,ajaxOptions,thrownError){
 //						alert('Error General del Sistema, Intente Mas Tarde');
-                        alert(xhr.responseText);
-                        alert(thrownError);
+                        $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }
             });
@@ -119,7 +116,7 @@ $(function(){
                         // Validar mensaje de error
                         if(response.respuesta == false){
                                 $("#periocidad").html("");
-                                $('#archive').html("<div class='alert alert-info'>No se encontraron directorios</div>");                                
+                                $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");                                
                         }else{
                                 $("#periocidad").html("");
                                 $('#periocidad').html(response.salida);
@@ -127,8 +124,7 @@ $(function(){
                 },
                 error:function(xhr,ajaxOptions,thrownError){
 //						alert('Error General del Sistema, Intente Mas Tarde');
-                        alert(xhr.responseText);
-                        alert(thrownError);
+                        $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }
             });
@@ -332,8 +328,9 @@ function preseleccionar(name){
 
 });
 
-function preseleccionar(name){
+function preseleccionar(name,tipoestacion){
            var estacion = name;
+           var tipo = tipoestacion;              
            $.ajax({					
                 cache: false,
                 type: "POST",
@@ -343,11 +340,21 @@ function preseleccionar(name){
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
+                                if(estacion == "" && tipo == "PDNT"){
+                                    $("#boletin option[value=pluviometros]").attr("selected",true);
+                                    $( "#boletin" ).trigger( "change" );
+                                }else if(estacion == "" && (tipo == "SN" || tipo == "SNNT")){
+                                    $("#boletin option[value=sensores]").attr("selected",true);
+                                    $( "#boletin" ).trigger( "change" );
+                                }else if(estacion == "" && (tipo == "ECT" || tipo == "EHT" || tipo == "EC")){
+                                    $("#boletin option[value=estaciones]").attr("selected",true);
+                                    $( "#boletin" ).trigger( "change" );
+                                }else{
+                                    $("#boletin option[value=pluviometros]").attr("selected",true);
+                                    $( "#boletin" ).trigger( "change" );
+                                }
                                 $("#archive").html("");
-                                $('#archive').html("<div class='alert alert-info'>No se encontro directorio</div>");                              
-                                $("#estacion").html("");
-                                $("#fecha").html("");
-                                $("#periocidad").html("");
+                                $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");
                         }else{
                                 $("#archive").html("");
                                 $('#archive').html(response.salida);
@@ -358,8 +365,7 @@ function preseleccionar(name){
                 },
                 error:function(xhr,ajaxOptions,thrownError){
 //						alert('Error General del Sistema, Intente Mas Tarde');
-                        alert(xhr.responseText);
-                        alert(thrownError);
+                        $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }
             }); 
@@ -403,8 +409,7 @@ function search_preselect(){
                 },
                 error:function(xhr,ajaxOptions,thrownError){
 //						alert('Error General del Sistema, Intente Mas Tarde');
-                        alert(xhr.responseText);
-                        alert(thrownError);
+                        $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }
         });

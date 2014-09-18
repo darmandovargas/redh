@@ -224,7 +224,20 @@ session_start();
 				}else{
 					$("#logout").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='/home/img/wait_logout.gif' width='70%'>");
 				}				
-			}			
+			}
+
+                        function showTime(){
+                            $( "#estado_tiempo" ).trigger( "click" );
+                        }
+                        
+                        function showNotice(){
+                            $( "#notice_boton" ).trigger( "click" );
+                        }
+                        
+                        function showRecursos(){
+                            $( "#recursos_boton" ).trigger( "click" );
+                        }
+                        
 		</script>
 		<script src="js/mapa/mapa.js"></script>
 	</head>
@@ -260,7 +273,7 @@ session_start();
 								</div>
 
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
+									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
 								</div>
 
 								<!--
@@ -299,7 +312,7 @@ session_start();
 								</div>
 								
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
+									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
 								</div>
 								
 							</div>
@@ -337,7 +350,7 @@ session_start();
 											<div class="span6">
 												<div class="media">
 													<div class="media-body">
-														<iframe src="content/noticias.html" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+														<iframe src="content/noticias.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
 													</div>
 												</div>
 											</div>
@@ -357,7 +370,7 @@ session_start();
 												<div class="span6">
 													<div class="media">
 														<div class="media-body">
-															<iframe src="content/recursos_humanos.html" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+															<iframe src="content/recursos_humanos.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
 														</div>
 													</div>
 												</div>

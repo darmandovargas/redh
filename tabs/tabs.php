@@ -5,12 +5,13 @@ include_once ('../lib/class.MySQL.php');
 $publicEstations = array("tb_san_jose", "tb_ellago", "tb_Cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
 // Inicializa variables
 $estationTable = $privateEstationTable = array();
+var_dump($_GET);
 // Obtiene id de la estación
 $idEstacion = $_GET['id'];
+// Obtiene el tipo de estacion
+$tipoEstacion = $_GET['tipo'];
 // Si la estación existe en la base de datos entonces arme el json para graficar
 if ($idEstacion != 0) {
-	// Obtiene el tipo de estacion
-	$tipoEstacion = $_GET['tipo'];
 	// Dependiendo del tipo de estación, se debe revisar en estaciones o estacion_sensores
 	switch ($tipoEstacion) {
 		case 'ECT' :
@@ -571,7 +572,7 @@ if ($idEstacion != 0) {
 					?>
 					<li class="sky-tab-content-2">
 						<div class="typography" style="margin: 0 0 0 60px;">
-							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion; ?>" height="500px" width="420px"></iframe>
+							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion; ?>" height="500px" width="420px"></iframe>
 							<!--
 							<h1>Leonardo da Vinci</h1>	
 							<p>Italian Renaissance polymath: painter, sculptor, architect, musician, mathematician, engineer, inventor, anatomist, geologist, cartographer, botanist, and writer. His genius, perhaps more than that of any other figure, epitomized the Renaissance humanist ideal. Leonardo has often been described as the archetype of the Renaissance Man, a man of "unquenchable curiosity" and "feverishly inventive imagination". He is widely considered to be one of the greatest painters of all time and perhaps the most diversely talented person ever to have lived. According to art historian Helen Gardner, the scope and depth of his interests were without precedent and "his mind and personality seem to us superhuman, the man himself mysterious and remote". Marco Rosci states that while there is much speculation about Leonardo, his vision of the world is essentially logical rather than mysterious, and that the empirical methods he employed were unusual for his time.</p>
@@ -583,7 +584,7 @@ if ($idEstacion != 0) {
 					
 					<li class="sky-tab-content-3">
 						<div class="typography"  >
-							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion; ?>" height="400px" width="540px"></iframe>
+							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion; ?>" height="400px" width="540px"></iframe>
 							<!--
 							<h1>Albert Einstein</h1>
 							<p>German-born theoretical physicist who developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). While best known for his mass–energy equivalence formula E = mc2 (which has been dubbed "the world's most famous equation"), he received the 1921 Nobel Prize in Physics "for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect". The latter was pivotal in establishing quantum theory.</p>

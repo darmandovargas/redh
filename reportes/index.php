@@ -27,7 +27,7 @@
 	
         </script>
     </head>
-    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>')" style="background-color: #EAF5F3;height: 400px;">
+    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>')" style="background-color: #EAF5F3;height: 400px;">
         <?php $hasta = "2007"; ?>
         <div id="content">
                 <fieldset>
