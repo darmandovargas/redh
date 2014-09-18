@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * @author Juan manuel Mora <juan_manuel28@hotmail.com>
+ * @date   15-09-214
+ * @description
+ *      Script para insertar y buscar el contenido de las paginas que son editables
+ * @param 
+ *      $_REQUEST['actionID'] = Acción a realizar cuando se hace un petición por ajax
+ * 
+ */
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -23,6 +32,21 @@ switch ($_REQUEST['actionID']) {
         break;
 }
 
+/**
+ * @author Juan manuel Mora <juan_manuel28@hotmail.com>
+ * @date   16-09-214
+ * @description
+ *      Metodo para buscar el contenido de una pagina
+ * 
+ * @param 
+ *      $oMySQL = Objeto Mysql para conexion
+ *      $page = Cadena con la pagina que se va buscar
+ * 
+ * @return
+ *      Cadena con el resultado si lo encuentra de lo contrario boleano false
+ * 
+ */
+
 function search_content($oMySQL,$page){
     $query = "SELECT contenido FROM contenidos WHERE pagina='$page'";	
     $resultado = $oMySQL -> ExecuteSQL($query);
@@ -34,16 +58,31 @@ function search_content($oMySQL,$page){
     }
 }
 
+/**
+ * @author Juan manuel Mora <juan_manuel28@hotmail.com>
+ * @date   16-09-214
+ * @description
+ *      Metodo para insertar o actualizar contenido
+ * 
+ * @param 
+ *      $oMySQL = Objeto Mysql para conexion
+ *      $page = Cadena con la pagina que se va buscar
+ *      $texto = Cadena con el texto que se va almacenar
+ * 
+ * @return
+ *      Booleano true si realizo la acción false si hubo problemas
+ * 
+ */
+
+
 function insert_content($oMySQL,$page,$texto){
     
     $search = search_content($oMySQL,$page);
-    if($search == false){        
-        //$txt = limpiahtml($texto);
+    if($search == false){
         $txt = utf8_decode($texto);
         $query = "INSERT INTO contenidos VALUES(null,'$page','$txt')";
         $resultado = $oMySQL -> ExecuteSQL($query);                
     }else{
-        //$txt = limpiahtml($texto);
         $txt = utf8_decode($texto);
         $query = "UPDATE contenidos SET contenido = '$txt' WHERE pagina = '$page';";	
         $resultado = $oMySQL -> ExecuteSQL($query);
@@ -53,14 +92,6 @@ function insert_content($oMySQL,$page,$texto){
     }else{
         return false;
     }
-}
-
-function limpiahtml($codigo){
-    $buscar = array('/\>[^\S ]+/s','/[^\S ]+\</s','/(\s)+/s');
-    $reemplazar = array('>','<','\\1');
-    $codigo = preg_replace($buscar, $reemplazar, $codigo);
-    $codigo = str_replace("> <", "><", $codigo);
-    return $codigo;
 }
 
 ?>

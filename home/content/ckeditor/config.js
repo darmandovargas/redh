@@ -40,6 +40,7 @@ CKEDITOR.editorConfig = function( config ) {
 };
 
 CKEDITOR.editorConfig = function(config) {
+   // Aqui se añade la configuración del kcfinder con la cual se habilita para subir imagenes 
    config.filebrowserBrowseUrl = '/home/content/ckeditor/kcfinder/browse.php?type=files';
    config.filebrowserImageBrowseUrl = '/home/content/ckeditor/kcfinder/browse.php?type=images';
    config.filebrowserFlashBrowseUrl = '/home/content/ckeditor/kcfinder/browse.php?type=flash';
@@ -47,6 +48,7 @@ CKEDITOR.editorConfig = function(config) {
    config.filebrowserImageUploadUrl = '/home/content/ckeditor/kcfinder/upload.php?type=images';
    config.filebrowserFlashUploadUrl = '/home/content/ckeditor/kcfinder/upload.php?type=flash';
    config.entities = false;
+   // Objetos para agregar y quitar herramientas del editor
    config.extraPlugins = 'font,justify,imageresize';
    config.removePlugins = 'about,others';
 };

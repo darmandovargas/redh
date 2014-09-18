@@ -26,6 +26,10 @@
 		<script src="js/estaciones.js"></script>
 		<script src="js/mapa.js"></script>
 		<style>
+                    .check_labels{
+                        font-family: calibri,Arial,Verdana;
+                        font-size: 100%;
+                    }
 			.controls {
         margin-top: 16px;
         border: 1px solid transparent;
@@ -72,7 +76,7 @@
       
       #panel {
         position: absolute;
-        top: 87.6%;
+        top: 84.6%;
         left: 85.2%;
         margin-left: -180px;
         z-index: 5;
@@ -88,10 +92,13 @@
 		<div id="panel">
 			<!-- <input onclick="cleanLines();" type=button value="Limpar Gráficos"> -->
 	      <form id="uploadForm" action="upload.php" method="post">
-		      <input id="uploadImage" type="file" value="Seleccionar Imagen" >
+		      <input id="uploadImage" name="uploadImage" type="file" value="Seleccionar Imagen" >
 		      <input type="submit" value="Subir Imagen" >
 		  </form>
 		  <input onclick="refreshMap();" type=button value="Refrescar Mapa" style="width: 100%">
+                  <input type="checkbox" id="check_estacion" name="estation[]" value="ECT EHT EC" onchange="filter_estation()" checked /><span class="check_labels">Estaciones</span>
+                  <input type="checkbox" id="check_sensor" name="estation[]" value="SN SNNT" onchange="filter_estation()"  checked /><span class="check_labels">Sensores</span>
+                  <input type="checkbox" id="check_pluviometro" name="estation[]" value="PDNT" onchange="filter_estation()" checked /><span class="check_labels">Pluviometros</span>
 	    </div>
 		<div id="map-canvas"></div>
 		

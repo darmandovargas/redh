@@ -289,7 +289,7 @@ session_start();
 											<div class="span6">
 												<div class="media">
 													<div class="media-body">
-														<iframe src="content/noticias.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+														<iframe src="content/noticias.php" width="99%" height="480px"  frameBorder="0"></iframe>
 													</div>
 												</div>
 											</div>
@@ -309,7 +309,7 @@ session_start();
 												<div class="span6">
 													<div class="media">
 														<div class="media-body">
-															<iframe src="content/recursos_humanos.php" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+															<iframe src="content/recursos_humanos.php" width="100%" height="480px" frameBorder="0"></iframe>
 														</div>
 													</div>
 												</div>

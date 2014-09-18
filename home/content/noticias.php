@@ -15,10 +15,10 @@ $contenido = search_content($oMySQL,'noticias');
 <span style="font-family: Helvetica, Arial, Sans-Serif; font-weight: 100"> 
     <?php session_start(); ?>
     <?php $edit = ""; if(isset($_REQUEST['edit'])){ $edit="display:none"; } ?>
-    <div id="edit" <?php echo ($_SESSION['sessid']== session_id())?'style="margin-left: 98%;margin-top:0px;'.$edit.'"':'style="display: none;margin-left: 98%;"' ?>>
+    <div id="edit" <?php echo ($_SESSION['sessid']== session_id() && $_SESSION['type'] == 'admin')?'style="margin-left: 98%;margin-top:0px;float:right;'.$edit.'"':'style="display: none;margin-left: 98%;"' ?>>
         <a href="noticias.php?edit=edit" title="Editar" style="text-decoration: none;"><img src="../img/file_edit.png" width="20" height="20" /></a>
     </div>                    
-    <div id="notify" style="margin-top: 10px;">
+    <div id="notify" style="margin-top: 10px;width: 500px;">
         <?php if(isset($_REQUEST['msj'])) {
             echo $_REQUEST['msj']; ?>
             <script>$("#notify").delay(5000).hide(600);</script>
@@ -40,7 +40,7 @@ $contenido = search_content($oMySQL,'noticias');
     <link rel="alternate stylesheet" href="../../home/css/themes/eco/bootstrap-responsive.css" title="eco" type="text/css">
     <link rel="alternate stylesheet" href="../../home/css/themes/red/bootstrap.css" title="red" type="text/css">
     <link rel="alternate stylesheet" href="../../home/css/themes/red/bootstrap-responsive.css" title="red" type="text/css">
-    <div id="noticia_edit" style="height: 450px"><textarea name="editor1" id="editor1" rows="1000" cols="1000">
+    <div id="noticia_edit" style=""><textarea name="editor1" id="editor1" rows="1000" cols="1000">
             <?php echo utf8_encode($contenido); ?>
         </textarea>
         <div id="msg" style="margin: 0px auto;display: none">

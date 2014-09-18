@@ -10,7 +10,7 @@ var overlay, input;
 
 DebugOverlay.prototype = new google.maps.OverlayView();
 
-function initialize(isRefresh, dynamicImage) {
+function initialize(isRefresh, dynamicImage, estation) {
 
 	//console.log( typeof (image));
 	// This will paint or not the search (the seach input can´t be obtained by javascript on clean lines)
@@ -20,7 +20,7 @@ function initialize(isRefresh, dynamicImage) {
 		dynamicImage = dynamicImage;
 	// This will paint or not the search (the seach input can´t be obtained by javascript on clean lines)
 	if ( typeof (isRefresh) === 'object')
-		isRefresh = false;
+		isRefresh = false;         
 
 	var styles = [{
 		stylers : [{
@@ -311,26 +311,33 @@ console.log("debug4");
 console.log("debug5");
 	$.each(estacionesJSON, function(idx, obj) {
 		//console.log(obj.coordenadas.latitud + "," + obj.coordenadas.longitud);
-		var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
-		var marker = new google.maps.Marker({
-			position : position,
-			animation : google.maps.Animation.DROP,
-			//icon:'icon.png',
-			icon : obj.icono,
-			map : map
-		});
-		google.maps.event.addListener(marker, 'click', toggleBounce);
-		marker.setTitle(obj.tipo + ": " + obj.nombre);
-		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
-
-		function toggleBounce() {
-			if (marker.getAnimation() != null) {
-				marker.setAnimation(null);
-			} else {
-				marker.setAnimation(google.maps.Animation.BOUNCE);
-			}
-		}
-
+                var n = -1;
+                if ( typeof (estation) === 'undefined'){
+                    n = 1;
+                }else{
+                    n = estation.indexOf(obj.tipo);
+                }
+                if(n !== -1){
+                    var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
+                    var marker = new google.maps.Marker({
+                            position : position,
+                            animation : google.maps.Animation.DROP,
+                            //icon:'icon.png',
+                            icon : obj.icono,
+                            map : map
+                    });
+                    google.maps.event.addListener(marker, 'click', toggleBounce);
+                    marker.setTitle(obj.tipo + ": " + obj.nombre);
+                    attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
+                   
+                }
+                function toggleBounce() {
+                        if (marker.getAnimation() != null) {
+                                marker.setAnimation(null);
+                        } else {
+                                marker.setAnimation(google.maps.Animation.BOUNCE);
+                        }
+                }
 	});
 	console.log("debug6");
 }
@@ -590,3 +597,15 @@ function submitForm(event, data)
 });
 
 // End Upload Image
+/*
+* Funcion que se llama para filtrar por tipos de estaciones según los checkbox seleccionados
+* 
+*/
+function filter_estation(){
+    var checkboxValues = "";
+    $('input[name="estation[]"]:checked').each(function() {
+            checkboxValues += $(this).val() + " ";
+    });        
+    //alert("Seleccionados "+checkboxValues);
+    initialize(true, undefined, checkboxValues);
+}
