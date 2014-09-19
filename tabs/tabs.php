@@ -5,8 +5,7 @@ include_once ('../lib/class.MySQL.php');
 $publicEstations = array("tb_san_jose", "tb_ellago", "tb_Cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
 // Inicializa variables
 $estationTable = $privateEstationTable = array();
-//var_dump($_GET);
-// Obtiene id de la estaciÃ³n
+// Obtiene id de la estación
 $idEstacion = $_GET['id'];
 // Obtiene el tipo de estacion
 $tipoEstacion = $_GET['tipo'];
@@ -31,7 +30,8 @@ if ($idEstacion != 0) {
 	// Inicializa array de variables a sensar y graficar
 	$variables = array("temperatura", "presion", "humedad", "precipitacion", "nivel", "radiacion");
 	
-	// Obtiene la estaciÃ³n segÃºn el tipo que define la tabla
+
+	// Obtiene la estación según el tipo que define la tabla
 	$query = "SELECT * FROM " . $tablaEstaciones . " WHERE id=" . $idEstacion;	//." and activo='true'";
 	$est = $oMySQL -> ExecuteSQL($query);
 	// Obtiene el nombre de la estaciÃ³n
@@ -41,9 +41,9 @@ if ($idEstacion != 0) {
 	$estacionInfo = $oMySQL -> ExecuteSQL($query);
 	$isFirstVal = true;
 	//$contadorHoras = 0;
-	// Itero la informatiÃ³n de la tabla de la estaciÃ³n
+	// Itero la informatión de la tabla de la estación
 	foreach ($estacionInfo as $data) {
-		// Obtengo la hora de la mediciÃ³n
+		// Obtengo la hora de la medición
 		$horaX = substr($data['hora'], 0, 2);		
 		// Valido que la hora actual y la anterior sean la misma para sumar al promedio y al contador
 		if ($ultimaHora == $horaX || $isFirstVal) {				
@@ -85,7 +85,7 @@ if ($idEstacion != 0) {
 				}		
 			}
 		}
-		// Actualizo variable de Ãºltima hora
+		// Actualizo variable de última hora
 		$ultimaHora = $horaX;
 	}
 
@@ -210,7 +210,7 @@ if ($idEstacion != 0) {
             },
             subtitle: {
             	userHTML:true,
-                text: 'Mediciones Ãºltimas 24 horas<br/>Origen: Red HidroclimatolÃ³gica de Risaralda',
+                text: 'Mediciones últimas 24 horas<br/>Origen: Red Hidroclimatológica de Risaralda',
                 x: -20
             },            
             yAxis: {                
@@ -265,7 +265,7 @@ if ($idEstacion != 0) {
   var optionsChart2 = { 
   	yAxis: {
   		title: {
-  			text: 'PresiÃ³n BaromÃ©trica (Pa)'
+  			text: 'Presión Barométrica (Pa)'
         }
     },
     tooltip: {
@@ -316,7 +316,7 @@ if ($idEstacion != 0) {
   var optionsChart4 = { 
   	yAxis: {
   		title: {
-  			text: 'PrecipitaciÃ³n (mm)'
+  			text: 'Precipitación (mm)'
         }
     },
     tooltip: {
@@ -342,11 +342,11 @@ if ($idEstacion != 0) {
   var optionsChart5 = { 
   	yAxis: {
   		title: {
-  			text: 'RadiaciÃ³n Solar ( W/mÂ²)'
+  			text: 'Radiación Solar ( W/m²)'
         }
     },
     tooltip: {
-    	valueSuffix: ' W/mÂ²'
+    	valueSuffix: ' W/m²'
     },  
     xAxis: {
     	categories: <?php echo $xAxis; ?>
@@ -431,7 +431,7 @@ if ($idEstacion != 0) {
 							//if($series['presionJson']){
 							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab-1-2" class="sky-tab-content-2">
-							<label for="sky-tab-1-2"><span  class="sky-tabs_custom_pad"><span>PresiÃ³n</span></span></label>							
+							<label for="sky-tab-1-2"><span  class="sky-tabs_custom_pad"><span>Presión</span></span></label>							
 							<?php							
 							//}
 							//if($series['humedadJson']){
@@ -443,7 +443,7 @@ if ($idEstacion != 0) {
 							//if($series['precipitacionJson']){
 							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-4" class="sky-tab-content-4">
-							<label for="sky-tab1-4"><span  class="sky-tabs_custom_pad"><span>PrecipitaciÃ³n</span></span></label>
+							<label for="sky-tab1-4"><span  class="sky-tabs_custom_pad"><span>Precipitación</span></span></label>
 							<?php
 							//}
 							if($series['nivelJson'] && $tipoEstacion=='EHT'){
@@ -455,7 +455,7 @@ if ($idEstacion != 0) {
 							//if($series['radiacionJson']){
 							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-5" class="sky-tab-content-5">
-							<label for="sky-tab1-5"><span  class="sky-tabs_custom_pad"><span>RadiaciÃ³n</span></span></label>
+							<label for="sky-tab1-5"><span  class="sky-tabs_custom_pad"><span>Radiación</span></span></label>
 							<?php
 							//}							
 							?>
