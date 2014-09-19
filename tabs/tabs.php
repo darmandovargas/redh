@@ -30,7 +30,6 @@ if ($idEstacion != 0) {
 	// Inicializa array de variables a sensar y graficar
 	$variables = array("temperatura", "presion", "humedad", "precipitacion", "nivel", "radiacion");
 	
-
 	// Obtiene la estación según el tipo que define la tabla
 	$query = "SELECT * FROM " . $tablaEstaciones . " WHERE id=" . $idEstacion;	//." and activo='true'";
 	$est = $oMySQL -> ExecuteSQL($query);
