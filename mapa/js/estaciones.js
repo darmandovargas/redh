@@ -22,6 +22,7 @@ estacionesJSON = [
 		      "latitud": 4.814751659,
 		      "longitud": -75.69949032
 		    },
+		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "1450 m.s.n.m",
@@ -46,6 +47,7 @@ estacionesJSON = [
 		      "latitud": 4.750273723,
 		      "longitud": -75.490426
 		    },
+		    "isPublic": false,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "3700 m.s.n.m",
@@ -70,6 +72,7 @@ estacionesJSON = [
 		      "latitud": 4.815287772,
 		      "longitud": -75.59604566
 		    },
+		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "1900 m.s.n.m",
@@ -94,6 +97,7 @@ estacionesJSON = [
 		      "latitud": 4.872101755,
 		      "longitud": -75.70935144
 		    },
+		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "2002 m.s.n.m",
@@ -118,6 +122,7 @@ estacionesJSON = [
 		      "latitud": 5.295278392,
 		      "longitud": -75.69944588
 		    },
+		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "1673 m.s.n.m",
@@ -138,6 +143,7 @@ estacionesJSON = [
 		      "latitud": 4.70317919,
 		      "longitud": -75.53658441
 		    },
+		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
 		    "altitud": "2080 m.s.n.m",
@@ -162,6 +168,7 @@ estacionesJSON = [
 		      "latitud": 4.861723969,
 		      "longitud": -75.65464021
 		    },
+		    "isPublic": false,
 		    "tipo":"EC",
 		    "icono": iconoEC,
 		    "altitud": "1550 m.s.n.m",
@@ -186,6 +193,7 @@ estacionesJSON = [
 		      "latitud": 4.873557316,
 		      "longitud": -75.66111246
 		    },
+		    "isPublic": false,
 		    "tipo":"EC",
 		    "icono": iconoEC,
 		    "altitud": "1550 m.s.n.m",
@@ -204,6 +212,7 @@ estacionesJSON = [
 		      "latitud": 4.741718167,
 		      "longitud": -75.59009842
 		    },
+		    "isPublic": false,
 		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1800 m.s.n.m",
@@ -222,6 +231,7 @@ estacionesJSON = [
 		      "latitud": 4.744059843,
 		      "longitud": -75.60326232
 		    },
+		    "isPublic": false,
 		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1750 m.s.n.m",
@@ -240,6 +250,7 @@ estacionesJSON = [
 		      "latitud": 4.759279315,
 		      "longitud": -75.61186236
 		    },
+		    "isPublic": false,
 		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1700 m.s.n.m",
@@ -258,6 +269,7 @@ estacionesJSON = [
 		      "latitud": 4.783696013,
 		      "longitud": -75.63461238
 		    },
+		    "isPublic": false,
 		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1600 m.s.n.m",
@@ -276,6 +288,7 @@ estacionesJSON = [
 		      "latitud": 4.769723768,
 		      "longitud": -75.60855679
 		    },
+		    "isPublic": false,
 		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1700 m.s.n.m",
@@ -294,6 +307,7 @@ estacionesJSON = [
 		      "latitud": 4.800371046,
 		      "longitud": -75.73376536
 		    },
+		    "isPublic": false,
 		    "tipo":"SN",
 		    "icono": iconoSN,
 		    "altitud": "1290 m.s.n.m",
@@ -312,6 +326,7 @@ estacionesJSON = [
 		      "latitud": 4.738834822,
 		      "longitud": -75.58364006
 		    },
+		    "isPublic": false,
 		    "tipo":"SNNT",
 		    "icono": iconoSN,
 		    "altitud": "1847 m.s.n.m",
@@ -330,6 +345,7 @@ estacionesJSON = [
 		      "latitud": 0,
 		      "longitud": 0
 		    },
+		    "isPublic": false,
 		    "tipo":"SNNT",
 		    "icono": iconoSN,
 		    "altitud": "",
@@ -348,6 +364,7 @@ estacionesJSON = [
 		      "latitud": 4.744045954,
 		      "longitud": -75.60941513
 		    },
+		    "isPublic": false,
 		    "tipo":"PDNT",
 		    "icono": iconoPD, 
 		    "altitud": "1750 m.s.n.m",
@@ -366,6 +383,7 @@ estacionesJSON = [
 		      "latitud": 4.738934822,
 		      "longitud": -75.6177679
 		    },
+		    "isPublic": false,
 		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1950 m.s.n.m",
@@ -384,6 +402,7 @@ estacionesJSON = [
 		      "latitud": 4.711854225,
 		      "longitud": -75.66235135
 		    },
+		    "isPublic": false,
 		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1700 m.s.n.m",
@@ -402,6 +421,7 @@ estacionesJSON = [
 		      "latitud": 4.744709846,
 		      "longitud": -75.70915421
 		    },
+		    "isPublic": false,
 		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1500 m.s.n.m",
@@ -420,6 +440,7 @@ estacionesJSON = [
 		      "latitud": 4.874440653,
 		      "longitud": -75.78304604
 		    },
+		    "isPublic": false,
 		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1250 m.s.n.m",
@@ -438,6 +459,7 @@ estacionesJSON = [
 		      "latitud": 4.740557051,
 		      "longitud": -75.58052897
 		    },
+		    "isPublic": false,
 		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1890 m.s.n.m.",
@@ -456,6 +478,7 @@ estacionesJSON = [
 		      "latitud": 4.742445948,
 		      "longitud": 75.58047341
 		    },
+		    "isPublic": false,
 		    "tipo":"PDNT",
 		    "icono": iconoPD,
 		    "altitud": "1861 m.s.n.m.",

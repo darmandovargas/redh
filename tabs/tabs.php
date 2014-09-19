@@ -1,18 +1,18 @@
 <?php
-// Obtiene la conexión a la bd
+// Obtiene la conexiÃ³n a la bd
 include_once ('../lib/class.MySQL.php');
-// Estaciones públicas
+// Estaciones pÃºblicas
 $publicEstations = array("tb_san_jose", "tb_ellago", "tb_Cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
 // Inicializa variables
 $estationTable = $privateEstationTable = array();
 //var_dump($_GET);
-// Obtiene id de la estación
+// Obtiene id de la estaciÃ³n
 $idEstacion = $_GET['id'];
 // Obtiene el tipo de estacion
 $tipoEstacion = $_GET['tipo'];
-// Si la estación existe en la base de datos entonces arme el json para graficar
+// Si la estaciÃ³n existe en la base de datos entonces arme el json para graficar
 if ($idEstacion != 0) {
-	// Dependiendo del tipo de estación, se debe revisar en estaciones o estacion_sensores
+	// Dependiendo del tipo de estaciÃ³n, se debe revisar en estaciones o estacion_sensores
 	switch ($tipoEstacion) {
 		case 'ECT' :
 			$tablaEstaciones = "estaciones"; break;
@@ -25,204 +25,141 @@ if ($idEstacion != 0) {
 		default :
 			$tablaEstaciones = "estaciones"; break;
 	}
-	// Inicializa variables para la gráfica
+	// Inicializa variables para la grÃ¡fica
 	$xAxis = $series = array();
-	// Obtiene la estación según el tipo que define la tabla
+	// TODO: improve code with for's
+	// Inicializa array de variables a sensar y graficar
+	$variables = array("temperatura", "presion", "humedad", "precipitacion", "nivel", "radiacion");
+	
+	// Obtiene la estaciÃ³n segÃºn el tipo que define la tabla
 	$query = "SELECT * FROM " . $tablaEstaciones . " WHERE id=" . $idEstacion;	//." and activo='true'";
 	$est = $oMySQL -> ExecuteSQL($query);
-	// Obtiene el nombre de la estación
+	// Obtiene el nombre de la estaciÃ³n
 	$tabla = $est["estNombreTb"];
-	// Obtiene datos de la tabla de la estación del último día (aproximadamente 285 últimos datos)
+	// Obtiene datos de la tabla de la estaciÃ³n del Ãºltimo dÃ­a (aproximadamente 285 Ãºltimos datos)
 	$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 285";
 	$estacionInfo = $oMySQL -> ExecuteSQL($query);
-	// Inicializa variables para guardar el promedio por hora y un contador
-	/*$contador['temperatura'] = $contador['presion'] = $contador['humedad'] = $contador['precipitacion'] = $contador['radiacion'] = $ultimaHora = 0;
-	$promedio['temperatura'] = $promedio['presion'] = $promedio['humedad'] = $promedio['precipitacion'] = $promedio['radiacion'] = floatval(0);
-	*/$isFirstVal = true;
-	// Itero la informatión de la tabla de la estación
+	$isFirstVal = true;
+	//$contadorHoras = 0;
+	// Itero la informatiÃ³n de la tabla de la estaciÃ³n
 	foreach ($estacionInfo as $data) {
-		// Obtengo la hora de la medición
-		$horaX = substr($data['hora'], 0, 2);
-		
+		// Obtengo la hora de la mediciÃ³n
+		$horaX = substr($data['hora'], 0, 2);		
 		// Valido que la hora actual y la anterior sean la misma para sumar al promedio y al contador
-		if ($ultimaHora == $horaX || $isFirstVal) {
-			
-			if($data['temperatura']!="-"){
-				$contador['temperatura']++;
-				$promedio['temperatura'] += floatval($data['temperatura']);
-			}
-			
-			if($data['presion']!="-"){
-				$contador['presion']++;
-				$promedio['presion'] += floatval($data['presion']);
-			}
-			
-			if($data['humedad']!="-"){
-				$contador['humedad']++;
-				$promedio['humedad'] += floatval($data['humedad']);
-			}
-			
-			if($data['precipitacion']!="-"){
-				$contador['precipitacion']++;
-				$promedio['precipitacion'] += floatval($data['precipitacion']);
-			}
-			
-			if($data['radiacion']!="-"){
-				$contador['radiacion']++;
-				$promedio['radiacion'] += floatval($data['radiacion']);
-			}
-					
+		if ($ultimaHora == $horaX || $isFirstVal) {				
+			foreach($variables as $vars){
+				if(!empty($var)){
+					if($data[$vars]!="-"){
+						$contador[$vars]++;
+						$promedio[$vars] += floatval($data[$vars]);
+					}	
+				}				
+			}	
 			$isFirstVal=false;
 		} else {
-			//Temperatura	
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['temperatura']==0)
-				$contador['temperatura'] = 1;
+			foreach($variables as $var){
+				//Variable $var	
+				// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
+				// renuevo el valor del promedio y el contador
+				if($contador[$var]==0)
+					$contador[$var] = 1;
+					
+				$promedio[$var] = $promedio[$var] / $contador[$var];
+				$promedio[$var] = substr($promedio[$var], 0, 4);
+				$estationTable[$var][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio[$var]));
 				
-			$promedio['temperatura'] = $promedio['temperatura'] / $contador['temperatura'];
-			$promedio['temperatura'] = substr($promedio['temperatura'], 0, 4);
-			$estationTable['temperatura'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['temperatura']));			
-			$promedio['temperatura'] = $contador['temperatura'] = 0;
-			$isFirstVal=true;
-			if($data['temperatura']!="-"){
-				$contador['temperatura']++;
-				$promedio['temperatura'] += floatval($data['temperatura']);
+				$estationTable[$var.'_visible'] = true;
+				/*TODO switch visibility to false if all the estation averages are 0 for an specific variable
+				 * $cuentaPromedio[] = 
+				if(floatval($promedio[$var])>0 && $contadorHoras>24){
+					$estationTable[$var.'_visible'] = flase;
+					$contadorHoras = 0;
+				}else{
+					$contadorHoras++;
+				}*/				
+				$promedio[$var] = $contador[$var] = 0;
+				$isFirstVal=true;
+				if($data[$var]!="-"){
+					$contador[$var]++;
+					$promedio[$var] += floatval($data[$var]);				
+				}		
 			}
-			
-			//Presion
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['presion']==0)
-				$contador['presion'] = 1;
-				
-			$promedio['presion'] = $promedio['presion'] / $contador['presion'];
-			$promedio['presion'] = substr($promedio['presion'], 0, 4);
-			$estationTable['presion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['presion']));			
-			$promedio['presion'] = $contador['presion']= 0;
-			//$isFirstVal=true;
-			if($data['presion']!="-"){
-				$contador['presion']++;
-				$promedio['presion'] += floatval($data['presion']);
-			}
-			
-			//Humedad
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['humedad']==0)
-				$contador['humedad'] = 1;
-				
-			$promedio['humedad'] = $promedio['humedad'] / $contador['humedad'];
-			$promedio['humedad'] = substr($promedio['humedad'], 0, 4);
-			$estationTable['humedad'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['humedad']));			
-			$promedio['humedad'] = $contador['humedad']= 0;
-			//$isFirstVal=true;
-			if($data['humedad']!="-"){
-				$contador['humedad']++;
-				$promedio['humedad'] += floatval($data['humedad']);
-			}
-			
-			//Precipitacion
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['precipitacion']==0)
-				$contador['precipitacion'] = 1;
-				
-			$promedio['precipitacion'] = $promedio['precipitacion'] / $contador['precipitacion'];
-			$promedio['precipitacion'] = substr($promedio['precipitacion'], 0, 4);
-			$estationTable['precipitacion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['precipitacion']));			
-			$promedio['precipitacion'] = $contador['precipitacion']= 0;
-			//$isFirstVal=true;
-			if($data['precipitacion']!="-"){
-				$contador['precipitacion']++;
-				$promedio['precipitacion'] += floatval($data['precipitacion']);
-			}
-			
-			//Radiacion
-			// Si la hora anterior y la actual son diferentes, agrego el valor a un array y
-			// renuevo el valor del promedio y el contador
-			if($contador['radiacion']==0)
-				$contador['radiacion'] = 1;
-				
-			$promedio['radiacion'] = $promedio['radiacion'] / $contador['radiacion'];
-			$promedio['radiacion'] = substr($promedio['radiacion'], 0, 4);
-			$estationTable['radiacion'][] = array("hora" => intval($ultimaHora), "data" => floatval($promedio['radiacion']));			
-			$promedio['radiacion'] = $contador['radiacion']= 0;
-			//$isFirstVal=true;
-			if($data['radiacion']!="-"){
-				$contador['radiacion']++;
-				$promedio['radiacion'] += floatval($data['radiacion']);
-			}
-
 		}
-			 
-		// Actualizo variable de última hora
+		// Actualizo variable de Ãºltima hora
 		$ultimaHora = $horaX;
 	}
-	// Inicializo variable de datos json y eje x
-	$x = $jsonData['temperatura'] = $jsonData['presion'] = array();
-	// Temperatura
-	foreach ($estationTable['temperatura'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['temperatura'][] = $data["data"];
-		$x[] = $data["hora"];
-	}
-	// Presion
-	foreach ($estationTable['presion'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['presion'][] = $data["data"];	
-	}
-	// Humedad
-	foreach ($estationTable['humedad'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['humedad'][] = $data["data"];	
-	}
-	
-	// Precipitacion
-	foreach ($estationTable['precipitacion'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['precipitacion'][] = $data["data"];	
-	}
-	// Radiacion
-	foreach ($estationTable['radiacion'] as $data) {
-		// Obtengo un solo array de datos y uno solo de horas en el eje x
-		$jsonData['radiacion'][] = $data["data"];	
+
+	foreach($variables as $var){		
+		foreach ($estationTable[$var] as $data) {
+			// Obtengo un solo array de datos y uno solo de horas en el eje x
+			$jsonData[$var][] = $data["data"];
+			$x[] = $data["hora"];
+		}
 	}
 	
 	$xAxisTemp = $x;
 	$nombre_estacion = $est["estNombre"];
 	$seriesTemp[] = array("name" => $est["estNombre"], "data" => $jsonData['temperatura']);
-	$xAxis = $series = array();
+	//$xAxis = $series = array();
 	$xAxis = json_encode(array_reverse($xAxisTemp));
 
+	$emptyTableGraph = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+/*	
+	foreach($variables as $var){
+		if(!empty($var)){
+			$series[$var] = true;
+			if (!empty($jsonData[$var])) {
+				$series[$var] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData[$var]), "visible"=>$estationTable[$var.'_visible']));
+			} else {
+				$series[$var] = $emptyTableGraph;
+				$series[$var.'Json'] = false;
+			}	
+		}
+			
+	}	
+*/
+	$series['temperaturaJson'] = $series['presionJson'] = $series['humedadJson'] = $series['precipitacionJson']  = $series['nivelJson'] = $series['radiacionJson'] = true;
+
 	if (!empty($jsonData['temperatura'])) {
-		$series['temperatura'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['temperatura'])));
+		$series['temperatura'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['temperatura']), "visible"=>$estationTable['temperatura_visible']));
 	} else {
-		$series['temperatura'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['temperatura'] = $emptyTableGraph;
+		$series['temperaturaJson'] = false;
 	}
 	
 	if (!empty($jsonData['presion'])) {
-		$series['presion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['presion'])));
+		$series['presion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['presion']), "visible"=>$estationTable['presion_visible'] ) );
 	} else {
-		$series['presion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['presion'] = $emptyTableGraph;
+		$series['presionJson'] = false;
 	}
 	
 	if (!empty($jsonData['humedad'])) {
-		$series['humedad'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['humedad'])));
+		$series['humedad'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['humedad']), "visible"=>$estationTable['humedad_visible']));
 	} else {
-		$series['humedad'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['humedad'] = $emptyTableGraph;
+		$series['humedadJson'] = false;
 	}
 	
 	if (!empty($jsonData['precipitacion'])) {
-		$series['precipitacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['precipitacion'])));
+		$series['precipitacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['precipitacion']), "visible"=>$estationTable['precipitacion_visible']));
 	} else {
-		$series['precipitacion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['precipitacion'] = $emptyTableGraph;
+		$series['precipitacionJson'] = false;
+	}
+	
+	if (!empty($jsonData['nivel'])) {
+		$series['nivel'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['nivel']), "visible"=>$estationTable['nivel_visible']));
+	} else {
+		$series['nivel'] = $emptyTableGraph;
+		$series['nivelJson'] = false;
 	}
 	
 	if (!empty($jsonData['radiacion'])) {
-		$series['radiacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['radiacion'])));
+		$series['radiacion'] = json_encode(array("name" => $est["estNombre"], "data" => array_reverse($jsonData['radiacion']), "visible"=>$estationTable['radiacion_visible']));
 	} else {
-		$series['radiacion'] = "{name: '" . $est["estNombre"] . "', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}";
+		$series['radiacion'] = $emptyTableGraph;
+		$series['radiacionJson'] = false;
 	}
 
 	$oMySQL -> closeConnection();
@@ -255,63 +192,25 @@ if ($idEstacion != 0) {
 ?>
 	    <script>
 	    
-		$(function () {
-/*					
-		temperaturasEstaciones =[<?php echo $series; ?>];
-            
-         //console.log(temperaturasEstaciones);
-            
-        $('#container-1').highcharts({
-            title: {
-                text: 'Mediciones últimas 24 horas de '+ '<?php echo  $est["estNombre"];?>',
-                x: -20 //center
-            },
-            subtitle: {
-                text: 'Origen: Red Hidroclimatológica de Risaralda',
-                x: -20
-            },
-            xAxis: {
-                categories: <?php echo $xAxis; ?>
-            },
-            yAxis: {
-                title: {
-                    text: 'Temperatura (°C)'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                valueSuffix: '°C'
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
-            series:temperaturasEstaciones
-        });
-  */      
+		$(function () {          
         
-        
-        		temperaturasEstaciones =[<?php echo $series['temperatura']; ?>];
-            presionEstaciones = [<?php echo $series['presion']; ?>];
-             humedadEstaciones = [<?php echo $series['humedad']; ?>];
-             precipitacionEstaciones = [<?php echo $series['precipitacion']; ?>];
-               radiacionEstaciones = [<?php echo $series['radiacion']; ?>];
+	temperaturasEstaciones =[<?php echo $series['temperatura']; ?>];
+    presionEstaciones = [<?php echo $series['presion']; ?>];
+    humedadEstaciones = [<?php echo $series['humedad']; ?>];
+    precipitacionEstaciones = [<?php echo $series['precipitacion']; ?>];
+    nivelEstaciones = [<?php echo $series['nivel']; ?>];
+    radiacionEstaciones = [<?php echo $series['radiacion']; ?>];
             
         
         Highcharts.setOptions({
         	
             title: {
-                text: 'Mediciones últimas 24 horas de '+ '<?php echo  $est["estNombre"];?>',
+                text: '<?php echo  $est["estNombre"];?>',
                 x: -20 //center
             },
             subtitle: {
-                text: 'Origen: Red Hidroclimatológica de Risaralda',
+            	userHTML:true,
+                text: 'Mediciones Ãºltimas 24 horas<br/>Origen: Red HidroclimatolÃ³gica de Risaralda',
                 x: -20
             },            
             yAxis: {                
@@ -339,21 +238,22 @@ if ($idEstacion != 0) {
   var optionsChart1 = { 
   	yAxis: {
   		title: {
-  			text: 'Temperatura (°C)'
+  			text: 'Temperatura (Â°C)'
         }
     },
     tooltip: {
-    	valueSuffix: '°C'
+    	valueSuffix: 'Â°C'
     },  
     xAxis: {
     	categories: <?php echo $xAxis; ?>
+    	
     }    
   };
 
   // create the chart
   var chart1Options = {
     chart: {
-      renderTo: 'container-1'
+      renderTo: 'container-1'        
     },
     series: temperaturasEstaciones
   };
@@ -365,7 +265,7 @@ if ($idEstacion != 0) {
   var optionsChart2 = { 
   	yAxis: {
   		title: {
-  			text: 'Presión (Pa)'
+  			text: 'PresiÃ³n BaromÃ©trica (Pa)'
         }
     },
     tooltip: {
@@ -416,7 +316,7 @@ if ($idEstacion != 0) {
   var optionsChart4 = { 
   	yAxis: {
   		title: {
-  			text: 'Precipitación'
+  			text: 'PrecipitaciÃ³n (mm)'
         }
     },
     tooltip: {
@@ -442,11 +342,11 @@ if ($idEstacion != 0) {
   var optionsChart5 = { 
   	yAxis: {
   		title: {
-  			text: 'Radiación'
+  			text: 'RadiaciÃ³n Solar ( W/mÂ²)'
         }
     },
     tooltip: {
-    	valueSuffix: 'Gy'
+    	valueSuffix: ' W/mÂ²'
     },  
     xAxis: {
     	categories: <?php echo $xAxis; ?>
@@ -462,7 +362,33 @@ if ($idEstacion != 0) {
   chart5Options = jQuery.extend(true, {}, optionsChart5, chart5Options);
   var chart5 = new Highcharts.Chart(chart5Options);  
        
-        
+
+  
+  
+     // default options
+  var optionsChart6 = { 
+  	yAxis: {
+  		title: {
+  			text: 'Nivel (Nm3/h)'
+        }
+    },
+    tooltip: {
+    	valueSuffix: 'Nm3/h'
+    },  
+    xAxis: {
+    	categories: <?php echo $xAxis; ?>
+    }    
+  };
+   // create the chart
+  var chart6Options = {
+    chart: {
+      renderTo: 'container-6'
+    },
+    series: nivelEstaciones
+  };
+  chart6Options = jQuery.extend(true, {}, optionsChart6, chart6Options);
+  var chart6 = new Highcharts.Chart(chart6Options); 
+          
     });		
 	</script>
 <?php 
@@ -474,11 +400,12 @@ if ($idEstacion != 0) {
 		<div class="body">
 			<!-- tabs -->
 			<div class="sky-tabs sky-tabs-external sky-tabs-position sky-tabs-pos-top-left sky-tabs-anim-slide-down sky-tabs-response-to-icons">
+				
 				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
 				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Variables</span></span></label>
 				
 				<input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
-				<label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>Galería</span></span></label>
+				<label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>GalerÃ­a</span></span></label>
 				
 				<input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
 				<label for="sky-tab3"><span><span><i class="fa fa-cogs"></i>Reportes</span></span></label>
@@ -488,98 +415,161 @@ if ($idEstacion != 0) {
 				-->
 				<ul>
 					
-					<li class="sky-tab-content-1">	
-						
-						
-						
-						
-						
-						
+					<li class="sky-tab-content-1">
+						<?php
+					if($series['temperaturaJson'] || $series['presionJson'] || $series['humedadJson'] || $series['precipitacionJson'] || $series['nivelJson'] || $series['radiacionJson']){
+						?>
 						<div class="sky-tabs sky-tabs-internal sky-tabs-pos-top-left sky-tabs-anim-slide-top sky-tabs-response-to-stack background">
+						<?php	
+												
+							//if($series['temperaturaJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" checked id="sky-tab1-1" class="sky-tab-content-1">
-							<label for="sky-tab1-1"><span><span>Temperatura</span></span></label>
-							
+							<label for="sky-tab1-1"><span class="sky-tabs_custom_pad"><span>Temperatura</span></span></label>
+							<?php
+							//}		
+							//if($series['presionJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab-1-2" class="sky-tab-content-2">
-							<label for="sky-tab-1-2"><span><span>Presión</span></span></label>
-							
+							<label for="sky-tab-1-2"><span  class="sky-tabs_custom_pad"><span>PresiÃ³n</span></span></label>							
+							<?php							
+							//}
+							//if($series['humedadJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-3" class="sky-tab-content-3">
-							<label for="sky-tab1-3"><span><span>Humedad</span></span></label>
-							
+							<label for="sky-tab1-3"><span  class="sky-tabs_custom_pad"><span>Humedad</span></span></label>							
+							<?php							
+							//}
+							//if($series['precipitacionJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-4" class="sky-tab-content-4">
-							<label for="sky-tab1-4"><span><span>Precipitación</span></span></label>
-							
+							<label for="sky-tab1-4"><span  class="sky-tabs_custom_pad"><span>PrecipitaciÃ³n</span></span></label>
+							<?php
+							//}
+							if($series['nivelJson'] && $tipoEstacion=='EHT'){
+							?>
+							<input type="radio" name="sky-tabs-1" id="sky-tab1-6" class="sky-tab-content-6">
+							<label for="sky-tab1-6"><span  class="sky-tabs_custom_pad"><span>Nivel</span></span></label>
+							<?php
+							}
+							//if($series['radiacionJson']){
+							?>
 							<input type="radio" name="sky-tabs-1" id="sky-tab1-5" class="sky-tab-content-5">
-							<label for="sky-tab1-5"><span><span>Radiación</span></span></label>
+							<label for="sky-tab1-5"><span  class="sky-tabs_custom_pad"><span>RadiaciÃ³n</span></span></label>
+							<?php
+							//}							
+							?>
+							
 							
 							<ul>
+								<?php								
+								//if($series['temperaturaJson']){
+								?>
 								<li class="sky-tab-content-1">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
 							<div id="container-1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 							<?php }else{ ?>
+									<h1><?php echo $nombre_estacion;?><h1>
 									No hay variables disponibles para graficar
 							<?php } ?>
 									</div>
 								</li>
+								<?php
+								//}
+								//if($series['presionJson']){
+								?>
 								<li class="sky-tab-content-2">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>
 								</li>
+								<?php
+								//}
+								//if($series['humedadJson']){
+								?>
 								<li class="sky-tab-content-3">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>									
 								</li>
-								
+								<?php
+								//}
+								//if($series['precipitacionJson']){
+								?>
 								<li class="sky-tab-content-4">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-4" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>									
 								</li>
-								
+								<?php
+								//}
+								if($series['nivelJson'] && $tipoEstacion=='EHT'){
+								?>
+								<li class="sky-tab-content-6">
+									<div class="typography">
+										<?php if($idEstacion!=0 ){ ?>
+										<div id="container-6" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
+												No hay variables disponibles para graficar
+										<?php } ?>
+									</div>									
+								</li>
+								<?php
+								}
+								//if($series['radiacionJson']){
+								?>
 								<li class="sky-tab-content-5">
 									<div class="typography">
 										<?php if($idEstacion!=0){ ?>
 										<div id="container-5" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 										<?php }else{ ?>
+												<h1><?php echo $nombre_estacion;?><h1>
 												No hay variables disponibles para graficar
 										<?php } ?>
 									</div>									
 								</li>
+								<?php
+								//}
+								?>
 								
 								
 							</ul>
+							
+					
 						</div>		
 						
-						
+						<?php
+	  			}else{?>
+					<h1><?php echo $nombre_estacion;?><h1>
+					No hay variables disponibles para graficar
+				<?php	  				
+	  			}
+	  			?>	
 						
 						
 										
-						<div class="typography">
-							
-							<!--
-							<h1>Nikola Tesla</h1>
-							<p>Serbian-American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electrical supply system.</p>
-							<p>Tesla started working in the telephony and electrical fields before emigrating to the United States in 1884 to work for Thomas Edison. He soon struck out on his own with financial backers, setting up laboratories/companies to develop a range of electrical devices. His patented AC induction motor and transformer were licensed by George Westinghouse, who also hired Tesla as a consultant to help develop an alternating current system. Tesla is also known for his high-voltage, high-frequency power experiments in New York and Colorado Springs which included patented devices and theoretical work used in the invention of radio communication, for his X-ray experiments, and for his ill-fated attempt at intercontinental wireless transmission in his unfinished Wardenclyffe Tower project.</p>
-							<p>Tesla's achievements and his abilities as a showman demonstrating his seemingly miraculous inventions made him world-famous. Although he made a great deal of money from his patents, he spent a lot on numerous experiments. He lived for most of his life in a series of New York hotels although the end of his patent income and eventual bankruptcy led him to live in diminished circumstances. Tesla still continued to invite the press to parties he held on his birthday to announce new inventions he was working and make (sometimes unusual) statements. Because of his pronouncements and the nature of his work over the years, Tesla gained a reputation in popular culture as the archetypal "mad scientist". He died in room 3327 of the New Yorker Hotel on 7 January 1943.</p>
-							<p class="text-right"><em>Find out more about Nikola Tesla from <a href="http://en.wikipedia.org/wiki/Nikola_Tesla" target="_blank">Wikipedia</a>.</em></p>
-							-->
-						</div>
+						
 					</li>
-					
+					<?php
+					//}
+					?>
 					<li class="sky-tab-content-2">
 						<div class="typography" style="margin: 0 0 0 60px;">
 							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion; ?>" height="500px" width="420px"></iframe>
@@ -597,7 +587,7 @@ if ($idEstacion != 0) {
 							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion; ?>" height="400px" width="540px"></iframe>
 							<!--
 							<h1>Albert Einstein</h1>
-							<p>German-born theoretical physicist who developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). While best known for his mass–energy equivalence formula E = mc2 (which has been dubbed "the world's most famous equation"), he received the 1921 Nobel Prize in Physics "for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect". The latter was pivotal in establishing quantum theory.</p>
+							<p>German-born theoretical physicist who developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). While best known for his massâ€“energy equivalence formula E = mc2 (which has been dubbed "the world's most famous equation"), he received the 1921 Nobel Prize in Physics "for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect". The latter was pivotal in establishing quantum theory.</p>
 							<p>Near the beginning of his career, Einstein thought that Newtonian mechanics was no longer enough to reconcile the laws of classical mechanics with the laws of the electromagnetic field. This led to the development of his special theory of relativity. He realized, however, that the principle of relativity could also be extended to gravitational fields, and with his subsequent theory of gravitation in 1916, he published a paper on the general theory of relativity.</p>
 							<p>He continued to deal with problems of statistical mechanics and quantum theory, which led to his explanations of particle theory and the motion of molecules. He also investigated the thermal properties of light which laid the foundation of the photon theory of light. In 1917, Einstein applied the general theory of relativity to model the large-scale structure of the universe.</p>
 							<p class="text-right"><em>Find out more about Albert Einstein from <a href="http://en.wikipedia.org/wiki/Albert_Einstein" target="_blank">Wikipedia</a>.</em></p>
@@ -608,7 +598,7 @@ if ($idEstacion != 0) {
 					<li class="sky-tab-content-4">
 						<div class="typography">
 							<h1>Isaac Newton</h1>
-							<p>English physicist and mathematician who is widely regarded as one of the most influential scientists of all time and as a key figure in the scientific revolution. His book Philosophiæ Naturalis Principia Mathematica ("Mathematical Principles of Natural Philosophy"), first published in 1687, laid the foundations for most of classical mechanics. Newton also made seminal contributions to optics and shares credit with Gottfried Leibniz for the invention of the infinitesimal calculus.</p>
+							<p>English physicist and mathematician who is widely regarded as one of the most influential scientists of all time and as a key figure in the scientific revolution. His book PhilosophiÃ¦ Naturalis Principia Mathematica ("Mathematical Principles of Natural Philosophy"), first published in 1687, laid the foundations for most of classical mechanics. Newton also made seminal contributions to optics and shares credit with Gottfried Leibniz for the invention of the infinitesimal calculus.</p>
 							<p>Newton's Principia formulated the laws of motion and universal gravitation that dominated scientists' view of the physical universe for the next three centuries. It also demonstrated that the motion of objects on the Earth and that of celestial bodies could be described by the same principles. By deriving Kepler's laws of planetary motion from his mathematical description of gravity, Newton removed the last doubts about the validity of the heliocentric model of the cosmos.</p>
 							<p class="text-right"><em>Find out more about Isaac Newton from <a href="http://en.wikipedia.org/wiki/Isaac_Newton" target="_blank">Wikipedia</a>.</em></p>
 						</div>

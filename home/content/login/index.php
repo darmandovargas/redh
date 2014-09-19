@@ -14,22 +14,20 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/styles.css">
-        
-        <link rel="stylesheet" href="../../../home/css/themes/default/bootstrap.css" type="text/css">
-		<link rel="stylesheet" href="../../../home/css/themes/default/bootstrap-responsive.css" type="text/css">
+	
+	<style>
+	.form-error{
+		border: 1px solid #dd4b39 !important;
+	}
+	.error-msg {
+		margin: 25px 20px;
+		display: block;
+		color: #dd4b39;
+		line-height: 17px;
+	}
 
-                <link rel="alternate stylesheet" href="../../../home/css/themes/default/bootstrap.css" title="default" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/default/bootstrap-responsive.css" title="default" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/blue/bootstrap.css" title="blue" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/blue/bootstrap-responsive.css" title="blue" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/coffee/bootstrap.css" title="coffee" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/coffee/bootstrap-responsive.css" title="coffee" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/dark/bootstrap.css" title="dark" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/dark/bootstrap-responsive.css" title="dark" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/eco/bootstrap.css" title="eco" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/eco/bootstrap-responsive.css" title="eco" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/red/bootstrap.css" title="red" type="text/css">
-		<link rel="alternate stylesheet" href="../../../home/css/themes/red/bootstrap-responsive.css" title="red" type="text/css">
+		
+	</style>
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
@@ -82,7 +80,7 @@ function validate(formData, jqForm, options) {
  
     for (var i=0; i < formData.length; i++) { 
         if (!formData[i].value) { 
-            alert('Por favor ingrese un valor en el usuario y el password'); 
+            //alert('Por favor ingrese un valor en el usuario y el password'); 
             return false; 
         } 
     } 
@@ -91,6 +89,15 @@ function validate(formData, jqForm, options) {
  
 // pre-submit callback 
 function showRequest(formData, jqForm, options) {
+	
+	updateFields('all');
+	
+	if($("#username").val()=="")
+		return false;
+		
+	if($("#password").val()=="")
+		return false;	
+	
 	// Validate
 	validate(formData, jqForm, options);
 	
@@ -98,7 +105,7 @@ function showRequest(formData, jqForm, options) {
     // formData is an array; here we use $.param to convert it to a string to display it 
     // but the form plugin does this for you automatically when it submits the data 
     var queryString = $.param(formData); 
-    console.log(formData);
+    //console.log(formData);
     
     /*console.log(jqForm);
     console.log(options);
@@ -125,26 +132,62 @@ function showResponse(responseText, statusText, xhr, $form)  {
  
     // if the ajaxForm method was passed an Options Object with the dataType 
     // property set to 'json' then the first argument to the success callback 
-    // is the json data object returned by the server 
- 
+    // is the json data object returned by the server
     //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.');
     if(responseText == "success"){
     	$("#container").hide();    	
     	$("#welcome").fadeIn("slow");
+    	
     	//$("#logout").html("<span id='logoutImage'><a href='#' onclick='logout();'><img src='/home/img/logout.png' width='22%'></a></span>").fadeIn("slow");
     	/*setTimeout(function (){
     		
     	},2000);
     	*/
-    } 
-    
-   
+    }else{
+    	if($("#username").val()==""){
+    		$("#username").addClass('form-error');
+    	}
+    	
+    	if($("#password").val()==""){
+    		$("#password").addClass('form-error');
+    	}
+    	
+    	$("#output").html('<span class="error-msg">Error de usuario o password</span>').fadeIn("slow");
+    	
+    }
 } 
 
- function close(){
+ function updateFields(fieldName){ 
+ 		
+ 		if(fieldName=="username" || fieldName=="all"){
+ 			if($("#username").val()=="" ){
+	    		$("#username").addClass('form-error');
+	    		$("#output").html('<span class="error-msg">Debe ingresar un usuario</span>').fadeIn("slow");	
+	    	}else{	    		
+	    		$("#username").removeClass('form-error');
+	    		$("#output").html('').fadeIn("slow");    		
+	    	}	
+ 		} 
+ 		
+ 		if(fieldName=="password" || fieldName=="all"){
+ 			if($("#password").val()==""){
+	    		$("#password").addClass('form-error');
+	    		$("#output").html('<span class="error-msg">Debe Ingresar un password</span>').fadeIn("slow");
+	    	}else{
+	    		$("#output").html('').fadeIn("slow");
+	    		$("#password").removeClass('form-error');	    		
+	    	}
+ 		}
+ 		
+ 		if($("#username").val()=="" && $("#password").val()==""){
+ 			$("#output").html('<span class="error-msg">Debe Ingresar un usuario y un password</span>').fadeIn("slow");
+ 		}
+    }
+    
+    function close(){
         alert("Llega");
         $(".top-span").hide();
- }
+ 	}
 </script> 
 
 </head>
@@ -169,13 +212,13 @@ function showResponse(responseText, statusText, xhr, $form)  {
 		
 		<label for="name">Usuario:</label>
 		
-		<input name="username" id="username" type="name">
-		
+		<input name="username" id="username" type="name" onkeypress ="updateFields('username');" onblur ="updateFields('username');">
+ 		
 		<label for="username">Contraseña:</label>
 		<!--
 		<p><a href="#">Olvidó su contraseña?</a>
 		-->
-		<input name="password" id="password" type="password">
+		<input name="password" id="password" type="password" onkeypress="updateFields('password');" onblur ="updateFields('password');">
 		
 		<div id="lower">
 		<!--

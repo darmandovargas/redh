@@ -60,7 +60,7 @@ session_start();
 		-->
 		
     	<script src="../mapa/js/estaciones.js"></script>
-		<script src="js/mapa/mapa.js"></script>
+		
 		
 		<style>
 			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
@@ -89,17 +89,26 @@ session_start();
 		
 		<script>			
 			var session = false;
+			var isMapOutOfDate = true;
+			
+			
 					
-			$( document ).ready(function() {
-			    //lookForSession();
-			    //showLogout(true);
-			    //showLogout(false);		    
-			});
+			
+			
+			
+			/**
+			 * Close the link
+			 *  
+			 */
+			function closePage(){
+				$('.close').click();
+			}
 			
 			/**
 			 * This function will render the logout button by checking if there is session each 5 seconds 
 			 */
 			function lookForSession() {
+				/*
 			    setTimeout(function() {
 			    	doit = !checkSession();	
 			    	//console.log("doit:"+doit);
@@ -109,6 +118,7 @@ session_start();
 					    lookForSession();
 			        }
 			    }, 60000);
+			    */
 			}
 			
 			/**
@@ -138,6 +148,52 @@ session_start();
 				return isSession;
 			}
 			
+			function checkSessionClick(url){
+				isSession = false;
+				
+				$.ajax({
+				  type: "POST",
+				  url: "content/login/validate.php",
+				  async:   false
+				}).success(function (msg){
+					if(msg=="success"){
+						//console.log("URL: "+url);						
+						if(url=="login"){
+							setTimeout(function(){
+								closePage(); 
+								$('#estado_tiempo').click();
+							 },1000);								
+						}
+						setTimeout(function(){
+							/*$('.close').click(function (){
+								checkSessionClick();
+							});*/
+						 },1500);
+						
+						session = true;											
+						showLogout(true);
+						if(isMapOutOfDate && url!='isFirstLoad'){
+							initialize();
+							isMapOutOfDate = false;
+						}
+							
+																									
+					}else{																			
+						session = false;					
+						showLogout(false);						
+					}
+					//google.maps.event.addDomListener(window, 'load', initialize);												
+				});
+				/*
+				if(isSession){
+					showLogout(true);
+				}else{
+					lookForSession();
+				}
+				*/
+				return isSession;
+			}
+			
 			/**
 			 * This function will logout and will hide the icon smoothly, if the logout is 
 			 * successful, then the lookForSession function will start looking for a new session
@@ -149,9 +205,14 @@ session_start();
 				  type: "POST",
 				  url: "content/login/logout.php"
 				})
-				.success(function (msg){});
+				.success(function (msg){	
+						session = false;				
+						initialize();
+						isMapOutOfDate = true;					
+					
+				});
 				
-				lookForSession();					
+				//lookForSession();					
 			}
 			
 			/**
@@ -166,7 +227,7 @@ session_start();
 			}
 
                         function showTime(){
-                            $( "#time" ).trigger( "click" );
+                            $( "#estado_tiempo" ).trigger( "click" );
                         }
                         
                         function showNotice(){
@@ -178,7 +239,7 @@ session_start();
                         }
                         
 		</script>
-		
+		<script src="js/mapa/mapa.js"></script>
 	</head>
 	<body>
 		<?php  //if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){ ?>
@@ -208,11 +269,11 @@ session_start();
 							<!--/floating-wrapper-->
 							<div class="row-fluid floating-boxes">
 								<div align="center">
-									<a href="#" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" id="notice_boton" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
+									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
 								</div>
 
 								<!--
@@ -222,11 +283,11 @@ session_start();
 								</div>
 								-->
 								<div align="center">
-									<a href="#" id="time" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
+									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
 								</div>
 								<!--
 								<div align="center">
@@ -234,11 +295,11 @@ session_start();
 								</div>
 								-->
 								<div align="center">
-									<a href="#" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" data-section="8" data-title="" class="floating-box"> <h3>Contáctenos</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="8" data-title="" class="floating-box"> <h3>Contáctenos</h3> </a>
 								</div>
 
 								<div align="center">
@@ -247,11 +308,11 @@ session_start();
 								</div>
 								
 								<div align="center">
-									<a href="#" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
+									<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" id="recursos_boton" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
+									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
 								</div>
 								
 							</div>
@@ -289,7 +350,7 @@ session_start();
 											<div class="span6">
 												<div class="media">
 													<div class="media-body">
-														<iframe src="content/noticias.php" width="99%" height="480px"  frameBorder="0"></iframe>
+														<iframe src="content/noticias.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
 													</div>
 												</div>
 											</div>
@@ -309,7 +370,7 @@ session_start();
 												<div class="span6">
 													<div class="media">
 														<div class="media-body">
-															<iframe src="content/recursos_humanos.php" width="100%" height="480px" frameBorder="0"></iframe>
+															<iframe src="content/recursos_humanos.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
 														</div>
 													</div>
 												</div>
@@ -346,11 +407,11 @@ session_start();
 							<div class="row-fluid leave-gap">
 								<div class="span12">
 									<div class="section-content">
-										<div class="span10 offset1 gallery">
+										<div>
 											<div class="row-fluid">
 												<div class="span6">
 													<div class="media">
-														<div class="media-body">	
+														<div class="media-body" style="margin: 0 0 0 -30px;">	
 															<div class="loader"></div>														
 															<iframe src="content/estado_del_tiempo.php" onload="$('.loader').fadeOut('slow');" width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>
 														</div>
