@@ -5,7 +5,7 @@ include_once ('../lib/class.MySQL.php');
 $publicEstations = array("tb_san_jose", "tb_ellago", "tb_Cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
 // Inicializa variables
 $estationTable = $privateEstationTable = array();
-var_dump($_GET);
+//var_dump($_GET);
 // Obtiene id de la estación
 $idEstacion = $_GET['id'];
 // Obtiene el tipo de estacion

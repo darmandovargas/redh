@@ -1,0 +1,101 @@
+a:focus {
+outline: none;
+}
+ 
+ 
+img {
+border:none;
+}
+ 
+
+.panel1 {
+position: absolute;
+top: 100px;
+left: 0;
+display: none;
+background: #4d90fe;
+border:0px solid #111111;
+border-radius: 0px 15px 0px 0px;
+/*-moz-border-radius-topright: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-bottomright: 20px;
+-webkit-border-bottom-right-radius: 20px;*/
+width: 570px;
+height: auto;
+text-align: center;
+color:#fff;
+font-family: Roboto;
+font-size: 13px;
+font-weight: 300;
+padding: 5px 11px 8px 11px;
+}
+ 
+.panel1 p{
+margin: 0 0 15px 0;
+padding: 0;
+color: #cccccc;
+}
+ 
+.panel1 a, .panel1 a:visited{
+margin: 0;
+padding: 0;
+color: #9FC54E;
+text-decoration: none;
+border-bottom: 1px solid #9FC54E;
+}
+ 
+.panel1 a:hover, .panel1 a:visited:hover{
+margin: 0;
+padding: 0;
+color: #ffffff;
+text-decoration: none;
+border-bottom: 1px solid #ffffff;
+}
+ 
+a.trigger{
+position: absolute;
+text-decoration: none;
+top: 80px; left: 0;
+font-size: 16px;
+letter-spacing:-1px;
+font-family: verdana, helvetica, arial, sans-serif;
+color:#000;
+padding: 25px 25px 20px 10px;
+font-weight: 700;
+background:rgba(90,90,90,0) url(img/punto.png) 85% 55% no-repeat;
+border:0px solid #444444;
+/*-moz-border-radius-topleft: 20px;
+-webkit-border-top-left-radius: 20px;
+-moz-border-radius-bottomleft: 20px;
+-webkit-border-bottom-left-radius: 20px;
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-bottom-left-radius: 0px;*/
+display: block;
+filter: alpha(opacity=40);
+opacity: .40;
+}
+ 
+a.trigger:hover{
+position: absolute;
+text-decoration: none;
+top: 80px; left: 0;
+font-size: 16px;
+letter-spacing:-1px;
+font-family: verdana, helvetica, arial, sans-serif;
+color:#000;
+padding: 25px 25px 20px 10px;
+font-weight: 700;
+background:rgba(90,90,90,0) url(img/punto.png) 85% 55% no-repeat;
+border:0px solid #444444;
+/*-moz-border-radius-topright: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-bottomright: 20px;
+-webkit-border-bottom-right-radius: 20px;
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-bottom-left-radius: 0px;*/
+display: block;
+}
+ 
+a.active.trigger {
+background:rgba(90,90,90,0) url(img/punto.png) 85% 55% no-repeat;
+}

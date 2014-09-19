@@ -8,6 +8,7 @@ var historicalOverlay;
 
 var overlay, input;
 
+var map_actual;
 DebugOverlay.prototype = new google.maps.OverlayView();
 
 function initialize(isRefresh, dynamicImage, estation) {
@@ -175,9 +176,9 @@ console.log("debug2");
 			icon : 'img/hidroelectrica.png'
 		},
 		circleOptions : {
-			fillColor : '#ffff00',
-			fillOpacity : 1,
-			strokeWeight : 5,
+			fillColor : '',
+			fillOpacity : 0.4,
+			strokeWeight : 4,
 			clickable : false,
 			editable : true,
 			zIndex : 1
@@ -340,6 +341,28 @@ console.log("debug5");
                 }
 	});
 	console.log("debug6");
+        map_actual = map;
+}
+
+// Localizar posiciones
+function locate_position(){    
+    var x = $("#coordx").val();
+    var y = $("#coordy").val();
+    if(x == '' || y == ''){
+        alert('Debe ingresar las coordenadas X Y para encontrar la ubicación');
+        return;
+    }
+    var position = new google.maps.LatLng(x, y);
+    var marker = new google.maps.Marker({
+            position : position,
+            animation : google.maps.Animation.DROP,
+            //icon:'icon.png',
+            icon : iconoPos,
+            map : map_actual
+    });
+    //google.maps.event.addListener(marker, 'click', toggleBounce);
+    marker.setTitle("Latitud: "+x+" Longitud: "+y);  
+    return;
 }
 
 // Superposición Funciones

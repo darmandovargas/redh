@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 		
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />
-
+                <link rel="stylesheet" href="css/map.css" type="text/css">
 		<!-- MAP -->
 		<style>
 			html, body, #map-canvas {
@@ -25,6 +25,7 @@
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places,weather,drawing"></script>
 		<script src="js/estaciones.js"></script>
 		<script src="js/mapa.js"></script>
+                <script src="js/desplaza.js"></script>
 		<style>
                     .check_labels{
                         font-family: calibri,Arial,Verdana;
@@ -84,6 +85,14 @@
         padding: 5px;
         border: 1px solid #999;
       }
+      
+      
+      #panel_despl{
+           position: absolute;
+           top: 80%;
+           left: 0px;
+           z-index: 5;
+      }
 			
 		</style>
 		
@@ -100,6 +109,17 @@
                   <input type="checkbox" id="check_sensor" name="estation[]" value="SN SNNT" onchange="filter_estation()"  checked /><span class="check_labels">Sensores</span>
                   <input type="checkbox" id="check_pluviometro" name="estation[]" value="PDNT" onchange="filter_estation()" checked /><span class="check_labels">Pluviometros</span>
 	    </div>
+            <div id="panel_despl" >
+                <div class="panel1">
+                    <div >
+                        X (Este)<input type="text" onkeyup="validateDec(this)" value="" name="coordx" id="coordx" />
+                        Y (Norte)<input type="text" onkeyup="validateDec(this)" value="" name="coordy" id="coordy" />
+                        <a href="javascript:locate_position()"><button>Ubicar</button></a>                
+                    </div>
+ 
+                </div>
+                <a class="trigger" title="Ubicar coordenadas" href="#"></a>    
+            </div>            
 		<div id="map-canvas"></div>
 		
 		<input id="search"  type="text" class="controls" placeholder="Ingrese Ubicación">

@@ -3,6 +3,7 @@ iconoEC  = 'http://'+window.location.host+'/mapa/img/EC30.png';
 iconoECT = 'http://'+window.location.host+'/mapa/img/ECT30.png';
 iconoSN  = 'http://'+window.location.host+'/mapa/img/SN28.png';
 iconoPD  = 'http://'+window.location.host+'/mapa/img/PD30.png';
+iconoPos  = 'http://'+window.location.host+'/mapa/img/punto.png';
 estacionesJSON = [
   		{
   			"id" : "11",
