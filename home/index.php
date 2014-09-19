@@ -157,13 +157,14 @@ session_start();
 				  async:   false
 				}).success(function (msg){
 					if(msg=="success"){
-						//console.log("URL: "+url);						
+						//console.log("URL: "+url);	
+						/*					
 						if(url=="login"){
 							setTimeout(function(){
 								closePage(); 
 								$('#estado_tiempo').click();
 							 },1000);								
-						}
+						}*/
 						setTimeout(function(){
 							/*$('.close').click(function (){
 								checkSessionClick();
