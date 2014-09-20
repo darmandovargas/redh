@@ -10,24 +10,25 @@ border:none;
 
 .panel1 {
 position: absolute;
-top: 100px;
-left: 0;
+top: 82px;
+left: 35px;
 display: none;
 background: #4d90fe;
 border:0px solid #111111;
-border-radius: 0px 15px 0px 0px;
 /*-moz-border-radius-topright: 20px;
 -webkit-border-top-right-radius: 20px;
 -moz-border-radius-bottomright: 20px;
 -webkit-border-bottom-right-radius: 20px;*/
-width: 570px;
+width: 515px;
 height: auto;
-text-align: center;
 color:#fff;
 font-family: Roboto;
+text-align: center;
 font-size: 13px;
 font-weight: 300;
-padding: 5px 11px 8px 11px;
+padding: 3px 3px 3px 3px;
+border-radius: 0.8px 0.8px;
+/*padding: 5px 11px 8px 11px;*/
 }
  
 .panel1 p{

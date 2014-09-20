@@ -14,7 +14,20 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/styles.css">
-	
+	<link rel="stylesheet" href="../../../home/css/themes/default/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="../../../home/css/themes/default/bootstrap-responsive.css" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/default/bootstrap.css" title="default" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/default/bootstrap-responsive.css" title="default" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/blue/bootstrap.css" title="blue" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/blue/bootstrap-responsive.css" title="blue" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/coffee/bootstrap.css" title="coffee" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/coffee/bootstrap-responsive.css" title="coffee" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/dark/bootstrap.css" title="dark" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/dark/bootstrap-responsive.css" title="dark" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/eco/bootstrap.css" title="eco" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/eco/bootstrap-responsive.css" title="eco" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/red/bootstrap.css" title="red" type="text/css">
+        <link rel="alternate stylesheet" href="../../../home/css/themes/red/bootstrap-responsive.css" title="red" type="text/css">
 	<style>
 	.form-error{
 		border: 1px solid #dd4b39 !important;
@@ -198,9 +211,9 @@ function showResponse(responseText, statusText, xhr, $form)  {
 	<?php session_start(); ?>
 	<div id="welcome" <?php echo ($_SESSION['sessid']== session_id())?'':'style="display: none"' ?> > 
 		<img src='/home/img/banner_bienvenido.jpg'>
-                <div id="button_mapa" style="margin-top: 60px;margin-left: 180px;">
-                    <a class="btn btn-large btn-primary" href="javascript:parent.location.reload();">Ver mapa</a>
-                    <a class="btn btn-large btn-success" href="javascript:parent.showTime();">Ver estado del tiempo</a>
+                <div id="button_mapa" style="margin: 50px auto 0 auto;width: 250px">
+                    <a class="btn btn-large btn-primary btn-block" href="javascript:parent.location.reload();">Ver mapa</a>
+                    <a class="btn btn-large btn-success btn-block" href="javascript:parent.showTime();">Ver estado del tiempo</a>
                 </div>
 	</div>
 		

@@ -305,7 +305,7 @@ session_start();
 
 								<div align="center">
 
-									<a href="../mapa/" target="_blank"> <h3>Ver Mapa</h3> </a>
+									<a href="../mapa/" onclick="checkSessionClick();" target="_blank"> <h3>Ver Mapa</h3> </a>
 								</div>
 								
 								<div align="center">

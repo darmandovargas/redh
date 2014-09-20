@@ -318,19 +318,21 @@ console.log("debug5");
                 }else{
                     n = estation.indexOf(obj.tipo);
                 }
-                if(n !== -1){
-                    var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
-                    var marker = new google.maps.Marker({
-                            position : position,
-                            animation : google.maps.Animation.DROP,
-                            //icon:'icon.png',
-                            icon : obj.icono,
-                            map : map
-                    });
-                    google.maps.event.addListener(marker, 'click', toggleBounce);
-                    marker.setTitle(obj.tipo + ": " + obj.nombre);
-                    attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
-                   
+                if( (obj.isPublic && !session) || session){
+                    if(n !== -1){
+                        var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
+                        var marker = new google.maps.Marker({
+                                position : position,
+                                animation : google.maps.Animation.DROP,
+                                //icon:'icon.png',
+                                icon : obj.icono,
+                                map : map
+                        });
+                        google.maps.event.addListener(marker, 'click', toggleBounce);
+                        marker.setTitle(obj.tipo + ": " + obj.nombre);
+                        attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
+
+                    }
                 }
                 function toggleBounce() {
                         if (marker.getAnimation() != null) {

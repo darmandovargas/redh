@@ -404,7 +404,7 @@ if ($idEstacion != 0) {
 				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Variables</span></span></label>
 				
 				<input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
-				<label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>GalerÃ­a</span></span></label>
+				<label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>Galería</span></span></label>
 				
 				<input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
 				<label for="sky-tab3"><span><span><i class="fa fa-cogs"></i>Reportes</span></span></label>
