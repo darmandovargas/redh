@@ -13,6 +13,7 @@ img {
 }
 
 .panel1 {
+	opacity: 0.85;
 	position: absolute;
 	top: 82px;
 	left: 35px;
