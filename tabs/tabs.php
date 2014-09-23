@@ -237,11 +237,11 @@ if ($idEstacion != 0) {
   var optionsChart1 = { 
   	yAxis: {
   		title: {
-  			text: 'Temperatura (Â°C)'
+  			text: 'Temperatura (°C)'
         }
     },
     tooltip: {
-    	valueSuffix: 'Â°C'
+    	valueSuffix: '°C'
     },  
     xAxis: {
     	categories: <?php echo $xAxis; ?>
