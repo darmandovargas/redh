@@ -11,23 +11,14 @@
 
 	<!-- CSS -->
 	
-	<link rel="stylesheet" href="css/reset.css">
+	
+	<link rel="stylesheet" href="../../../home/css/themes/default/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="../../../home/css/themes/default/bootstrap-responsive.css" type="text/css">
+    
+    <link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="../../../home/css/themes/default/bootstrap.css" type="text/css">
-        <link rel="stylesheet" href="../../../home/css/themes/default/bootstrap-responsive.css" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/default/bootstrap.css" title="default" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/default/bootstrap-responsive.css" title="default" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/blue/bootstrap.css" title="blue" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/blue/bootstrap-responsive.css" title="blue" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/coffee/bootstrap.css" title="coffee" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/coffee/bootstrap-responsive.css" title="coffee" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/dark/bootstrap.css" title="dark" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/dark/bootstrap-responsive.css" title="dark" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/eco/bootstrap.css" title="eco" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/eco/bootstrap-responsive.css" title="eco" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/red/bootstrap.css" title="red" type="text/css">
-        <link rel="alternate stylesheet" href="../../../home/css/themes/red/bootstrap-responsive.css" title="red" type="text/css">
+	
 	<style>
 	.form-error{
 		border: 1px solid #dd4b39 !important;
@@ -225,13 +216,13 @@ function showResponse(responseText, statusText, xhr, $form)  {
 		
 		<label for="name">Usuario:</label>
 		
-		<input name="username" id="username" type="name" onkeypress ="updateFields('username');" onblur ="updateFields('username');">
+		<input name="username" id="username" type="name" > <!-- onkeypress ="updateFields('username');" onblur ="updateFields('username');" --> 
  		
 		<label for="username">Contraseña:</label>
 		<!--
 		<p><a href="#">Olvidó su contraseña?</a>
 		-->
-		<input name="password" id="password" type="password" onkeypress="updateFields('password');" onblur ="updateFields('password');">
+		<input name="password" id="password" type="password" > <!-- onkeypress="updateFields('password');" onblur ="updateFields('password');" --> 
 		
 		<div id="lower">
 		<!--
