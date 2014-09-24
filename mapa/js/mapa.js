@@ -155,7 +155,7 @@ function showTools(){
  * This will show image if the initialize function finds one
  */
 function showImage(dynamicImage){
-	/* Working example of a kml image
+    /* Working example of a kml image
 	Add KML layer
 	var ctaLayer = new google.maps.KmlLayer({
 	url: 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml'
@@ -284,7 +284,9 @@ function locate_position(){
     var x = $("#coordx").val();
     var y = $("#coordy").val();
     if(x == '' || y == ''){
-        alert('Debe ingresar las coordenadas X Y para encontrar la ubicación');
+        //alert('Debe ingresar las coordenadas X Y para encontrar la ubicación');
+        $( "#dialog" ).html( "Debe ingresar las coordenadas X Y para encontrar la ubicación" );
+        $( "#dialog" ).dialog( "open" );
         return;
     }
     var position = new google.maps.LatLng(x, y);
@@ -414,11 +416,20 @@ $(document).ready(function() {
 	// Catch the form submit and upload the files
 
 	function uploadFiles(event) {
+                $("#msg_loader").show();    
 		event.stopPropagation();
 		// Stop stuff happening
 		event.preventDefault();
 		// Totally stop stuff happening
 		// START A LOADING SPINNER HERE
+                var uploadImage = document.getElementById ("uploadImage").value;
+                if(uploadImage == ''){
+                    $( "#dialog" ).html( "" );
+                    $( "#dialog" ).html( "Debe seleccionar un archivo para subir" );
+                    $( "#dialog" ).dialog( "open" );  
+                    $("#msg_loader").hide();
+                    return;
+                }
 
 		// Create a formdata object and add the files
 		var data = new FormData();
@@ -437,10 +448,16 @@ $(document).ready(function() {
 			success : function(data, textStatus, jqXHR) {
 				if ( typeof data.error === 'undefined') {
 					// Success so call function to process the form
+                                        $("#msg_loader").hide();
 					submitForm(event, data);
 				} else {
 					// Handle errors here
-					console.log('ERRORS: ' + data.error);
+                                        $("#msg_loader").hide();
+                                        $( "#dialog" ).html( "" );
+                                        $( "#dialog" ).html( data.error );
+                                        $( "#dialog" ).dialog( "open" );                                        
+                                        //$("#msg_loader").html(data.error);
+                                        console.log('ERRORS: ' + data.error);
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {

@@ -20,8 +20,9 @@
 		<!--
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		-->
-
+                <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
 		<script type="text/javascript" src="../home/js/jquery.js"></script>
+                <script src="jquery-ui/jquery-ui.js"></script>
 		<!-- &key=AIzaSyBA1M3-e9UO0KCvslfK44zM67ZPM77oy_o -->
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places,weather,drawing"></script>
 		<script src="js/estaciones.js"></script>
@@ -113,15 +114,26 @@
 				} else {
 					$("#panel_log").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='../home/img/wait_logout.gif' width='70%'>");
 				}
-			}
+                        }                        
 		</script>
 
 	</head>
 	<body>
+                <div id="dialog" title="Información"></div>
+                <div id="msg_loader" ><img src="img/loader.gif" style="width: 25px;height: 25px;" /> Subiendo imagen..</div>
+                <script>
+                    $( "#dialog" ).dialog({ 
+                        autoOpen: false,
+			modal: true,
+			width: 450,
+			height: 150,
+			resizable: false
+                    });
+                </script>
 		<div id="panel">
 			<!-- <input onclick="cleanLines();" type=button value="Limpar Gráficos"> -->
-			<form id="uploadForm" action="upload.php" method="post">
-				<input id="uploadImage" name="uploadImage" type="file" value="Seleccionar Imagen" >
+                        <form id="uploadForm" action="upload.php" method="post">
+				<input id="uploadImage" name="uploadImage" type="file"  >
 				<input type="submit" value="Subir Imagen" >
 			</form>
 			<input onclick="refreshMap();" type=button value="Refrescar Mapa" style="width: 100%">

@@ -330,7 +330,7 @@ function preseleccionar(name){
 
 function preseleccionar(name,tipoestacion){
            var estacion = name;
-           var tipo = tipoestacion;              
+           var tipo = tipoestacion;
            $.ajax({					
                 cache: false,
                 type: "POST",
