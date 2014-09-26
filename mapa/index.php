@@ -120,8 +120,8 @@
 	</head>
 	<body>                
                 <div id="content_inf">
-                    <div id="information"><div id="text_inf"></div>                    
-                        <div style="width: 95%;text-align: right;margin-top: 25px;">
+                    <div id="information"><div id="text_inf" style="opacity: 1;"></div>                    
+                        <div style="width: 95%;text-align: right;margin-top: 25px;opacity: 1;">
                             <button onclick="javascript:close_content_inf()">Aceptar</button>
                         </div>
                     </div>

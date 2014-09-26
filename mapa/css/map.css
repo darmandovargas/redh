@@ -203,21 +203,24 @@ a.active.trigger {
 
 #content_inf {
     position: absolute;
-    top:30%;
+    top:0;
     width: 100%;
-    z-index: 5;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+    z-index: 6;
     display: none;
 }
 
 #information {
-	margin: 0 auto;
-        width: 300px;
+	margin: 13% auto;
+        width: 200px;
         font-family: Roboto;
-        font-size: 16px;
-        opacity: 0.8;
+        font-size: 14px;
+        font-weight: 300;
+        opacity: 0.95;
 	background: #4d90fe;
         color:#fff;
-        padding: 35px 10px 20px 20px;
+        padding: 30px 10px 20px 20px;
         border: 1px solid transparent;
 }
 
