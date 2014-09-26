@@ -118,18 +118,15 @@
 		</script>
 
 	</head>
-	<body>
-                <div id="dialog" title="Información"></div>
-                <div id="msg_loader" ><img src="img/loader.gif" style="width: 25px;height: 25px;" /> Subiendo imagen..</div>
-                <script>
-                    $( "#dialog" ).dialog({ 
-                        autoOpen: false,
-			modal: true,
-			width: 450,
-			height: 150,
-			resizable: false
-                    });
-                </script>
+	<body>                
+                <div id="content_inf">
+                    <div id="information"><div id="text_inf"></div>                    
+                        <div style="width: 95%;text-align: right;margin-top: 25px;">
+                            <button onclick="javascript:close_content_inf()">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="msg_loader" ><img src="img/loader.gif" style="width: 25px;height: 25px;" /> Subiendo imagen...</div>                
 		<div id="panel">
 			<!-- <input onclick="cleanLines();" type=button value="Limpar Gráficos"> -->
                         <form id="uploadForm" action="upload.php" method="post">

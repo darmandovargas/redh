@@ -28,9 +28,9 @@ if(isset($_GET['files']))
                                 $type = "png";
                                 break; 
                         }
-                $detected_kml = explode(".", $nombre_archivo);
+                // Para añadir validacion kml $detected_kml = explode(".", $nombre_archivo);  && !($detected_kml[1] == 'kml')
                 
-                if ((!($type == "jpeg") && !($type == "jpg") && !($type == "gif") && !($type == "png") && !($detected_kml[1] == 'kml')) && $tamano_archivo <= 2000000 ) 
+                if ((!($type == "jpeg") && !($type == "jpg") && !($type == "gif") && !($type == "png")) && $tamano_archivo <= 2000000 ) 
                 {  
                         $error = true;
                         $type_error = "El archivo debe ser de tipo jpeg, jpg, gif, png y su tamaño no debe ser mayor a 2MB.";

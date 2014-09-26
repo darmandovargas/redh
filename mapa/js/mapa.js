@@ -284,9 +284,9 @@ function locate_position(){
     var x = $("#coordx").val();
     var y = $("#coordy").val();
     if(x == '' || y == ''){
-        //alert('Debe ingresar las coordenadas X Y para encontrar la ubicación');
-        $( "#dialog" ).html( "Debe ingresar las coordenadas X Y para encontrar la ubicación" );
-        $( "#dialog" ).dialog( "open" );
+        $('#text_inf').html("");
+        $('#text_inf').html("Debe ingresar las coordenadas X Y para encontrar la ubicación");
+        $('#content_inf').show();
         return;
     }
     var position = new google.maps.LatLng(x, y);
@@ -424,9 +424,9 @@ $(document).ready(function() {
 		// START A LOADING SPINNER HERE
                 var uploadImage = document.getElementById ("uploadImage").value;
                 if(uploadImage == ''){
-                    $( "#dialog" ).html( "" );
-                    $( "#dialog" ).html( "Debe seleccionar un archivo para subir" );
-                    $( "#dialog" ).dialog( "open" );  
+                    $('#text_inf').html("");                
+                    $('#text_inf').html("Debe seleccionar un archivo para subir");                
+                    $('#content_inf').show();
                     $("#msg_loader").hide();
                     return;
                 }
@@ -453,10 +453,9 @@ $(document).ready(function() {
 				} else {
 					// Handle errors here
                                         $("#msg_loader").hide();
-                                        $( "#dialog" ).html( "" );
-                                        $( "#dialog" ).html( data.error );
-                                        $( "#dialog" ).dialog( "open" );                                        
-                                        //$("#msg_loader").html(data.error);
+                                        $('#text_inf').html("");                
+                                        $('#text_inf').html(data.error);                
+                                        $('#content_inf').show();
                                         console.log('ERRORS: ' + data.error);
 				}
 			},
@@ -520,3 +519,8 @@ $(document).ready(function() {
 	}
 });
 // End Upload Image
+
+/* Close div content_inf */
+function close_content_inf(){
+    $('#content_inf').fadeOut(1000);
+}

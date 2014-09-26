@@ -24,7 +24,7 @@ img {
 	 -webkit-border-top-right-radius: 20px;
 	 -moz-border-radius-bottomright: 20px;
 	 -webkit-border-bottom-right-radius: 20px;*/
-	width: 515px;
+	width: 525px;
 	height: auto;
 	color: #fff;
 	font-family: Roboto;
@@ -199,6 +199,26 @@ a.active.trigger {
 	height: 21px;
 	margin: 0 -45px;
 	margin-top: 20px;
+}
+
+#content_inf {
+    position: absolute;
+    top:30%;
+    width: 100%;
+    z-index: 5;
+    display: none;
+}
+
+#information {
+	margin: 0 auto;
+        width: 300px;
+        font-family: Roboto;
+        font-size: 16px;
+        opacity: 0.8;
+	background: #4d90fe;
+        color:#fff;
+        padding: 35px 10px 20px 20px;
+        border: 1px solid transparent;
 }
 
 .loader {
