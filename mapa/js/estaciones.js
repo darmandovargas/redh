@@ -47,7 +47,7 @@ estacionesJSON = [
 		      "latitud": 4.750273723,
 		      "longitud": -75.490426
 		    },
-		    "isPublic": false,
+		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
 		    "altitud": "3700 m.s.n.m",
@@ -133,7 +133,7 @@ estacionesJSON = [
 		{
 			"id" : "14",
   			"tipo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT001   (El Cedral)",
+		    "nombre": "EHT001 (El Cedral)",
 		    "variables": {
 		      "0": "Temperatura",
 		      "1": "Precipitacion",
@@ -142,6 +142,27 @@ estacionesJSON = [
 		    "coordenadas": {
 		      "latitud": 4.70317919,
 		      "longitud": -75.53658441
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "2080 m.s.n.m",
+		    "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
+		    "fecha": "27 de Marzo de 2010",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "17",
+  			"tipo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT002 (San Juan)",
+		    "variables": {
+		      "0": "Temperatura",
+		      "1": "Precipitacion",
+		      "2": "Nivel del Cause"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.756979306,
+		      "longitud": -75.59752067
 		    },
 		    "isPublic": true,
 		    "tipo":"EHT",

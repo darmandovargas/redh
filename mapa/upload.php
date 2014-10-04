@@ -1,7 +1,29 @@
 <?php // You need to add server side validation and better error handling here
  
 $data = array();
- 
+$test = array();
+
+/*
+if ($handle = opendir('./uploads/')) {
+
+    while (false !== ($file = readdir($handle))) { 
+        $filelastmodified = filemtime($file);
+		$test[] = array($file["name"]=>date("Y-m-d H:i:s", $filelastmodified));
+		/*	
+        if((time() - $filelastmodified) > 24*3600)
+        {
+           unlink($file);
+        }
+		*/
+/*    }
+
+    closedir($handle); 
+}
+
+var_dump($test);
+exit();
+ * 
+ */
 if(isset($_GET['files']))
 {  
 	$error = false;
@@ -30,7 +52,7 @@ if(isset($_GET['files']))
                         }
                 // Para añadir validacion kml $detected_kml = explode(".", $nombre_archivo);  && !($detected_kml[1] == 'kml')
                 
-                if ( empty($type_error) || $tamano_archivo > 2000000 ) 
+                if (empty($type) || $tamano_archivo > 2000000) 
                 {  
                         $error = true;
                         $type_error = "El archivo debe ser de tipo jpeg, jpg, gif, png y su tamaño no debe ser mayor a 2MB.";

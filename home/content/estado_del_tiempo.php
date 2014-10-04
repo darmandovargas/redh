@@ -7,13 +7,13 @@
 		<script src='../../lib/jquery-1.11.1.min.js'></script>
 		<style>
 			th {
-				font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+				font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 				color: #6D929B;
 				border-right: 1px solid #C1DAD7;
 				border-bottom: 1px solid #C1DAD7;
 				border-top: 1px solid #C1DAD7;
 				letter-spacing: 2px;
-				text-transform: uppercase;
+				/*text-transform: uppercase;*/
 				text-align: center;
 				padding: 6px 6px 6px 12px;
 				/*background: #CAE8EA url(images/bg_header.jpg) no-repeat;*/
@@ -59,7 +59,7 @@
 		<script>
 		$( document ).ready(function() {
 		    $(".loader").fadeOut("slow");
-		   setTimeout("location.reload();",60000);		   		    
+		   setTimeout("location.reload();",60000*5);		   		    
 		});	
 			
 		</script>
@@ -69,7 +69,7 @@
 <?php
 include_once ('../../lib/class.MySQL.php');
 
-$publicEstations = array("tb_san_jose", "tb_ellago", "tb_Cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
+$publicEstations = array("tb_san_jose", "tb_ellago", "tb_cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
 
 $estationTable = $privateEstationTable = array();
 
@@ -100,12 +100,14 @@ $oMySQL -> closeConnection();
 						<th><b>Temperatura (°C)</b></th>
 						<th><b>Fecha Última Transmisión</b></th>
 						<th><b>Hora Última Transmisión</b></th>
-						<th>Dirección</th>
-						<th>Presión Barométrica (Pa)</th>
-						<th>Humedad Relativa</th>
+						<th>Dirección (°)</th>
+						<th>Presión Barométrica (mm/mg)</th>
+						<th>Humedad Relativa (%)</th>
 						<th>Precipitación (mm)</th>
-						<th>Nivel (Nm3/h)</th>
+						<th>Nivel (cm)</th>
 						<th>Radiación Solar ( W/m²)</th>				
+						<th>Velocidad (m/s)</th>
+						<th>Evapotranspiración (mm)</th>
 						
 						<!-- <th><b>Enlaces</b></th>
 						<th><b>Símbolo</b></th> -->
@@ -123,7 +125,9 @@ $oMySQL -> closeConnection();
 						<td>".$et['info']['humedad']."</td>						
 						<td>".$et['info']['precipitacion']."</td>
 						<td>".$et['info']['nivel']."</td>
-						<td>".$et['info']['radiacion']."</td>						
+						<td>".$et['info']['radiacion']."</td>				
+						<td>".$et['info']['velocidad']."</td>				
+						<td>".$et['info']['evapotranspiracion']."</td>						
 					</tr>
 					";
 					}
@@ -145,7 +149,7 @@ $oMySQL -> closeConnection();
 				<tbody id="estado">
 					<tr align="center">
 						<th>Estación</th>
-						<th>Nivel (Nm3/h)</th>
+						<th>Nivel (cm)</th>
 						<th>Fecha Última Transmisión</th>
 						<th>Hora Última Transmisión</th>
 					</tr>
