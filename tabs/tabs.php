@@ -743,17 +743,27 @@ testJSON = [
 		<div class="body">
 			<!-- tabs -->
 			<div class="sky-tabs sky-tabs-external sky-tabs-position sky-tabs-pos-top-left sky-tabs-anim-slide-down sky-tabs-response-to-icons">
-				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
+				<?php
+				if($series['temperaturaJson'] || $series['presionJson'] || $series['humedadJson'] || $series['precipitacionJson'] || $series['nivelJson'] || $series['radiacionJson'] || $series['velocidadJson'] || $series['direccionJson'] || $series['evapotranspiracionJson']){
+					$check = "";
+				?>
+				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">				
 				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Variables</span></span></label>
-				<input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
+				<?php
+				}else{
+					$check = "checked";
+				}
+				?>
+				<input type="radio" name="sky-tabs" <?php echo $check; ?> id="sky-tab2" class="sky-tab-content-2">
 				<label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>Galería</span></span></label>
 				<input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
 				<label for="sky-tab3"><span><span><i class="fa fa-cogs"></i>Reportes</span></span></label>
 				<ul>
-					<li class="sky-tab-content-1">
+					
 						<?php
 						if($series['temperaturaJson'] || $series['presionJson'] || $series['humedadJson'] || $series['precipitacionJson'] || $series['nivelJson'] || $series['radiacionJson'] || $series['velocidadJson'] || $series['direccionJson'] || $series['evapotranspiracionJson']){
 						?>
+						<li class="sky-tab-content-1">
 						<div class="sky-tabs sky-tabs-internal sky-tabs-pos-top-left sky-tabs-anim-slide-top sky-tabs-response-to-stack background">
 						<?php	
 							$contaTabs = 1;
@@ -791,16 +801,17 @@ testJSON = [
 							}	
 						?>
 						</ul>
-					</div>		
+					</div>
+					</li>		
 					<?php
-	  				}else{
+	  				}/*else{
 	  				?>
 						<h1><?php echo $nombre_estacion;?><h1>
 						No hay variables disponibles para graficar
 					<?php	  				
-	  				}
+	  				}*/
 	  				?>	
-					</li>
+					
 					<li class="sky-tab-content-2">
 						<div class="typography" style="margin: 0 0 0 60px;">
 							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion; ?>" height="500px" width="420px"></iframe>
