@@ -383,18 +383,22 @@ if ($idEstacion != 0) {
 			}
 			
 			dataCount = Object.keys(seriesValues[0].data).length;
+			console.log(dataCount);
 			//Lineal regresion for point interval factor value
 			//pointIntervalFactor = dataCount * 3.63 / 434;
 			//pointIntervalFactor = 3.63,//434
 			//pointIntervalFactor = 4.0183 + -0.0009 * dataCount;
 			//pointIntervalFactor = 3.978 + -0.0008 * dataCount;
 			if(estacion=="Quinchia Seafield"){
-				pointIntervalFactor = 3.9976 + -0.0008 * dataCount;
-			}else{				
+				//pointIntervalFactor = 3.9976 + -0.0008 * dataCount;
+				//pointIntervalFactor = 3.4757 + 0.0002 * dataCount;
+				pointIntervalFactor = 3.4609 + 0.0002 * dataCount;
+			}else{
+				pointIntervalFactor = 3.4757 + 0.0002 * dataCount;				
 				//Manually adjusted formula for point interval factor
-				pointIntervalFactor = 3.959 + -0.0008 * dataCount;	
+				//pointIntervalFactor = 3.959 + -0.0008 * dataCount;	
 			}
-			console.log(estacion);
+			//console.log(estacion);
 			
 			//console.log("pointIntervalFactor:"+pointIntervalFactor);
 			var d = new Date();
@@ -443,7 +447,7 @@ if ($idEstacion != 0) {
 		            type: 'area',
 		            name: 'Temperatura',
 		            pointInterval: 24 * 3600 * pointIntervalFactor,//3.579,
-		            //434/3.63 = 119.56, 491/3.579 = 137.189, 502/3.57389, 504/3.5736
+		            //434/3.63 = 119.56, 491/3.579 = 137.189, 502/3.57389, 504/3.5736, 305/3.525
 		            // 434 es el 11.6% de 491
 		            // 3.63 y 3.579 difieren en 1.4%
 		            pointStart: Date.UTC(currentYear, currentMonth, currentDay-1),
