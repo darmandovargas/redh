@@ -392,9 +392,10 @@ if ($idEstacion != 0) {
 			if(estacion=="Quinchia Seafield"){
 				//pointIntervalFactor = 3.9976 + -0.0008 * dataCount;
 				//pointIntervalFactor = 3.4757 + 0.0002 * dataCount;
-				pointIntervalFactor = 3.4609 + 0.0002 * dataCount;
+				pointIntervalFactor = 3.45 + 0.0002 * dataCount;
 			}else{
-				pointIntervalFactor = 3.4757 + 0.0002 * dataCount;				
+				pointIntervalFactor = 3.44 + 0.0002 * dataCount;
+				//pointIntervalFactor = 3.4757 + 0.0002 * dataCount;				
 				//Manually adjusted formula for point interval factor
 				//pointIntervalFactor = 3.959 + -0.0008 * dataCount;	
 			}
@@ -447,7 +448,7 @@ if ($idEstacion != 0) {
 		            type: 'area',
 		            name: 'Temperatura',
 		            pointInterval: 24 * 3600 * pointIntervalFactor,//3.579,
-		            //434/3.63 = 119.56, 491/3.579 = 137.189, 502/3.57389, 504/3.5736, 305/3.525
+		            //434/3.63 = 119.56, 491/3.579 = 137.189, 502/3.57389, 504/3.5736, 305/3.525, 405/3.525
 		            // 434 es el 11.6% de 491
 		            // 3.63 y 3.579 difieren en 1.4%
 		            pointStart: Date.UTC(currentYear, currentMonth, currentDay-1),
