@@ -2,7 +2,7 @@
 // Obtiene la conexión a la bd
 include_once ('../lib/class.MySQL.php');
 // Estaciones pÃºblicas
-$publicEstations = array("tb_san_jose", "tb_ellago", "tb_Cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
+//$publicEstations = array("tb_san_jose", "tb_ellago", "tb_cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
 // Inicializa variables
 $estationTable = $privateEstationTable = array();
 // Obtiene id de la estación
@@ -12,7 +12,7 @@ $tipoEstacion = $_GET['tipo'];
 // Si la estación existe en la base de datos entonces arme el json para graficar
 if ($idEstacion != 0) {
 	// Inicializa array de variables a sensar y graficar
-	$variables = array("temperatura", "presion", "humedad", "precipitacion_real", "nivel", "radiacion", "velocidad", "direccion", "evapotranspiracion");
+	$variables = array("temperatura", "presion", "humedad", "precipitacion_real", "nivel", "radiacion", "velocidad", "direccion", "evapo_real");
 	//Temperatura, Precipitación, Humedad Relativa, Radiación Solar, Presión Barométrica, Velocidad y Dirección del Viento
 	// Dependiendo del tipo de estación, se debe revisar en estaciones o estacion_sensores
 	switch ($tipoEstacion) {
@@ -349,7 +349,7 @@ if ($idEstacion != 0) {
 	    seriesArea['radiacion'] = [<?php echo $serieNew['radiacion']; ?>];
 	    seriesArea['velocidad'] = [<?php echo $serieNew['velocidad']; ?>];
 	    seriesArea['direccion'] = [<?php echo $serieNew['direccion']; ?>];
-	    seriesArea['evapotranspiracion'] = [<?php echo $serieNew['evapotranspiracion']; ?>];
+	    seriesArea['evapo_real'] = [<?php echo $serieNew['evapo_real']; ?>];
 	    
 	    var xAxisValues =  <?php echo $xAxis; ?>;
 		
@@ -366,7 +366,7 @@ if ($idEstacion != 0) {
 		?>
 		createGraphArea('Velocidad (m/s)', 'm/s', 'container-velocidad', seriesArea['velocidad']);
 		createGraphArea('Dirección (°)', '°', 'container-direccion', seriesArea['direccion']);
-		createGraphArea('Evapotranspiracion (mm)', 'mm', 'container-evapotranspiracion', seriesArea['evapotranspiracion']);
+		createGraphArea('Evapotranspiracion (mm)', 'mm', 'container-evapo_real', seriesArea['evapo_real']);
 		createGraphArea('Temperatura (°C)', '°C', 'container-temperatura', seriesArea['temperatura']);
 		
 		/**
