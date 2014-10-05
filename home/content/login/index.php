@@ -203,7 +203,7 @@ function showResponse(responseText, statusText, xhr, $form)  {
 	<div id="welcome" <?php echo ($_SESSION['sessid']== session_id())?'':'style="display: none"' ?> > 
 		<img src='/home/img/banner_bienvenido.jpg'>
                 <div id="button_mapa" style="margin: 50px auto 0 auto;width: 250px">
-                    <a class="btn btn-large btn-primary btn-block" href="javascript:parent.location.reload();">Ver mapa</a>
+                    <a class="btn btn-large btn-primary btn-block" href="javascript:parent.checkSessionClick(); javascript:parent.closePage();">Ver mapa</a>
                     <a class="btn btn-large btn-success btn-block" href="javascript:parent.showTime();">Ver estado del tiempo</a>
                 </div>
 	</div>
