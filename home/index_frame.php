@@ -91,63 +91,19 @@ session_start();
 			var session = false;
 			var isMapOutOfDate = true;
 			
-			
-					
-			
-			
-			
 			/**
 			 * Close the link
 			 *  
 			 */
 			function closePage(){
 				$('.close').click();
-			}
+			}			
 			
-			/**
-			 * This function will render the logout button by checking if there is session each 5 seconds 
-			 */
-			function lookForSession() {
-				/*
-			    setTimeout(function() {
-			    	doit = !checkSession();	
-			    	//console.log("doit:"+doit);
-			        if(doit){
-			        	//console.log("lookForSession()");  
-				        // start the timer again
-					    lookForSession();
-			        }
-			    }, 60000);
-			    */
-			}
 			
 			/**
 			 * This function will do the ajax call to see if there is session
 			 * @return boolean 
-			 */
-			function checkSession(){
-				isSession = false;
-				$.ajax({
-				  type: "POST",
-				  url: "content/login/validate.php",
-				  async:   false
-				}).success(function (msg){
-					if(msg=="success"){						
-						isSession = session = true;													
-					}else{						
-						isSession = session = false;						
-					}												
-				});
-				
-				if(isSession){
-					showLogout(true);
-				}else{
-					lookForSession();
-				}
-				
-				return isSession;
-			}
-			
+			 */		
 			function checkSessionClick(url){
 				isSession = false;
 				
@@ -156,29 +112,13 @@ session_start();
 				  url: "content/login/validate.php",
 				  async:   false
 				}).success(function (msg){
-					if(msg=="success"){
-						//console.log("URL: "+url);	
-						/*					
-						if(url=="login"){
-							setTimeout(function(){
-								closePage(); 
-								$('#estado_tiempo').click();
-							 },1000);								
-						}*/
-						setTimeout(function(){
-							/*$('.close').click(function (){
-								checkSessionClick();
-							});*/
-						 },1500);
-						
+					if(msg=="success"){											
 						session = true;											
 						showLogout(true);
 						if(isMapOutOfDate && url!='isFirstLoad'){
 							initialize();
 							isMapOutOfDate = false;
 						}
-							
-																									
 					}else{																			
 						session = false;					
 						showLogout(false);						
@@ -227,48 +167,38 @@ session_start();
 				}				
 			}
 
-                        function showTime(){
-                            $( "#estado_tiempo" ).trigger( "click" );
-                        }
+            function showTime(){
+            	$( "#estado_tiempo" ).trigger( "click" );
+            }
                         
-                        function showNotice(){
-                            $( "#notice_boton" ).trigger( "click" );
-                        }
+            function showNotice(){
+    	        $( "#notice_boton" ).trigger( "click" );
+            }
                         
-                        function showRecursos(){
-                            $( "#recursos_boton" ).trigger( "click" );
-                        }
-                        
+            function showRecursos(){
+	            $( "#recursos_boton" ).trigger( "click" );
+            }
 		</script>
 		<script src="js/mapa/mapa.js"></script>
 	</head>
 	<body>
-		<?php  //if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){ ?>
-								<!-- <span id="logoutImage">
-									<a href="#" onclick="logout();"><img src='/home/img/logout.png' width="22%"></a>	
-								</span>
-							-->
-								<?php 
-								//} 
-								?>	 
 		<div class="container-fluid">
 			<div class="row-fluid main-row">
 				<div class="span5 main-wrapper">
-					
 					<div class="row-fluid logo">
 						<div class="span12">
 							<img src="img/logos/ciencias ambientales.png" width="20%" />							
 							<img src="img/logos/red_hidroclimatologica.jpg" width="50%" />
 							<img src="img/logos/logo_utp.jpg" width="20%">
-							
+							<hr />
 							<!-- <h1>Red Hidroclimatológica de Risaralda</h1>-->
 						</div>
 					</div><!--/logo-->
 
-					<div class="row-fluid block-wrapper" style="margin: -30px 0 0 0;">
+					<div class="row-fluid block-wrapper" style="margin: -30px 0 0 0; /*height: 57%; overflow: scroll;*/ " >
 						<div class="block" id="section-1">
 							<!--/floating-wrapper-->
-							<div class="row-fluid floating-boxes">
+							<div class="row-fluid floating-boxes" style="/*overflow: scroll;*/">
 								<div align="center">
 									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
 								</div>
@@ -317,9 +247,20 @@ session_start();
 								</div>
 								
 							</div>
+							
 						</div>
-
-						</br></br></br></br></br></br></br></br></br></br>
+						
+									
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					</br></br></br></br></br></br></br></br></br></br>
 						</br></br></br></br></br></br></br></br></br></br>
 						</br></br></br></br></br></br></br></br></br></br>
 						</br></br></br></br></br></br></br></br></br></br>
@@ -529,12 +470,23 @@ session_start();
 								</div>
 							</div>
 						</div>
-						<!-- end block -->					
-					</div>
+						<!-- end block -->		
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					<!-- end block-wrapper -->
 
 					<div class="row-fluid leave-gap page-footer">
-
+				       <hr />
 						<div class="span12">
 
 							<div style="text-align: center; ">
@@ -612,6 +564,29 @@ session_start();
 					</div>
 
 					<!--/floating-search-->
+					<div class="row-fluid floating-boxes">		
+						
+						<a href="#" data-section="5" onclick="checkSessionClick();" data-title="" class="offset1 span3 floating-box">
+						<h3>Estado del Tiempo</h3>
+						<p>Revisa las últimas mediciones</p>
+						</a>
+						
+						<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="span3 floating-box">
+						<h3>Empresa</h3>
+						<p>Ver estaciones privadas</p>						
+						</a>
+						
+						<a href="#" data-section="8" data-title="" class="span3 floating-box">
+						<h3>Contactenos</h3>
+						<p>Dejenos saber sus comentarios</p>
+						</a>
+						
+					</div>
+					<!--/floating-boxes-->
+					
+					
+					
+					
 					<div class="row-fluid floating-wrapper" style="top: -600px">
 						<div class="offset1 span10 top-span">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
