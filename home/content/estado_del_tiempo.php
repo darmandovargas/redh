@@ -150,6 +150,7 @@ $oMySQL -> closeConnection();
 					<tr align="center">
 						<th>Estación</th>
 						<th>Nivel (cm)</th>
+						<th>Caudal (m3/s)</th>
 						<th>Fecha Última Transmisión</th>
 						<th>Hora Última Transmisión</th>
 					</tr>
@@ -159,6 +160,7 @@ $oMySQL -> closeConnection();
 					<tr align='center'>
 						<td>".$pet['estacion']['estNombre']."</td>
 						<td>".$pet['info']['nivel']."</td>
+						<td>".$pet['info']['caudal']."</td>
 						<td>".$pet['info']['fecha']."</td>
 						<td>".$pet['info']['hora']."</td>											
 					</tr>
