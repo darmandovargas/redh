@@ -116,7 +116,9 @@ if ($idEstacion != 0) {
 		<script src="js/highcharts.js"></script>
 	    <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <?php 
-	if($idEstacion!=0){ 
+	if($idEstacion!=0){
+		//var_dump($serieNew['presion']);
+		//echo "</br></br></br>"; 
 ?>
 	<script>
 	$(function () {
@@ -162,28 +164,68 @@ if ($idEstacion != 0) {
 	    seriesArea['direccion'] = [<?php echo $serieNew['direccion']; ?>];
 	    seriesArea['evapo_real'] = [<?php echo $serieNew['evapo_real']; ?>];
 	    
+	    // Json to validate if we must show the variables tab
+	    /*var jsonSeries = Array;
+	    jsonSeries['temperatura'] = (seriesArea['temperatura'][0]==undefined)?false:true;
+	    jsonSeries['presion'] = (seriesArea['presion'][0]===undefined)?false:true;
+	    jsonSeries['humedad'] = (seriesArea['humedad'][0]==undefined)?false:true;
+	    jsonSeries['precipitacion_real'] = (seriesArea['precipitacion_real'][0]==undefined)?false:true;
+	    jsonSeries['nivel'] = (seriesArea['nivel'][0]==undefined)?false:true;
+	    jsonSeries['radiacion'] = (seriesArea['radiacion'][0]==undefined)?false:true;
+	    jsonSeries['velocidad'] = (seriesArea['velocidad'][0]==undefined)?false:true;
+	    jsonSeries['direccion'] = (seriesArea['direccion'][0]==undefined)?false:true;
+	    jsonSeries['evapo_real'] = (seriesArea['evapo_real'][0]==undefined)?false:true;
+	    
+	    console.log("HEY");
+	    console.log(seriesArea['presion'][0]);
+	    *///Mejoras para cuando no hay valores de mediciones en alguna estación, simplemente no muestra el tab de variables (ésto solo sucede en el caso en que no haya valores e)
 	    // Render graphs
-		createGraphArea('Presión Barométrica (mm/mg)', 'mm/mg', 'container-presion', seriesArea['presion']);
-		createGraphArea('Humedad Relativa (%)', '%', 'container-humedad', seriesArea['humedad']);
-		createGraphArea('Nivel (cm)', 'cm', 'container-nivel', seriesArea['nivel']);
-		createGraphArea('Precipitación (mm)', 'mm', 'container-precipitacion_real', seriesArea['precipitacion_real']);
+	    <?php
+	    //$nullJSON = '{"data":[null]}';
+		//var_dump($serieNew['presion']);
+	    /*
+	    if($serieNew['presion']!=$nullJSON && $serieNew['humedad']!=$nullJSON  && $serieNew['nivel']!=$nullJSON  && $serieNew['precipitacion_real']!=$nullJSON  && $serieNew['radiacion']!=$nullJSON  && $serieNew['velocidad']!=$nullJSON 
+			&& $serieNew['direccion']!=$nullJSON  && $serieNew['evapo_real']!=$nullJSON  && $serieNew['temperatura']!=$nullJSON
+		){*/
+	    ?>
+	    //console.log("PRESION:"+jsonSeries['presion']);
+		//if(jsonSeries['presion'])
+			createGraphArea('Presión Barométrica (mm/mg)', 'mm/mg', 'container-presion', seriesArea['presion']);
+		//if(jsonSeries['humedad'])
+			createGraphArea('Humedad Relativa (%)', '%', 'container-humedad', seriesArea['humedad']);
+		//if(jsonSeries['nivel'])
+			createGraphArea('Nivel (cm)', 'cm', 'container-nivel', seriesArea['nivel']);
+		//if(jsonSeries['precipitacion_real'])
+			createGraphArea('Precipitación (mm)', 'mm', 'container-precipitacion_real', seriesArea['precipitacion_real']);
 		<?php
 		//if($series['nivelJson'] && $tipoEstacion=='EHT'){
 		?>
+		//if(jsonSeries['radiacion'])
 			createGraphArea('Radiación Solar ( W/m²)', 'W/m²', 'container-radiacion', seriesArea['radiacion']);
 		<?php
 		//}
 		?>
-		createGraphArea('Velocidad (m/s)', 'm/s', 'container-velocidad', seriesArea['velocidad']);
-		createGraphArea('Dirección (°)', '°', 'container-direccion', seriesArea['direccion']);
-		createGraphArea('Evapotranspiracion (mm)', 'mm', 'container-evapo_real', seriesArea['evapo_real']);
-		createGraphArea('Temperatura (°C)', '°C', 'container-temperatura', seriesArea['temperatura']);
+		//if(jsonSeries['velocidad'])
+			createGraphArea('Velocidad (m/s)', 'm/s', 'container-velocidad', seriesArea['velocidad']);
+		//if(jsonSeries['direccion'])
+			createGraphArea('Dirección (°)', '°', 'container-direccion', seriesArea['direccion']);
+		//if(jsonSeries['evapo_real'])
+			createGraphArea('Evapotranspiracion (mm)', 'mm', 'container-evapo_real', seriesArea['evapo_real']);
+		//if(jsonSeries['temperatura'])
+			createGraphArea('Temperatura (°C)', '°C', 'container-temperatura', seriesArea['temperatura']);
+		<?php
+		//}
+		?>
+		
 		
 		/**
 	     * Create a graph based on parameters
 	     * @param string
 	     */
 	    function createGraphArea(title, unit, container, seriesValues, minYValue){
+	    	console.log(title);
+	    	//if(seriesValues[0].data[0] == undefined)
+	    	//	return false;
     		var new_obj = [{"data": []}];
 	    	$.each(seriesValues[0].data, function(key, value) {
 	    		time = eval(value[0]);
@@ -293,7 +335,7 @@ if ($idEstacion != 0) {
 			<!-- tabs -->
 			<div class="sky-tabs sky-tabs-external sky-tabs-position sky-tabs-pos-top-left sky-tabs-anim-slide-down sky-tabs-response-to-icons">
 				<?php
-				if($idEstacion!=0){
+				if($idEstacion!=0 && $serieNew['presion']!='{"data":[null]}'){
 					$check = "";
 				?>
 				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">				
@@ -309,7 +351,7 @@ if ($idEstacion != 0) {
 				<label for="sky-tab3"><span><span><i class="fa fa-cogs"></i>Reportes</span></span></label>
 				<ul>
 						<?php
-						if($idEstacion!=0){
+						if($idEstacion!=0 && $serieNew['presion']!='{"data":[null]}'){
 						?>
 						<li class="sky-tab-content-1">
 						<div class="sky-tabs sky-tabs-internal sky-tabs-pos-top-left sky-tabs-anim-slide-top sky-tabs-response-to-stack background">
@@ -331,7 +373,7 @@ if ($idEstacion != 0) {
 								<li class="sky-tab-content-<?php echo $contaTabs;?>">
 									<div class="typography">
 									<?php 
-										if($idEstacion!=0){ 
+										if($idEstacion!=0 && $serieNew['presion']!='{"data":[null]}'){ 
 									?>
 											<div id="container-<?php echo $var;?>" style="min-width: 400px; height: 380px; margin: 0 auto"></div>
 									<?php 
