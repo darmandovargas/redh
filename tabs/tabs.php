@@ -249,7 +249,7 @@ if ($idEstacion != 0) {
 		    	chart: {
 		      		renderTo: container         
 		    	},
-		    	series: seriesValues
+		    	series: new_obj
 		  	};
 		  	
 		  	opcionesGrafico = jQuery.extend(true, {}, opcionesGenerales, opcionesGrafico);
