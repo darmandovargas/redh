@@ -101,7 +101,7 @@ function initialize() {
 				map : map
 			});
 			google.maps.event.addListener(marker, 'click', toggleBounce);
-			marker.setTitle(obj.tipo + ": " + obj.nombre);
+			marker.setTitle(/*obj.tipo + ": " + */obj.nombre);
 			attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.nombre);
 	
 			
