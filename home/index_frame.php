@@ -202,6 +202,10 @@ session_start();
 								<div align="center">
 									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
 								</div>
+								
+								<div align="center">
+									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
+								</div>
 
 								<div align="center">
 									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
@@ -213,37 +217,40 @@ session_start();
 								<a href="#" data-section="4" data-title="" class="floating-box"> <h3>Boletines</h3> </a>
 								</div>
 								-->
-								<div align="center">
-									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
-								</div>
 								
-								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
-								</div>
+								
 								<!--
 								<div align="center">
 								<a href="#" data-section="6" data-title="" class="floating-box"> <h3>Galería</h3> </a>
 								</div>
 								-->
-								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
-								</div>
+								
 
+								<!--
 								<div align="center">
 									<a href="#" onclick="checkSessionClick();" data-section="8" data-title="" class="floating-box"> <h3>Contáctenos</h3> </a>
 								</div>
-
-								<div align="center">
-
-									<a href="../mapa/" onclick="checkSessionClick();" target="_blank"> <h3>Ver Mapa</h3> </a>
-								</div>
+								-->
 								
+																
+								<!--
 								<div align="center">
 									<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
 								</div>
-								
+								-->
 								<div align="center">
 									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
+								</div>
+								<div align="center">
+
+									<a href="../mapa/" onclick="checkSessionClick();" target="_blank"> <h3>Ver Mapa Completo</h3> </a>
+								</div>
+								<div align="center">
+									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
+								</div>
+								
+								<div align="center">
+									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
 								</div>
 								
 							</div>
