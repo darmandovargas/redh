@@ -40,7 +40,7 @@ $contenido = search_content($oMySQL,'noticias');
     <link rel="alternate stylesheet" href="../../home/css/themes/eco/bootstrap-responsive.css" title="eco" type="text/css">
     <link rel="alternate stylesheet" href="../../home/css/themes/red/bootstrap.css" title="red" type="text/css">
     <link rel="alternate stylesheet" href="../../home/css/themes/red/bootstrap-responsive.css" title="red" type="text/css">
-    <div id="noticia_edit" style=""><textarea name="editor1" id="editor1" rows="1000" cols="1000">
+    <div id="noticia_edit" style="height: 95%;"><textarea name="editor1" id="editor1" rows="1000" cols="1000">
             <?php echo utf8_encode($contenido); ?>
         </textarea>
         <div id="msg" style="margin: 0px auto;display: none">

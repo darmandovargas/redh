@@ -24,18 +24,30 @@ if($_REQUEST["boletin"] != "" && $_REQUEST["estacion"] != "" && $_REQUEST["perio
     $directory = "boletines/".$_REQUEST["boletin"]."/".$_REQUEST["estacion"]."/".$_REQUEST["fecha"]."/".$_REQUEST["periocidad"].$path;
     //$directory= "images/estaciones/".$estacion;
     $dirint = dir($directory);
+    $vector = array();
     if(!empty($dirint)){
-        $salida = "<ul>";
         while (($archivo = $dirint->read()) !== false)
         {               
             if (eregi("pdf", $archivo)){
                   $respuesta = true;
-                  $salida .= '<li><a target="_blank" href="'.$directory."/".$archivo.'">'.$archivo.'</a></li>';                            
+                  array_push($vector,$archivo);
             }
         }
-        $salida .= "</ul>";
         $dirint->close();
-    }
+    }   
+    
+    /*
+     * Ordena archivos y arma las listas para previsualizar
+     */
+    sort($vector,SORT_STRING);    
+    if(!empty($vector)){
+        $salida = "<ul>";
+        foreach ($vector as $valor)
+        { 
+                  $salida .= '<li><a target="_blank" href="'.$directory."/".$valor.'">'.$valor.'</a></li>';                                      
+        }
+        $salida .= "</ul>";
+    } 
 }
 $salidaJson = array("respuesta" => $respuesta, "salida" => $salida);
 echo json_encode($salidaJson);
