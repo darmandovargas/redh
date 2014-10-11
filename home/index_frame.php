@@ -18,18 +18,6 @@ session_start();
 		<link rel="stylesheet" href="css/themes/default/bootstrap.css" type="text/css">
 		<link rel="stylesheet" href="css/themes/default/bootstrap-responsive.css" type="text/css">
 
-		<link rel="alternate stylesheet" href="css/themes/default/bootstrap.css" title="default" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/default/bootstrap-responsive.css" title="default" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/blue/bootstrap.css" title="blue" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/blue/bootstrap-responsive.css" title="blue" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/coffee/bootstrap.css" title="coffee" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/coffee/bootstrap-responsive.css" title="coffee" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/dark/bootstrap.css" title="dark" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/dark/bootstrap-responsive.css" title="dark" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/eco/bootstrap.css" title="eco" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/eco/bootstrap-responsive.css" title="eco" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/red/bootstrap.css" title="red" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/red/bootstrap-responsive.css" title="red" type="text/css">
 
 		<link href="js/perfect-scrollbar-0.3.3/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
 
@@ -87,98 +75,8 @@ session_start();
 			}
 		</style>
 		
-		<script>			
-			var session = false;
-			var isMapOutOfDate = true;
-			
-			/**
-			 * Close the link
-			 *  
-			 */
-			function closePage(){
-				$('.close').click();
-			}			
-			
-			
-			/**
-			 * This function will do the ajax call to see if there is session
-			 * @return boolean 
-			 */		
-			function checkSessionClick(url){
-				isSession = false;
-				
-				$.ajax({
-				  type: "POST",
-				  url: "content/login/validate.php",
-				  async:   false
-				}).success(function (msg){
-					if(msg=="success"){											
-						session = true;											
-						showLogout(true);
-						if(isMapOutOfDate && url!='isFirstLoad'){
-							initialize();
-							isMapOutOfDate = false;
-						}
-					}else{																			
-						session = false;					
-						showLogout(false);						
-					}
-					//google.maps.event.addDomListener(window, 'load', initialize);												
-				});
-				/*
-				if(isSession){
-					showLogout(true);
-				}else{
-					lookForSession();
-				}
-				*/
-				return isSession;
-			}
-			
-			/**
-			 * This function will logout and will hide the icon smoothly, if the logout is 
-			 * successful, then the lookForSession function will start looking for a new session
-			 */
-			function logout(){
-				showLogout(false);
-				isSession = true;
-				$.ajax({
-				  type: "POST",
-				  url: "content/login/logout.php"
-				})
-				.success(function (msg){	
-						session = false;				
-						initialize();
-						isMapOutOfDate = true;					
-					
-				});
-				
-				//lookForSession();					
-			}
-			
-			/**
-			 * Show or Hide logout icon 
-			 */
-			function showLogout(showIcon){
-				if(showIcon){
-					$("#logout").removeClass("waitLogout").addClass("logout").hide().html("<span id='logoutImage'><a href='#' onclick='logout();'><img src='/home/img/logout.png' width='22%'></a></span>").fadeIn("slow");
-				}else{
-					$("#logout").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='/home/img/wait_logout.gif' width='70%'>");
-				}				
-			}
-
-            function showTime(){
-            	$( "#estado_tiempo" ).trigger( "click" );
-            }
-                        
-            function showNotice(){
-    	        $( "#notice_boton" ).trigger( "click" );
-            }
-                        
-            function showRecursos(){
-	            $( "#recursos_boton" ).trigger( "click" );
-            }
-		</script>
+		
+		<script src="js/index.js"></script>
 		<script src="js/mapa/mapa.js"></script>
 	</head>
 	<body>
@@ -251,22 +149,10 @@ session_start();
 								
 								<div align="center">
 									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
-								</div>
-								
-							</div>
-							
-						</div>
-						
-									
+								</div>								
+							</div>							
+						</div>								
 					</div>
-					
-					
-					
-					
-					
-					
-					
-					
 					</br></br></br></br></br></br></br></br></br></br>
 						</br></br></br></br></br></br></br></br></br></br>
 						</br></br></br></br></br></br></br></br></br></br>
@@ -495,20 +381,12 @@ session_start();
 					<div class="row-fluid leave-gap page-footer">
 				       <hr />
 						<div class="span12">
-
 							<div style="text-align: center; ">
-								
-								
 								<img src="img/logos/logo_acuaseo.jpg" width="13%">
 								<img src="img/logos/Alcaldia Pereira.jpg" width="15%">
-								
 								<img src="img/logos/Carder.png" width="20%">
-								
 								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="22%">
-								
 								<img src="img/logos/dopad.bmp" width="15%">
-								
-								
 								<img src="img/logos/Seafield_colour.jpg" width="25%">
 								<img src="img/logos/EEP.jpg" width="20%" style="margin: 0 0 0 10px;">
 								<img src="img/logos/Grupos EIS.png" width="12%">
@@ -522,16 +400,10 @@ session_start();
 				<div class="span7 span-fixed-sidebar">
 					<div class="row-fluid">
 						<div class="span12">
-							
 							<div id="map_canvas"></div>
-							
 							<!--<iframe src="../mapa/" width="100%" height="800px"></iframe>-->
 						</div>
 					</div>
-
-					
-					
-
 
 					<div class="floating-search span4">
 						<div>
@@ -541,23 +413,17 @@ session_start();
 								<a href="#" id="search-btn"><i class="icon-search"></i></a>
 							</form>
 							-->
-							
 							<!-- -->
-							<span id="logout" class="logout">
-								
-							</span>
+							<span id="logout" class="logout"></span>
 							<input id="search"  type="text" placeholder="Ingrese Ubicación">
 						    <div id="type-selector" class="controls" hidden="hidden">
 						      <input type="radio" name="type" id="changetype-all" checked="checked">
 						      <label for="changetype-all">All</label>
-						
 						      <input type="radio" name="type" id="changetype-establishment">
 						      <label for="changetype-establishment">Establishments</label>
-						
 						      <input type="radio" name="type" id="changetype-geocode">
 						      <label for="changetype-geocode">Geocodes</label>
 						    </div>
-						   
 						</div>
 
 						<div id="directions-panel" class="span12">
@@ -572,44 +438,34 @@ session_start();
 
 					<!--/floating-search-->
 					<div class="row-fluid floating-boxes">		
-						
 						<a href="#" data-section="5" onclick="checkSessionClick();" data-title="" class="offset1 span3 floating-box">
 						<h3>Estado del Tiempo</h3>
 						<p>Revisa las últimas mediciones</p>
 						</a>
-						
 						<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="span3 floating-box">
 						<h3>Empresa</h3>
 						<p>Ver estaciones privadas</p>						
 						</a>
-						
 						<a href="#" data-section="8" data-title="" class="span3 floating-box">
 						<h3>Contactenos</h3>
 						<p>Dejenos saber sus comentarios</p>
 						</a>
-						
 					</div>
 					<!--/floating-boxes-->
-					
-					
-					
 					
 					<div class="row-fluid floating-wrapper" style="top: -600px">
 						<div class="offset1 span10 top-span">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								&times;
 							</button>
-
 							<h3>Video</h3>
 							<p>
 								Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
 							</p>
-
 							<div class="row-fluid">
 								<div class="floating-container">
 									<div class="span12 floating-content">
 										<div class="row-fluid">
-
 											Empty
 										</div>
 									</div>
@@ -617,13 +473,9 @@ session_start();
 							</div>
 						</div>
 					</div>
-
 				</div>
 				<!-- end span-fixed-sidebar -->
 			</div><!--/main-row-->
-
 		</div><!--/.container-fluid-->
-
 	</body>
-
 </html>
