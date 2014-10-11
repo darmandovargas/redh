@@ -6,3 +6,4 @@ lib/.DS_Store
 mapa/.DS_Store
 
 mapa/uploads
+lib/getStationsJSON.php
