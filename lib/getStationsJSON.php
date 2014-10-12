@@ -36,13 +36,13 @@ foreach ($estacion_sensoresList as $estacion) {
 }
 
 $estacionesJSON = array();
-
+/*
 $estacionesTipo["hidrometeorologica"] = "Estaciones Hidroclimatológicas telemétricas (EHT)";
 $estacionesTipo["meteorologica"] = "Estaciones Climatológica Telemétrica (ECT)";
 $estacionesTipo["hidro_caudal"] = "";
 $estacionesTipo["hidro_caudal"] = ;
 $estacionesTipo["meteorologica"] = ;
-
+*/
 
 foreach ($publicEstationForJSON as $pue) {
 	$estacionesJSON[] = array(
