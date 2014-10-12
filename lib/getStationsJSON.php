@@ -42,12 +42,12 @@ $estacionesTipo["meteorologica"] = "Estaciones Climatológica Telemétrica (ECT)
 $estacionesTipo["hidro_caudal"] = "";
 $estacionesTipo["hidro_caudal"] = ;
 $estacionesTipo["meteorologica"] = ;
-*/
+
 
 foreach ($publicEstationForJSON as $pue) {
 	$estacionesJSON[] = array(
 			"id" => $pue->id,
-  			"tipo"=> ,
+  			"tipo"=> "",
 		    "nombre"=> "ECT001 (El Lago)",
 		    "variables"=> {
 		      "0"=> "Temperatura",
@@ -70,4 +70,6 @@ foreach ($publicEstationForJSON as $pue) {
 		    "fecha"=> "Septiembre de 2006",
 		    "estado"=> "Activa"	  );		
 }
+ */ 
+ 
 ?>
