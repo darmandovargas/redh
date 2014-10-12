@@ -468,6 +468,10 @@ $(document).ready(function() {
 	}
 
 	function submitForm(event, data) {
+		/*tipo = imageName.split(".");
+		tipo = tipo[1];
+		alert(tipo);
+		*/
 		// Create a jQuery object from the form
 		$form = $(event.target);
 
