@@ -386,7 +386,7 @@ estacionesJSON = [
 		      "longitud": -75.60941513
 		    },
 		    "isPublic": false,
-		    "tipo":"PDNT",
+		    "tipo":"PD",
 		    "icono": iconoPD, 
 		    "altitud": "1750 m.s.n.m",
 		    "ubicacion": "Corregimiento de la Florida ",
@@ -405,7 +405,7 @@ estacionesJSON = [
 		      "longitud": -75.6177679
 		    },
 		    "isPublic": false,
-		    "tipo":"PDNT",
+		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1950 m.s.n.m",
 		    "ubicacion": "Vereda La Bella",
@@ -424,7 +424,7 @@ estacionesJSON = [
 		      "longitud": -75.66235135
 		    },
 		    "isPublic": false,
-		    "tipo":"PDNT",
+		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1700 m.s.n.m",
 		    "ubicacion": "Vereda Yarumal ",
@@ -443,7 +443,7 @@ estacionesJSON = [
 		      "longitud": -75.70915421
 		    },
 		    "isPublic": false,
-		    "tipo":"PDNT",
+		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1500 m.s.n.m",
 		    "ubicacion": "Corregimiento de Altagracia",
@@ -462,7 +462,7 @@ estacionesJSON = [
 		      "longitud": -75.78304604
 		    },
 		    "isPublic": false,
-		    "tipo":"PDNT",
+		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1250 m.s.n.m",
 		    "ubicacion": "Vereda La Honda",
@@ -481,7 +481,7 @@ estacionesJSON = [
 		      "longitud": -75.58052897
 		    },
 		    "isPublic": true,
-		    "tipo":"PDNT",
+		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1890 m.s.n.m.",
 		    "ubicacion": "Finca Lisbran",
@@ -500,7 +500,7 @@ estacionesJSON = [
 		      "longitud": -75.58047341
 		    },
 		    "isPublic": true,
-		    "tipo":"PDNT",
+		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1861 m.s.n.m.",
 		    "ubicacion": "Finca Lisbran",
@@ -519,7 +519,7 @@ estacionesJSON = [
 		      "longitud": -75.69079306
 		    },
 		    "isPublic": true,
-		    "tipo":"PDNT",
+		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1861 m.s.n.m.",
 		    "ubicacion": "UTP",
