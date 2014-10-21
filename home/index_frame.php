@@ -444,7 +444,7 @@ session_start();
 						</a>
 						<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="span3 floating-box">
 						<h3>Empresa</h3>
-						<p>Ver estaciones privadas</p>						
+						<p>Acceso a empresa</p>						
 						</a>
 						<a href="#" data-section="8" data-title="" class="span3 floating-box">
 						<h3>Contactenos</h3>
