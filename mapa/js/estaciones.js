@@ -211,7 +211,7 @@ estacionesJSON = [
 		      "6": "Dirección del Viento"
 		    },
 		    "coordenadas": {
-		      "latitud": 4.873557316,
+		      "latitud": 4.756890416,
 		      "longitud": -75.66111246
 		    },
 		    "isPublic": true,
