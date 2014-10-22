@@ -9,7 +9,7 @@ $(document).ready(function(){
 });
 
 function validateDec(field) {
-    var valid = "0123456789.-";
+    var valid = "0123456789.°''";//°
     var temp;
     for (var i=0; i<field.value.length; i++) {
         temp = "" + field.value.substring(i, i+1);
