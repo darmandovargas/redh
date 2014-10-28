@@ -19,3 +19,8 @@ function validateDec(field) {
         }
     }
 }
+
+function validateCharacter(e) {
+    var tecla= document.all ? tecla = e.keyCode : tecla = e.which;
+    return ((tecla > 47 && tecla < 58) || tecla == 34 || tecla == 46 || tecla == 176 || tecla == 39);
+}

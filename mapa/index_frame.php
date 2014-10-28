@@ -148,9 +148,9 @@
 			<div class="panel1">
 				<div >
 					X (Este)
-					<input type="text" onkeyup="validateDec(this)" value="" name="coordx" id="coordx" />
+					<input type="text" onkeypress="return validateCharacter(event);" placeholder="--°--'--''" name="coordx" id="coordx" />
 					Y (Norte)
-					<input type="text" onkeyup="validateDec(this)" value="" name="coordy" id="coordy" />
+					<input type="text" onkeypress="return validateCharacter(event);" placeholder="--°--'--''" name="coordy" id="coordy" />
 					<button onclick="javascript:locate_position()">
 						Ubicar
 					</button>

@@ -281,6 +281,25 @@ function showStations(estation) {
  * This will show custom positions
  */
 function locate_position(){
+    
+        var x = $("#coordx").val();
+        var y = $("#coordy").val();
+        if(x == '' || y == ''){
+            $('#text_inf').html("");
+            $('#text_inf').html("Debe ingresar las coordenadas X Y para encontrar la ubicación");
+            $('#content_inf').show();
+            return;
+        }else{
+            var RegExPatternLatitude = /[0-9]{1,2}[°][0-9]{1,2}['](?:\b[0-9]+(?:\.[0-9]*)?|\.[0-9]+\b)"$/;
+            if ((x.match(RegExPatternLatitude)) && (y.match(RegExPatternLatitude))) {
+
+            } else {
+                $('#text_inf').html("");
+                $('#text_inf').html("Debe ingresar un formato de coordenada valida</br>Ej: 75°41'58.16''");
+                $('#content_inf').show();
+                return;
+            } 
+        }
 	// Obtiene coordenada X
 	// Para ésta coordenada x°y'z'' el primer split obtiene ésto array(x,y'z'')    
 	var coordenadas = $("#coordx").val().split("°");
@@ -297,7 +316,7 @@ function locate_position(){
 	var minutosx = coordenadas2[0];
 	var segundosx = coordenadas2[1];
 	
-	var x = parseFloat(gradosx) + parseFloat(minutosx)*0.0166667 + parseFloat(segundosx)*0.0166667*0.0166667;
+	x = parseFloat(gradosx) + parseFloat(minutosx)*0.0166667 + parseFloat(segundosx)*0.0166667*0.0166667;
 	//console.log("gradosx: "+gradosx+" minutosx: "+minutosx+" segundosx: "+segundosx+" x:"+x);
 	// Obtiene coordenada Y
 	coordenadas = $("#coordy").val().split("°");
@@ -307,17 +326,12 @@ function locate_position(){
 	var minutosy = coordenadas2[0];
 	var segundosy = coordenadas2[1];
 	
-	var y = (parseFloat(gradosy) + parseFloat(minutosy)*0.0166667 + parseFloat(segundosy)*0.0166667*0.0166667)*-1;
+	y = (parseFloat(gradosy) + parseFloat(minutosy)*0.0166667 + parseFloat(segundosy)*0.0166667*0.0166667)*-1;
 	//console.log("gradosy: "+gradosy+" minutosy: "+minutosy+" segundosy: "+segundosy+" y:"+y);
 	//=J17*0,0166667*0,0166667+I17*0,0166667+H17
     //var x = $("#coordx").val();
     //var y = $("#coordy").val();
-    if(x == '' || y == ''){
-        $('#text_inf').html("");
-        $('#text_inf').html("Debe ingresar las coordenadas X Y para encontrar la ubicación");
-        $('#content_inf').show();
-        return;
-    }
+    
     var position = new google.maps.LatLng(x, y);
     var marker = new google.maps.Marker({
             position : position,
