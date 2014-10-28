@@ -282,8 +282,9 @@ function showStations(estation) {
  */
 function locate_position(){
     
-        var x = $("#coordx").val();
-        var y = $("#coordy").val();
+        var x = $("#coordx").val().trim();
+        var y = $("#coordy").val().trim();
+        
         if(x == '' || y == ''){
             $('#text_inf').html("");
             $('#text_inf').html("Debe ingresar las coordenadas X Y para encontrar la ubicación");
