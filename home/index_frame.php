@@ -1,5 +1,20 @@
 <?php 
 session_start();
+// Obtiene la conexión a la bd
+include_once ('visit_models.php');
+include_once ('../lib/class.MySQL.php');
+$ip = "";   
+// De esta forma se obtiene la Ip de host del usuario
+if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip=$_SERVER['HTTP_CLIENT_IP'];
+} elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+    $ip=$_SERVER['REMOTE_ADDR'];
+}
+
+$host = insert_host($oMySQL, $ip);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -398,8 +413,8 @@ session_start();
 				<!-- end main-wrapper -->
 
 				<div class="span7 span-fixed-sidebar">
-					<div class="row-fluid">
-						<div class="span12">
+					<div class="row-fluid" style="height: 100%;">
+						<div class="span12" style="height: 100%;">
 							<div id="map_canvas"></div>
 							<!--<iframe src="../mapa/" width="100%" height="800px"></iframe>-->
 						</div>
@@ -413,9 +428,25 @@ session_start();
 								<a href="#" id="search-btn"><i class="icon-search"></i></a>
 							</form>
 							-->
-							<!-- -->
-							<span id="logout" class="logout"></span>
+							<!-- -->                                     
+                                                        <span id="logout" class="logout"></span>
 							<input id="search"  type="text" placeholder="Ingrese Ubicación">
+                                                        <div style="color:#929292;float:right;margin-top: 30px;margin-right: 3px;font-family: Roboto;">
+                                                            Visitas <span><?php echo add_ceros($host,4); ?></span>
+                                                            
+                                                            <?php
+                                                            function add_ceros($numero,$ceros) {
+                                                                $order_diez = explode(".",$numero);
+                                                                $dif_diez = $ceros - strlen($order_diez[0]);
+                                                                for($m = 0 ; $m < $dif_diez; $m++)
+                                                                {
+                                                                        @$insertar_ceros .= 0;
+                                                                }
+                                                                return $insertar_ceros .= $numero;
+                                                            }
+                                                            
+                                                            ?>
+                                                        </div>
 						    <div id="type-selector" class="controls" hidden="hidden">
 						      <input type="radio" name="type" id="changetype-all" checked="checked">
 						      <label for="changetype-all">All</label>
