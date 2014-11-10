@@ -57,7 +57,8 @@ function search_host($oMySQL,$ip){
 function insert_host($oMySQL,$ip){    
     $search = search_host($oMySQL,$ip);
     if($search == false){
-        $query = "INSERT INTO visitas(host,last_date) VALUES('$ip',NOW())";
+        $ahora = date("Y-m-d H:i:s");
+        $query = "INSERT INTO visitas(host,last_date) VALUES('$ip','$ahora')";
         $resultado = $oMySQL -> ExecuteSQL($query);
         return search_num_visit($oMySQL);
     }else{
@@ -71,9 +72,9 @@ function insert_host($oMySQL,$ip){
         if($diff->format("%h") > 0 ){            
             $id = $search['id'];
             $query = "UPDATE visitas SET last_date = NOW(),visitas=visitas+1 WHERE id = '$id';";	
-            $resultado = $oMySQL -> ExecuteSQL($query); 
-            return search_num_visit($oMySQL);
-        }
+            $resultado = $oMySQL -> ExecuteSQL($query);
+        }         
+        return search_num_visit($oMySQL);
     }
 }
 
