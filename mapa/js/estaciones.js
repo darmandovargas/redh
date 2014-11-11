@@ -375,7 +375,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"0",
+			"id":"PD001",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
 		    "variables": {
@@ -394,7 +394,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"0",
+			"id":"PD002",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
 		    "variables": {
@@ -413,7 +413,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"0",
+			"id":"PD003",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD003 (Bocatoma Acueducto Pérez Alto) ",
 		    "variables": {
@@ -432,7 +432,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"0",
+			"id":"PD004",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
 		    "variables": {
@@ -451,7 +451,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"0",
+			"id":"PD005",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
 		    "variables": {
@@ -524,6 +524,215 @@ estacionesJSON = [
 		    "altitud": "1861 m.s.n.m.",
 		    "ubicacion": "UTP",
 		    "fecha": "28 deMayo 2012",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD009 (Ormaza)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.813973878,
+		      "longitud": -75.68077917
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1389 m.s.n.m.",
+		    "ubicacion": "Cuerpo de bomberos barrio Ormaza ",
+		    "fecha": "14 de Marzo de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD010 (CAI Galan)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.821334985,
+		      "longitud": -75.70369586
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1330 m.s.n.m.",
+		    "ubicacion": "CAI Barrio Galan, Calle 31 con AV del río",
+		    "fecha": "14 de Marzo de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD011 (Parque Industrial)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.821909988,
+		      "longitud": -75.7247848
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1348 m.s.n.m.",
+		    "ubicacion": "Parque Industrial, Manzana 13 sector B",
+		    "fecha": "20 de Marzo de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD012 (CAI Consota)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.801954386,
+		      "longitud": -75.7249348
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1333 m.s.n.m.",
+		    "ubicacion": "CAI, Barrio Padre Valencia",
+		    "fecha": "14 de Marzo de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD013 (CAI Poblado)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.802251609,
+		      "longitud": -75.70397364
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1314 m.s.n.m.",
+		    "ubicacion": "CAI Barrio Poblado I",
+		    "fecha": "14 de Marzo de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD014 (CAI Villa Verde)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.792168269,
+		      "longitud": -75.71141256
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1402 m.s.n.m.",
+		    "ubicacion": "CAI Barrio Villa Verde",
+		    "fecha": "10 de Junio de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD015 (Bosque de Cuba)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.792140491,
+		      "longitud": -75.7269987
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1321 m.s.n.m.",
+		    "ubicacion": "Conjunto cerrado Bosque de Cuba",
+		    "fecha": "10 de Junio de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD015 (Bosque de Cuba)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.792140491,
+		      "longitud": -75.7269987
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1321 m.s.n.m.",
+		    "ubicacion": "Conjunto cerrado Bosque de Cuba",
+		    "fecha": "10 de Junio de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD016 (Tanque Calicanto)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.796982177,
+		      "longitud": -75.66864301
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1561 m.s.n.m.",
+		    "ubicacion": "Taque de reserva de Agua Barrio Villa Santana",
+		    "fecha": "14 de Abril de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD017 (Cruz Roja)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.807421074,
+		      "longitud": -75.69224029
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1400 m.s.n.m.",
+		    "ubicacion": "Carrera 15 con Calle 16",
+		    "fecha": "21 de Abril de 2014",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+		    "nombre": "PD018 (Saint George School)",
+		    "variables": {
+		      "0": "Precipitación"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.781084924,
+		      "longitud": -75.69473475
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPD,
+		    "altitud": "1480 m.s.n.m.",
+		    "ubicacion": "Saint George School, vía hacia municipio de Armenia",
+		    "fecha": "",
 		    "estado": "Activa"	  		  
 		}
 	];

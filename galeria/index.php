@@ -103,7 +103,7 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
                         ?>
                                 <li>
                                     <h4></h4>
-                                    <div class="tn3 description"></div>
+                                    <div class="tn3 description"><?php echo $estacion; ?></div>
                                     <a href="images/nodisponible.gif" >
                                         <?php  echo '<img src="images/nodisponible.gif" >'; ?>
                                     </a>
