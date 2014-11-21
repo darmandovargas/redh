@@ -60,10 +60,9 @@ function scandirectory($path,$name){
         $directorio = "boletines/".$path;
         $gestor_dir = opendir($directorio);
         if($gestor_dir){
-            while (false !== ($nombre_fichero = readdir($gestor_dir))) {
-                if($nombre_fichero == "." || $nombre_fichero == ".." || $nombre_fichero == ".DS_Store" || $nombre_fichero == "Icon_"){
-                    $salida .= "";
-                }else{
+        	$files = scandir($directorio);
+            foreach ($files as $nombre_fichero) {	
+                if($nombre_fichero != "." && $nombre_fichero != ".." && $nombre_fichero != ".DS_Store" && $nombre_fichero != "Icon_"){
                     $selected = "";
                     if($name != "" && $nombre_fichero == strtolower($name))
                         $selected = "selected='selected'";
