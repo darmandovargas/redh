@@ -123,11 +123,11 @@ $oMySQL -> closeConnection();
 						<td>".$et['info']['direccion']."</td>
 						<td>".$et['info']['presion']." </td>
 						<td>".$et['info']['humedad']."</td>						
-						<td>".$et['info']['precipitacion']."</td>
+						<td>".$et['info']['precipitacion_real']."</td>
 						<td>".$et['info']['nivel']."</td>
 						<td>".$et['info']['radiacion']."</td>				
 						<td>".$et['info']['velocidad']."</td>				
-						<td>".$et['info']['evapotranspiracion']."</td>						
+						<td>".$et['info']['evapotranspiracion_real']."</td>						
 					</tr>
 					";
 					}
