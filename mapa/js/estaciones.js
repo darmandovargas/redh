@@ -363,8 +363,8 @@ estacionesJSON = [
 		      "0": "Nivel del cauce por presión de lamina de Agua"
 		    },
 		    "coordenadas": {
-		      "latitud": 0,
-		      "longitud": 0
+		      "latitud": 4.738834822,
+		      "longitud": -75.58374006
 		    },
 		    "isPublic": true,
 		    "tipo":"SNNT",
@@ -375,7 +375,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"PD001",
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
 		    "variables": {
@@ -394,7 +394,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"PD002",
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
 		    "variables": {
@@ -413,7 +413,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"PD003",
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD003 (Bocatoma Acueducto Pérez Alto) ",
 		    "variables": {
@@ -432,7 +432,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"PD004",
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
 		    "variables": {
@@ -451,7 +451,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"PD005",
+			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
 		    "variables": {
@@ -658,26 +658,7 @@ estacionesJSON = [
 		    "ubicacion": "Conjunto cerrado Bosque de Cuba",
 		    "fecha": "10 de Junio de 2014",
 		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD015 (Bosque de Cuba)",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
-		    "coordenadas": {
-		      "latitud": 4.792140491,
-		      "longitud": -75.7269987
-		    },
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1321 m.s.n.m.",
-		    "ubicacion": "Conjunto cerrado Bosque de Cuba",
-		    "fecha": "10 de Junio de 2014",
-		    "estado": "Activa"	  		  
-		},
+		},		
 		{
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
