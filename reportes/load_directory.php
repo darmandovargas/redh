@@ -61,7 +61,7 @@ function scandirectory($path,$name){
         $gestor_dir = opendir($directorio);
         if($gestor_dir){
             while (false !== ($nombre_fichero = readdir($gestor_dir))) {
-                if($nombre_fichero == "." || $nombre_fichero == ".." || $nombre_fichero == "DS_Store" || $nombre_fichero == "Icon"){
+                if($nombre_fichero == "." || $nombre_fichero == ".." || $nombre_fichero == ".DS_Store" || $nombre_fichero == "Icon_"){
                     $salida .= "";
                 }else{
                     $selected = "";
