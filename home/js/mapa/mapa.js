@@ -1,5 +1,7 @@
 var overlay;
 
+console.log("session: "+session);
+
 DebugOverlay.prototype = new google.maps.OverlayView();
 
 function initialize() {
@@ -86,26 +88,32 @@ function initialize() {
 
 	map.fitBounds(bounds);
 
-	$.each(estacionesJSON, function(idx, obj) {
-		var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
-		var marker = new google.maps.Marker({
-			position : position,
-			animation : google.maps.Animation.DROP,
-			icon : obj.icono,
-			map : map
-		});
-		google.maps.event.addListener(marker, 'click', toggleBounce);
-		marker.setTitle(obj.tipo + ": " + obj.nombre);
-		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud);
-
-		function toggleBounce() {
-			if (marker.getAnimation() != null) {
-				marker.setAnimation(null);
-			} else {
-				marker.setAnimation(google.maps.Animation.BOUNCE);
-			}
+	$.each(estacionesJSON, function(idx, obj) {	
+		//console.log("session EACH: "+session);	
+		//console.log("(obj.isPublic='true' && session==false): "+(obj.isPublic="true" && session==false) );
+		//console.log("session==true: "+session==true);
+		if( (obj.isPublic && !session) || session){		
+			var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
+			var marker = new google.maps.Marker({
+				position : position,
+				animation : google.maps.Animation.DROP,
+				icon : obj.icono,
+				map : map
+			});
+			google.maps.event.addListener(marker, 'click', toggleBounce);
+			marker.setTitle(/*obj.tipo + ": " + */obj.nombre);
+			attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.nombre);
+	
+			
 		}
-
+		
+		function toggleBounce() {
+				if (marker.getAnimation() != null) {
+					marker.setAnimation(null);
+				} else {
+					marker.setAnimation(google.maps.Animation.BOUNCE);
+				}
+			}
 	});
 
 }
@@ -180,19 +188,26 @@ DebugOverlay.prototype.onRemove = function() {
 
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data
-function attachSecretMessage(marker, message) {
-
+function attachSecretMessage(marker, message, id, tipo, nombre) {
+	content = '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'" height="560px" width="800px"></iframe>'
+	//if(id==0){
+	//	content = '<h2>'+nombre+'</h2><h3>No existe información almacenada referente a ésta estación</h3>';
+	//}
+	
 	var infowindow = new google.maps.InfoWindow({
-		content : '<iframe src="../tabs/tabs.html" height="560px" width="800px"></iframe>'
+		//style: 'position: absolute; left: 12px; top: 9px; overflow: auto; width: 250%; height: 412px;',
+		//width: '2500px',
+		content : content//'<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'" height="560px" width="800px"></iframe>'
 	});
-
+	//console.log(htmlraw);
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.open(marker.get('map'), marker);
 		$.get({
-			url : "../tabs/tabs.html",
+			url : "../tabs/tabs.php?id="+id+"&tipo="+tipo,
 			success : function(data) {
+
 				htmlraw = data;
-				// should print the raw test.html
+				//alert(htmlraw)  /// should print the raw test.html
 				$("#ta").html(htmlraw);
 			}
 		});
@@ -235,4 +250,10 @@ function addLatLng(event) {
 	});
 }
 
+$( document ).ready(function() {
+				checkSessionClick('firstLoad');
+			    //lookForSession();
+			    //showLogout(true);
+			    //showLogout(false);		    
+			});
 google.maps.event.addDomListener(window, 'load', initialize); 

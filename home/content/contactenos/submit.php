@@ -2,7 +2,8 @@
 
 /* config start */
 
-$emailAddress = 'darmandovargas@gmail.com';
+$emailAddress = 'redhidroclimatologica@utp.edu.co'; 
+//'darmandovargas@gmail.com';
 
 /* config end */
 
@@ -38,9 +39,9 @@ if(!checkLen('subject'))
 if(!checkLen('message'))
 	$err[]='The message field is too short or empty!';
 
-if((int)$_POST['captcha'] != $_SESSION['expect'])
+/*if((int)$_POST['captcha'] != $_SESSION['expect'])
 	$err[]='The captcha code is wrong!';
-
+*/
 
 if(count($err))
 {
@@ -62,7 +63,7 @@ if(count($err))
 
 
 $msg=
-'Name:	'.$_POST['name'].'<br />Email:	'.$_POST['email'].'<br />IP:	'.$_SERVER['REMOTE_ADDR'].'<br /><br />Message:<br /><br />'.nl2br($_POST['message']).'';
+'Nombre: '.$_POST['name'].'<br />Email:	'.$_POST['email'].'<br />IP: '.$_SERVER['REMOTE_ADDR'].'<br /><br />Mensaje:<br />'.nl2br($_POST['message']).'';
 
 
 $mail = new PHPMailer();
@@ -71,7 +72,7 @@ $mail->IsMail();
 $mail->AddReplyTo($_POST['email'], $_POST['name']);
 $mail->AddAddress($emailAddress);
 $mail->SetFrom($_POST['email'], $_POST['name']);
-$mail->Subject = "A new ".mb_strtolower($_POST['subject'])." from ".$_POST['name']." | contact form feedback";
+$mail->Subject = "REDH | ".mb_strtolower($_POST['subject'])." | ".$_POST['name']." | Contactenos";
 
 $mail->MsgHTML($msg);
 

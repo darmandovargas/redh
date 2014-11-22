@@ -22,6 +22,10 @@
 	text-align: left;
 	color: #666;
 }
+.sky-tabs-position{
+	/*margin:-30px 0 0 -30px;*/
+	margin: -15px -15px 0 -19px;
+}
 .sky-tabs > input {
 	position: absolute;
 	display: none;
@@ -50,7 +54,8 @@
 .sky-tabs > label span {
 	display: block;
 	padding: 5px;
-	background: rgba(255,255,255,0.9);
+	/*background: rgba(255,255,255,0.9);*/
+	background-color: #EAF7F4;
 }
 .sky-tabs > label span span {
 	padding: 0 20px;
@@ -111,6 +116,15 @@
 	-ms-transition: opacity 0.8s, -ms-transform 0.8s;	
 	-moz-transition: opacity 0.8s, -moz-transform 0.8s;	
 	-webkit-transition: opacity 0.8s, -webkit-transform 0.8s;
+}
+.background > ul > li{
+	background-color: #EAF7F4;
+}
+.sky-tabs-internal > ul > li {	
+	padding: 0 0 0 0 !important;	
+}
+.sky-tabs-external > ul > li {	
+	padding: 10px 25px 25px; !important;	
 }
 .sky-tabs > .sky-tab-content-1:checked ~ ul > .sky-tab-content-1,
 .sky-tabs > .sky-tab-content-2:checked ~ ul > .sky-tab-content-2,
@@ -635,7 +649,7 @@
 /**/
 @media screen and (max-width: 1000px) {
 	.sky-tabs > label span span {
-		padding: 0 15px;
+		padding: 0 10px;
 	}
 	.sky-tabs > label .fa {
 		margin-right: 10px;

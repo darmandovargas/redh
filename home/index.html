@@ -4,446 +4,80 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>Red Hidroclimatológica de Risaralda</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<meta name="geo.placename" content="WC1B, london">
-		<meta name="geo.position" content="51.51954;-0.125549" />
-		
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-		<link rel="stylesheet" href="css/themes/default/bootstrap.css" type="text/css">
-		<link rel="stylesheet" href="css/themes/default/bootstrap-responsive.css" type="text/css">
-
-		<link rel="alternate stylesheet" href="css/themes/default/bootstrap.css" title="default" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/default/bootstrap-responsive.css" title="default" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/blue/bootstrap.css" title="blue" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/blue/bootstrap-responsive.css" title="blue" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/coffee/bootstrap.css" title="coffee" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/coffee/bootstrap-responsive.css" title="coffee" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/dark/bootstrap.css" title="dark" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/dark/bootstrap-responsive.css" title="dark" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/eco/bootstrap.css" title="eco" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/eco/bootstrap-responsive.css" title="eco" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/red/bootstrap.css" title="red" type="text/css">
-		<link rel="alternate stylesheet" href="css/themes/red/bootstrap-responsive.css" title="red" type="text/css">
-
-		<link href="js/perfect-scrollbar-0.3.3/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
-
-		<!--[if lt IE 9]>
-		<link rel="stylesheet" href="css/bootstrap_ie7.css" type="text/css">
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-
-		<!-- DEFAULT MAP 
-		<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
-		-->
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-		<!--
-		<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-		-->
-		<script type="text/javascript" src="js/perfect-scrollbar-0.3.3/perfect-scrollbar.js"></script>
-		<script type="text/javascript" src="js/global.js"></script>
-		
-		
-		<!-- CUSTOM MAP -->
-		<!--
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<!--<script src="js/estaciones.js"></script>
-		<script src="js/mapa.js"></script>
-		-->
-		
-    	<script src="../mapa/js/estaciones.js"></script>
-		<script src="js/mapa/mapa.js"></script>
-		
+                                               
+		<script>
+		// Find all iframes
+var $iframes = $( "iframe" );
+ 
+// Find & save the aspect ratio for all iframes
+$iframes.each(function () {
+  $( this ).data( "ratio", this.height / this.width )
+    // Remove the hardcoded width & height attributes
+    .removeAttr( "width" )
+    .removeAttr( "height" );
+});
+ 
+// Resize the iframes when the window is resized
+$( window ).resize( function () {
+  $iframes.each( function() {
+    // Get the parent container's width
+    var width = $( this ).parent().width();
+    $( this ).width( width )
+      .height( width * $( this ).data( "ratio" ) );
+  });
+// Resize to fix all iframes on page load.
+}).resize();
+
+			$(window).load(function () {
+				console.log(screen.height);
+			    //setIframeHeight(document.getElementById('preview'));
+			    
+			    function setIframeHeight(iframe) {
+				    if (iframe) {
+				        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+				        if (iframeWin.document.body) {
+				        	console.log(iframeWin.document.documentElement.scrollHeight);
+				        	console.log(iframeWin.document.body.scrollHeight);
+				        	//
+				            iframe.height = screen.height*0.84;//iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+				        }
+				    }
+				}
+			});
+			
+		</script>
+		<style>
+			.intrinsic-container {
+  /*position: relative;*/
+  height: 100%;
+  overflow: hidden;
+}
+ 
+/* 16x9 Aspect Ratio */
+.intrinsic-container-16x9 {
+  padding-bottom: 56.25%;
+}
+ 
+/* 4x3 Aspect Ratio */
+.intrinsic-container-4x3 {
+  padding-bottom: 75%;
+}
+ 
+.intrinsic-container iframe {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+		</style>
 	</head>
-	<body>
-		<div class="container-fluid">
-			<div class="row-fluid main-row">
-				<div class="span5 main-wrapper">
-					<div class="row-fluid logo">
-						<div class="span12">
-							<img src="img/logos/red_hidroclimatologica.jpg" width="50%" />
-							<!-- <h1>Red Hidroclimatológica de Risaralda</h1>-->
-						</div>
-					</div><!--/logo-->
-
-					<div class="row-fluid block-wrapper" style="margin: -30px 0 0 0;">
-						<div class="block" id="section-1">
-							<!--/floating-wrapper-->
-							<div class="row-fluid floating-boxes">
-								<div align="center">
-									<a href="#" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
-								</div>
-
-								<div align="center">
-									<a href="#" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
-								</div>
-
-								<!--
-								<div align="center">
-
-								<a href="#" data-section="4" data-title="" class="floating-box"> <h3>Boletines</h3> </a>
-								</div>
-								-->
-								<div align="center">
-									<a href="#" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
-								</div>
-								
-								<div align="center">
-									<a href="#" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
-								</div>
-								<!--
-								<div align="center">
-								<a href="#" data-section="6" data-title="" class="floating-box"> <h3>Galería</h3> </a>
-								</div>
-								-->
-								<div align="center">
-									<a href="#" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
-								</div>
-
-								<div align="center">
-									<a href="#" data-section="8" data-title="" class="floating-box"> <h3>Contáctenos</h3> </a>
-								</div>
-
-								<div align="center">
-
-									<a href="../mapa/" target="_blank"> <h3>Ver Mapa</h3> </a>
-								</div>
-								
-								<div align="center">
-									<a href="#" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
-								</div>
-								
-								<div align="center">
-									<a href="#" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
-								</div>
-								
-							</div>
-						</div>
-
-						</br></br></br></br></br></br></br></br></br></br>
-						</br></br></br></br></br></br></br></br></br></br>
-						</br></br></br></br></br></br></br></br></br></br>
-						</br></br></br></br></br></br></br></br></br></br>
-
-						<div class="block" id="section-1">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="row-fluid">
-											<div class="span6">
-												<div class="media">
-													<div class="media-body">
-														<iframe src="content/information_general.html" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->
-
-						<div class="block" id="section-2">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="row-fluid">
-											<div class="span6">
-												<div class="media">
-													<div class="media-body">
-														<iframe src="content/noticias.html" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->
-
-						<div class="block" id="section-3">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="span10 offset1 gallery">
-											<div class="row-fluid">
-												<div class="span6">
-													<div class="media">
-														<div class="media-body">
-															<iframe src="content/recursos_humanos.html" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->
-
-						<div class="block" id="section-4">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="span10 offset1 gallery">
-											<div class="row-fluid">
-												<div class="span6">
-													<div class="media">
-														<div class="media-body">
-															<iframe src="../reportes/index.html" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->
-
-						<div class="block" id="section-5">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="span10 offset1 gallery">
-											<div class="row-fluid">
-												<div class="span6">
-													<div class="media">
-														<div class="media-body">
-															<iframe src="content/estado_del_tiempo.html" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->
-
-						<div class="block" id="section-6">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="span10 offset1 gallery">
-											<div class="row-fluid">
-												<div class="span6">
-													<div class="media">
-														<div class="media-body">
-															<iframe src="../galeria/index.html" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->
-
-						<div class="block" id="section-7">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="span10 offset1 gallery">
-											<div class="row-fluid">
-												<div class="span6">
-													<div class="media">
-														<div class="media-body">
-															<iframe src="content/contribuyen_a_la_red.html" width="100%" height="480px" scrolling="yes" frameBorder="0"></iframe>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->
-
-						<div class="block" id="section-8">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="span10 offset1 gallery">
-											<div class="row-fluid">
-												<div class="span6">
-													<div class="media">
-														<div class="media-body">
-															<iframe src="content/contactenos/demo.php" width="100%" height="500px" scrolling="yes" frameBorder="0"></iframe>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->
-
-						<div class="block" id="section-9">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="span10 offset1 gallery">
-											<div class="row-fluid">
-												<div class="span6">
-													<div class="media">
-														<div class="media-body">
-															<iframe src="content/login/index.html" width="100%" height="500px" scrolling="yes" frameBorder="0"></iframe>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->		
-						
-						<div class="block" id="section-10">
-							<div class="row-fluid leave-gap">
-								<div class="span12">
-									<div class="section-content">
-										<div class="span10 offset1 gallery">
-											<div class="row-fluid">
-												<div class="span6">
-													<div class="media">
-														<div class="media-body">
-															<iframe src="content/sitios_de_interes.html" width="100%" height="500px" scrolling="yes" frameBorder="0"></iframe>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end block -->					
-					</div>
-					<!-- end block-wrapper -->
-
-					<div class="row-fluid leave-gap page-footer">
-
-						<div class="span12">
-
-							<div style="text-align: center; ">
-								
-								
-								<img src="img/logos/logo_acuaseo.jpg" width="10%">
-								<img src="img/logos/Alcaldia Pereira.jpg" width="10%">
-								<img src="img/logos/logo_utp.jpg" width="15%">
-								<img src="img/logos/Carder.png" width="18%">
-								
-								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="22%">
-								
-								<img src="img/logos/dopad.bmp" width="15%">
-								
-								
-								<img src="img/logos/Seafield_colour.jpg" width="22%">
-								<img src="img/logos/EEP.jpg" width="18%" style="margin: 0 0 0 10px;">
-								<img src="img/logos/Grupos EIS.png" width="12%">
-								<img src="img/logos/LOGO ASAMUN.jpg" width="25%">
-							</div>
-						</div>
-					</div><!--/page-footer-->
-				</div>
-				<!-- end main-wrapper -->
-
-				<div class="span7 span-fixed-sidebar">
-					<div class="row-fluid">
-						<div class="span12">
-							
-							<div id="map_canvas"></div>
-							
-							<!--<iframe src="../mapa/" width="100%" height="800px"></iframe>-->
-						</div>
-					</div>
-
-					
-					
-
-
-					<div class="floating-search span4">
-						<div>
-							<!--
-							<form action="" id="search_directions" method="post">
-								<input type="text" id="search" placeholder="Enter your location..."/>
-								<a href="#" id="search-btn"><i class="icon-search"></i></a>
-							</form>
-							-->
-							
-							<!-- -->
-							<input id="search"  type="text" placeholder="Ingrese Ubicación">
-						    <div id="type-selector" class="controls" hidden="hidden">
-						      <input type="radio" name="type" id="changetype-all" checked="checked">
-						      <label for="changetype-all">All</label>
-						
-						      <input type="radio" name="type" id="changetype-establishment">
-						      <label for="changetype-establishment">Establishments</label>
-						
-						      <input type="radio" name="type" id="changetype-geocode">
-						      <label for="changetype-geocode">Geocodes</label>
-						    </div>
-						   
-						</div>
-
-						<div id="directions-panel" class="span12">
-							<button type="button" class="close">
-								&times;
-							</button>
-							<div id="directions-wrapper">
-								<div id="directions-result"></div>
-							</div>
-						</div>
-					</div>
-
-					<!--/floating-search-->
-					<div class="row-fluid floating-wrapper" style="top: -600px">
-						<div class="offset1 span10 top-span">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								&times;
-							</button>
-
-							<h3>Video</h3>
-							<p>
-								Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-							</p>
-
-							<div class="row-fluid">
-								<div class="floating-container">
-									<div class="span12 floating-content">
-										<div class="row-fluid">
-
-											Empty
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<!-- end span-fixed-sidebar -->
-			</div><!--/main-row-->
-
-		</div><!--/.container-fluid-->
-
+	<body style="height: 100%;">
+		<div class="intrinsic-container">
+			<iframe id="preview" src="index_frame.php" frameborder="0" style="width: 100%;height: 100%;" ></iframe>
+		</div>
 	</body>
-
-</html>
+</html>	
+	

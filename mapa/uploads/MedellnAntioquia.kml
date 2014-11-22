@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Medellín, Antioquia</name>
+  <description><![CDATA[]]></description>
+  <Style id="style1">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>Medellín, Antioquia</name>
+    <description><![CDATA[Colombia<br><img src="https://cbks0.google.com/cbk?output=thumbnail&amp;w=90&amp;h=68&amp;ll=6.230833,-75.590556&amp;thumb=0">]]></description>
+    <styleUrl>#style1</styleUrl>
+    <Point>
+      <coordinates>-75.590553,6.230833,0.000000</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>

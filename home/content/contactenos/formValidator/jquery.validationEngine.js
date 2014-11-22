@@ -202,7 +202,7 @@ $.validationEngine = {
 		}
 		$(divFormError).css({
 			top:callerTopPosition,
-			left:callerleftPosition,
+			left: '64%',//callerleftPosition-130,
 			opacity:0
 		})
 		return $(divFormError).animate({"opacity":0.87},function(){return true;});	

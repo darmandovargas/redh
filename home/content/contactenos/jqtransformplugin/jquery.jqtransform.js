@@ -110,7 +110,7 @@
 			
 			$input.addClass("jqTransformInput").wrap('<div class="jqTransformInputWrapper"><div class="jqTransformInputInner"><div></div></div></div>');
 			var $wrapper = $input.parent().parent().parent();
-			$wrapper.css("width", "85%");//inputSize+10
+			$wrapper.css("width", "65%");//inputSize+10
 			$input
 				.focus(function(){$wrapper.addClass("jqTransformInputWrapper_focus");})
 				.blur(function(){$wrapper.removeClass("jqTransformInputWrapper_focus");})
@@ -235,7 +235,7 @@
 					.addClass('jqTransformSafariTextarea')
 					.find('div')
 						.css('height',textarea.height())
-						.css('width','247px')//textarea.width()
+						.css('width','205px')//textarea.width()
 				;
 			}
 		});

@@ -144,7 +144,7 @@ table.jqTransformTextarea td#jqTransformTextarea-mm textarea{
 table.jqTransformTextarea td{
 font-size: 1px;
 line-height: 1px;
-width: 5px;
+/*width: 5px;*/
 height: 5px;
 margin: 0;
 padding: 0;

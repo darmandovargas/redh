@@ -15,7 +15,7 @@ body{
 }
 
 #main-container{
-	width:400px;
+	width:100%;/*400px;*/
 	/*margin:30px auto;*/
 }
 

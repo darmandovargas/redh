@@ -400,16 +400,16 @@ a:focus {
   *width: 65.90425531914893%;
 }
 .row-fluid .span7 {
-  width: 57.44680851063829%;
-  *width: 57.39361702127659%;
+  width: 73%;/*57.44680851063829%;*/
+  *width: 73%;/*57.39361702127659%;*/
 }
 .row-fluid .span6 {
-  width: 48.93617021276595%;
-  *width: 48.88297872340425%;
+  width: 100%;/*48.93617021276595%;*/
+  *width: 100%;/*48.88297872340425%;*/
 }
 .row-fluid .span5 {
-  width: 40.42553191489362%;
-  *width: 40.37234042553192%;
+  width: 25%;/*40.42553191489362%;*/
+  *width: 25%;/*40.37234042553192%;*/
 }
 .row-fluid .span4 {
   width: 31.914893617021278%;
@@ -933,7 +933,7 @@ input[type="color"],
 .uneditable-input {
   display: inline-block;
   height: 20px;
-  padding: 4px 6px;
+  /*padding: 4px 6px;*/
   margin-bottom: 10px;
   font-size: 14px;
   line-height: 20px;

@@ -1,80 +1,61 @@
-var rectangle;
-var map;
-var infoWindow;
+// Global variables
+var map, rectangle, infoWindow, htmlraw, historicalOverlay, overlay, input, map_actual, northEast, southWest, bounds;
 
-var htmlraw;
-
-var historicalOverlay;
-
-var overlay, input;
-
+// This will create the second layer for the uploaded image
 DebugOverlay.prototype = new google.maps.OverlayView();
 
-function initialize(isRefresh, dynamicImage) {
-
-	//console.log( typeof (image));
+// Initialize custom function for map
+function initialize(isRefresh, dynamicImage, estation) {	
+	
 	// This will paint or not the search (the seach input can´t be obtained by javascript on clean lines)
-	if ( typeof (dynamicImage) === 'undefined')
-		dynamicImage = 'img/Risaralda_A3_sin.png';//'img/mapa_risaralda.png';
-	else
-		dynamicImage = dynamicImage;
-	// This will paint or not the search (the seach input can´t be obtained by javascript on clean lines)
-	if ( typeof (isRefresh) === 'object')
-		isRefresh = false;
-
-	var styles = [{
-		stylers : [{
-			hue : "#0000ff"
-		}, {
-			saturation : 0
-		}]
-	}, {
-		featureType : "road",
-		elementType : "geometry",
-		stylers : [{
-			lightness : 100
-		}, {
-			visibility : "simplified"
-		}]
-	}, {
-		featureType : "road",
-		elementType : "labels",
-		stylers : [{
-			visibility : "off"
-		}]
-	}];
-
+	if ( typeof (isRefresh) === 'object'){
+		isRefresh = false;         
+	}
+		
+	// Map Options
 	var mapOptions = {
 		zoom : 12,
-		center : new google.maps.LatLng(4.814168323, -75.69444586)/*,
-		scrollwheel: true,
-		navigationControl: false,
-		scaleControl: false,
-		streetViewControl: false,
-		draggable: true,
-		mapTypeControl: false,
-		mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-		navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-		*/
-		//styles: styles
-		//center: new google.maps.LatLng(-25.363882, 131.044922)
-		//center: new google.maps.LatLng(4.81321, -75.6946)
-		// Pereira latitud: 4.81321
-		// Pereira longitud: -75.6946
+		center : new google.maps.LatLng(4.814168323, -75.69444586)	
 	};
-
-	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-	var northEast = new google.maps.LatLng(5.295278392, -75.490426);
-	var southWest = new google.maps.LatLng(4.70917919, -75.78304604);
-
-	var bounds = new google.maps.LatLngBounds(southWest, northEast);
-
-	// Search Box
-	if (!isRefresh) {
+	// Set Map options and element to render map
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	// Set nort east and south west limits to render map
+	northEast = new google.maps.LatLng(5.295278392, -75.490426);
+	southWest = new google.maps.LatLng(4.70917919, -75.78304604);
+	// Set limits to the map
+	bounds = new google.maps.LatLngBounds(southWest, northEast);
+	// Set bounds to the map
+	map.fitBounds(bounds);
 		
-		var types = document.getElementById('type-selector');
+	// Search Box, this won´t render after upload document because there are errors
+	if (!isRefresh) {		
+		showSearch();
+	}
+	//End Search Box
+
+	// Show Wheather Info
+	showWheather();
+	// End Wheather
+
+	// Tools
+	showTools();
+	// End Tools	
+	
+	// This will get the image if found
+	// TODO add function to upload kml format
+	showImage(dynamicImage);
+	// Fin Superposición de Imágenes
+	
+	// Show Stations
+	showStations(estation);
+	// End Show Stations	
+}
+
+/**
+ * This will show the search box
+ */
+function showSearch(){
+	var types = document.getElementById('type-selector');
 		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 		map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 		var autocomplete = new google.maps.places.Autocomplete(input);
@@ -91,9 +72,7 @@ function initialize(isRefresh, dynamicImage) {
 			if (!place.geometry) {
 				return;
 			}
-
 			// If the place has a geometry, then present it on a map.
-
 			if (place.geometry.viewport) {
 				map.fitBounds(place.geometry.viewport);
 			} else {
@@ -128,25 +107,28 @@ function initialize(isRefresh, dynamicImage) {
 				autocomplete.setTypes(types);
 			});
 		}
-
 		setupClickListener('changetype-all', []);
 		setupClickListener('changetype-establishment', ['establishment']);
 		setupClickListener('changetype-geocode', ['geocode']);
+}
 
-	}
-	//End Search Box
-
-	// Clima
-	var weatherLayer = new google.maps.weather.WeatherLayer({
+/**
+ * This will render wheather information on the map 
+ */
+function showWheather(){	
+	/*	var weatherLayer = new google.maps.weather.WeatherLayer({
 		temperatureUnits : google.maps.weather.TemperatureUnit.CELSIUS
 	});
 	weatherLayer.setMap(map);
-
+	*/
 	var cloudLayer = new google.maps.weather.CloudLayer();
 	cloudLayer.setMap(map);
-	// End Clima
+}
 
-	// Tools
+/**
+ * This will show the tools bar on top right of the map
+ */
+function showTools(){
 	var drawingManager = new google.maps.drawing.DrawingManager({
 		//drawingMode : google.maps.drawing.OverlayType.MARKER,
 		drawingControl : true,
@@ -158,92 +140,22 @@ function initialize(isRefresh, dynamicImage) {
 			icon : 'img/hidroelectrica.png'
 		},
 		circleOptions : {
-			fillColor : '#ffff00',
-			fillOpacity : 1,
-			strokeWeight : 5,
+			fillColor : '',
+			fillOpacity : 0.4,
+			strokeWeight : 4,
 			clickable : false,
 			editable : true,
 			zIndex : 1
 		}
 	});
 	drawingManager.setMap(map);
+}
 
-	// End Tools
-	
-	// Superposición de Imagenes
-	/* Simple working test
-	var imageBounds = new google.maps.LatLngBounds(
-	new google.maps.LatLng(4.70917919, -75.78304604),
-	new google.maps.LatLng(5.295278392, -75.490426));
-
-	historicalOverlay = new google.maps.GroundOverlay(
-	'http://localhost/mapa_risaralda.png',
-	imageBounds);
-	historicalOverlay.setMap(map);
-	*/
-	//if(dynamicImage!='img/mapa_risaralda.png'){}
-	//var bounds = new google.maps.LatLngBounds(southWest, northEast);
-	var swBound = southWest;
-	var neBound = northEast;
-
-	var srcImage = dynamicImage;
-
-	overlay = new DebugOverlay(bounds, srcImage, map);
-
-	var markerA = new google.maps.Marker({
-		position : swBound,
-		map : map,
-		draggable : true,
-		icon : 'img/resize_icon_small.png'
-	});
-
-	var markerB = new google.maps.Marker({
-		position : neBound,
-		map : map,
-		draggable : true,
-		icon : 'img/resize_icon_small.png'
-	});
-
-	google.maps.event.addListener(markerA, 'drag', function() {
-
-		var newPointA = markerA.getPosition();
-		var newPointB = markerB.getPosition();
-		var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-		overlay.updateBounds(newBounds);
-	});
-
-	google.maps.event.addListener(markerA, 'drag', function() {
-
-		var newPointA = markerA.getPosition();
-		var newPointB = markerB.getPosition();
-		var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-		overlay.updateBounds(newBounds);
-	});
-
-	google.maps.event.addListener(markerB, 'drag', function() {
-
-		var newPointA = markerA.getPosition();
-		var newPointB = markerB.getPosition();
-		var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-		overlay.updateBounds(newBounds);
-	});
-
-	google.maps.event.addListener(markerA, 'dragend', function() {
-
-		var newPointA = markerA.getPosition();
-		var newPointB = markerB.getPosition();
-		
-	});
-
-	google.maps.event.addListener(markerB, 'dragend', function() {
-		var newPointA = markerA.getPosition();
-		var newPointB = markerB.getPosition();
-		
-	});
-
-	// Fin Superposición de Imágenes
-
-	/*
+/**
+ * This will show image if the initialize function finds one
+ */
+function showImage(dynamicImage){
+    /* Working example of a kml image
 	Add KML layer
 	var ctaLayer = new google.maps.KmlLayer({
 	url: 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml'
@@ -251,61 +163,110 @@ function initialize(isRefresh, dynamicImage) {
 	});
 	ctaLayer.setMap(map);
 	*/
-
-	/*
-	var weatherLayer = new google.maps.weather.WeatherLayer({
-	temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
-	});
-	weatherLayer.setMap(map);
-
-	var cloudLayer = new google.maps.weather.CloudLayer();
-	cloudLayer.setMap(map);
-	*/
-
-	/*
-	var polyOptions = {
-	strokeColor: '#000000',
-	strokeOpacity: 1.0,
-	strokeWeight: 3
-	};
-	poly = new google.maps.Polyline(polyOptions);
-	poly.setMap(map);
-
-	// Add a listener for the click event
-	google.maps.event.addListener(map, 'click', addLatLng);
-
-	// Define the rectangle and set its editable property to true.
-	rectangle = new google.maps.Rectangle({
-	bounds: bounds,
-	editable: true,
-	draggable: true
-	});
-
-	rectangle.setMap(map);
-
-	// Add an event listener on the rectangle.
-	google.maps.event.addListener(rectangle, 'bounds_changed', showNewRect);
-	*/
-
-	// Define an info window on the map.
-	infoWindow = new google.maps.InfoWindow();
-
-	map.fitBounds(bounds);
-
-	$.each(estacionesJSON, function(idx, obj) {
-		//console.log(obj.coordenadas.latitud + "," + obj.coordenadas.longitud);
-		var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
-		var marker = new google.maps.Marker({
-			position : position,
-			animation : google.maps.Animation.DROP,
-			//icon:'icon.png',
-			icon : obj.icono,
-			map : map
+	// TODO Render Kml from upload form
+	/*if(isRefresh && dynamicImage[0].type == "kml"){
+		var ctaLayer = new google.maps.KmlLayer({
+	    	url: 'uploads/kml.kml' //dynamicImage[0].url
+	    });
+  		ctaLayer.setMap(map);
+    }   
+    */
+	// TODO add validations for specific extensions .jpeg, .jpg, kml... etc
+	if ( typeof (dynamicImage) === 'undefined'){
+		image = '';
+	}else{
+		image = dynamicImage[0].url;
+	}
+		
+	if(image!=''){
+		//var bounds = new google.maps.LatLngBounds(southWest, northEast);
+		var swBound = southWest;
+		var neBound = northEast;
+	
+		var srcImage = image;
+	
+		overlay = new DebugOverlay(bounds, srcImage, map);
+	
+		var markerA = new google.maps.Marker({
+			position : swBound,
+			map : map,
+			draggable : true,
+			icon : 'img/resize_icon_small.png'
 		});
-		google.maps.event.addListener(marker, 'click', toggleBounce);
-		marker.setTitle(obj.tipo + ": " + obj.nombre);
-		attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud);
+	
+		var markerB = new google.maps.Marker({
+			position : neBound,
+			map : map,
+			draggable : true,
+			icon : 'img/resize_icon_small.png'
+		});
+	
+		google.maps.event.addListener(markerA, 'drag', function() {
+	
+			var newPointA = markerA.getPosition();
+			var newPointB = markerB.getPosition();
+			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+			overlay.updateBounds(newBounds);
+		});
+	
+		google.maps.event.addListener(markerA, 'drag', function() {
+	
+			var newPointA = markerA.getPosition();
+			var newPointB = markerB.getPosition();
+			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+			overlay.updateBounds(newBounds);
+		});
+	
+		google.maps.event.addListener(markerB, 'drag', function() {
+	
+			var newPointA = markerA.getPosition();
+			var newPointB = markerB.getPosition();
+			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+			overlay.updateBounds(newBounds);
+		});
+	
+		google.maps.event.addListener(markerA, 'dragend', function() {
+	
+			var newPointA = markerA.getPosition();
+			var newPointB = markerB.getPosition();
+			
+		});
+	
+		google.maps.event.addListener(markerB, 'dragend', function() {
+			var newPointA = markerA.getPosition();
+			var newPointB = markerB.getPosition();
+			
+		});
+	}
+}
 
+/**
+ * Show stations, only publics if there is no session, or all of them if the user is logged in
+ */
+function showStations(estation) {
+	$.each(estacionesJSON, function(idx, obj) {
+		var n = -1;
+		if ( typeof (estation) === 'undefined') {
+			n = 1;
+		} else {
+			n = estation.indexOf(obj.tipo);
+		}
+		if ((obj.isPublic && !session) || session) {
+			if (n !== -1) {
+				var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
+				var marker = new google.maps.Marker({
+					position : position,
+					animation : google.maps.Animation.DROP,
+					//icon:'icon.png',
+					icon : obj.icono,
+					map : map
+				});
+				google.maps.event.addListener(marker, 'click', toggleBounce);
+				marker.setTitle(obj.tipo + ": " + obj.nombre);
+				addPopUp(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
+
+			}
+		}
 		function toggleBounce() {
 			if (marker.getAnimation() != null) {
 				marker.setAnimation(null);
@@ -313,11 +274,80 @@ function initialize(isRefresh, dynamicImage) {
 				marker.setAnimation(google.maps.Animation.BOUNCE);
 			}
 		}
-
 	});
 }
 
-// Superposición Funciones
+/**
+ * This will show custom positions
+ */
+function locate_position(){
+    
+        var x = $("#coordx").val().trim();
+        var y = $("#coordy").val().trim();
+        
+        if(x == '' || y == ''){
+            $('#text_inf').html("");
+            $('#text_inf').html("Debe ingresar las coordenadas X Y para encontrar la ubicación");
+            $('#content_inf').show();
+            return;
+        }else{
+            var RegExPatternLatitude = /[0-9]{1,2}[°][0-9]{1,2}['](?:\b[0-9]+(?:\.[0-9]*)?|\.[0-9]+\b)"$/;
+            if ((x.match(RegExPatternLatitude)) && (y.match(RegExPatternLatitude))) {
+
+            } else {
+                $('#text_inf').html("");
+                $('#text_inf').html("Debe ingresar un formato de coordenada valida</br>Ej: 75°41'58.16''");
+                $('#content_inf').show();
+                return;
+            } 
+        }
+	// Obtiene coordenada X
+	// Para ésta coordenada x°y'z'' el primer split obtiene ésto array(x,y'z'')    
+	var coordenadas = $("#coordx").val().split("°");
+	var gradosx = coordenadas[0];
+	// este split obtiene array (y,z,)
+	var coordenadas2 = coordenadas[1].split("'");
+	var minutosx = coordenadas2[0];
+	var segundosx = coordenadas[1];
+	
+	coordenadas = $("#coordx").val().split("°");
+	var gradosx = coordenadas[0];
+	// este split obtiene array (y,z,)
+	var coordenadas2 = coordenadas[1].split("'");
+	var minutosx = coordenadas2[0];
+	var segundosx = coordenadas2[1];
+	
+	x = parseFloat(gradosx) + parseFloat(minutosx)*0.0166667 + parseFloat(segundosx)*0.0166667*0.0166667;
+	//console.log("gradosx: "+gradosx+" minutosx: "+minutosx+" segundosx: "+segundosx+" x:"+x);
+	// Obtiene coordenada Y
+	coordenadas = $("#coordy").val().split("°");
+	var gradosy = coordenadas[0];
+	// este split obtiene array (y,z,)
+	coordenadas2 = coordenadas[1].split("'");
+	var minutosy = coordenadas2[0];
+	var segundosy = coordenadas2[1];
+	
+	y = (parseFloat(gradosy) + parseFloat(minutosy)*0.0166667 + parseFloat(segundosy)*0.0166667*0.0166667)*-1;
+	//console.log("gradosy: "+gradosy+" minutosy: "+minutosy+" segundosy: "+segundosy+" y:"+y);
+	//=J17*0,0166667*0,0166667+I17*0,0166667+H17
+    //var x = $("#coordx").val();
+    //var y = $("#coordy").val();
+    
+    var position = new google.maps.LatLng(x, y);
+    var marker = new google.maps.Marker({
+            position : position,
+            animation : google.maps.Animation.DROP,
+            icon : iconoPos,
+            map : map
+    });
+    //google.maps.event.addListener(marker, 'click', toggleBounce);
+    marker.setTitle("Latitud: "+x+" Longitud: "+y);  
+    return;
+}
+
+/**
+ * Image layer functions
+ */
 function DebugOverlay(bounds, image, map) {
 
 	this.bounds_ = bounds;
@@ -367,198 +397,178 @@ DebugOverlay.prototype.onRemove = function() {
 };
 // Fin Superposición Funciones
 
-// The five markers show a secret message when clicked
-// but that message is not within the marker's instance data
-function attachSecretMessage(marker, message) {
+/**
+ * Pop up of each station
+ */
+function addPopUp(marker, message, id, tipo) {
 
 	var infowindow = new google.maps.InfoWindow({
-		//style: 'position: absolute; left: 12px; top: 9px; overflow: auto; width: 250%; height: 412px;',
-		//width: '2500px',
-		content : '<iframe src="../tabs/tabs.html" height="560px" width="800px"></iframe>'
+		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'" height="560px" width="800px"></iframe>'
 	});
-	//console.log(htmlraw);
+	
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.open(marker.get('map'), marker);
-		$.get({
-			url : "../tabs/tabs.html",
-			success : function(data) {
-
-				htmlraw = data;
-				//alert(htmlraw)  /// should print the raw test.html
-				$("#ta").html(htmlraw);
-			}
-		});
 	});
-}
-
-// Show the new coordinates for the rectangle in an info window.
-
-/** @this {google.maps.Rectangle} */
-function showNewRect(event) {
-	var ne = rectangle.getBounds().getNorthEast();
-	var sw = rectangle.getBounds().getSouthWest();
-
-	var contentString = '<b>Rectangle moved.</b><br>' + 'New north-east corner: ' + ne.lat() + ', ' + ne.lng() + '<br>' + 'New south-west corner: ' + sw.lat() + ', ' + sw.lng();
-
-	// Set the info window's content and position.
-	infoWindow.setContent(contentString);
-	infoWindow.setPosition(ne);
-
-	infoWindow.open(map);
 }
 
 /**
- * Handles click events on a map, and adds a new point to the Polyline.
- * @param {google.maps.MouseEvent} event
+ * Reload Map
  */
-function addLatLng(event) {
-
-	var path = poly.getPath();
-
-	// Because path is an MVCArray, we can simply append a new coordinate
-	// and it will automatically appear.
-	path.push(event.latLng);
-
-	// Add a new marker at the new plotted point on the polyline.
-	var marker = new google.maps.Marker({
-		position : event.latLng,
-		title : '#' + path.getLength(),
-		map : map
-	});
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-
-/*
-function cleanLines() {
-	loadImage();
-}
-*/
-
 function refreshMap() {
 	location.reload();
 }
 
-function loadImage(url) {
-	initialize(true,url);
+/**
+ * Load image
+ * @param Json url and type
+ */
+function loadImageOrKml(imageInfo) {
+	initialize(true,imageInfo);
 }
 
-// Upload Image
+/**
+ * Funcion que se llama para filtrar por tipos de estaciones según los checkbox seleccionados
+ */
+function filter_estation(){
+    var checkboxValues = "";
+    $('input[name="estation[]"]:checked').each(function() {
+            checkboxValues += $(this).val() + " ";
+    });        
+    initialize(true, undefined, checkboxValues);
+}
 
-$( document ).ready(function() {
-	
-input = /** @type {HTMLInputElement} */(document.getElementById('search'));
-   
-// Variable to store your files
-var files, imageName;
+// This will load the map on window load event
+google.maps.event.addDomListener(window, 'load', initialize);
 
-//function loadImage(){
-	// Add events
+// Upload image
+$(document).ready(function() {
+		
+	input = document.getElementById('search');
+	   
+	// Variable to store your files
+	var files, imageName;
+	// Line to prepare upload of the image
 	$('input[type=file]').on('change', prepareUpload);
-//}
+	// Grab the files and set them to our variable
+	function prepareUpload(event){
+		files = event.target.files;
+		imageName = files[0].name;
+		console.log(files[0].name);
+	}
+	// Event submit image form
+	$('#uploadForm').on('submit', uploadFiles);
+	// Catch the form submit and upload the files
 
-// Grab the files and set them to our variable
-function prepareUpload(event){
-	files = event.target.files;
-	imageName = files[0].name;
-	console.log(files[0].name);
-}
+	function uploadFiles(event) {
+                $("#msg_loader").show();    
+		event.stopPropagation();
+		// Stop stuff happening
+		event.preventDefault();
+		// Totally stop stuff happening
+		// START A LOADING SPINNER HERE
+                var uploadImage = document.getElementById ("uploadImage").value;
+                if(uploadImage == ''){
+                    $('#text_inf').html("");                
+                    $('#text_inf').html("Debe seleccionar un archivo para subir");                
+                    $('#content_inf').show();
+                    $("#msg_loader").hide();
+                    return;
+                }
 
-$('#uploadForm').on('submit', uploadFiles);
- 
-// Catch the form submit and upload the files
-function uploadFiles(event){
-  event.stopPropagation(); // Stop stuff happening
-    event.preventDefault(); // Totally stop stuff happening
- 
-    // START A LOADING SPINNER HERE
- 
-    // Create a formdata object and add the files
-	var data = new FormData();
-	$.each(files, function(key, value)
-	{
-		data.append(key, value);
-	});
-    
-    $.ajax({
-        url: 'upload.php?files',
-        type: 'POST',
-        data: data,
-        cache: false,
-        dataType: 'json',
-        processData: false, // Don't process the files
-        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-        success: function(data, textStatus, jqXHR)
-        {
-        	if(typeof data.error === 'undefined')
-        	{
-        		// Success so call function to process the form
-        		submitForm(event, data);
-        	}
-        	else
-        	{
-        		// Handle errors here
-        		console.log('ERRORS: ' + data.error);
-        	}
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-        	// Handle errors here
-        	console.log('ERRORS: ' + textStatus);
-        	// STOP LOADING SPINNER
-        }
-    });
-}
+		// Create a formdata object and add the files
+		var data = new FormData();
+		$.each(files, function(key, value) {
+			data.append(key, value);
+		});
 
-function submitForm(event, data)
-{
-  // Create a jQuery object from the form
-	$form = $(event.target);
-	
-	// Serialize the form data
-	var formData = $form.serialize();
-	
-	// You should sterilise the file names
-	$.each(data.files, function(key, value)
-	{
-		formData = formData + '&filenames[]=' + value;
-	});
- 
-	$.ajax({
-		url: 'upload.php',
-        type: 'POST',
-        data: formData,
-        cache: false,
-        dataType: 'json',
-        success: function(data, textStatus, jqXHR)
-        {
-        	if(typeof data.error === 'undefined')
-        	{
-        		// Success so call function to process the form
-        		console.log('SUCCESS: ' + data.success);
-        		loadImage("uploads/"+imageName);
-        	}
-        	else
-        	{
-        		imageName="";
-        		// Handle errors here
-        		console.log('ERRORS: ' + data.error);
-        	}
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-        	// Handle errors here
-        	console.log('ERRORS: ' + textStatus);
-        },
-        complete: function()
-        {
-        	// STOP LOADING SPINNER
-        }
-	});
-}
+		$.ajax({
+			url : 'upload.php?files',
+			type : 'POST',
+			data : data,
+			cache : false,
+			dataType : 'json',
+			processData : false, // Don't process the files
+			contentType : false, // Set content type to false as jQuery will tell the server its a query string request
+			success : function(data, textStatus, jqXHR) {
+				if ( typeof data.error === 'undefined') {
+					// Success so call function to process the form
+                                        $("#msg_loader").hide();
+					submitForm(event, data);
+				} else {
+					// Handle errors here
+                                        $("#msg_loader").hide();
+                                        $('#text_inf').html("");                
+                                        $('#text_inf').html(data.error);                
+                                        $('#content_inf').show();
+                                        console.log('ERRORS: ' + data.error);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				// Handle errors here
+				console.log('ERRORS: ' + textStatus);
+				// STOP LOADING SPINNER
+			}
+		});
+	}
 
- 
+	function submitForm(event, data) {
+		/*tipo = imageName.split(".");
+		tipo = tipo[1];
+		alert(tipo);
+		*/
+		// Create a jQuery object from the form
+		$form = $(event.target);
+
+		// Serialize the form data
+		var formData = $form.serialize();
+
+		// You should sterilise the file names
+		$.each(data.files, function(key, value) {
+			formData = formData + '&filenames[]=' + value;
+		});
+
+		$.ajax({
+			url : 'upload.php',
+			type : 'POST',
+			data : formData,
+			cache : false,
+			dataType : 'json',
+			success : function(data, textStatus, jqXHR) {
+				if ( typeof data.error === 'undefined') {
+					// Success so call function to process the form
+					console.log('SUCCESS: ' + data.success);
+					console.log("data");
+					console.log(data);
+					//console.log(imageName);
+					tipo = imageName.split(".");
+					tipo = tipo[1];
+					console.log(tipo);
+					imageInfo = [{
+						'url' : 'uploads/' + imageName,
+						'type' : tipo
+					}];
+					console.log("imageName");
+					console.log(imageName);
+					loadImageOrKml(imageInfo);
+				} else {
+					imageName = "";
+					// Handle errors here
+					console.log('ERRORS: ' + data.error);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				// Handle errors here
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete : function() {
+				// STOP LOADING SPINNER
+			}
+		});
+	}
 });
-
 // End Upload Image
+
+/* Close div content_inf */
+function close_content_inf(){
+    $('#content_inf').fadeOut(1000);
+}
