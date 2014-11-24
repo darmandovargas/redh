@@ -328,15 +328,17 @@ function preseleccionar(name){
 
 });
 
-function preseleccionar(name,tipoestacion){
+function preseleccionar(name,tipoestacion,carpeta){
            var estacion = name;
            var tipo = tipoestacion;
+           var folder = carpeta;
+           
            $.ajax({					
                 cache: false,
                 type: "POST",
                 dataType: "json",
                 url: "load_directory.php",
-                data: {name : estacion,actionID : 'search_directory'},
+                data: {name : estacion,actionID : 'search_directory',folder : folder,tipo : tipo},
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
@@ -359,7 +361,7 @@ function preseleccionar(name,tipoestacion){
                                 $("#archive").html("");
                                 $('#archive').html(response.salida);
                                 $("#boletin option[value="+ response.salida +"]").attr("selected",true);
-                                $( "#boletin" ).trigger( "change" ); 
+                                $( "#boletin" ).trigger( "change" );
                                 search_preselect();
                         }
                 },

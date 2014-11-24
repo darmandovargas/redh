@@ -102,7 +102,7 @@ function initialize() {
 			});
 			google.maps.event.addListener(marker, 'click', toggleBounce);
 			marker.setTitle(/*obj.tipo + ": " + */obj.nombre);
-			attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.nombre);
+			attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.nombre, obj.carpeta);
 	
 			
 		}
@@ -188,8 +188,8 @@ DebugOverlay.prototype.onRemove = function() {
 
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data
-function attachSecretMessage(marker, message, id, tipo, nombre) {
-	content = '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'" height="560px" width="800px"></iframe>'
+function attachSecretMessage(marker, message, id, tipo, nombre,carpeta) {
+	content = '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'&carpeta='+carpeta+'" height="560px" width="800px"></iframe>'
 	//if(id==0){
 	//	content = '<h2>'+nombre+'</h2><h3>No existe información almacenada referente a ésta estación</h3>';
 	//}

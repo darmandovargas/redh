@@ -378,6 +378,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
+                    "carpeta": "boc acueducto la florida",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -397,6 +398,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
+                    "carpeta": "boc acueducto la bella",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -416,6 +418,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD003 (Bocatoma Acueducto Pérez Alto) ",
+                    "carpeta": "boc acueducto perez alto",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -435,6 +438,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
+                    "carpeta": "boc acueducto acuasat tinajas",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -454,6 +458,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
+                    "carpeta": "boc acueducto la honda",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -473,6 +478,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD006 (Finca Lisbran)",
+                    "carpeta": "01_finca_lisbran",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -492,6 +498,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD007 (Finca Lisbran)",
+                    "carpeta": "02_finca_lisbran",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -511,6 +518,7 @@ estacionesJSON = [
 			"id":"39",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD008 (UTP)",
+                    "carpeta": "utp",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -530,6 +538,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD009 (Ormaza)",
+                    "carpeta": "bomberos ormaza",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -549,6 +558,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD010 (CAI Galan)",
+                    "carpeta": "cai galan",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -568,6 +578,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD011 (Parque Industrial)",
+                    "carpeta": "parque industrial",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -587,6 +598,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD012 (CAI Consota)",
+                    "carpeta": "cai consota",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -606,6 +618,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD013 (CAI Poblado)",
+                    "carpeta": "cai poblado",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -625,6 +638,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD014 (CAI Villa Verde)",
+                    "carpeta": "cai villaverde",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -644,6 +658,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD015 (Bosque de Cuba)",
+                    "carpeta": "bosques de cuba",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -663,6 +678,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD016 (Tanque Calicanto)",
+                    "carpeta": "calicanto",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -682,6 +698,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD017 (Cruz Roja)",
+                    "carpeta": "cruz roja",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -701,6 +718,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD018 (Saint George School)",
+                    "carpeta": "colegio saint george",
 		    "variables": {
 		      "0": "Precipitación"
 		    },

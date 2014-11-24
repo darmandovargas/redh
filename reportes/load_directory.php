@@ -30,7 +30,9 @@ switch ($_POST['actionID']) {
         break;
     case 'search_directory':
             $name = $_POST['name'];
-            $search = search_directory_estation($name);
+            $carpeta = $_POST['folder'];
+            $tipo = $_POST['tipo'];
+            $search = search_directory_estation($name,$carpeta,$tipo);
             if($search != ""){
                 $respuesta = true;
                 $salida = $search;
@@ -87,14 +89,14 @@ function scandirectory($path,$name){
  * 
  */
 
-function search_directory_estation($name){
+function search_directory_estation($name,$carpeta,$tipo){
     $search = "";
-    if($name != ""){
+    if($name != "" || $carpeta != ""){
         if(search_directory("estaciones",$name)){
             $search = "estaciones";
         }else if(search_directory("sensores",$name)){
             $search = "sensores";
-        }else if(search_directory("pluviometros",$name)){
+        }else if(search_directory("pluviometros",$name,$carpeta,$tipo)){
             $search = "pluviometros";
         }else{
             $search = "";
@@ -117,9 +119,12 @@ function search_directory_estation($name){
  * 
  */
 
-function search_directory($path,$name){
+function search_directory($path,$name,$carpeta,$tipo){
     $respuesta = false;
-    if($name != ""){
+    if($name != "" || $carpeta != ""){
+        if ($tipo == "PD" && $carpeta != "") {
+            $name = $carpeta;
+        }
         $directorio = "boletines/".$path;
         $gestor_dir = opendir($directorio);
         if($gestor_dir){

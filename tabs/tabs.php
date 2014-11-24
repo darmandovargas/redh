@@ -7,6 +7,10 @@ $estationTable = $privateEstationTable = array();
 $idEstacion = $_GET['id'];
 // Obtiene el tipo de estacion
 $tipoEstacion = $_GET['tipo'];
+// Carpeta
+$carpeta = "";
+if(isset($_GET['carpeta']))
+    $carpeta = $_GET['carpeta'];
 // Si la estación existe en la base de datos entonces arme el json para graficar
 if ($idEstacion != 0) {
 	// Inicializa array de variables a sensar y graficar
@@ -396,12 +400,12 @@ if ($idEstacion != 0) {
 	  				?>	
 					<li class="sky-tab-content-2">
 						<div class="typography" style="margin: 0 0 0 60px;">
-							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion; ?>" height="500px" width="420px"></iframe>
+							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="500px" width="420px"></iframe>
 						</div>
 					</li>
 					<li class="sky-tab-content-3">
 						<div class="typography"  >
-							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion; ?>" height="400px" width="540px"></iframe>
+							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="400px" width="540px"></iframe>
 						</div>
 					</li>
 				</ul>

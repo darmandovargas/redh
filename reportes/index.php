@@ -27,11 +27,19 @@
 	
         </script>
     </head>
-    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>')" style="background-color: #EAF5F3;height: 400px;">
+    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>','<?php echo $_REQUEST['folder'];?>')" style="background-color: #EAF5F3;height: 400px;">
         <?php $hasta = "2007"; ?>
         <div id="content">
                 <fieldset>
-                    <input type="hidden" value="<?php echo $_REQUEST['name']; ?>" id="name" name="name" />
+                    <?php
+                        $folder = "";
+                        if($_REQUEST['tipo'] == "PD" && $_REQUEST['folder'] != "undefined"){
+                            $folder = $_REQUEST['folder'];
+                        }else{
+                            $folder = $_REQUEST['name'];
+                        }
+                    ?>
+                    <input type="hidden" value="<?php echo $folder; ?>" id="name" name="name" />
                     <select class="input-xlarge" id="boletin">
                         <option value="">Seleccione tipo de boletin</option>
                         <option value="estaciones">Estaciones Hidroclimatológicas</option>

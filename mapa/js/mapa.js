@@ -263,7 +263,7 @@ function showStations(estation) {
 				});
 				google.maps.event.addListener(marker, 'click', toggleBounce);
 				marker.setTitle(obj.tipo + ": " + obj.nombre);
-				addPopUp(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
+				addPopUp(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
 
 			}
 		}
@@ -400,10 +400,10 @@ DebugOverlay.prototype.onRemove = function() {
 /**
  * Pop up of each station
  */
-function addPopUp(marker, message, id, tipo) {
+function addPopUp(marker, message, id, tipo, carpeta) {
 
 	var infowindow = new google.maps.InfoWindow({
-		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'" height="560px" width="800px"></iframe>'
+		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'&carpeta='+carpeta+'" height="560px" width="800px"></iframe>'
 	});
 	
 	google.maps.event.addListener(marker, 'click', function() {
