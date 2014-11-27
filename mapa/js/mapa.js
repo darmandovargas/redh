@@ -171,73 +171,86 @@ function showImage(dynamicImage){
   		ctaLayer.setMap(map);
     }   
     */
-	// TODO add validations for specific extensions .jpeg, .jpg, kml... etc
-	if ( typeof (dynamicImage) === 'undefined'){
-		image = '';
-	}else{
-		image = dynamicImage[0].url;
-	}
-		
-	if(image!=''){
-		//var bounds = new google.maps.LatLngBounds(southWest, northEast);
-		var swBound = southWest;
-		var neBound = northEast;
-	
-		var srcImage = image;
-	
-		overlay = new DebugOverlay(bounds, srcImage, map);
-	
-		var markerA = new google.maps.Marker({
-			position : swBound,
-			map : map,
-			draggable : true,
-			icon : 'img/resize_icon_small.png'
-		});
-	
-		var markerB = new google.maps.Marker({
-			position : neBound,
-			map : map,
-			draggable : true,
-			icon : 'img/resize_icon_small.png'
-		});
-	
-		google.maps.event.addListener(markerA, 'drag', function() {
-	
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-			overlay.updateBounds(newBounds);
-		});
-	
-		google.maps.event.addListener(markerA, 'drag', function() {
-	
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-			overlay.updateBounds(newBounds);
-		});
-	
-		google.maps.event.addListener(markerB, 'drag', function() {
-	
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-			overlay.updateBounds(newBounds);
-		});
-	
-		google.maps.event.addListener(markerA, 'dragend', function() {
-	
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			
-		});
-	
-		google.maps.event.addListener(markerB, 'dragend', function() {
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			
-		});
-	}
+   /**
+    * Se añade validación para subir archivo kml
+    * 
+    */
+        // TODO Render Kml from upload form
+        if(/*isRefresh &&*/ typeof dynamicImage !== 'undefined' && dynamicImage[0].type == "kml"){
+         //typeof data.error === 'undefined'
+        var ctaLayer = new google.maps.KmlLayer({
+             url: 'http://redhidro.org/mapa/'+dynamicImage[0].url
+            });
+           ctaLayer.setMap(map);
+        }else{
+            // TODO add validations for specific extensions .jpeg, .jpg, kml... etc
+            if ( typeof (dynamicImage) === 'undefined'){
+                    image = '';
+            }else{
+                    image = dynamicImage[0].url;
+            }
+
+            if(image!=''){
+                    //var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                    var swBound = southWest;
+                    var neBound = northEast;
+
+                    var srcImage = image;
+
+                    overlay = new DebugOverlay(bounds, srcImage, map);
+
+                    var markerA = new google.maps.Marker({
+                            position : swBound,
+                            map : map,
+                            draggable : true,
+                            icon : 'img/resize_icon_small.png'
+                    });
+
+                    var markerB = new google.maps.Marker({
+                            position : neBound,
+                            map : map,
+                            draggable : true,
+                            icon : 'img/resize_icon_small.png'
+                    });
+
+                    google.maps.event.addListener(markerA, 'drag', function() {
+
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+                            var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+                            overlay.updateBounds(newBounds);
+                    });
+
+                    google.maps.event.addListener(markerA, 'drag', function() {
+
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+                            var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+                            overlay.updateBounds(newBounds);
+                    });
+
+                    google.maps.event.addListener(markerB, 'drag', function() {
+
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+                            var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+                            overlay.updateBounds(newBounds);
+                    });
+
+                    google.maps.event.addListener(markerA, 'dragend', function() {
+
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+
+                    });
+
+                    google.maps.event.addListener(markerB, 'dragend', function() {
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+
+                    });
+            }
+        }
 }
 
 /**

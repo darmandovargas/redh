@@ -37,25 +37,32 @@ if(isset($_GET['files']))
                 $tamano_archivo = $file["size"]; 
                 $type = "";
                 $type_error = "";
-                switch($tipo_archivo) {
-                                case "image/jpg":
-                                $type = "jpg";    
-                                case "image/jpeg":
-                                $type = "jpeg";
-                                break; 
-                                case "image/gif":
-                                $type = "gif";
-                                break; 
-                                case "image/png":
-                                $type = "png";
-                                break; 
-                        }
+                $extension = explode(".",$nombre_archivo);
+                $num = count($extension)-1;
+                if($extension[$num] == "kml")
+                {
+                    $type = "kml"; 
+                }else{
+                    switch($tipo_archivo) {
+                        case "image/jpg":
+                        $type = "jpg";    
+                        case "image/jpeg":
+                        $type = "jpeg";
+                        break; 
+                        case "image/gif":
+                        $type = "gif";
+                        break; 
+                        case "image/png":
+                        $type = "png";
+                        break; 
+                    }
+                }
                 // Para añadir validacion kml $detected_kml = explode(".", $nombre_archivo);  && !($detected_kml[1] == 'kml')
                 
                 if (empty($type) || $tamano_archivo > 2000000) 
                 {  
                         $error = true;
-                        $type_error = "El archivo debe ser de tipo jpeg, jpg, gif, png y su tamaño no debe ser mayor a 2MB.";
+                        $type_error = "El archivo debe ser de tipo kml, jpeg, jpg, gif, png y su tamaño no debe ser mayor a 2MB.";
                 }else{
                     if(move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name'])))
                     {
