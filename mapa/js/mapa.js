@@ -259,11 +259,25 @@ function showImage(dynamicImage){
 function showStations(estation) {
 	$.each(estacionesJSON, function(idx, obj) {
 		var n = -1;
+		
 		if ( typeof (estation) === 'undefined') {
 			n = 1;
 		} else {
-			n = estation.indexOf(obj.tipo);
+			if(estation[1]=="estation"){
+				n = estation[0].indexOf(obj.tipo);	
+			}else{
+				$.each(obj.variables, function(idy, variable) {
+					//console.log(variable);
+					n = estation[0].indexOf(variable); 
+					if(n>-1){
+						return false;
+					}
+				});
+			}
 		}
+		
+		console.log("n="+n);
+		
 		if ((obj.isPublic && !session) || session) {
 			if (n !== -1) {
 				var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
@@ -280,6 +294,7 @@ function showStations(estation) {
 
 			}
 		}
+		
 		function toggleBounce() {
 			if (marker.getAnimation() != null) {
 				marker.setAnimation(null);
@@ -440,14 +455,37 @@ function loadImageOrKml(imageInfo) {
 }
 
 /**
- * Funcion que se llama para filtrar por tipos de estaciones según los checkbox seleccionados
+ * Funcion que se llama para filtrar por tipos de estaciones según los checkbox seleccionados 
  */
-function filter_estation(){
-    var checkboxValues = "";
-    $('input[name="estation[]"]:checked').each(function() {
-            checkboxValues += $(this).val() + " ";
-    });        
-    initialize(true, undefined, checkboxValues);
+function filter_estation(isVariable){
+	var checkboxValues = [];
+	if(typeof isVariable !== 'undefined'){		
+		checkboxValues[1] = "variable";
+	    $('input[name="estation[]"]:checked').each(function() {	    		
+	            checkboxValues[0] += $(this).val() + " ";
+	    });        
+	    initialize(true, undefined, checkboxValues);	
+	}else{
+		checkboxValues[1] = "estation";
+	    $('input[name="estation[]"]:checked').each(function() {
+	            checkboxValues[0] += $(this).val() + " ";
+	    });        
+	    initialize(true, undefined, checkboxValues);
+	}
+    
+}
+
+/**
+ * Función para mostrar u ocultar variables o tipos de estaciones como filtro
+ */
+function showHideVariables(){
+	if($("#estationsOrVariables").is(':checked')){
+		$("#estationsDiv").fadeOut("slow").hide();
+		$("#variablesDiv").fadeIn("slow").show();				
+	}else{
+		$("#estationsDiv").fadeIn("slow").show();
+		$("#variablesDiv").fadeOut("slow").hide();
+	}	
 }
 
 // This will load the map on window load event

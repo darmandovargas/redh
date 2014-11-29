@@ -10,13 +10,14 @@ estacionesJSON = [
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT001 (El Lago)",
 		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Humedad Relativa",
-		      "3": "Radiación Solar",
-		      "4": "Presión Barométrica",
-		      "5": "Velocidad del Viento",
-		      "6": "Dirección del Viento"
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "radiacion",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
 		    },
 		    "coordenadas": {
 		      "latitud": 4.814751659,
@@ -35,13 +36,14 @@ estacionesJSON = [
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT002 (Cortaderal)",
 		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Humedad Relativa",
-		      "3": "Radiación Solar",
-		      "4": "Presión Barométrica",
-		      "5": "Velocidad del Viento",
-		      "6": "Dirección del Viento"
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "radiacion",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
 		    },
 		    "coordenadas": {
 		      "latitud": 4.750273723,
@@ -60,13 +62,14 @@ estacionesJSON = [
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT003 (San José)",
 		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Humedad Relativa",
-		      "3": "Radiación Solar",
-		      "4": "Presión Barométrica",
-		      "5": "Velocidad del Viento",
-		      "6": "Dirección del Viento"
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "radiacion",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
 		    },
 		    "coordenadas": {
 		      "latitud": 4.815287772,
@@ -85,13 +88,14 @@ estacionesJSON = [
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT004 (Alto del Nudo)",
 		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Humedad Relativa",
-		      "3": "Radiación Solar",
-		      "4": "Presión Barométrica",
-		      "5": "Velocidad del Viento",
-		      "6": "Dirección del Viento"
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "radiacion",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
 		    },
 		    "coordenadas": {
 		      "latitud": 4.872101755,
@@ -110,13 +114,14 @@ estacionesJSON = [
   			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT005 (Quinchía - Seafield)",
 		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Humedad Relativa",
-		      "3": "Radiación Solar",
-		      "4": "Presión Barométrica",
-		      "5": "Velocidad del Viento",
-		      "6": "Dirección del Viento"
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "radiacion",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
 		    },
 		    "coordenadas": {
 		      "latitud": 5.295278392,
@@ -135,9 +140,9 @@ estacionesJSON = [
   			"tipo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT001 (El Cedral)",
 		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Nivel del Cause"
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
 		    },
 		    "coordenadas": {
 		      "latitud": 4.70317919,
@@ -156,9 +161,9 @@ estacionesJSON = [
   			"tipo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT002 (San Juan)",
 		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Nivel del Cause"
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
 		    },
 		    "coordenadas": {
 		      "latitud": 4.756979306,
@@ -176,15 +181,7 @@ estacionesJSON = [
 			"id" : "37",
   			"tipo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC001 (Acuaseo)",
-		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Humedad Relativa",
-		      "3": "Radiación Solar",
-		      "4": "Presión Barométrica",
-		      "5": "Velocidad del Viento",
-		      "6": "Dirección del Viento"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.861723969,
 		      "longitud": -75.65464021
@@ -201,15 +198,7 @@ estacionesJSON = [
 			"id" : "38",
   			"tipo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC002 (Mundo Nuevo)",
-		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Humedad Relativa",
-		      "3": "Radiación Solar",
-		      "4": "Presión Barométrica",
-		      "5": "Velocidad del Viento",
-		      "6": "Dirección del Viento"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.756890416,
 		      "longitud": -75.66111246
@@ -226,9 +215,7 @@ estacionesJSON = [
 			"id" : "32",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN001 (Quebrada Dalí)",
-		    "variables": {
-		      "0": "Nivel del cauce por presión de lamina de Agua"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.741718167,
 		      "longitud": -75.59009842
@@ -245,9 +232,7 @@ estacionesJSON = [
 			"id" : "34",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN002 (Quebrada Negra)",
-		    "variables": {
-		      "0": "Nivel del cauce por presión de lamina de Agua"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.744059843,
 		      "longitud": -75.60326232
@@ -264,9 +249,7 @@ estacionesJSON = [
 			"id" : "31",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN003 (Quebrada El Manzano)",
-		    "variables": {
-		      "0": "Nivel del cauce por presión de lamina de Agua"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.759279315,
 		      "longitud": -75.61186236
@@ -283,9 +266,7 @@ estacionesJSON = [
 			"id" : "35",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN004 (Quebrada Volcanes) ",
-		    "variables": {
-		      "0": "Nivel del cauce por presión de lamina de Agua"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.783696013,
 		      "longitud": -75.63461238
@@ -302,9 +283,7 @@ estacionesJSON = [
 			"id": "30",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN005  (Quebrada San Eustaquio)",
-		    "variables": {
-		      "0": "Nivel del cauce por presión de lamina de Agua"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.769723768,
 		      "longitud": -75.60855679
@@ -321,9 +300,7 @@ estacionesJSON = [
 			"id":"33",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN006  (Quebrada El Oso)",
-		    "variables": {
-		      "0": "Nivel del cauce por presión de lamina de Agua"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.800371046,
 		      "longitud": -75.73376536
@@ -340,9 +317,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN007  (Humedal Lisbran)",
-		    "variables": {
-		      "0": "Nivel del cauce por presión de lamina de Agua"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.738834822,
 		      "longitud": -75.58364006
@@ -359,9 +334,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN008 (Humedal Lisbran 2)",
-		    "variables": {
-		      "0": "Nivel del cauce por presión de lamina de Agua"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.738834822,
 		      "longitud": -75.58374006
@@ -379,9 +352,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
                     "carpeta": "boc acueducto la florida",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.744045954,
 		      "longitud": -75.60941513
@@ -399,9 +370,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
                     "carpeta": "boc acueducto la bella",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.738934822,
 		      "longitud": -75.6177679
@@ -419,9 +388,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD003 (Bocatoma Acueducto Pérez Alto) ",
                     "carpeta": "boc acueducto perez alto",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.711854225,
 		      "longitud": -75.66235135
@@ -439,9 +406,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
                     "carpeta": "boc acueducto acuasat tinajas",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.744709846,
 		      "longitud": -75.70915421
@@ -459,9 +424,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
                     "carpeta": "boc acueducto la honda",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.874440653,
 		      "longitud": -75.78304604
@@ -479,9 +442,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD006 (Finca Lisbran)",
                     "carpeta": "01_finca_lisbran",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.740557051,
 		      "longitud": -75.58052897
@@ -499,9 +460,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD007 (Finca Lisbran)",
                     "carpeta": "02_finca_lisbran",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.742445948,
 		      "longitud": -75.58047341
@@ -519,9 +478,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD008 (UTP)",
                     "carpeta": "utp",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.793668275,
 		      "longitud": -75.69079306
@@ -539,9 +496,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD009 (Ormaza)",
                     "carpeta": "bomberos ormaza",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.813973878,
 		      "longitud": -75.68077917
@@ -559,9 +514,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD010 (CAI Galan)",
                     "carpeta": "cai galan",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.821334985,
 		      "longitud": -75.70369586
@@ -579,9 +532,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD011 (Parque Industrial)",
                     "carpeta": "parque industrial",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.821909988,
 		      "longitud": -75.7247848
@@ -619,9 +570,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD013 (CAI Poblado)",
                     "carpeta": "cai poblado",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.802251609,
 		      "longitud": -75.70397364
@@ -639,9 +588,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD014 (CAI Villa Verde)",
                     "carpeta": "cai villaverde",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.792168269,
 		      "longitud": -75.71141256
@@ -659,9 +606,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD015 (Bosque de Cuba)",
                     "carpeta": "bosques de cuba",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.792140491,
 		      "longitud": -75.7269987
@@ -679,9 +624,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD016 (Tanque Calicanto)",
                     "carpeta": "calicanto",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.796982177,
 		      "longitud": -75.66864301
@@ -699,9 +642,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD017 (Cruz Roja)",
                     "carpeta": "cruz roja",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.807421074,
 		      "longitud": -75.69224029
@@ -719,9 +660,7 @@ estacionesJSON = [
   			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD018 (Saint George School)",
                     "carpeta": "colegio saint george",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
+		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.781084924,
 		      "longitud": -75.69473475

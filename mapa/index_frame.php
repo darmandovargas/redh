@@ -134,12 +134,38 @@
 				<input type="submit" value="Subir Imagen" >
 			</form>
 			<input onclick="refreshMap();" type=button value="Refrescar Mapa" style="width: 100%">
+			<div>
+				<input type="checkbox" id="estationsOrVariables" name="type[]" value="1" onchange="showHideVariables()" />
+				<span class="check_labels">Filtrar por Variables</span>
+			</div>	
+			<div id="estationsDiv">
 			<input type="checkbox" id="check_estacion" name="estation[]" value="ECT EHT EC" onchange="filter_estation()" checked />
 			<span class="check_labels">Estaciones</span>
 			<input type="checkbox" id="check_sensor" name="estation[]" value="SN SNNT" onchange="filter_estation()"  checked />
 			<span class="check_labels">Sensores</span>
 			<input type="checkbox" id="check_pluviometro" name="estation[]" value="PDNT" onchange="filter_estation()" checked />
 			<span class="check_labels">Pluviometros</span>
+			</div>
+			<div id="variablesDiv" style="display: none;">
+				<input type="checkbox" id="check_temperatura" name="estation[]" value="temperatura" onchange="filter_estation(true)" checked />
+				<span class="check_labels">Temperatura</span>
+				<input type="checkbox" id="check_presion" name="estation[]" value="presion" onchange="filter_estation(true)"  checked />
+				<span class="check_labels">Presión</span>
+				<input type="checkbox" id="check_pluviometro" name="estation[]" value="pluviometro" onchange="filter_estation(true)" checked />
+				<span class="check_labels">Humedad</span>
+				<input type="checkbox" id="check_precipitacion" name="estation[]" value="precipitacion" onchange="filter_estation(true)" checked />
+				<span class="check_labels">Precipitación</span>
+				<input type="checkbox" id="check_radiacion" name="estation[]" value="nivel" onchange="filter_estation(true)"  checked />
+				<span class="check_labels">Nivel</span>
+				<input type="checkbox" id="check_radiacion" name="estation[]" value="radiacion" onchange="filter_estation(true)"  checked />
+				<span class="check_labels">Radiación</span>
+				<input type="checkbox" id="check_velocidad" name="estation[]" value="velocidad" onchange="filter_estation(true)" checked />
+				<span class="check_labels">Velocidad</span>
+				<input type="checkbox" id="check_direccion" name="estation[]" value="direccion" onchange="filter_estation(true)" checked />
+				<span class="check_labels">Dirección</span>
+				<input type="checkbox" id="check_evapotranspiracion" name="estation[]" value="evapotranspiracion" onchange="filter_estation(true)"  checked />
+				<span class="check_labels">Evapotranspiración</span>				
+			</div>
 		</div>
 		<div id="panel_log">
 			<span id="logout" class="logout">
