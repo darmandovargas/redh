@@ -471,8 +471,7 @@ function filter_estation(isVariable){
 	            checkboxValues[0] += $(this).val() + " ";
 	    });        
 	    initialize(true, undefined, checkboxValues);
-	}
-    
+	}    
 }
 
 /**
@@ -481,10 +480,12 @@ function filter_estation(isVariable){
 function showHideVariables(){
 	if($("#estationsOrVariables").is(':checked')){
 		$("#estationsDiv").fadeOut("slow").hide();
-		$("#variablesDiv").fadeIn("slow").show();				
+		$("#variablesDiv").fadeIn("slow").show();	
+		filter_estation(true);			
 	}else{
 		$("#estationsDiv").fadeIn("slow").show();
 		$("#variablesDiv").fadeOut("slow").hide();
+		filter_estation();
 	}	
 }
 
