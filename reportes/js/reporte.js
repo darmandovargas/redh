@@ -4,6 +4,7 @@ $(function(){
     $( "#buscar" ).click(function(){ 
         $('#archive').html("");
         $("#mensaje").show();
+        $("#modal_wait").show();
         var boletin = $("#boletin").val();
         var estacion = $("#estacion").val();
         var periocidad = $("#periocidad").val();
@@ -31,9 +32,11 @@ $(function(){
                         if(response.respuesta == false){
                                 $('#archive').html("<div class='alert alert-info'>No se encontraron resultados en la busqueda</div>");
                                 $("#mensaje").hide();
+                                $("#modal_wait").hide();
                         }else{
                                 $('#archive').html(response.salida);
                                 $("#mensaje").hide();
+                                $("#modal_wait").hide();
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
@@ -377,6 +380,7 @@ function preseleccionar(name,tipoestacion,carpeta){
 function search_preselect(){
         $('#archive').html("");
         $("#mensaje").show();
+        $("#modal_wait").show();
         var boletin = $("#boletin").val();
         var estacion = $("#name").val();
         var periocidad = $("#periocidad").val();
@@ -404,9 +408,11 @@ function search_preselect(){
                         if(response.respuesta == false){
                                 $('#archive').html("<div class='alert alert-info'>No se encontraron resultados en la busqueda</div>");
                                 $("#mensaje").hide();
+                                $("#modal_wait").hide();
                         }else{
                                 $('#archive').html(response.salida);
                                 $("#mensaje").hide();
+                                $("#modal_wait").hide();
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){

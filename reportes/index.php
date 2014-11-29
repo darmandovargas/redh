@@ -27,7 +27,7 @@
 	
         </script>
     </head>
-    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>','<?php echo $_REQUEST['folder'];?>')" style="background-color: white;height: 400px;">
+    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>','<?php echo $_REQUEST['folder'];?>')" style="background-color: #EAF5F3;height: 400px;">
         <?php $hasta = "2007"; //Color body #EAF5F3 ?>
         <div id="content">
                 <fieldset>
@@ -80,7 +80,8 @@
                     <button class="btn btn-primary" id="buscar">Buscar</button>
                 </fieldset>            
         </div>
-        <div id="mensaje" style="margin-left: 220px;display: none"><img src="../home/content/contactenos/wait.gif" alt="cargando" /></div>
+        <div id="modal_wait" style="position: absolute;width: 100%;height:100%;background-color: white;opacity: 0.5;z-index: 100;top:0;display: none;"></div>
+        <div id="mensaje" style="margin-left: 220px;display: none;opacity: 0.1;"><img src="../home/content/contactenos/wait.gif" alt="cargando" /></div>
         <div id="archive" style="margin-top: 30px;"></div>
     </body>
 </html>
