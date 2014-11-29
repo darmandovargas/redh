@@ -27,8 +27,8 @@
 	
         </script>
     </head>
-    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>','<?php echo $_REQUEST['folder'];?>')" style="background-color: #EAF5F3;height: 400px;">
-        <?php $hasta = "2007"; ?>
+    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>','<?php echo $_REQUEST['folder'];?>')" style="background-color: white;height: 400px;">
+        <?php $hasta = "2007"; //Color body #EAF5F3 ?>
         <div id="content">
                 <fieldset>
                     <?php
@@ -80,7 +80,7 @@
                     <button class="btn btn-primary" id="buscar">Buscar</button>
                 </fieldset>            
         </div>
-        <div id="mensaje" style="margin-left: 100px;display: none"><img src="images/cargando.gif" alt="cargando" />Buscando archivos, por favor espere un momento.</div>
+        <div id="mensaje" style="margin-left: 220px;display: none"><img src="../home/content/contactenos/wait.gif" alt="cargando" /></div>
         <div id="archive" style="margin-top: 30px;"></div>
     </body>
 </html>
