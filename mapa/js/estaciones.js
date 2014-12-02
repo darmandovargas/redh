@@ -283,6 +283,7 @@ estacionesJSON = [
 			"id": "30",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN005  (Quebrada San Eustaquio)",
+                    "carpeta": "quebrada san eustaquio",
 		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.769723768,
@@ -317,6 +318,7 @@ estacionesJSON = [
 			"id":"0",
   			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN007  (Humedal Lisbran)",
+                    "carpeta": "01_finca_lisbran",
 		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.738834822,
