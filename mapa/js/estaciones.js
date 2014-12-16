@@ -338,8 +338,8 @@ estacionesJSON = [
 		    "nombre": "SN008 (Humedal Lisbran 2)",
 		    "variables": {},
 		    "coordenadas": {
-		      "latitud": 4.738834822,
-		      "longitud": -75.58374006
+		      "latitud": 4.738368153,
+		      "longitud": -75.58307064
 		    },
 		    "isPublic": true,
 		    "tipo":"SNNT",

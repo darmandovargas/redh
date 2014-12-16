@@ -178,8 +178,10 @@ function showImage(dynamicImage){
         // TODO Render Kml from upload form
         if(/*isRefresh &&*/ typeof dynamicImage !== 'undefined' && dynamicImage[0].type == "kml"){
          //typeof data.error === 'undefined'
+        var url = dynamicImage[0].url;
+        var res = url.replace(/\s/g, "%20");
         var ctaLayer = new google.maps.KmlLayer({
-             url: 'http://redhidro.org/mapa/'+dynamicImage[0].url
+             url: 'http://redhidro.org/mapa/'+res
             });
            ctaLayer.setMap(map);
         }else{
