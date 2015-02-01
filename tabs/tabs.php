@@ -24,6 +24,14 @@ if ($idEstacion != 0) {
 			$tablaEstaciones = "estaciones";  
 			// Inicializa array de variables a sensar y graficar
 			$variables = array("temperatura", "precipitacion_real", "nivel"); break;
+		case 'ENT' :
+			$tablaEstaciones = "estaciones"; 
+			$variables = array("nivel");
+			break;
+		case 'EQT' :
+			$tablaEstaciones = "estaciones"; 
+			$variables = array("caudal");
+			break;	
 		case 'EC' :
 			$tablaEstaciones = "estacion_sensores"; break;
 		case 'SN' :
@@ -173,8 +181,9 @@ if ($idEstacion != 0) {
 							"nivel"=>array(0=>"Nivel (cm)",1=>"cm"),
 							"radiacion"=>array(0=>"Radiación Solar (W/m²)",1=>"W/m²"),
 							"velocidad"=>array(0=>"Velocidad (m/s)",1=>"m/s"),
-							"direccion"=>array(0=>"Dirección (°)",1=>"°"),
-							"evapo_real"=>array(0=>"Evapotranspiracion (mm)",1=>"mm")
+							"direccion"=>array(0=>"Dirección (°)",1=>"°"),							
+							"evapo_real"=>array(0=>"Evapotranspiracion (mm)",1=>"mm"),
+							"caudal"=>array(0=>"Caudal (m3/s)",1=>"m3/s")
 							);
 		//$variableTags["temperatura"][0]					
 	    foreach ($variables as $var) {
@@ -359,9 +368,10 @@ if ($idEstacion != 0) {
 						<div class="sky-tabs sky-tabs-internal sky-tabs-pos-top-left sky-tabs-anim-slide-top sky-tabs-response-to-stack background">
 						<?php	
 							$contaTabs = 1;
+							
 							foreach ($variables as $var) {
 						?>									
-								<input type="radio" name="sky-tabs-1" <?php echo ($var=="temperatura")?"checked":""; ?> id="<?php echo "sky-tab1-".$contaTabs;?>" class="sky-tab-content-<?php echo $contaTabs;?>">
+								<input type="radio" name="sky-tabs-1" <?php echo ($var=="temperatura" || count($variables)==1)?"checked":""; ?> id="<?php echo "sky-tab1-".$contaTabs;?>" class="sky-tab-content-<?php echo $contaTabs;?>">
 								<label for="<?php echo "sky-tab1-".$contaTabs;?>"><span class="sky-tabs_custom_pad"><span><?php echo ($var=="precipitacion_real")?"Precipitación":(($var=="evapo_real")?"Evapotranspiración":(($var=="presion")?"Presión":(($var=="radiacion")?"Radiación":(($var=="direccion")?"Dirección":ucfirst($var) ) ) ) ); ?></span></span></label>
 						<?php	
 								$contaTabs++;		

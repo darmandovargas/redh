@@ -66,6 +66,7 @@ $host = insert_host($oMySQL, $ip);
 		
 		
 		<style>
+			a {text-decoration: none}
 			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
 			.logout {			    
 			   	position: absolute;

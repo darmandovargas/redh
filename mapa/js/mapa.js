@@ -42,9 +42,8 @@ function initialize(isRefresh, dynamicImage, estation) {
 	// End Tools	
 	
 	// This will get the image if found
-	// TODO add function to upload kml format
 	showImage(dynamicImage);
-	// Fin Superposición de Imágenes
+	// Fin Superposición de Imágenes y kml
 	
 	// Show Stations
 	showStations(estation);
@@ -270,31 +269,36 @@ function showStations(estation) {
 			}else{
 				$.each(obj.variables, function(idy, variable) {
 					//console.log(variable);
-					n = estation[0].indexOf(variable); 
-					if(n>-1){
+					senseVar = estation[0].indexOf(variable); 
+					if(senseVar>-1){
+						n=1;
 						return false;
 					}
 				});
 			}
 		}
 		
-		console.log("n="+n);
+		//console.log("n="+n);
 		
 		if ((obj.isPublic && !session) || session) {
 			if (n !== -1) {
+				console.log(obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
 				var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
 				var marker = new google.maps.Marker({
 					position : position,
 					animation : google.maps.Animation.DROP,
-					//icon:'icon.png',
 					icon : obj.icono,
 					map : map
 				});
 				google.maps.event.addListener(marker, 'click', toggleBounce);
 				marker.setTitle(obj.tipo + ": " + obj.nombre);
-				addPopUp(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
+				addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
 
+			}else{
+				console.log(console.log("ELSE 1: ....... " + obj.tipo + ": " + obj.nombre));
 			}
+		}else{
+			console.log(console.log("ELSE 2: ....... " + obj.tipo + ": " + obj.nombre));
 		}
 		
 		function toggleBounce() {
@@ -465,13 +469,13 @@ function filter_estation(isVariable){
 		checkboxValues[1] = "variable";
 	    $('input[name="estation[]"]:checked').each(function() {	    		
 	            checkboxValues[0] += $(this).val() + " ";
-	    });        
+	    });
 	    initialize(true, undefined, checkboxValues);	
 	}else{
 		checkboxValues[1] = "estation";
 	    $('input[name="estation[]"]:checked').each(function() {
 	            checkboxValues[0] += $(this).val() + " ";
-	    });        
+	    });
 	    initialize(true, undefined, checkboxValues);
 	}    
 }
@@ -507,7 +511,7 @@ $(document).ready(function() {
 	function prepareUpload(event){
 		files = event.target.files;
 		imageName = files[0].name;
-		console.log(files[0].name);
+		//console.log(files[0].name);
 	}
 	// Event submit image form
 	$('#uploadForm').on('submit', uploadFiles);
@@ -590,19 +594,19 @@ $(document).ready(function() {
 			success : function(data, textStatus, jqXHR) {
 				if ( typeof data.error === 'undefined') {
 					// Success so call function to process the form
-					console.log('SUCCESS: ' + data.success);
-					console.log("data");
-					console.log(data);
+					//console.log('SUCCESS: ' + data.success);
+					//console.log("data");
+					//console.log(data);
 					//console.log(imageName);
 					tipo = imageName.split(".");
 					tipo = tipo[1];
-					console.log(tipo);
+					//console.log(tipo);
 					imageInfo = [{
 						'url' : 'uploads/' + imageName,
 						'type' : tipo
 					}];
-					console.log("imageName");
-					console.log(imageName);
+					//console.log("imageName");
+					//console.log(imageName);
 					loadImageOrKml(imageInfo);
 				} else {
 					imageName = "";

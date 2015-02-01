@@ -4,10 +4,14 @@ iconoECT = 'http://'+window.location.host+'/mapa/img/ECTnewblued.png';//ECT30.pn
 iconoSN  = 'http://'+window.location.host+'/mapa/img/nivelb23.png';
 iconoPD  = 'http://'+window.location.host+'/mapa/img/PD30.png';
 iconoPos  = 'http://'+window.location.host+'/mapa/img/punto.png';
+// New added 01-02-2015
+iconoENT  = 'http://'+window.location.host+'/mapa/img/ENT.png';
+iconoEQT  = 'http://'+window.location.host+'/mapa/img/caudal.png';
+
 estacionesJSON = [
   		{
   			"id" : "11",
-  			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
+  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT001 (El Lago)",
 		    "variables": {
 		      "0": "temperatura",
@@ -33,7 +37,7 @@ estacionesJSON = [
 		},
 		{
 			"id" : "6",
-  			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
+  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT002 (Cortaderal)",
 		    "variables": {
 		      "0": "temperatura",
@@ -59,7 +63,7 @@ estacionesJSON = [
 		},		
 		{
 			"id" : "16",
-  			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
+  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT003 (San José)",
 		    "variables": {
 		      "0": "temperatura",
@@ -85,7 +89,7 @@ estacionesJSON = [
 		},
 		{
 			"id" : "26",
-  			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
+  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT004 (Alto del Nudo)",
 		    "variables": {
 		      "0": "temperatura",
@@ -111,7 +115,7 @@ estacionesJSON = [
 		},
 		{
 			"id" : "30",
-  			"tipo": "Estaciones Climatológica Telemétrica (ECT)",
+  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT005 (Quinchía - Seafield)",
 		    "variables": {
 		      "0": "temperatura",
@@ -137,7 +141,7 @@ estacionesJSON = [
 		},
 		{
 			"id" : "14",
-  			"tipo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT001 (El Cedral)",
 		    "variables": {
 		      "0": "temperatura",
@@ -158,7 +162,7 @@ estacionesJSON = [
 		},
 		{
 			"id" : "17",
-  			"tipo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT002 (San Juan)",
 		    "variables": {
 		      "0": "temperatura",
@@ -176,10 +180,136 @@ estacionesJSON = [
 		    "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
 		    "fecha": "27 de Marzo de 2010",
 		    "estado": "Activa"	  		  
-		},		
+		},
+		
+		
+		{
+			"id":"60",
+  			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
+		    "nombre": "ENT001 (Bocatoma nuevo Libaré)",
+            "carpeta": "",
+		    "variables": {
+		    	"0": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.781601593,
+		      "longitud": -75.64497076
+		    },
+		    "isPublic": false,
+		    "tipo":"ENT",
+		    "icono": iconoENT, 
+		    "altitud": "1535 m.s.n.m",
+		    "ubicacion": "Bocatoma nuevo Libaré ",
+		    "fecha": "14 de Junio de 2013",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"62",
+  			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
+		    "nombre": "ENT002 (Bocatoma Belmonte) ",
+            "carpeta": "",
+		    "variables": {
+		    	"0": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.818462752,
+		      "longitud": -75.64397353
+		    },
+		    "isPublic": false,
+		    "tipo":"ENT",
+		    "icono": iconoENT, 
+		    "altitud": "1278 m.s.n.m",
+		    "ubicacion": "Bocatoma Belmonte ",
+		    "fecha": "14 de Junio de 2013",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"61",
+  			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
+		    "nombre": "ENT003 (Canal entrada Belmonte) ",
+            "carpeta": "",
+		    "variables": {
+		    	"0": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.818390529,
+		      "longitud": -75.6610819
+		    },
+		    "isPublic": false,
+		    "tipo":"ENT",
+		    "icono": iconoENT,  
+		    "altitud": "1277 m.s.n.m",
+		    "ubicacion": "Canal entrada Belmonte ",
+		    "fecha": "29 de julio de 2013",
+		    "estado": "Activa"	  		  
+		},{
+			"id":"59",
+  			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
+		    "nombre": "ENT004 (Canal Salida Belmonte) ",
+            "carpeta": "",
+		    "variables": {
+		    	"0": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.817601637,
+		      "longitud": -75.772546
+		    },
+		    "isPublic": false,
+		    "tipo":"ENT",
+		    "icono": iconoENT, 
+		    "altitud": "1240 m.s.n.m",
+		    "ubicacion": "Canal Salida Belmonte ",
+		    "fecha": "29 de julio de 2013",
+		    "estado": "Activa"	  		  
+		},
+		
+		
+		{
+			"id":"63",
+  			"nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
+		    "nombre": "Planta de Generación electrica  Empresa de Energía de Pereira barrio Nuevo Libaré ",
+            "carpeta": "",
+		    "variables": {
+		    	"0": "caudal"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.804343284,
+		      "longitud": -75.66661526
+		    },
+		    "isPublic": false,
+		    "tipo":"EQT",
+		    "icono": iconoEQT, 
+		    "altitud": "1240 m.s.n.m",
+		    "ubicacion": "Nuevo Libaré ",
+		    "fecha": "29 de julio de 2013",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"69",
+  			"nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
+		    "nombre": "Planta de Generación electrica belmonte Empresa de Energía de Pereira ",
+            "carpeta": "",
+		    "variables": {
+		    	"0": "caudal"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.815651663,
+		      "longitud": -75.77360156
+		    },
+		    "isPublic": false,
+		    "tipo":"EQT",
+		    "icono": iconoEQT, 
+		    "altitud": "1240 m.s.n.m",
+		    "ubicacion": "Belmonte ",
+		    "fecha": "29 de julio de 2013",
+		    "estado": "Activa"	  		  
+		},
+		
+		
+				
 		{
 			"id" : "37",
-  			"tipo": "Estaciones Climatológicas no Telemétricas (EC)",
+  			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC001 (Acuaseo)",
 		    "variables": {},
 		    "coordenadas": {
@@ -196,7 +326,7 @@ estacionesJSON = [
 		},
 		{
 			"id" : "38",
-  			"tipo": "Estaciones Climatológicas no Telemétricas (EC)",
+  			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC002 (Mundo Nuevo)",
 		    "variables": {},
 		    "coordenadas": {
@@ -213,9 +343,11 @@ estacionesJSON = [
 		},
 		{
 			"id" : "32",
-  			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN001 (Quebrada Dalí)",
-		    "variables": {},
+		    "variables": {
+		    	"0": "nivel"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.741718167,
 		      "longitud": -75.59009842
@@ -230,9 +362,11 @@ estacionesJSON = [
 		},
 		{
 			"id" : "34",
-  			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN002 (Quebrada Negra)",
-		    "variables": {},
+		    "variables": {
+		    	"0": "nivel"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.744059843,
 		      "longitud": -75.60326232
@@ -247,9 +381,11 @@ estacionesJSON = [
 		},
 		{
 			"id" : "31",
-  			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN003 (Quebrada El Manzano)",
-		    "variables": {},
+		    "variables": {
+		    	"0": "nivel"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.759279315,
 		      "longitud": -75.61186236
@@ -264,9 +400,11 @@ estacionesJSON = [
 		},
 		{
 			"id" : "35",
-  			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN004 (Quebrada Volcanes) ",
-		    "variables": {},
+		    "variables": {
+		    	"0": "nivel"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.783696013,
 		      "longitud": -75.63461238
@@ -281,10 +419,12 @@ estacionesJSON = [
 		},
 		{
 			"id": "30",
-  			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN005  (Quebrada San Eustaquio)",
                     "carpeta": "quebrada san eustaquio",
-		    "variables": {},
+		    "variables": {
+		    	"0": "nivel"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.769723768,
 		      "longitud": -75.60855679
@@ -299,9 +439,11 @@ estacionesJSON = [
 		},
 		{
 			"id":"33",
-  			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN006  (Quebrada El Oso)",
-		    "variables": {},
+		    "variables": {
+		    	"0": "nivel"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.800371046,
 		      "longitud": -75.73376536
@@ -316,10 +458,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN007  (Humedal Lisbran)",
                     "carpeta": "01_finca_lisbran",
-		    "variables": {},
+		    "variables": {
+		    	"0": "nivel"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.738834822,
 		      "longitud": -75.58364006
@@ -334,9 +478,11 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN008 (Humedal Lisbran 2)",
-		    "variables": {},
+		    "variables": {
+		    	"0": "nivel"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.738368153,
 		      "longitud": -75.58307064
@@ -351,15 +497,17 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
                     "carpeta": "boc acueducto la florida",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.744045954,
 		      "longitud": -75.60941513
 		    },
-		    "isPublic": false,
+		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD, 
 		    "altitud": "1750 m.s.n.m",
@@ -369,15 +517,17 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
                     "carpeta": "boc acueducto la bella",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.738934822,
 		      "longitud": -75.6177679
 		    },
-		    "isPublic": false,
+		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1950 m.s.n.m",
@@ -387,15 +537,17 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD003 (Bocatoma Acueducto Pérez Alto) ",
                     "carpeta": "boc acueducto perez alto",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.711854225,
 		      "longitud": -75.66235135
 		    },
-		    "isPublic": false,
+		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1700 m.s.n.m",
@@ -405,15 +557,17 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
                     "carpeta": "boc acueducto acuasat tinajas",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.744709846,
 		      "longitud": -75.70915421
 		    },
-		    "isPublic": false,
+		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1500 m.s.n.m",
@@ -423,15 +577,17 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
                     "carpeta": "boc acueducto la honda",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.874440653,
 		      "longitud": -75.78304604
 		    },
-		    "isPublic": false,
+		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
 		    "altitud": "1250 m.s.n.m",
@@ -441,10 +597,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD006 (Finca Lisbran)",
                     "carpeta": "01_finca_lisbran",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.740557051,
 		      "longitud": -75.58052897
@@ -459,10 +617,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD007 (Finca Lisbran)",
                     "carpeta": "02_finca_lisbran",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.742445948,
 		      "longitud": -75.58047341
@@ -477,10 +637,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"39",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD008 (UTP)",
                     "carpeta": "utp",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.793668275,
 		      "longitud": -75.69079306
@@ -495,10 +657,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD009 (Ormaza)",
                     "carpeta": "bomberos ormaza",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.813973878,
 		      "longitud": -75.68077917
@@ -513,10 +677,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD010 (CAI Galan)",
                     "carpeta": "cai galan",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.821334985,
 		      "longitud": -75.70369586
@@ -531,10 +697,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD011 (Parque Industrial)",
                     "carpeta": "parque industrial",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.821909988,
 		      "longitud": -75.7247848
@@ -549,7 +717,7 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD012 (CAI Consota)",
                     "carpeta": "cai consota",
 		    "variables": {
@@ -569,10 +737,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD013 (CAI Poblado)",
                     "carpeta": "cai poblado",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.802251609,
 		      "longitud": -75.70397364
@@ -587,10 +757,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD014 (CAI Villa Verde)",
                     "carpeta": "cai villaverde",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.792168269,
 		      "longitud": -75.71141256
@@ -605,10 +777,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD015 (Bosque de Cuba)",
                     "carpeta": "bosques de cuba",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.792140491,
 		      "longitud": -75.7269987
@@ -623,10 +797,12 @@ estacionesJSON = [
 		},		
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD016 (Tanque Calicanto)",
                     "carpeta": "calicanto",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.796982177,
 		      "longitud": -75.66864301
@@ -641,10 +817,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD017 (Cruz Roja)",
                     "carpeta": "cruz roja",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.807421074,
 		      "longitud": -75.69224029
@@ -659,10 +837,12 @@ estacionesJSON = [
 		},
 		{
 			"id":"0",
-  			"tipo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD018 (Saint George School)",
                     "carpeta": "colegio saint george",
-		    "variables": {},
+		    "variables": {
+		    	"0": "precipitacion"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.781084924,
 		      "longitud": -75.69473475
