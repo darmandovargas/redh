@@ -122,11 +122,10 @@ $(function(){
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
-                                $("#periocidad").fadeOut('slow').html("");
+                                $("#periocidad").fadeOut('slow');
                                 $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");                                
                         }else{
-                                $("#periocidad").fadeIn('slow').html("");
-                                $('#periocidad').html(response.salida);
+                                $("#periocidad").fadeIn('slow').html(response.salida);
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
