@@ -282,7 +282,7 @@ function showStations(estation) {
 		//console.log("obj.isPublic: "+obj.isPublic);
 		if ((obj.isPublic && !session) || session) {
 			if (n !== -1) {
-				console.log(obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
+				//console.log(obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
 				var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
 				var marker = new google.maps.Marker({
 					position : position,

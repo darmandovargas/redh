@@ -73,7 +73,7 @@ if ($idEstacion != 0) {
 	foreach ($estacionesInfoSinceYesterday as $data) {
 		$fecha = explode("-", $data["fecha"]);
 		$dia = $fecha[2];
-		$mes = $fecha[1];
+		$mes = $fecha[1]-1;
 		$ano = $fecha[0];
 		$hora = explode(":", $data["hora"]);
 		$seg = $hora[2];
