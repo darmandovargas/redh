@@ -279,7 +279,7 @@ function showStations(estation) {
 		}
 		
 		//console.log("n="+n);
-		
+		//console.log("obj.isPublic: "+obj.isPublic);
 		if ((obj.isPublic && !session) || session) {
 			if (n !== -1) {
 				console.log(obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
@@ -295,10 +295,10 @@ function showStations(estation) {
 				addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
 
 			}else{
-				console.log(console.log("ELSE 1: ....... " + obj.tipo + ": " + obj.nombre));
+				//console.log(console.log("ELSE 1: ....... " + obj.tipo + ": " + obj.nombre));
 			}
 		}else{
-			console.log(console.log("ELSE 2: ....... " + obj.tipo + ": " + obj.nombre));
+			//console.log(console.log("ELSE 2: ....... " + obj.tipo + ": " + obj.nombre));
 		}
 		
 		function toggleBounce() {

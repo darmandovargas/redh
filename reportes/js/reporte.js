@@ -89,11 +89,15 @@ $(function(){
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
-                                $("#fecha").html("");
+                                $("#fecha").fadeOut('slow').html("");
+                                $("#periocidad").fadeOut('slow');
+                                $("#mes").fadeOut('slow');  
+                                                              
                                 $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");                                
                         }else{
-                                $("#fecha").html("");
-                                $('#fecha').html(response.salida);
+                                $("#fecha").fadeIn('slow').html(response.salida);
+                                $("#periocidad").fadeIn('slow');
+                                $("#mes").fadeIn('slow');
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
@@ -118,10 +122,10 @@ $(function(){
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
-                                $("#periocidad").html("");
+                                $("#periocidad").fadeOut('slow').html("");
                                 $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");                                
                         }else{
-                                $("#periocidad").html("");
+                                $("#periocidad").fadeIn('slow').html("");
                                 $('#periocidad').html(response.salida);
                         }
                 },
@@ -351,18 +355,16 @@ function preseleccionar(name,tipoestacion,carpeta){
                                 }else if(estacion == "" && (tipo == "SN" || tipo == "SNNT")){
                                     $("#boletin option[value=sensores]").attr("selected",true);
                                     $( "#boletin" ).trigger( "change" );
-                                }else if(estacion == "" && (tipo == "ECT" || tipo == "EHT" || tipo == "EC")){
+                                }else if(estacion == "" && (tipo == "ECT" || tipo == "EHT" || tipo == "ENT" || tipo == "EQT" || tipo == "EC")){
                                     $("#boletin option[value=estaciones]").attr("selected",true);
                                     $( "#boletin" ).trigger( "change" );
                                 }else{
                                     $("#boletin option[value=pluviometros]").attr("selected",true);
                                     $( "#boletin" ).trigger( "change" );
                                 }
-                                $("#archive").html("");
-                                $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");
+                                $("#archive").fadeOut('slow').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");
                         }else{
-                                $("#archive").html("");
-                                $('#archive').html(response.salida);
+                                $("#archive").fadeIn('slow').html(response.salida);
                                 $("#boletin option[value="+ response.salida +"]").attr("selected",true);
                                 $( "#boletin" ).trigger( "change" );
                                 search_preselect();
