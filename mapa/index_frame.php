@@ -116,7 +116,12 @@
 				}
                         }                        
 		</script>
-
+	<style>
+		li{ text-align:left; vertical-align: middle;}
+		ul li img{
+			style="float:left;" 
+		}
+	</style>
 	</head>
 	<body>                
                 <div id="content_inf">
@@ -126,7 +131,36 @@
                         </div>
                     </div>
                 </div>
-                <div id="msg_loader" ><img src="img/loader.gif" style="width: 25px;height: 25px;" /> Subiendo imagen...</div>                
+                <div id="msg_loader" ><img src="img/loader.gif" style="width: 25px;height: 25px;" /> Subiendo imagen...</div>
+        <div id="panelInfo">
+        	<ul style="list-style:none; alignment-adjust: left;">
+        		<li>
+        			<img src="img/ECTnewblued.png"/> Est. Climatológica Telemétrica (ECT)
+        		</li>
+        		<li>
+        			<img src="img/EHT25.png" />&nbsp&nbsp&nbspEst. Hidroclimatológica Telemétrica (EHT)
+        		</li>
+        		<li>
+        			<img src="img/ENT.png" />&nbsp&nbsp&nbspEst. de Nivel Telemétrica (ENT)
+        		</li>
+        		<li>
+        			<img src="img/caudal.png" />&nbsp&nbsp&nbspEst. de Caudal Telemétrica (EQT)
+        		</li>
+        		<li>
+        			<img src="img/ECnew2.png" />Estaciones Climatológicas </br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        			No Telemétricas (EC)
+        		</li>
+        		<li>
+        			<img src="img/nivelb23.png" />&nbsp&nbsp&nbspSensores de Nivel por Presión </br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        			de Lamina de Agua, no telemétricos (SN)
+        		</li>
+        		<li>
+        			<img src="img/PD30.png" /> Pluviómetros con Datalogger,</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        			no telemétricos (PD)
+        		</li>
+        		
+        	</ul>
+        </div>                        
 		<div id="panel">
 			<!-- <input onclick="cleanLines();" type=button value="Limpar Gráficos"> -->
                         <form id="uploadForm" action="upload.php" method="post">

@@ -1,4 +1,4 @@
-iconoEHT = 'http://'+window.location.host+'/mapa/img/EHTnewc33.png';////'img/hidroelectrica.png';
+iconoEHT = 'http://'+window.location.host+'/mapa/img/EHT25.png';////'img/hidroelectrica.png';
 iconoEC  = 'http://'+window.location.host+'/mapa/img/ECnew2.png';
 iconoECT = 'http://'+window.location.host+'/mapa/img/ECTnewblued.png';//ECT30.png
 iconoSN  = 'http://'+window.location.host+'/mapa/img/nivelb23.png';

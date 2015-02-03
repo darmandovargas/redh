@@ -183,6 +183,21 @@ a.active.trigger {
 	right: 20px;
 }
 
+#panelInfo {
+	opacity: 0.85;
+	background: #ffffff;
+	border: 1px solid transparent;
+	text-align: center;
+	color: #000;
+	font-family: Roboto;
+	font-size: 12px;
+	padding: 0 11px 5px 10px;
+	z-index: 1;
+	position: absolute;
+	bottom: 30%;
+	right: 20px;
+}
+
 #panel_despl {
 	position: absolute;
 	top: 80%;
