@@ -127,7 +127,7 @@ $oMySQL -> closeConnection();
 						<td>".$et['info']['nivel']."</td>
 						<td>".$et['info']['radiacion']."</td>				
 						<td>".$et['info']['velocidad']."</td>				
-						<td>".$et['info']['evapotranspiracion_real']."</td>						
+						<td>".$et['info']['evapo_real']."</td>						
 					</tr>
 					";
 					}

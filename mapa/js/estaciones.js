@@ -187,7 +187,7 @@ estacionesJSON = [
 			"id":"60",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT001 (Bocatoma nuevo Libaré)",
-            "carpeta": "",
+            "carpeta": "bocatoma nuevo libare",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -207,7 +207,7 @@ estacionesJSON = [
 			"id":"62",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT002 (Bocatoma Belmonte) ",
-            "carpeta": "",
+            "carpeta": "bocatoma belmonte",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -227,7 +227,7 @@ estacionesJSON = [
 			"id":"61",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT003 (Canal entrada Belmonte) ",
-            "carpeta": "",
+            "carpeta": "canal entrada belmonte",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -246,7 +246,7 @@ estacionesJSON = [
 			"id":"59",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT004 (Canal Salida Belmonte) ",
-            "carpeta": "",
+            "carpeta": "canal salida belmonte",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -268,7 +268,7 @@ estacionesJSON = [
 			"id":"63",
   			"nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
 		    "nombre": "Planta de Generación electrica  Empresa de Energía de Pereira barrio Nuevo Libaré ",
-            "carpeta": "",
+            "carpeta": "planta nuevo libare",
 		    "variables": {
 		    	"0": "caudal"
 		    },
@@ -288,7 +288,7 @@ estacionesJSON = [
 			"id":"69",
   			"nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
 		    "nombre": "Planta de Generación electrica belmonte Empresa de Energía de Pereira ",
-            "carpeta": "",
+            "carpeta": "planta belmonte",
 		    "variables": {
 		    	"0": "caudal"
 		    },
@@ -421,7 +421,7 @@ estacionesJSON = [
 			"id": "30",
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN005  (Quebrada San Eustaquio)",
-                    "carpeta": "quebrada san eustaquio",
+            "carpeta": "quebrada san eustaquio",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -459,8 +459,8 @@ estacionesJSON = [
 		{
 			"id":"0",
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN007  (Humedal Lisbran)",
-                    "carpeta": "01_finca_lisbran",
+		    "nombre": "SN007  (Humedal Lisbran 1)",
+            "carpeta": "01_finca_lisbran",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -480,6 +480,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN008 (Humedal Lisbran 2)",
+		    "carpeta": "02_finca_lisbran",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -499,7 +500,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
-                    "carpeta": "boc acueducto la florida",
+            "carpeta": "boc acueducto la florida",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -579,7 +580,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
-                    "carpeta": "boc acueducto la honda",
+            "carpeta": "boc acueducto la honda",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -598,8 +599,8 @@ estacionesJSON = [
 		{
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD006 (Finca Lisbran)",
-                    "carpeta": "01_finca_lisbran",
+		    "nombre": "PD006 (Finca Lisbran 1)",
+            "carpeta": "01_finca_lisbran",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -618,8 +619,8 @@ estacionesJSON = [
 		{
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD007 (Finca Lisbran)",
-                    "carpeta": "02_finca_lisbran",
+		    "nombre": "PD007 (Finca Lisbran 2)",
+            "carpeta": "02_finca_lisbran",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },

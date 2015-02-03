@@ -152,7 +152,7 @@ if ($idEstacion != 0) {
 	        },
 	        subtitle: {
 	          	userHTML:true,
-	            text: 'Mediciones últimas 24 horas<br/>Origen: Red Hidroclimatológica de Risaralda',
+	            text: 'Mediciones últimas 48 horas<br/>Origen: Red Hidroclimatológica de Risaralda',
 	            x: -20
 	        },            
 	        yAxis: {
