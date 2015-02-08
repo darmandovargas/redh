@@ -164,8 +164,8 @@
 		<div id="panel">
 			<!-- <input onclick="cleanLines();" type=button value="Limpar Gráficos"> -->
                         <form id="uploadForm" action="upload.php" method="post">
-				<input id="uploadImage" name="uploadImage" type="file"  >
-				<input type="submit" value="Subir Imagen" >
+				<input id="uploadImage" name="uploadImage" type="file" value="Test" />
+				<input type="submit" value="Subir kml o imagen" >
 			</form>
 			<input onclick="refreshMap();" type=button value="Refrescar Mapa" style="width: 100%">
 			<div>
@@ -207,6 +207,7 @@
 			<span id="logout" class="logout">
 		</div>
 		<div id="panel_despl" >
+			<img class="coordinate" src="img/embed-places-icon-45x45.png" title="Ubicar Coordenada" />
 			<div class="panel1">
 				<div >
 					X (Este)
@@ -219,7 +220,9 @@
 				</div>
 
 			</div>
-			<a class="trigger" title="Ubicar coordenadas" href="#"></a>
+			<!-- TODO: delete css related to this obsolete icon style
+ 			<a class="trigger" title="Ubicar coordenadas" href="#"></a>
+			-->
 		</div>
 		<div id="map-canvas"></div>
 

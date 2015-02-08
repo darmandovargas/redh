@@ -15,8 +15,8 @@ img {
 .panel1 {
 	opacity: 0.85;
 	position: absolute;
-	top: 82px;
-	left: 35px;
+	top: 30px;
+	right: -245px;
 	display: none;
 	background: #4d90fe;
 	border: 0px solid #111111;
@@ -24,7 +24,7 @@ img {
 	 -webkit-border-top-right-radius: 20px;
 	 -moz-border-radius-bottomright: 20px;
 	 -webkit-border-bottom-right-radius: 20px;*/
-	width: 525px;
+	width:490px;
 	height: auto;
 	color: #fff;
 	font-family: Roboto;
@@ -198,17 +198,32 @@ a.active.trigger {
 	right: 20px;
 }
 
+.coordinate{
+	width: 29px;
+}
+
 #panel_despl {
+	/*
+	Depreciated code	
 	position: absolute;
 	top: 80%;
 	left: 0px;
 	z-index: 5;
+	*/
+	position: absolute;
+	top: -16px;
+	right: 305px;
+	z-index: 5;
+	color: black;
+	height: 21px;
+	margin: 0 -45px;
+	margin-top: 20px;
 }
 
 #panel_log {
 	position: absolute;
 	top: -17px;
-	right: 313px;
+	right: 343px;
 	z-index: 5;
 	color: black;
 	height: 21px;

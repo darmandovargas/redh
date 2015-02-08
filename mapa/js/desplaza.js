@@ -1,10 +1,17 @@
 $(document).ready(function(){
-    $(".trigger").click(function(){
+    $(".coordinate").click(function(){
         $("#coordx").val("");
         $("#coordy").val("");
-        $(".panel1").toggle("fast");
+        $(".panel1").slideToggle( "slow");
+        //toggle("fast");
         $(this).toggleClass("active");
         return false;
+    });
+    $(".coordinate").hover(function(){
+    	$(this).attr("src","img/embed-places-icon-45x45-hover.png");
+    });
+     $(".coordinate").mouseout(function(){
+    	$(this).attr("src","img/embed-places-icon-45x45.png");
     });
 });
 
