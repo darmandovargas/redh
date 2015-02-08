@@ -66,7 +66,6 @@ $host = insert_host($oMySQL, $ip);
 		
 		
 		<style>
-			a {text-decoration: none}
 			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
 			.logout {			    
 			   	position: absolute;
@@ -88,7 +87,46 @@ $host = insert_host($oMySQL, $ip);
 				*/height: 50px;
 				margin: 0 -45px;
 				margin-top: 20px;
+ 			}
+ 			a {text-decoration: none}
+ 			
+ 			.btn-custom-blue {
+			  background-color: hsl(201, 100%, 30%) !important;
+			  background-repeat: repeat-x;
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00a5ff", endColorstr="#006399");
+			  background-image: -khtml-gradient(linear, left top, left bottom, from(#00a5ff), to(#006399));
+			  background-image: -moz-linear-gradient(top, #00a5ff, #006399);
+			  background-image: -ms-linear-gradient(top, #00a5ff, #006399);
+			  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00a5ff), color-stop(100%, #006399));
+			  background-image: -webkit-linear-gradient(top, #00a5ff, #006399);
+			  background-image: -o-linear-gradient(top, #00a5ff, #006399);
+			  background-image: linear-gradient(#00a5ff, #006399);
+			  border-color: #006399 #006399 hsl(201, 100%, 25%);
+			  color: #fff !important;
+			  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+			  -webkit-font-smoothing: antialiased;
 			}
+
+			.btn-custom-green {
+			  background-color: hsl(86, 79%, 44%) !important;
+			  background-repeat: repeat-x;
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#daf6b5", endColorstr="#7cc817");
+			  background-image: -khtml-gradient(linear, left top, left bottom, from(#daf6b5), to(#7cc817));
+			  background-image: -moz-linear-gradient(top, #daf6b5, #7cc817);
+			  background-image: -ms-linear-gradient(top, #daf6b5, #7cc817);
+			  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #daf6b5), color-stop(100%, #7cc817));
+			  background-image: -webkit-linear-gradient(top, #daf6b5, #7cc817);
+			  background-image: -o-linear-gradient(top, #daf6b5, #7cc817);
+			  background-image: linear-gradient(#daf6b5, #7cc817);
+			  border-color: #7cc817 #7cc817 hsl(86, 79%, 34%);
+			  color: #333 !important;
+			  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.66);
+			  -webkit-font-smoothing: antialiased;
+			  margin-left: -9px;			  
+			  moz-border-radius: 15px;
+			  -webkit-border-radius: 2px;
+			}
+
 		</style>
 		
 		
@@ -114,15 +152,15 @@ $host = insert_host($oMySQL, $ip);
 							<!--/floating-wrapper-->
 							<div class="row-fluid floating-boxes" style="/*overflow: scroll;*/">
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Información General</h3> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
+									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Estado del Tiempo</h3> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
+									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Noticias y Eventos</h3> </a>
 								</div>
 
 								<!--
@@ -153,18 +191,20 @@ $host = insert_host($oMySQL, $ip);
 								</div>
 								-->
 								<div align="center">
-									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
+									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Recursos Humanos</h3> </a>
 								</div>
+								<!--
 								<div align="center">
 
-									<a href="../mapa/" onclick="checkSessionClick();" target="_blank"> <h3>Ver Mapa Completo</h3> </a>
+									<a href="../mapa/" onclick="checkSessionClick();" target="_blank" style="text-decoration: none;"> <h3>Ver Mapa Completo</h3> </a>
 								</div>
+								-->
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Contribuyen a la Red</h3> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Sitios y Documentos de Interés</h3> </a>
 								</div>								
 							</div>							
 						</div>								
@@ -465,6 +505,9 @@ $host = insert_host($oMySQL, $ip);
 							<div id="directions-wrapper">
 								<div id="directions-result"></div>
 							</div>
+						</div>
+						<div class="span12">
+							<input type="button" class="btn-custom-green" style="width: 100%;" value="Ver Herramientas del Mapa"/>
 						</div>
 					</div>
 

@@ -254,6 +254,10 @@ $( document ).ready(function() {
 				checkSessionClick('firstLoad');
 			    //lookForSession();
 			    //showLogout(true);
-			    //showLogout(false);		    
+			    //showLogout(false);	
+			    //Click event handler for green button
+			    $(".btn-custom-green").click(function() {
+				  window.open("../mapa", '_blank');
+				});	    
 			});
 google.maps.event.addDomListener(window, 'load', initialize); 
