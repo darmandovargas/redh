@@ -19,7 +19,7 @@ if($_SESSION['errStr'])
 $success='';
 if($_SESSION['sent'])
 {
-	$success='<div align="center"><h1>Gracias!</h1></div>';
+	$success='<div align="center"><h1>Su mensaje ha sido enviado con éxito, en breve responderemos</h1></div>';
 	
 	$css='<style type="text/css">#contact-form{display:none;}</style>';
 	
@@ -185,7 +185,7 @@ if($_SESSION['sent'])
       	</br></br>
     Mayor Información: </br></br>
     Facultad de Ciencas Ambientales Of f-213 </br> 
-	Email: redhidroclimatologica@utp.edu.co </br>
+	<!-- Email: redhidroclimatologica@utp.edu.co </br> -->
 	Juan Camilo Berrio Carvajal </br>
 	Telefono: 3137249 </br></br></br>
 	</div> 

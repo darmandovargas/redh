@@ -73,7 +73,7 @@ $(document).ready(function() {
 							  	message: $("#message").val()						  	
 							},							 				
 							function(data){
-								$("#contact-form").hide('slow').after('<div align="center"><h1>Gracias!</h1></div>');
+								$("#contact-form").hide('slow').after('<div align="center"><h1>Su mensaje ha sido enviado con éxito, en breve le responderemos !</h1></div>');
 								//Hide loading
 								loadingObj.fadeOut(speed);
 								//document.forms["contact-form"].submit();								

@@ -3,7 +3,7 @@
 	<head>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<meta charset="utf-8">
-		<title>REDH Virtual</title>
+		<title>REDH</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
@@ -16,6 +16,23 @@
 				margin: 0px;
 				padding: 0px
 			}
+			.tcg{
+				padding: 5px 5px; 
+				position: absolute; 
+				bottom: 0; 
+				right:45%; 
+				font-size:11px;  
+				color: rgb(68, 68, 68);
+				text-decoration: none; 
+				cursor: pointer; 
+				background-color: #fff;
+				border-top-right-radius: 5px;
+				border-top-left-radius: 5px; 
+				/*
+				-moz-border-radius: 5px; 
+				-webkit-border-radius: 5px;
+				 */
+			}			
 		</style>
 		<!--
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -225,7 +242,8 @@
 			-->
 		</div>
 		<div id="map-canvas"></div>
-
+		
+		<div class="tcg">Developed by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
 		<input id="search"  type="text" class="controls" placeholder="Ingrese Ubicación">
 
 		<div id="type-selector" class="controls" >

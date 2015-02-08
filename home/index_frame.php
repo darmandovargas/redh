@@ -108,6 +108,8 @@ $host = insert_host($oMySQL, $ip);
 			}
 
 			.btn-custom-green {
+			  
+			  /*opacity: 0.95;*/
 			  background-color: hsl(86, 79%, 44%) !important;
 			  background-repeat: repeat-x;
 			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#daf6b5", endColorstr="#7cc817");
@@ -119,13 +121,31 @@ $host = insert_host($oMySQL, $ip);
 			  background-image: -o-linear-gradient(top, #daf6b5, #7cc817);
 			  background-image: linear-gradient(#daf6b5, #7cc817);
 			  border-color: #7cc817 #7cc817 hsl(86, 79%, 34%);
-			  color: #333 !important;
 			  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.66);
+			  color: #111 !important;
 			  -webkit-font-smoothing: antialiased;
-			  margin-left: -9px;			  
+			  font-size:16px;
+			  margin-left: -10px;			  
 			  moz-border-radius: 15px;
 			  -webkit-border-radius: 2px;
 			}
+			.tcg{
+				padding: 2px 2px; 
+				position: absolute; 
+				bottom: -5px; 
+				right:45%; 
+				font-size:11px;  
+				color: rgb(68, 68, 68);
+				text-decoration: none; 
+				cursor: pointer; 
+				background-color: #fff;
+				border-top-right-radius: 5px;
+				border-top-left-radius: 5px; 
+				/*
+				-moz-border-radius: 5px; 
+				-webkit-border-radius: 5px;
+				 */
+			}		
 
 		</style>
 		
@@ -139,9 +159,7 @@ $host = insert_host($oMySQL, $ip);
 				<div class="span5 main-wrapper">
 					<div class="row-fluid logo">
 						<div class="span12">
-							<img src="img/logos/ciencias ambientales.png" width="20%" />							
-							<img src="img/logos/red_hidroclimatologica.jpg" width="50%" />
-							<img src="img/logos/logo_utp.jpg" width="20%">
+							<img src="img/logos/red_hidroclimatologica.jpg" width="80%" />
 							<hr />
 							<!-- <h1>Red Hidroclimatológica de Risaralda</h1>-->
 						</div>
@@ -205,7 +223,15 @@ $host = insert_host($oMySQL, $ip);
 								
 								<div align="center">
 									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Sitios y Documentos de Interés</h3> </a>
-								</div>								
+								</div>
+								
+								 <div align="center">
+								 	</br>
+								    Mayor Información: </br>
+								    Facultad de Ciencas Ambientales Of f-213 </br> 
+									Juan Camilo Berrio Carvajal </br>
+									Telefono: 3137249 </br></br></br>
+								</div> 								
 							</div>							
 						</div>								
 					</div>
@@ -438,9 +464,11 @@ $host = insert_host($oMySQL, $ip);
 				       <hr />
 						<div class="span12">
 							<div style="text-align: center; ">
+								<img src="img/logos/ciencias ambientales.png" width="20%" />	
 								<img src="img/logos/logo_acuaseo.jpg" width="13%">
 								<img src="img/logos/Alcaldia Pereira.jpg" width="15%">
 								<img src="img/logos/Carder.png" width="20%">
+								<img src="img/logos/logo_utp.jpg" width="20%">
 								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="22%">
 								<img src="img/logos/dopad.bmp" width="15%">
 								<img src="img/logos/Seafield_colour.jpg" width="25%">
@@ -457,6 +485,8 @@ $host = insert_host($oMySQL, $ip);
 					<div class="row-fluid" style="height: 100%;">
 						<div class="span12" style="height: 100%;">
 							<div id="map_canvas"></div>
+							<!--<div style="position: absolute; bottom: -2px; right:44%; font-size:11px;">Developed by <a href="http://thinkcloudgroup.com" target="_blank">Think Cloud Group</a></div>-->
+							<div class="tcg">Developed by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
 							<!--<iframe src="../mapa/" width="100%" height="800px"></iframe>-->
 						</div>
 					</div>
@@ -525,6 +555,7 @@ $host = insert_host($oMySQL, $ip);
 						<h3>Contactenos</h3>
 						<p>Dejenos saber sus comentarios</p>
 						</a>
+						
 					</div>
 					<!--/floating-boxes-->
 					
@@ -548,6 +579,7 @@ $host = insert_host($oMySQL, $ip);
 							</div>
 						</div>
 					</div>
+					
 				</div>
 				<!-- end span-fixed-sidebar -->
 			</div><!--/main-row-->
