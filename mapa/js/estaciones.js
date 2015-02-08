@@ -213,7 +213,7 @@ estacionesJSON = [
 		    },
 		    "coordenadas": {
 		      "latitud": 4.818462752,
-		      "longitud": -75.64397353
+		      "longitud": -75.72730703
 		    },
 		    "isPublic": false,
 		    "tipo":"ENT",
@@ -233,7 +233,7 @@ estacionesJSON = [
 		    },
 		    "coordenadas": {
 		      "latitud": 4.818390529,
-		      "longitud": -75.6610819
+		      "longitud": -75.7277487
 		    },
 		    "isPublic": false,
 		    "tipo":"ENT",
