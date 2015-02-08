@@ -64,7 +64,8 @@
 			
 		</script>
 	</head>
-	<body>	
+	<body>
+		<h3 style="font-family: Helvetica, Arial, Sans-Serif; font-weight: 100; margin-left:10px;">La información se actualiza automáticamente cada 5 minutos</h3>
 		<div class="loader"></div>
 <?php
 include_once ('../../lib/class.MySQL.php');
