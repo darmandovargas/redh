@@ -1,11 +1,11 @@
 // Global variables
-var map, rectangle, infoWindow, htmlraw, historicalOverlay, overlay, input, map_actual, northEast, southWest, bounds;
+var map, rectangle, infoWindow, htmlraw, historicalOverlay, overlay, input, map_actual, northEast, southWest, bounds, showWeather;
 
 // This will create the second layer for the uploaded image
 DebugOverlay.prototype = new google.maps.OverlayView();
 
 // Initialize custom function for map
-function initialize(isRefresh, dynamicImage, estation) {	
+function initialize(isRefresh, dynamicImage, estation, loadWeather) {	
 	
 	// This will paint or not the search (the seach input can´t be obtained by javascript on clean lines)
 	if ( typeof (isRefresh) === 'object'){
@@ -34,7 +34,7 @@ function initialize(isRefresh, dynamicImage, estation) {
 	//End Search Box
 
 	// Show Wheather Info
-	showWheather();
+	showWheather(loadWeather);
 	// End Wheather
 
 	// Tools
@@ -114,12 +114,15 @@ function showSearch(){
 /**
  * This will render wheather information on the map 
  */
-function showWheather(){	
-	/*	var weatherLayer = new google.maps.weather.WeatherLayer({
-		temperatureUnits : google.maps.weather.TemperatureUnit.CELSIUS
-	});
-	weatherLayer.setMap(map);
-	*/
+function showWheather(showW){	
+	showWeather = showW;
+	if(showW){
+		var weatherLayer = new google.maps.weather.WeatherLayer({
+			temperatureUnits : google.maps.weather.TemperatureUnit.CELSIUS
+		});
+		weatherLayer.setMap(map);	
+	}
+
 	var cloudLayer = new google.maps.weather.CloudLayer();
 	cloudLayer.setMap(map);
 }
@@ -623,6 +626,46 @@ $(document).ready(function() {
 			}
 		});
 	}
+	// Toogle weather layer
+	$(".weather").click(function(){
+		if(typeof showWeather === undefined){
+			initialize(true, undefined, undefined,true);
+			$(this).attr("src","img/Weather-icon-gray.png");
+		}else{
+			showWeather = !showWeather;
+			initialize(true, undefined, undefined,showWeather);
+			$(this).attr("src","img/Weather-icon.png");
+		}        
+    });
+    
+    $(".weather").hover(function(){
+    	$(this).attr("src","img/Weather-icon-gray.png");
+    });
+    
+    $(".weather").mouseout(function(){
+    	if(typeof showWeather === undefined){
+    		$(this).attr("src","img/Weather-icon.png");
+    	}else{
+    		if(showWeather){
+    			$(this).attr("src","img/Weather-icon-gray.png");
+    		}else{
+    			$(this).attr("src","img/Weather-icon.png");
+    		}
+    	}
+    	
+    });
+    
+    $(".weather").load(function(){
+    	if(typeof showWeather === undefined){
+    		$(this).attr("src","img/Weather-icon.png");
+    	}else{
+    		if(showWeather){
+    			$(this).attr("src","img/Weather-icon-gray.png");
+    		}else{
+    			$(this).attr("src","img/Weather-icon.png");
+    		}
+    	}
+    });
 });
 // End Upload Image
 

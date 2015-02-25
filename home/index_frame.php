@@ -19,6 +19,14 @@ $host = insert_host($oMySQL, $ip);
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- No Cache 
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+		-->
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>Red Hidroclimatológica de Risaralda</title>
@@ -69,8 +77,10 @@ $host = insert_host($oMySQL, $ip);
 			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
 			.logout {			    
 			   	position: absolute;
-				top: -85px;
-				right: 38px;
+				/*top: -85px;
+				right: 38px;*/
+				top: -54px;
+				right: -435px;
 				/*background-color: #333333;
 				background-color: rgba(51, 51, 51, 0.8);
 				*/height: 50px;
@@ -80,8 +90,11 @@ $host = insert_host($oMySQL, $ip);
 			.waitLogout {	
 				opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */		    
 			   	position: absolute;
-				top: -85px;
+				/*top: -85px;
 				right: 130px;
+				*/
+				top: -53px;
+				right: 39px;
 				/*background-color: #333333;
 				background-color: rgba(51, 51, 51, 0.8);
 				*/height: 50px;
@@ -462,7 +475,7 @@ $host = insert_host($oMySQL, $ip);
 
 					<div class="row-fluid leave-gap page-footer">
 				       <hr />
-						<div class="span12">
+						<div class="span12" style="margin-left:-10px;">
 							<div style="text-align: center; ">
 								<img src="img/logos/ciencias ambientales.png" width="20%" />	
 								<img src="img/logos/logo_acuaseo.jpg" width="13%">
@@ -500,7 +513,7 @@ $host = insert_host($oMySQL, $ip);
 							</form>
 							-->
 							<!-- -->                                     
-                                                        <span id="logout" class="logout"></span>
+                            <span id="logout" class="logout"></span>
 							<input id="search"  type="text" placeholder="Ingrese Ubicación">
                                                         <div style="color:#929292;float:right;margin-top: 30px;margin-right: 3px;font-family: Roboto;">
                                                             Visitas <span><?php echo add_ceros($host,4); ?></span>

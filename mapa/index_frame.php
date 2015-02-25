@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- No Cache 
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+		-->
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<meta charset="utf-8">
 		<title>REDH</title>
@@ -42,11 +49,11 @@
                 <script src="jquery-ui/jquery-ui.js"></script>
 		<!-- &key=AIzaSyBA1M3-e9UO0KCvslfK44zM67ZPM77oy_o -->
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places,weather,drawing"></script>
+		
 		<script src="js/estaciones.js"></script>
 		<script src="js/mapa.js"></script>
 		<script src="js/desplaza.js"></script>
-
-		<script>
+<script>
 			var session = false;
 			var isMapOutOfDate = true;
 
@@ -65,24 +72,13 @@
 					async : false
 				}).success(function(msg) {
 					if (msg == "success") {
-						//console.log("URL: "+url);
-						/*
-						 if(url=="login"){
-						 setTimeout(function(){
-						 closePage();
-						 $('#estado_tiempo').click();
-						 },1000);
-						 }*/
-						setTimeout(function() {
-							/*$('.close').click(function (){
-							 checkSessionClick();
-							 });*/
-						}, 1500);
+						
+						
 
 						session = true;
 						showLogout(true);
 						if (isMapOutOfDate && url != 'isFirstLoad') {
-							//filter_estation();
+							filter_estation();
 							isMapOutOfDate = false;
 						}
 
@@ -127,12 +123,13 @@
 			 */
 			function showLogout(showIcon) {
 				if (showIcon) {
-					$("#panel_log").removeClass("waitLogout").addClass("logout").hide().html("<span id='logoutImage'><a href='#' onclick='logout();'><img src='../home/img/logout.png' style='width:30px;height:30px;' ></a></span>").fadeIn("slow");
+					$("#panel_log").removeClass("waitLogout").addClass("logout").hide().html("<span id='logoutImage'><a href='#' onclick='logout();'><img src='../home/img/logout_blue.png' title='Cerrar Sesión' style='width:28px;height:28px;' ></a></span>").fadeIn("slow");
 				} else {
-					$("#panel_log").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='../home/img/wait_logout.gif' width='70%'>");
+					$("#panel_log").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='../home/img/wait_logout.gif' width='130%'>");
 				}
                         }                        
 		</script>
+		
 	<style>
 		li{ text-align:left; vertical-align: middle;}
 		ul li img{
@@ -150,7 +147,7 @@
                 </div>
                 <div id="msg_loader" ><img src="img/loader.gif" style="width: 25px;height: 25px;" /> Subiendo imagen...</div>
         <div id="panelInfo">
-        	<ul style="list-style:none; alignment-adjust: left;">
+        	<ul style="list-style:none; alignment-adjust: left; margin-left:-35px;">
         		<li>
         			<img src="img/ECTnewblued.png"/> Est. Climatológica Telemétrica (ECT)
         		</li>
@@ -223,6 +220,7 @@
 		<div id="panel_log">
 			<span id="logout" class="logout">
 		</div>
+		<img class="weather" src="img/Weather-icon.png" title="Ver Clima Según Google" />
 		<div id="panel_despl" >
 			<img class="coordinate" src="img/embed-places-icon-45x45.png" title="Ubicar Coordenada" />
 			<div class="panel1">

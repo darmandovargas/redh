@@ -799,7 +799,7 @@ estacionesJSON = [
 		{
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD016 (Tanque Calicanto)",
+		    "nombre": "PD016 (Tanque Villa Santana)",
                     "carpeta": "calicanto",
 		    "variables": {
 		    	"0": "precipitacion"

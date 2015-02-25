@@ -194,8 +194,11 @@ a.active.trigger {
 	padding: 0 11px 5px 10px;
 	z-index: 1;
 	position: absolute;
-	bottom: 30%;
-	right: 20px;
+	bottom: 20px;
+	left: 20px;
+	border-top-left-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
 }
 
 .coordinate{
@@ -203,16 +206,9 @@ a.active.trigger {
 }
 
 #panel_despl {
-	/*
-	Depreciated code	
-	position: absolute;
-	top: 80%;
-	left: 0px;
-	z-index: 5;
-	*/
 	position: absolute;
 	top: -16px;
-	right: 305px;
+	right: 333px;
 	z-index: 5;
 	color: black;
 	height: 21px;
@@ -220,10 +216,21 @@ a.active.trigger {
 	margin-top: 20px;
 }
 
+.weather {
+	position: absolute;
+	top: -15px;
+	right: 305px;
+	z-index: 5;
+	color: black;
+	height: 26px;
+	margin: 0 -45px;
+	margin-top: 20px;
+}
+
 #panel_log {
 	position: absolute;
-	top: -17px;
-	right: 343px;
+	top: -15px;
+	right: 373px;
 	z-index: 5;
 	color: black;
 	height: 21px;
@@ -282,8 +289,8 @@ a.active.trigger {
 	opacity: 0.4;
 	filter: alpha(opacity=40); /* For IE8 and earlier */
 	position: absolute;
-	top: -17px;
-	right: 313px;
+	top: -15px;
+	right: 370px;
 	/*background-color: #333333;
 	 background-color: rgba(51, 51, 51, 0.8);
 	 */
