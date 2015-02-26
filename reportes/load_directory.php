@@ -1,6 +1,5 @@
 <?php
 /**
- * @author Juan manuel Mora <juan_manuel28@hotmail.com>
  * @date   11-09-214
  * @description
  *     Archivo php donde se cargan los dropdown y se buscan los ficheros de un directorio
@@ -13,6 +12,18 @@
  *      JSON = Muestra un Array JSON con el resultado y salida que genero la acción solicitada
  * 
  */
+ 
+session_start();
+
+$privateStations = array(
+	"bocatoma nuevo libare",
+	"bocatoma belmonte",
+	"canal entrada belmonte",
+	"canal salida belmonte",
+	"planta nuevo libare",
+	"planta belmonte",
+);
+
 $respuesta = false;
 $salida = "";
 $name = "";
@@ -43,7 +54,6 @@ switch ($_POST['actionID']) {
 }
 
 /**
- * @author Juan manuel Mora <juan_manuel28@hotmail.com>
  * @date   11-09-214
  * @description
  *      Metodo para leer los ficheros de un directorio y crear las opciones de los dropdown del formulario
@@ -68,7 +78,14 @@ function scandirectory($path,$name){
                     $selected = "";
                     if($name != "" && $nombre_fichero == strtolower($name))
                         $selected = "selected='selected'";
-                    $salida .= "<option value='".$nombre_fichero."' $selected >".ucwords($nombre_fichero)."</option>";
+					//Filtra estaciones privadas 
+					if($_SESSION['sess']){
+						$salida .= "<option value='".$nombre_fichero."' $selected >".ucwords($nombre_fichero)."</option>";	
+					}else{
+						if(!in_array($nombre_fichero, $GLOBALS['privateStations'])){
+							$salida .= "<option value='".$nombre_fichero."' $selected >".ucwords($nombre_fichero)."</option>";
+						}
+					}
                 }
             }   
         }
@@ -77,7 +94,6 @@ function scandirectory($path,$name){
 }
 
 /**
- * @author Juan manuel Mora <juan_manuel28@hotmail.com>
  * @date   11-09-214
  * @description
  *      Metodo para buscar una estacion en los 3 directorios creados para almacenar las estaciones
@@ -106,7 +122,6 @@ function search_directory_estation($name,$carpeta,$tipo){
 }
 
 /**
- * @author Juan manuel Mora <juan_manuel28@hotmail.com>
  * @date   11-09-214
  * @description
  *      Metodo para leer los directorios y encontrar el que se busca

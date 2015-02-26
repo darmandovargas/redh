@@ -1,6 +1,5 @@
 <?php
 /**
- * @author Juan manuel Mora <juan_manuel28@hotmail.com>
  * @date   05-09-214
  * @description
  *      Metodo en php para cargar los archivos que se encuentra en el directorio que se especifica en la 
