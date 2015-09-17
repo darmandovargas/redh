@@ -318,7 +318,7 @@ estacionesJSON = [
 		    },
 		    "isPublic": true,
 		    "tipo":"EC",
-		    "icono": iconoEC,
+		    "icono": iconoECT,
 		    "altitud": "1550 m.s.n.m",
 		    "ubicacion": "Planta de Tratamiento de Agua, compañía de servicios públicos Acuaseo, Dosquebradas",
 		    "fecha": "Diciembre de 2007",
@@ -456,6 +456,7 @@ estacionesJSON = [
 		    "fecha": "23 de Febrero de 2010",
 		    "estado": "Activa"	  		  
 		},
+		/*
 		{
 			"id":"0",
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
@@ -495,7 +496,7 @@ estacionesJSON = [
 		    "ubicacion": "Finca Lisbran",
 		    "fecha": "30 de Enero de 2014",
 		    "estado": "Activa"	  		  
-		},
+		},*/
 		{
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
@@ -596,6 +597,7 @@ estacionesJSON = [
 		    "fecha": "13 de Noviembre de 2009",
 		    "estado": "Activa"	  		  
 		},
+		/*
 		{
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
@@ -635,7 +637,7 @@ estacionesJSON = [
 		    "ubicacion": "Finca Lisbran",
 		    "fecha": "28 deMayo 2012",
 		    "estado": "Activa"	  		  
-		},
+		},*/
 		{
 			"id":"39",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
@@ -650,7 +652,7 @@ estacionesJSON = [
 		    },
 		    "isPublic": true,
 		    "tipo":"PD",
-		    "icono": iconoPD,
+		    "icono": iconoEC,
 		    "altitud": "1861 m.s.n.m.",
 		    "ubicacion": "UTP",
 		    "fecha": "28 deMayo 2012",
