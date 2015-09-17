@@ -520,7 +520,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
-                    "carpeta": "boc acueducto la bella",
+            "carpeta": "boc acueducto la bella",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -560,7 +560,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
-                    "carpeta": "boc acueducto acuasat tinajas",
+            "carpeta": "boc acueducto acuasat tinajas",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -640,7 +640,7 @@ estacionesJSON = [
 			"id":"39",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD008 (UTP)",
-                    "carpeta": "utp",
+            "carpeta": "utp",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -660,7 +660,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD009 (Ormaza)",
-                    "carpeta": "bomberos ormaza",
+            "carpeta": "bomberos ormaza",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -680,7 +680,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD010 (CAI Galan)",
-                    "carpeta": "cai galan",
+            "carpeta": "cai galan",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -700,7 +700,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD011 (Parque Industrial)",
-                    "carpeta": "parque industrial",
+            "carpeta": "parque industrial",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -720,7 +720,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD012 (CAI Consota)",
-                    "carpeta": "cai consota",
+            "carpeta": "cai consota",
 		    "variables": {
 		      "0": "Precipitación"
 		    },
@@ -740,7 +740,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD013 (CAI Poblado)",
-                    "carpeta": "cai poblado",
+            "carpeta": "cai poblado",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -760,7 +760,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD014 (CAI Villa Verde)",
-                    "carpeta": "cai villaverde",
+            "carpeta": "cai villaverde",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -780,7 +780,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD015 (Bosque de Cuba)",
-                    "carpeta": "bosques de cuba",
+            "carpeta": "bosques de cuba",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -800,7 +800,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD016 (Tanque Villa Santana)",
-                    "carpeta": "calicanto",
+            "carpeta": "calicanto",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -820,7 +820,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD017 (Cruz Roja)",
-                    "carpeta": "cruz roja",
+            "carpeta": "cruz roja",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
@@ -840,7 +840,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD018 (Saint George School)",
-                    "carpeta": "colegio saint george",
+            "carpeta": "colegio saint george",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
