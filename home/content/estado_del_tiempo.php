@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta charset="utf-8">
 		<title>Estado del Tiempo REDH</title>
 		<script src='../../lib/jquery-1.11.1.min.js'></script>
@@ -70,7 +70,12 @@
 <?php
 include_once ('../../lib/class.MySQL.php');
 
+ mysql_set_charset('utf8');
+
 $publicEstations = array("tb_san_jose", "tb_ellago", "tb_cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
+
+// This will get rid of the test stations
+$idsToDelete = array(74,75,76,77);
 
 $estationTable = $privateEstationTable = array();
 
@@ -85,11 +90,25 @@ foreach ($estacionesList as $estacion) {
 	if (in_array($tabla, $publicEstations)) {		
 		$estationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
 	}else{
-		$privateEstationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
+		// This will delete the 4 stations Camilo asked
+		if(!in_array($estacion['id'], $idsToDelete)){
+			// This will keep until the last 2 hours valid record (different than '-')
+			if($estacionesInfo['nivel']=='-' /*&& $tabla=='bocatoma_nuevo_libare'*/){
+				$estacionesInfoLast = $estacionesInfo;
+				$counter = 1;
+				do{
+					$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT ".$counter.",1";
+					$estacionesInfo = $oMySQL -> ExecuteSQL($query);
+					$counter++;
+				}while($estacionesInfo['nivel']=='-' && $counter <24);
+				if($estacionesInfo['nivel']=='-'){
+					$estacionesInfo = $estacionesInfoLast;
+				}
+			}	
+			$privateEstationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
+		}
 	}
 }
-
-//var_dump($privateEstationTable);
 
 $oMySQL -> closeConnection();
 ?>
