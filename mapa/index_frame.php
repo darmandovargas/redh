@@ -177,7 +177,7 @@
         </div>                        
 		<div id="panel">
 			<!-- <input onclick="cleanLines();" type=button value="Limpar Gráficos"> -->
-                        <form id="uploadForm" action="upload.php" method="post">
+            <form id="uploadForm" action="upload.php" method="post">
 				<input id="uploadImage" name="uploadImage" type="file" value="Test" />
 				<input type="submit" value="Subir kml o imagen" >
 			</form>
@@ -220,7 +220,8 @@
 		<div id="panel_log">
 			<span id="logout" class="logout">
 		</div>
-		<img class="weather" src="img/Weather-icon.png" title="Ver Clima Según Google" />
+		<!--<img class="weather" src="img/Weather-icon.png" title="Ver Clima Según Google" />-->
+		<!-- <img class="gallinazos" src="img/gallinazos.png" title="Ver Gallinazos" /> -->
 		<div id="panel_despl" >
 			<img class="coordinate" src="img/embed-places-icon-45x45.png" title="Ubicar Coordenada" />
 			<div class="panel1">
