@@ -16,7 +16,7 @@ img {
 	opacity: 0.85;
 	position: absolute;
 	top: 30px;
-	right: -245px;
+	right: -210px;
 	display: none;
 	background: #4d90fe;
 	border: 0px solid #111111;
@@ -32,7 +32,8 @@ img {
 	font-size: 13px;
 	font-weight: 300;
 	padding: 3px 3px 3px 3px;
-	border-radius: 0.8px 0.8px;
+	/*border-radius: 0.8px 0.8px;*/
+	border-radius: 6px;
 	/*padding: 5px 11px 8px 11px;*/
 }
 
@@ -170,6 +171,7 @@ a.active.trigger {
 #panel {
 	opacity: 0.85;
 	background: #4d90fe;
+	border-radius: 6px;
 	/*border: 0px solid #4d90fe;*/
 	border: 1px solid transparent;
 	text-align: center;
@@ -179,8 +181,8 @@ a.active.trigger {
 	padding: 5px 11px 8px 11px;
 	z-index: 1;
 	position: absolute;
-	bottom: 20px;
-	right: 20px;
+	bottom: 15px;
+	right: 42px;
 }
 
 #panelInfo {
@@ -194,8 +196,8 @@ a.active.trigger {
 	padding: 0 11px 5px 10px;
 	z-index: 1;
 	position: absolute;
-	bottom: 20px;
-	left: 20px;
+	bottom: 25px;
+	left: 10px;
 	border-top-left-radius: 5px; 
 	-moz-border-radius: 5px; 
 	-webkit-border-radius: 5px;
@@ -208,7 +210,7 @@ a.active.trigger {
 #panel_despl {
 	position: absolute;
 	top: -16px;
-	right: 333px;
+	right: 235px;
 	z-index: 5;
 	color: black;
 	height: 21px;
@@ -219,7 +221,18 @@ a.active.trigger {
 .weather {
 	position: absolute;
 	top: -15px;
-	right: 305px;
+	right: 235px;
+	z-index: 5;
+	color: black;
+	height: 26px;
+	margin: 0 -45px;
+	margin-top: 20px;
+}
+
+.gallinazos {
+	position: absolute;
+	top: -15px;
+	right: 200px;
 	z-index: 5;
 	color: black;
 	height: 26px;
@@ -230,7 +243,7 @@ a.active.trigger {
 #panel_log {
 	position: absolute;
 	top: -15px;
-	right: 373px;
+	right: 285px;/*373px;*/
 	z-index: 5;
 	color: black;
 	height: 21px;
