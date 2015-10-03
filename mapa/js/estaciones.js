@@ -1,12 +1,13 @@
-iconoEHT = 'http://'+window.location.host+'/mapa/img/EHT25.png';////'img/hidroelectrica.png';
-iconoEC  = 'http://'+window.location.host+'/mapa/img/ECnew2.png';
-iconoECT = 'http://'+window.location.host+'/mapa/img/ECTnewblued.png';//ECT30.png
-iconoSN  = 'http://'+window.location.host+'/mapa/img/nivelb23.png';
-iconoPD  = 'http://'+window.location.host+'/mapa/img/PD30.png';
+iconoEHT = 'http://'+window.location.host+'/mapa/img/EHT25.png';// Estación Hidroclimatológica Telemétrica
+iconoEC  = 'http://'+window.location.host+'/mapa/img/ECnew2.png'; // Estación Climatológica
+iconoECT = 'http://'+window.location.host+'/mapa/img/ECTnewblued.png';//Estación Climatológica Telemétrica
+iconoSN  = 'http://'+window.location.host+'/mapa/img/nivelb23.png'; // Sensores de Nivel
+iconoPD  = 'http://'+window.location.host+'/mapa/img/PD30.png'; // Pluviómetros con Datalogger, No Telemétricos
+iconoPDT  = 'http://'+window.location.host+'/mapa/img/PDT.png'; // Pluviómetros con Datalogger, Telemétricos
 iconoPos  = 'http://'+window.location.host+'/mapa/img/punto.png';
 // New added 01-02-2015
-iconoENT  = 'http://'+window.location.host+'/mapa/img/ENT.png';
-iconoEQT  = 'http://'+window.location.host+'/mapa/img/caudal.png';
+iconoENT  = 'http://'+window.location.host+'/mapa/img/ENT.png'; // Estaciones de Nivel Telemétrica
+iconoEQT  = 'http://'+window.location.host+'/mapa/img/caudal.png'; // Estaciones de Caudal Telemétricas
 
 estacionesJSON = [
   		{
@@ -652,7 +653,7 @@ estacionesJSON = [
 		    },
 		    "isPublic": true,
 		    "tipo":"PD",
-		    "icono": iconoEC,
+		    "icono": iconoPD,//iconoEC,
 		    "altitud": "1861 m.s.n.m.",
 		    "ubicacion": "UTP",
 		    "fecha": "28 deMayo 2012",
@@ -857,5 +858,27 @@ estacionesJSON = [
 		    "ubicacion": "Saint George School, vía hacia municipio de Armenia",
 		    "fecha": "",
 		    "estado": "Activa"	  		  
+		},
+		{
+			"id":"0",
+  			"nombrelargo": "Pluviómetros con Datalogger, telemétricos (PDT)",
+		    "nombre": "PD019 (San Rafael)",
+            "carpeta": "san rafael",
+		    "variables": {
+		    	"0": "temperatura",
+		    	"1": "precipitacion"
+		    },
+		    "coordenadas": {
+		      "latitud": 5.125555824,
+		      "longitud": -76.0019139
+		    },
+		    "isPublic": true,
+		    "tipo":"PD",
+		    "icono": iconoPDT,
+		    "altitud": "1480 m.s.n.m.",
+		    "ubicacion": "",
+		    "fecha": "",
+		    "estado": "Activa"	  		  
 		}
+		
 	];
