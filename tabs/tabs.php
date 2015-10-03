@@ -41,6 +41,11 @@ if ($idEstacion != 0) {
 			// Inicializa array de variables a sensar y graficar
 			$variables = array("temperatura", "presion", "humedad", "precipitacion_real", "nivel", "radiacion", "velocidad", "direccion", "evapo_real");
 			break;	
+		case 'PDT' :
+			$tablaEstaciones = "estaciones"; 
+			// Inicializa array de variables a sensar y graficar
+			$variables = array("temperatura", "precipitacion_real");
+			break;	
 		default :
 			$tablaEstaciones = "estaciones"; break;
 	}

@@ -860,7 +860,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"0",
+			"id":"78",
   			"nombrelargo": "Pluviómetros con Datalogger, telemétricos (PDT)",
 		    "nombre": "PD019 (San Rafael)",
             "carpeta": "san rafael",
@@ -873,7 +873,7 @@ estacionesJSON = [
 		      "longitud": -76.0019139
 		    },
 		    "isPublic": true,
-		    "tipo":"PD",
+		    "tipo":"PDT",
 		    "icono": iconoPDT,
 		    "altitud": "1480 m.s.n.m.",
 		    "ubicacion": "",
