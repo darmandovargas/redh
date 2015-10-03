@@ -1,11 +1,11 @@
 // Global variables
-var map, rectangle, infoWindow, htmlraw, historicalOverlay, overlay, input, map_actual, northEast, southWest, bounds, showWeather;
+var map, rectangle, infoWindow, htmlraw, historicalOverlay, overlay, input, map_actual, northEast, southWest, bounds, showWeather, showBird = true;
 
 // This will create the second layer for the uploaded image
 DebugOverlay.prototype = new google.maps.OverlayView();
 
 // Initialize custom function for map
-function initialize(isRefresh, dynamicImage, estation, loadWeather) {	
+function initialize(isRefresh, dynamicImage, estation, loadBird){//loadWeather, loadBird) {	
 	
 	// This will paint or not the search (the seach input can´t be obtained by javascript on clean lines)
 	if ( typeof (isRefresh) === 'object'){
@@ -33,9 +33,16 @@ function initialize(isRefresh, dynamicImage, estation, loadWeather) {
 	}
 	//End Search Box
 
+	// DEPRECIATED
 	// Show Wheather Info
-	showWheather(loadWeather);
+	//showWheather(loadWeather);
 	// End Wheather
+	
+	// Show Birds Info
+	if(typeof loadBird !== undefined && loadBird){
+		showBirds();		
+	} 
+	// End Bird
 
 	// Tools
 	showTools();
@@ -125,6 +132,16 @@ function showWheather(showW){
 
 	var cloudLayer = new google.maps.weather.CloudLayer();
 	cloudLayer.setMap(map);
+}
+
+/**
+ * This will render bird information on the map
+ */
+function showBirds(){
+	var ctaLayer = new google.maps.KmlLayer({
+		url: 'http://redhidro.org/mapa/uploads/blackbirds.kml'
+	});
+	ctaLayer.setMap(map);
 }
 
 /**
@@ -626,7 +643,10 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	
 	// Toogle weather layer
+	/* Get rid of this because google`s api doesn´t work anymore with weather library
 	$(".weather").click(function(){
 		if(typeof showWeather === undefined){
 			initialize(true, undefined, undefined,true);
@@ -665,6 +685,12 @@ $(document).ready(function() {
     			$(this).attr("src","img/Weather-icon.png");
     		}
     	}
+    });*/
+    
+    // Toogle gallinazos layer
+	$(".gallinazos").click(function(){
+		initialize(true, undefined, undefined, showBird);
+		showBird = !showBird;
     });
 });
 // End Upload Image
