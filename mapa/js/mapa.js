@@ -139,7 +139,7 @@ function showWheather(showW){
  */
 function showBirds(){
 	var ctaLayer = new google.maps.KmlLayer({
-		url: 'http://redhidro.org/mapa/uploads/blackbirds.kml'
+		url: 'http://redhidro.org/mapa/uploads/gallinazos.kml'
 	});
 	ctaLayer.setMap(map);
 }
