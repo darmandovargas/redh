@@ -72,10 +72,10 @@ include_once ('../../lib/class.MySQL.php');
 
  mysql_set_charset('utf8');
 
-$publicEstations = array("tb_san_jose", "tb_ellago", "tb_cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia");
+$publicEstations = array("tb_san_jose", "tb_ellago", "tb_cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia", "est_planes");
 
 // This will get rid of the test stations
-$idsToDelete = array(74,75,76,77);
+$idsToDelete = array(74,75,76,77,80);
 
 $estationTable = $privateEstationTable = array();
 
