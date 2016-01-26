@@ -338,6 +338,7 @@ function preseleccionar(name,tipoestacion,carpeta){
            var estacion = name;
            var tipo = tipoestacion;
            var folder = carpeta;
+           //console.log("estacion: "+estacion+" tipo: "+tipo+" folder: "+folder);
            
            $.ajax({					
                 cache: false,
@@ -366,6 +367,10 @@ function preseleccionar(name,tipoestacion,carpeta){
                                 $("#archive").fadeIn('slow').html(response.salida);
                                 $("#boletin option[value="+ response.salida +"]").attr("selected",true);
                                 $( "#boletin" ).trigger( "change" );
+                                setTimeout(function(){
+                                	$('#buscar').click();
+                                }, 1000);
+                                
                                 search_preselect();
                         }
                 },
