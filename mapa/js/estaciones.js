@@ -312,7 +312,15 @@ estacionesJSON = [
 			"id" : "37",
   			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC001 (Acuaseo)",
-		    "variables": {},
+		    "variables": {
+		      "0": "Temperatura",
+		      "1": "Precipitacion",
+		      "2": "Humedad Relativa",
+		      "3": "Radiación Solar",
+		      "4": "Presión Barométrica",
+		      "5": "Velocidad del Viento",
+		      "6": "Dirección del Viento"
+		    },
 		    "coordenadas": {
 		      "latitud": 4.861723969,
 		      "longitud": -75.65464021
@@ -860,10 +868,10 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"78",
+			"id":"83",
   			"nombrelargo": "Pluviómetros con Datalogger, telemétricos (PDT)",
 		    "nombre": "PD019 (San Rafael)",
-            "carpeta": "san rafael",
+            //"carpeta": "planes de san rafael",
 		    "variables": {
 		    	"0": "temperatura",
 		    	"1": "precipitacion"
@@ -873,11 +881,29 @@ estacionesJSON = [
 		      "longitud": -76.0019139
 		    },
 		    "isPublic": true,
-		    "tipo":"PDT",
+		    //"tipo":"PDT", Changed in order to allow reports to autoselect
+		    "tipo":"ECT",
 		    "icono": iconoPDT,
 		    "altitud": "1480 m.s.n.m.",
 		    "ubicacion": "",
 		    "fecha": "",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "0",
+  			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
+		    "nombre": "EC004 (Lisbrán)",
+		    "variables": {},
+		    "coordenadas": {
+		      "latitud": 4.73788204,
+		      "longitud": -75.58422895
+		    },
+		    "isPublic": true,
+		    "tipo":"EC",
+		    "icono": iconoEC,
+		    "altitud": "1550 m.s.n.m",
+		    "ubicacion": "",
+		    "fecha": "Diciembre 4 de 2015",
 		    "estado": "Activa"	  		  
 		}
 		
