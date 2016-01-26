@@ -1,6 +1,7 @@
 <?php
 // Obtiene la conexión a la bd
 include_once ('../lib/class.MySQL.php');
+mysql_query("set names 'utf8'");
 // Inicializa variables
 $estationTable = $privateEstationTable = array();
 // Obtiene id de la estación
