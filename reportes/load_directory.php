@@ -31,7 +31,7 @@ switch ($_POST['actionID']) {
     case 'chargue_dp':
             $path = $_POST['path'];
             if(isset($_POST['name']))
-                $name = $_POST['name'];
+                $name = normaliza($_POST['name']);
             
             $search = scandirectory($path,$name);
             if($search != ""){
@@ -40,7 +40,7 @@ switch ($_POST['actionID']) {
             }
         break;
     case 'search_directory':
-            $name = $_POST['name'];
+            $name = normaliza($_POST['name']);
             $carpeta = $_POST['folder'];
             $tipo = $_POST['tipo'];
             $search = search_directory_estation($name,$carpeta,$tipo);
@@ -144,13 +144,26 @@ function search_directory($path,$name,$carpeta,$tipo){
         $gestor_dir = opendir($directorio);
         if($gestor_dir){
             while (false !== ($nombre_fichero = readdir($gestor_dir))) {
-                if($nombre_fichero == strtolower($name)){
+            	$parameterName = strtolower($name);
+                //if($nombre_fichero == strtolower($name)){
+                if(strcmp($nombre_fichero, $parameterName) === 0){
                     $respuesta = true;
                 }
             }   
         }
     } 
     return $respuesta;
+}
+
+function normaliza ($cadena){
+    $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞ
+ßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ';
+    $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuy
+bsaaaaaaaceeeeiiiidnoooooouuuyybyRr';
+    $cadena = utf8_decode($cadena);
+    $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+    $cadena = strtolower($cadena);
+    return utf8_encode($cadena);
 }
 
 $salidaJson = array("respuesta" => $respuesta, "salida" => $salida, "name" => $name);
