@@ -140,6 +140,34 @@ estacionesJSON = [
 		    "fecha": "15 de Marzo de 2012",
 		    "estado": "Activa"	  		  
 		},
+		// Added March 2nd 2016
+		{
+			"id" : "86",
+  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
+		    "nombre": "ECT006 (CAM)",
+		    "carpeta": "cam",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "radiacion",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.833718335,
+		      "longitud": -75.67106802
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "2 de Marzo de 2016",
+		    "estado": "Activa"	  		  
+		},
 		{
 			"id" : "14",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
@@ -182,8 +210,96 @@ estacionesJSON = [
 		    "fecha": "27 de Marzo de 2010",
 		    "estado": "Activa"	  		  
 		},
-		
-		
+		// Added March 2nd 2016
+		{
+			"id" : "84",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT003 (Totui)",
+		     "carpeta": "totui",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.970768616,
+		      "longitud": -75.93162134
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "2 de Marzo de 2016",
+		    "estado": "Activa"	  		  
+		},
+		// Last 4 stations created July 18th 2016
+		{
+			"id" : "87",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT004 (Río Guatica)",
+		    "carpeta": "rioguatica",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 5.278800582,
+		      "longitud": -75.82782112
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "18 de Julio de 2016",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "88",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT005 (Rio Mistrató)",
+		     "carpeta": "riomistrato",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 5.248022748,
+		      "longitud": -75.84114614
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "18 de Julio de 2016",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "90",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT006 (Río Risaralda)",
+		     "carpeta": "riorisaralda",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 5.23686437,
+		      "longitud": -75.81181276
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "18 de Julio de 2016",
+		    "estado": "Activa"	  		  
+		},
 		{
 			"id":"60",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
@@ -348,6 +464,33 @@ estacionesJSON = [
 		    "altitud": "1550 m.s.n.m",
 		    "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
 		    "fecha": "Diciembre de 2007",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "85",
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (EC)",
+		    "nombre": "EC003 (Mairabajo - Belén de Umbría)",
+		     "carpeta": "mairabajo",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel",
+		      "3": "presion",
+		      "4": "humedad",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"	      
+		    },
+		    "coordenadas": {
+		      "latitud": 5.257036639,
+		      "longitud": -75.83335167
+		    },
+		    "isPublic": true,
+		    "tipo":"EC",
+		    "icono": iconoEC,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "18 de Julio de 2016",
 		    "estado": "Activa"	  		  
 		},
 		{
@@ -882,7 +1025,7 @@ estacionesJSON = [
 		    },
 		    "isPublic": true,
 		    //"tipo":"PDT", Changed in order to allow reports to autoselect
-		    "tipo":"ECT",
+		    "tipo":"PDT",
 		    "icono": iconoPDT,
 		    "altitud": "1480 m.s.n.m.",
 		    "ubicacion": "",
@@ -906,5 +1049,4 @@ estacionesJSON = [
 		    "fecha": "Diciembre 4 de 2015",
 		    "estado": "Activa"	  		  
 		}
-		
 	];
