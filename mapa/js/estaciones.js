@@ -265,7 +265,7 @@ estacionesJSON = [
 			"id" : "87",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT004 (Río Guatica)",
-		    "carpeta": "rioguatica",
+		    "carpeta": "rio guatica",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -287,7 +287,7 @@ estacionesJSON = [
 			"id" : "88",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT005 (Rio Mistrató)",
-		     "carpeta": "riomistrato",
+		     "carpeta": "rio mistrato",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -309,7 +309,7 @@ estacionesJSON = [
 			"id" : "90",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT006 (Río Risaralda)",
-		     "carpeta": "riorisaralda",
+		     "carpeta": "el diamante- rio risaralda",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
