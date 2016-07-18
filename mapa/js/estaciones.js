@@ -169,6 +169,33 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
+			"id" : "85",
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+		    "nombre": "ECT007 (Mairabajo - Belén de Umbría)",
+		    "carpeta": "mairabajo",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "nivel",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
+		    },
+		    "coordenadas": {
+		      "latitud": 5.257036639,
+		      "longitud": -75.83335167
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "18 de Julio de 2016",
+		    "estado": "Activa"	  		  
+		},
+		{
 			"id" : "14",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT001 (El Cedral)",
@@ -464,33 +491,6 @@ estacionesJSON = [
 		    "altitud": "1550 m.s.n.m",
 		    "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
 		    "fecha": "Diciembre de 2007",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "85",
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (EC)",
-		    "nombre": "EC003 (Mairabajo - Belén de Umbría)",
-		     "carpeta": "mairabajo",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel",
-		      "3": "presion",
-		      "4": "humedad",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"	      
-		    },
-		    "coordenadas": {
-		      "latitud": 5.257036639,
-		      "longitud": -75.83335167
-		    },
-		    "isPublic": true,
-		    "tipo":"EC",
-		    "icono": iconoEC,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "18 de Julio de 2016",
 		    "estado": "Activa"	  		  
 		},
 		{
