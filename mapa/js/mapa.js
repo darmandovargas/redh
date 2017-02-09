@@ -312,7 +312,7 @@ function showStations(estation) {
 				});
 				google.maps.event.addListener(marker, 'click', toggleBounce);
 				marker.setTitle(obj.tipo + ": " + obj.nombre);
-				addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
+				addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
 
 			}else{
 				//console.log(console.log("ELSE 1: ....... " + obj.tipo + ": " + obj.nombre));
@@ -454,10 +454,10 @@ DebugOverlay.prototype.onRemove = function() {
 /**
  * Pop up of each station
  */
-function addPopUp(marker, message, id, tipo, carpeta) {
+function addPopUp(marker, message, id, tipo, carpeta, bd) {
 
 	var infowindow = new google.maps.InfoWindow({
-		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'&carpeta='+carpeta+'" height="560px" width="800px"></iframe>'
+		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'&carpeta='+carpeta+'&bd='+bd+'" height="560px" width="800px"></iframe>'
 	});
 	
 	google.maps.event.addListener(marker, 'click', function() {

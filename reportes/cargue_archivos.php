@@ -21,6 +21,7 @@ if($_REQUEST["boletin"] != "" && $_REQUEST["estacion"] != "" && $_REQUEST["perio
     if(isset($_REQUEST['mes']))
         $path = "/".$_REQUEST['mes'];
     $directory = "boletines/".$_REQUEST["boletin"]."/".$_REQUEST["estacion"]."/".$_REQUEST["fecha"]."/".$_REQUEST["periocidad"].$path;
+	//echo $directory
     //$directory= "images/estaciones/".$estacion;
     $dirint = dir($directory);
     $vector = array();

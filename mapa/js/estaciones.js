@@ -327,6 +327,146 @@ estacionesJSON = [
 		    "fecha": "18 de Julio de 2016",
 		    "estado": "Activa"	  		  
 		},
+		// ESTACIONES SERVER 2		
+		{
+			"id" : "106",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT007 (Antes de Bocatoma Nuevo Libaré)",
+		    "carpeta": "antes de bocatoma nuevo libare",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.78061548,
+		      "longitud": -75.64479298
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "9 de Agosto de 2016",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "105",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT008 (Quebrada Volcanes - Las Mangas)",
+		    "carpeta": "quebrada volcanes - las mangas",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.78345435,
+		      "longitud": -75.63460127
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "9 de Agosto de 2016",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "109",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT009 (Río Azul - El Jordan)",
+		     "carpeta": "rio azul - el jordan",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.73277094,
+		      "longitud": -75.45494814
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "9 de Agosto de 2016",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "110",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT010 (Río Otún - El Jordan)",
+		    "carpeta": "rio otun - el jordan",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.73420425,
+		      "longitud": -75.45445092
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "9 de Agosto de 2016",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "107",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT011 (Río Barbo - Boc. Pezfresco)",
+		     "carpeta": "rio barbo - boc pezfresco",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.73219872,
+		      "longitud": -75.56929003
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "9 de Agosto de 2016",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "104",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT012 (Río San Juan - Desembocadura)",
+		    "carpeta": "rio san juan - desembocadura",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.75697931,
+		      "longitud": -75.59752067
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "9 de Agosto de 2016",
+		    "estado": "Activa"	  		  
+		},
+		// FIN ESTACIONES SERVER 2
 		{
 			"id":"60",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
