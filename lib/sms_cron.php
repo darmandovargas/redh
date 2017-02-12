@@ -59,9 +59,23 @@ foreach($estacionesList as $el){
 if(!empty($Message)){
 	$dt = new DateTime('', new DateTimeZone('America/Bogota'));
 	$msg = $dt->format("Y-m-d H:i:s")." Alarmas: ".$Message." Un mensaje enviado desde www.redh.org por Think Cloud Group www.thinkcloudgroup.com";
-	echo $msg;	
-	//$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $msg);
-	//echo " SENT: ".$answer;
+	
+	$smsCount = $oMySQL->executeSQL('SELECT messages FROM sms WHERE id = 1');	
+	
+	if(intval($smsCount["messages"])>0){
+		if(intval($smsCount["messages"])==2){
+			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
+			$m = $dt->format("Y-m-d H:i:s")." Su saldo de mensajes de alerta de la Red Hidroclimatológica de Risaralda se ha agotado, por favor comuníquese con su administrador para hacer una recarga. Mensaje enviado por Think Cloud Group http://www.thinkcloudgroup.com";
+			echo $m;
+			$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $m);
+		}
+		//var_dump($smsCount["messages"]);
+		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
+		echo $msg;	
+		$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $msg);
+	}else{
+		echo $dt->format("Y-m-d H:i:s")." Alarmas NO ENVIADAS POR FALTA DE SALDO: ".$Message." Un mensaje enviado desde www.redh.org por Think Cloud Group www.thinkcloudgroup.com";;
+	}
 }
 
 
