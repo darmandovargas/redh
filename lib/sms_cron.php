@@ -99,7 +99,7 @@ function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan=false
 		// Iterates the last 2 registers in order to get the sum of both vallues
 		foreach ($rs as $v) {
 			// if the value is not empty and different to 0 it will sum the value
-			if(!empty($v[$variable]) && floatval($v[$variable]) != 0){
+			if(!empty($v[$variable]) && floatval($v[$variable]) != 0 && $v[$variable]!='-'){
 				$averageTemp += floatval($v[$variable]);
 				$averageCount++;	
 			}	
