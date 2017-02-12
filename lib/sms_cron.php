@@ -22,7 +22,8 @@ mysql_query("set names 'utf8'");
 $AccountID="CI00112133";
 $Email="darmandovargas@gmail.com";
 $Password="123456"; 
-$Recipient="3108311240";
+//$Recipient="3108311240";
+$Recipient="3136355940";
 $Message = "";
 			
 // Get alarms of estaciones
