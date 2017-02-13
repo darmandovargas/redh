@@ -75,8 +75,8 @@ if(!empty($Message)){
 		//var_dump($smsCount["messages"]);
 		error_log(PHP_EOL.$msg, 3, "/home/thinkclo/public_html/redh/sms.log");
 		echo $msg."</br></br>";	
-		//$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
-		//$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $msg);
+		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
+		$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $msg);
 	}else{
 		$response = $dt->format("Y-m-d H:i:s")." Alarma(s) NO ENVIADAS POR FALTA DE SALDO: ".$Message."  Un mensaje enviado desde www.redhidro.org por Think Cloud Group www.thinkcloudgroup.com.";
 		error_log(PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
