@@ -58,6 +58,8 @@ foreach($estacionesList as $el){
 	}
 }
 
+//echo "</br>".$Message."hey</br>";
+
 if(!empty($Message)){
 	$dt = new DateTime('', new DateTimeZone('America/Bogota'));
 	$msg = $dt->format("Y-m-d H:i:s")." Alarma(s): ".$Message."  Un mensaje enviado desde www.redhidro.org por Think Cloud Group www.thinkcloudgroup.com";
@@ -72,7 +74,6 @@ if(!empty($Message)){
 			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
 			$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $m);
 		}
-		//var_dump($smsCount["messages"]);
 		error_log(PHP_EOL.$msg, 3, "/home/thinkclo/public_html/redh/sms.log");
 		echo $msg."</br></br>";	
 		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
@@ -89,7 +90,7 @@ if(!empty($Message)){
  * This function will build the SMS to be sent to the system operator(s)
  *
  */
-function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan=false, $moreThan=false, $msg=''){
+function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan='', $moreThan='', $msg=''){
 	global $Message;	
 	// Prepare query with last 2 registers from db
 	$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 2";//LIMIT 5
@@ -100,12 +101,13 @@ function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan=false
 	$averageTemp = false;
 	$vals = array();
 	$averageCount = 0;
-	
+
 	if($rs){
 		// Iterates the last 2 registers in order to get the sum of both vallues
 		foreach ($rs as $v) {
 			// if the value is not empty and different to 0 it will sum the value
-			if(!empty($v[$variable]) && floatval($v[$variable]) != 0 && $v[$variable]!='-'){
+			if(!empty($v[$variable]) && /*floatval($v[$variable]) != 0 &&*/ strcmp ( $v[$variable] , "-" ) !== 0){
+
 				$averageTemp += floatval($v[$variable]);
 				$vals[] = floatval($v[$variable]);
 				$averageCount++;	
@@ -118,6 +120,7 @@ function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan=false
 		return true;
 	}
 
+	// We avoid sms if the last register is lower than second to last register
 	if($variable == "nivel"){
 		if($vals[0]<$val[1]){
 			return true;
@@ -125,26 +128,28 @@ function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan=false
 	}
 	
 	// If there is an averageTemp sum, then divide it by 2 in order to get the average
-	$average = $vals[1];//$averageTemp / $averageCount;
+	$average = $vals[0];//$averageTemp / $averageCount;
 
 	$measureSymbol = "";
 	// Set measure symbol
 	switch ($variable) {
-		case 'temperatura': $measureSymbol = "°C"; $variable = "Temperatura"; break;
-		case 'precipitacion_real': $measureSymbol = "cm/h"; $variable = "Precipitación"; break;
-		case 'nivel': $measureSymbol = "mm"; $variable = "Nivel"; break;
-		default: $measureSymbol = "°C"; break;
+		case 'temperatura': $measureSymbol = "°C"; $variable = "Temperatura"; $valor=$average; break;
+		case 'precipitacion_real': $measureSymbol = "cm/h"; $variable = "Precipitación"; $valor = $average * 60 / 5; break;
+		case 'nivel': $measureSymbol = "mm"; $variable = "Nivel"; $valor=$average; break;
+		default: $measureSymbol = "°C"; $valor=$average; break;
 	}
 
-	$valor = $average * 60 / 5;
+	
 
 	// Process alarm for symbol < (less than)
-	if($lessThan && $average<floatval($lessThan)){
+	if(!empty($lessThan) && $valor < floatval($lessThan)){
+		//echo $stationName." -> ".$variable.": valor:".$valor." < ".floatval($lessThan)."</br>";
 		$Message .= empty($msg)?"'".$stationName."' ".$variable."  ".$valor." ".$measureSymbol.".  ":$msg;
 	}	
 
 	// Process alarm for symbol > (more than)
-	if($moreThan && $average>floatval($moreThan)){
+	if(!empty($moreThan) && $valor > floatval($moreThan)){
+		//echo $stationName." -> ".$variable.": valor:".$valor." > ".floatval($moreThan)."</br>";
 		$Message .= empty($msg)?"'".$stationName."' ".$variable."  ".$valor." ".$measureSymbol.".  ":$msg;
 	}
 }
