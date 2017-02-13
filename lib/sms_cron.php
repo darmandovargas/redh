@@ -11,9 +11,10 @@
  
 // Obtiene la conexión a la bd
 include_once ('class.MySQL.php');
-
 // Get sms libs
-	include_once('sms.php');
+include_once('sms.php');
+// Get log lib
+include_once('error.php');
 
 global $Message;
 
@@ -59,23 +60,27 @@ foreach($estacionesList as $el){
 
 if(!empty($Message)){
 	$dt = new DateTime('', new DateTimeZone('America/Bogota'));
-	$msg = $dt->format("Y-m-d H:i:s")." Alarmas: ".$Message." Un mensaje enviado desde www.redh.org por Think Cloud Group www.thinkcloudgroup.com";
+	$msg = $dt->format("Y-m-d H:i:s")." Alarma(s): ".$Message."  Un mensaje enviado desde www.redhidro.org por Think Cloud Group www.thinkcloudgroup.com";
 	
 	$smsCount = $oMySQL->executeSQL('SELECT messages FROM sms WHERE id = 1');	
 	
 	if(intval($smsCount["messages"])>0){
 		if(intval($smsCount["messages"])==2){
-			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
 			$m = $dt->format("Y-m-d H:i:s")." Su saldo de mensajes de alerta de la Red Hidroclimatológica de Risaralda se ha agotado, por favor comuníquese con su administrador para hacer una recarga. Mensaje enviado por Think Cloud Group http://www.thinkcloudgroup.com";
-			echo $m;
+			echo $m."</br></br>";
+			@error_log(PHP_EOL.$m, 3, "/home/thinkclo/public_html/redh/sms.log");
+			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
 			$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $m);
 		}
 		//var_dump($smsCount["messages"]);
-		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
-		echo $msg;	
-		$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $msg);
+		error_log(PHP_EOL.$msg, 3, "/home/thinkclo/public_html/redh/sms.log");
+		echo $msg."</br></br>";	
+		//$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-1 WHERE id=1');
+		//$answer = SendMessage($AccountID, $Email, $Password, $Recipient, $msg);
 	}else{
-		echo $dt->format("Y-m-d H:i:s")." Alarmas NO ENVIADAS POR FALTA DE SALDO: ".$Message." Un mensaje enviado desde www.redh.org por Think Cloud Group www.thinkcloudgroup.com";;
+		$response = $dt->format("Y-m-d H:i:s")." Alarma(s) NO ENVIADAS POR FALTA DE SALDO: ".$Message."  Un mensaje enviado desde www.redhidro.org por Think Cloud Group www.thinkcloudgroup.com.";
+		error_log(PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
+		echo $response."</br></br>";
 	}
 }
 
@@ -93,6 +98,7 @@ function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan=false
 	$rs = $oMySQL->executeSQL($query);
 	// Initialize an average temporal variable
 	$averageTemp = false;
+	$vals = array();
 	$averageCount = 0;
 	
 	if($rs){
@@ -101,27 +107,45 @@ function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan=false
 			// if the value is not empty and different to 0 it will sum the value
 			if(!empty($v[$variable]) && floatval($v[$variable]) != 0 && $v[$variable]!='-'){
 				$averageTemp += floatval($v[$variable]);
+				$vals[] = floatval($v[$variable]);
 				$averageCount++;	
-			}	
+			}
 		}
 	}		
 	
 	// If value is with the inicialized value (false) then do nothing (continue )
-	if(!$averageTemp){
+	if(!$averageTemp && count($vals) != 2){
 		return true;
+	}
+
+	if($variable == "nivel"){
+		if($vals[0]<$val[1]){
+			return true;
+		}
 	}
 	
 	// If there is an averageTemp sum, then divide it by 2 in order to get the average
-	$average = $averageTemp / $averageCount;
+	$average = $vals[1];//$averageTemp / $averageCount;
+
+	$measureSymbol = "";
+	// Set measure symbol
+	switch ($variable) {
+		case 'temperatura': $measureSymbol = "°C"; $variable = "Temperatura"; break;
+		case 'precipitacion_real': $measureSymbol = "cm/h"; $variable = "Precipitación"; break;
+		case 'nivel': $measureSymbol = "mm"; $variable = "Nivel"; break;
+		default: $measureSymbol = "°C"; break;
+	}
+
+	$valor = $average * 60 / 5;
 
 	// Process alarm for symbol < (less than)
 	if($lessThan && $average<floatval($lessThan)){
-		$Message .= empty($msg)?"'".$stationName."' ".$variable."  ".$average." < ".$lessThan.". ":$msg;
+		$Message .= empty($msg)?"'".$stationName."' ".$variable."  ".$valor." ".$measureSymbol.".  ":$msg;
 	}	
 
 	// Process alarm for symbol > (more than)
 	if($moreThan && $average>floatval($moreThan)){
-		$Message .= empty($msg)?"'".$stationName."' ".$variable."  ".$average." > ".$moreThan.". ":$msg;
+		$Message .= empty($msg)?"'".$stationName."' ".$variable."  ".$valor." ".$measureSymbol.".  ":$msg;
 	}
 }
 ?>
