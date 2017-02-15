@@ -499,7 +499,7 @@ $host = insert_host($oMySQL, $ip);
 						<div class="span12" style="height: 100%;">
 							<div id="map_canvas"></div>
 							<!--<div style="position: absolute; bottom: -2px; right:44%; font-size:11px;">Developed by <a href="http://thinkcloudgroup.com" target="_blank">Think Cloud Group</a></div>-->
-							<div class="tcg">Powered by <a href="http://thinkcloudgroup.us" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
+							<div class="tcg">Powered by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
 							<!--<iframe src="../mapa/" width="100%" height="800px"></iframe>-->
 						</div>
 					</div>

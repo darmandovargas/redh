@@ -242,7 +242,7 @@
 		</div>
 		<div id="map-canvas"></div>
 		
-		<div class="tcg">Powered by <a href="http://thinkcloudgroup.us" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
+		<div class="tcg">Powered by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
 		<input id="search"  type="text" class="controls" placeholder="Ingrese Ubicación">
 
 		<div id="type-selector" class="controls" >
