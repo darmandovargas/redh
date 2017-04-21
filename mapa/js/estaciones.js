@@ -425,7 +425,7 @@ estacionesJSON = [
 			"bd" : "bd_aguas",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT011 (Río Barbo - Boc. Pezfresco)",
-		     "carpeta": "rio barbo - boc pezfresco",
+		    "carpeta": "rio barbo - boc pezfresco",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -479,7 +479,7 @@ estacionesJSON = [
 		      "latitud": 4.781601593,
 		      "longitud": -75.64497076
 		    },
-		    "isPublic": false,
+		    "isPublic": true,
 		    "tipo":"ENT",
 		    "icono": iconoENT, 
 		    "altitud": "1535 m.s.n.m",
@@ -499,7 +499,7 @@ estacionesJSON = [
 		      "latitud": 4.818462752,
 		      "longitud": -75.72730703
 		    },
-		    "isPublic": false,
+		    "isPublic": true,
 		    "tipo":"ENT",
 		    "icono": iconoENT, 
 		    "altitud": "1278 m.s.n.m",

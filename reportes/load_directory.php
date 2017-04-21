@@ -16,8 +16,8 @@
 session_start();
 
 $privateStations = array(
-	"bocatoma nuevo libare",
-	"bocatoma belmonte",
+	//"bocatoma nuevo libare",
+	//"bocatoma belmonte",
 	"canal entrada belmonte",
 	"canal salida belmonte",
 	"planta nuevo libare",
