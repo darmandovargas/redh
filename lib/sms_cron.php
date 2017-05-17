@@ -100,7 +100,7 @@ if(!empty($updatedIds)){
 //var_dump($alarmUpdateList);
 //echo "</br></br>";
 //var_dump($Message);
-if(!empty($Message)){
+/*if(!empty($Message)){
 	// Make sure we have the right timezone
 	$dt = new DateTime('', new DateTimeZone('America/Bogota'));
 	// Set message format with the date of the sms
@@ -117,7 +117,7 @@ if(!empty($Message)){
 }else{
 	echo "There is no alarm to be sent";
 }	
-exit();
+exit();*/
 // END TEST CODE
 
 // I check if there is a pending to send message
@@ -149,23 +149,32 @@ if(!empty($Message)){
 								'tb_eldiamante'=>'573112163678,573108152873,573128468859,573103095998', 
 								'tb_mairabajo'=>'573112163678,573108152873,573128468859,573103095998');
 
+		// This calculates how many SMS are necessary in order to send the whole message
+		$msgMultiple = ceil(strlen($msg)/160);
+		$totalSentSMSAll = $allStationsCount*$msgMultiple;
 		// Send all stations message
-		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$allStationsCount.' WHERE id=2');
+		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSentSMSAll.' WHERE id=2');
 		$resp["allstations"] = AltiriaSMS($allStations, $msg, "dvargas", false);
 		@error_log(PHP_EOL.PHP_EOL."All Stations: ".$msg.PHP_EOL.$resp["allstations"], 3, "/home/thinkclo/public_html/redh/sms.log");
 		echo "All Stations: ".$msg."</br>".$resp["allstations"]."</br>";
 		// Check if there are specific tables alarm
 		if($specificMessage){
 			// This is an specific tables messages counter
-			$totalSpecificMessages = 0;
+			$currentTotal = 0;
+			$totalSentSMSSpecific = 0;
 			// Send sms to different organizations based on the table warning numbers defined in all tables numbers variable
 			foreach ($specificMessage as $tab => $ms) {
 				// If the tables is defined at $allTablesNumbers then proceed with the sms, otherway do nothing
 				if(isset($allTablesNumbers[$tab])){
-					// Sum the specific tables messages count
-					$totalSpecificMessages += count(explode(",",$allTablesNumbers[$tab]));	
 					// Prepare the message to be sent
 					$ms = $dt->format("Y-m-d H:i:s")." Alarma: ".$ms."Visítanos redhidro.org";
+
+					// Sum the specific tables messages count
+					$currentTotal = count(explode(",",$allTablesNumbers[$tab]));
+					// This calculates how many SMS are necessary in order to send the whole message
+					$msgMultiple = ceil(strlen($ms)/160);
+					$totalSentSMSSpecific += $currentTotal*$msgMultiple;	
+
 					// Send message to specific numbers depending on the table
 					$resp[$tab] = AltiriaSMS($allTablesNumbers[$tab], $ms, "dvargas", false);
 					// Save logs
@@ -175,12 +184,12 @@ if(!empty($Message)){
 				}
 			}
 			// Update pending messages based on the total amount of specific messages sent on this iteraction
-			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSpecificMessages.' WHERE id=2');	
+			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSentSMSSpecific.' WHERE id=2');	
 		}
 		// Sets the total remined messages after the total station and specific table messages sent
-		$totalRemainMessages = $smsCount["messages"] - $totalSpecificMessages - $allStationsCount;
+		$totalRemainMessages = $smsCount["messages"] - $totalSentSMSSpecific - $totalSentSMSAll;
 		// Sets the total sent messages
-		$totalMessages = $totalSpecificMessages + $allStationsCount;
+		$totalMessages = $totalSentSMSSpecific + $totalSentSMSAll;
 		// Save logs
 		@error_log(PHP_EOL.PHP_EOL.$totalMessages."->".$smsCount["messages"].":".$totalRemainMessages, 3, "/home/thinkclo/public_html/redh/sms.log");
 		// Return response on manual cron run
