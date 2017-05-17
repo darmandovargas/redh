@@ -172,7 +172,9 @@
 				case 'Nivel': $customMsg = "altos niveles del río,";  
 							  // Sets first cicle alarm value
 							  if(!$activeMoreThan){
-							  	$objTemp["first_cicle_alarm"]=$valor; 	
+							  	$updatedIds[] = $station;
+							  	$objTemp["first_cicle_alarm"]=$valor; 
+							  	$objTemp["last_value"] = $valor;		
 							  }
 							break;
 			}
