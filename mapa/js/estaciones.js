@@ -8,6 +8,8 @@ iconoPos  = 'http://'+window.location.host+'/mapa/img/punto.png';
 // New added 01-02-2015
 iconoENT  = 'http://'+window.location.host+'/mapa/img/ENT.png'; // Estaciones de Nivel Telemétrica
 iconoEQT  = 'http://'+window.location.host+'/mapa/img/caudal.png'; // Estaciones de Caudal Telemétricas
+// Pozos added 27-07-2017
+iconoPozo  = 'http://'+window.location.host+'/mapa/img/pozo.png'; // Estaciones de Pozo similar a las de Nivel
 
 estacionesJSON = [
   		{
@@ -467,6 +469,52 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		// FIN ESTACIONES SERVER 2
+		// 2 Estaciónes agregadas el 26 de Diciembre de 2017
+		{
+			"id" : "91",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT013 (Casa de maquinas - Río Risaralda)",
+		    "carpeta": "Casa de maquinas - Rio Risaralda",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 5.18854483,
+		      "longitud": -75.81336554
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "26 de Diciembre de 2017",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "92",
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT 014 (La Nona)",
+		    "carpeta": "La Nona",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.88294624,
+		      "longitud": -75.7169181
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "26 de Diciembre de 2017",
+		    "estado": "Activa"	  		  
+		},
+		//
 		{
 			"id":"60",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
@@ -633,6 +681,26 @@ estacionesJSON = [
 		    "fecha": "Diciembre de 2007",
 		    "estado": "Activa"	  		  
 		},
+		
+		{
+			"id" : "0",
+  			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
+		    "nombre": "EC005 (Universidad Católica)",
+		    "carpeta": "universidad catolica",
+		    "variables": {},
+		    "coordenadas": {
+		      "latitud": 4.80414884,
+		      "longitud": -75.72504036
+		    },
+		    "isPublic": true,
+		    "tipo":"EC",
+		    "icono": iconoEC,
+		    "altitud": "1550 m.s.n.m",
+		    "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
+		    "fecha": "Diciembre de 2007",
+		    "estado": "Activa"	  		  
+		},
+		
 		{
 			"id" : "32",
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
@@ -746,6 +814,27 @@ estacionesJSON = [
 		    "altitud": "1290 m.s.n.m",
 		    "ubicacion": "Barrio La Habana Cuba.",
 		    "fecha": "23 de Febrero de 2010",
+		    "estado": "Activa"	  		  
+		},
+		
+		{
+			"id" : "0",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+		    "nombre": "SN011 (Quebrada Callejones) ",
+		    "carpeta": "quebrada callejones",
+		    "variables": {
+		    	"0": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.736584813,
+		      "longitud": -75.56916781
+		    },
+		    "isPublic": true,
+		    "tipo":"SN",
+		    "icono": iconoSN,
+		    "altitud": "1600 m.s.n.m",
+		    "ubicacion": "Cuenca media Río Otún ",
+		    "fecha": "3 de Marzo de 2010",
 		    "estado": "Activa"	  		  
 		},
 		/*
@@ -1176,6 +1265,7 @@ estacionesJSON = [
 			"id" : "0",
   			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC004 (Lisbrán)",
+		    "carpeta": "lisbran",
 		    "variables": {},
 		    "coordenadas": {
 		      "latitud": 4.73788204,
@@ -1187,6 +1277,127 @@ estacionesJSON = [
 		    "altitud": "1550 m.s.n.m",
 		    "ubicacion": "",
 		    "fecha": "Diciembre 4 de 2015",
+		    "estado": "Activa"	  		  
+		},
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		{
+			"id" : "0",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+		    "nombre": "SNS001 (Pozo Jamaica)",
+		    "carpeta": "jamaica",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.77801546,
+		      "longitud": -75.6959792
+		    },
+		    "isPublic": true,
+		    "tipo":"SNS",
+		    "icono": iconoPozo,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "0",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+		    "nombre": "SNS002 (Pozo Cerritos)",
+		    "carpeta": "cerritos",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.80373773,
+		      "longitud": -75.84493227
+		    },
+		    "isPublic": true,
+		    "tipo":"SNS",
+		    "icono": iconoPozo,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "0",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+		    "nombre": "SNS003 (Pozo Alen+ pro)",
+		    "carpeta": "alenpro",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.76209322,
+		      "longitud": -75.9066546
+		    },
+		    "isPublic": true,
+		    "tipo":"SNS",
+		    "icono": iconoPozo,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "0",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+		    "nombre": "SNS005 (Pozo Linares)",
+		    "carpeta": "linares",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.815996108,
+		      "longitud": -75.80399328
+		    },
+		    "isPublic": true,
+		    "tipo":"SNS",
+		    "icono": iconoPozo,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "0",
+  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+		    "nombre": "SNS004 (Pozo Coca Cola)",
+		    "carpeta": "cocacola",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "nivel"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.80924886,
+		      "longitud": -75.79177382
+		    },
+		    "isPublic": true,
+		    "tipo":"SNS",
+		    "icono": iconoPozo,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "",
 		    "estado": "Activa"	  		  
 		}
 	];

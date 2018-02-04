@@ -69,7 +69,7 @@
 
 		if($variable == "nivel" && intval($lastValue) > 0 && intval($firstCicleAlarm) > 0){
 			
-			if( $vals[0] < floatval($firstCicleAlarm) ){
+			if( $vals[0] < floatval($moreThan) ){
 				$updatedIds[] = $station;
 				$objTemp["last_value"] = 0;	
 				$objTemp["first_cicle_alarm"] = 0;	

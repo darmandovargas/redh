@@ -12,6 +12,12 @@ $tipoEstacion = $_GET['tipo'];
 $carpeta = "";
 if(isset($_GET['carpeta']))
     $carpeta = $_GET['carpeta'];
+
+
+if($tipoEstacion=="SNS"){
+	$nombre_estacion = $carpeta;
+}
+
 // Si la estación existe en la base de datos entonces arme el json para graficar
 if ($idEstacion != 0) {
 	// Inicializa array de variables a sensar y graficar
@@ -37,6 +43,9 @@ if ($idEstacion != 0) {
 			$tablaEstaciones = "estacion_sensores"; break;
 		case 'SN' :
 			$tablaEstaciones = "estacion_sensores"; break;
+		case 'SNS' :
+			$tablaEstaciones = "estacion_sensores";			
+			break;
 		case 'PD' :
 			$tablaEstaciones = "estacion_sensores"; 
 			// Inicializa array de variables a sensar y graficar
@@ -115,9 +124,8 @@ if ($idEstacion != 0) {
 		}
 	}
 	
-	$nombre_estacion = $est["estNombre"];
+	$nombre_estacion = empty($nombre_estacion)?$est["estNombre"]:$nombre_estacion;	
 }
-//var_dump($serieNew["humedad"]);
 ?>
 <!DOCTYPE html> 
 <html>
@@ -421,6 +429,9 @@ if ($idEstacion != 0) {
 					</li>
 					<li class="sky-tab-content-3">
 						<div class="typography"  >
+						<?php
+							$nombre_estacion = (empty($nombre_estacion))?$carpeta:$nombre_estacion;
+						?>
 							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="400px" width="540px"></iframe>
 						</div>
 					</li>

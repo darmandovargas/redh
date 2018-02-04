@@ -13,14 +13,17 @@
 include ('class.MySQL.php');
 // Get sms libs
 include_once('sms.php');
-include_once('alarm.php');
+
 // Get log lib
 include_once('error.php');
 
-$Message="";
+$Message;
 
 mysql_query("set names 'utf8'");
 // Inicializa variables
+$AccountID="CI00112133";
+$Email="darmandovargas@gmail.com";
+$Password="LM;K6Ck:R_zdD:6;"; 
 $Message = "";
 $specificMessage = array();
 
@@ -68,12 +71,16 @@ foreach($estacionesList as $el){
 		// If the last sms for this specific variable is older than an 2 hours ago, then it check for alarms on this variable
 		if($now > $objTemp["last_sms"]+2*60*60){
 			// Check alarm for this variable and add it to the general alarm message
-			$response = checkAlarms($oMySQL, $tabla, $stationName, $variable, $lessThan, $moreThan, $el['id']);
-			//echo $tabla." - ".$variable." - ".$moreThan." - ".$objTemp["last_value"]."</br>";
+			$response = checkAlarms($oMySQL, $tabla, $stationName, $variable, $lessThan, $moreThan, $objTemp["last_value"], $currentLevelValue, $objTemp, $Message);
 			// If there were any alarm detected for this variable then update the last sms variable of the json for the specific variable
 			if($response){
 				$updatedIds[] = $el['id'];
 				$objTemp["last_sms"]=time(); 
+				if($variable == "nivel"){
+					if($currentLevelValue < $objTemp["last_value"]){
+						$objTemp["last_value"]=0; 	
+					}
+				}
 			}	
 		}		
 		// In order to get the updated json we keep the alarmUpdateList variable up to date with all variables on each variable iteration until we have it completed
@@ -84,41 +91,27 @@ foreach($estacionesList as $el){
 
 $oMySQL->closeConnection();
 unset($oMySQL);
-$oMySQL = new MySQL($dbsigName, $bdsigUser, $bdsigPassword, $bdsigIp);
+$oMySQL = new MySQL('bdsig', 'hidro', 'hidro', '201.131.90.70');
 
 // Based on the list collected on the last iteration we update the json of the stations with last sms date of each alarm we sent
 if(!empty($updatedIds)){
 	foreach ($alarmUpdateList as $key => $value) {
 		if(in_array($key, $updatedIds)){
-			$updateLastVariableAlarm = $oMySQL->executeSQL('UPDATE estaciones SET alarma = \''.$value.'\' WHERE id='.intval($key));	
+			//$updateLastVariableAlarm = $oMySQL->executeSQL('UPDATE estaciones SET alarma = \''.$value.'\' WHERE id='.intval($key));	
 		}		
 	}	
 }
 
 
-// TEST CODE
-//var_dump($alarmUpdateList);
-//echo "</br></br>";
-//var_dump($Message);
-/*if(!empty($Message)){
-	// Make sure we have the right timezone
+var_dump($alarmUpdateList);
+echo "</br></br>";
+var_dump($Message);
+// Make sure we have the right timezone
 	$dt = new DateTime('', new DateTimeZone('America/Bogota'));
 	// Set message format with the date of the sms
 	$msg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message."Visítanos redhidro.org";
-
-	// This calculates how many SMS are necessary in order to send the whole message
-	$msgMultiple = ceil(strlen($Message)/160);
-	$totalSentSMS = 1*$msgMultiple;
-	//$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSentSMS.' WHERE id=2');
-	//AltiriaSMS("573136355940", $msg, "dvargas", false);
-	@error_log(PHP_EOL.PHP_EOL."TEST CODE: ".$msg.PHP_EOL, 3, "/home/thinkclo/public_html/redh/sms.log");
-	echo "TEST CODE:".$tab.": ".$msg."</br>";
-	
-}else{
-	echo "There is no alarm to be sent";
-}	
-exit();*/
-// END TEST CODE
+//AltiriaSMS("573108311240", $msg, "dvargas", false);
+exit();
 
 // I check if there is a pending to send message
 if(!empty($Message)){
@@ -149,32 +142,23 @@ if(!empty($Message)){
 								'tb_eldiamante'=>'573112163678,573108152873,573128468859,573103095998', 
 								'tb_mairabajo'=>'573112163678,573108152873,573128468859,573103095998');
 
-		// This calculates how many SMS are necessary in order to send the whole message
-		$msgMultiple = ceil(strlen($msg)/160);
-		$totalSentSMSAll = $allStationsCount*$msgMultiple;
 		// Send all stations message
-		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSentSMSAll.' WHERE id=2');
+		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$allStationsCount.' WHERE id=2');
 		$resp["allstations"] = AltiriaSMS($allStations, $msg, "dvargas", false);
 		@error_log(PHP_EOL.PHP_EOL."All Stations: ".$msg.PHP_EOL.$resp["allstations"], 3, "/home/thinkclo/public_html/redh/sms.log");
 		echo "All Stations: ".$msg."</br>".$resp["allstations"]."</br>";
 		// Check if there are specific tables alarm
 		if($specificMessage){
 			// This is an specific tables messages counter
-			$currentTotal = 0;
-			$totalSentSMSSpecific = 0;
+			$totalSpecificMessages = 0;
 			// Send sms to different organizations based on the table warning numbers defined in all tables numbers variable
 			foreach ($specificMessage as $tab => $ms) {
 				// If the tables is defined at $allTablesNumbers then proceed with the sms, otherway do nothing
 				if(isset($allTablesNumbers[$tab])){
+					// Sum the specific tables messages count
+					$totalSpecificMessages += count(explode(",",$allTablesNumbers[$tab]));	
 					// Prepare the message to be sent
 					$ms = $dt->format("Y-m-d H:i:s")." Alarma: ".$ms."Visítanos redhidro.org";
-
-					// Sum the specific tables messages count
-					$currentTotal = count(explode(",",$allTablesNumbers[$tab]));
-					// This calculates how many SMS are necessary in order to send the whole message
-					$msgMultiple = ceil(strlen($ms)/160);
-					$totalSentSMSSpecific += $currentTotal*$msgMultiple;	
-
 					// Send message to specific numbers depending on the table
 					$resp[$tab] = AltiriaSMS($allTablesNumbers[$tab], $ms, "dvargas", false);
 					// Save logs
@@ -184,30 +168,21 @@ if(!empty($Message)){
 				}
 			}
 			// Update pending messages based on the total amount of specific messages sent on this iteraction
-			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSentSMSSpecific.' WHERE id=2');	
+			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSpecificMessages.' WHERE id=2');	
 		}
 		// Sets the total remined messages after the total station and specific table messages sent
-		$totalRemainMessages = $smsCount["messages"] - $totalSentSMSSpecific - $totalSentSMSAll;
+		$totalRemainMessages = $smsCount["messages"] - $totalSpecificMessages - $allStationsCount;
 		// Sets the total sent messages
-		$totalMessages = $totalSentSMSSpecific + $totalSentSMSAll;
+		$totalMessages = $totalSpecificMessages + $allStationsCount;
 		// Save logs
 		@error_log(PHP_EOL.PHP_EOL.$totalMessages."->".$smsCount["messages"].":".$totalRemainMessages, 3, "/home/thinkclo/public_html/redh/sms.log");
 		// Return response on manual cron run
 		echo $totalMessages."->".$smsCount["messages"].":".$totalRemainMessages."</br>";
 	}else if(intval($smsCount["messages"])<=50){
 		// Send out of messages warning
-		$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan xx, comuníquese con Think Cloud Group para comprar un paquete adicional.";
-
-		$cantidad = 2;
-		if(strlen($outOfMessagesMsg) > 160){
-			$cantidad = 4;	
-		}
-
-		$totalRemainMessages = intval($smsCount["messages"]) - $cantidad;
-		$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan ".$totalRemainMessages.", comuníquese con Think Cloud Group para comprar un paquete adicional.";	
-		
-		
-		$outOfMessages = "573136355940,573234335384";//573108311240
+		$totalRemainMessages = $smsCount["messages"] - 4;
+		$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan ".$totalRemainMessages.", comuníquese con Think Cloud Group para comprar un paquete adicional.";
+		$outOfMessages = "573136355940,573108311240";
 		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = '.$totalRemainMessages.' WHERE id=2');
 		$resp["outofmessages"] = AltiriaSMS($outOfMessages, $outOfMessagesMsg, "dvargas", false);
 		@error_log(PHP_EOL.PHP_EOL."OUT OF MESSAGES: ".$outOfMessagesMsg.PHP_EOL.$resp["outofmessages"], 3, "/home/thinkclo/public_html/redh/sms.log");
