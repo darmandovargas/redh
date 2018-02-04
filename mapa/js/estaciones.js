@@ -63,7 +63,8 @@ estacionesJSON = [
 		    "ubicacion": "Cuenca alta del Río Otún, Parque NN Los Nevados",
 		    "fecha": "23 de Diciembre de 2009",
 		    "estado": "Inactiva"	  		  
-		},		
+		},
+		/*	Old position of the San José Station	
 		{
 			"id" : "16",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
@@ -79,8 +80,8 @@ estacionesJSON = [
 		      "7": "evapotranspiracion"
 		    },
 		    "coordenadas": {
-		      "latitud": 4.815287772,
-		      "longitud": -75.59604566
+		      "latitud": 4.823268326,
+		      "longitud": -75.60587622
 		    },
 		    "isPublic": true,
 		    "tipo":"ECT",
@@ -89,7 +90,7 @@ estacionesJSON = [
 		    "ubicacion": "Finca San José, municipio de Santa Rosa de Cabal",
 		    "fecha": "26 de Enero de 2010",
 		    "estado": "Activa"	  		  
-		},
+		},*/
 		{
 			"id" : "26",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
@@ -197,6 +198,120 @@ estacionesJSON = [
 		    "fecha": "18 de Julio de 2016",
 		    "estado": "Activa"	  		  
 		},
+		// 4 Next stations added Feb 4th 2018
+		{
+			"id" : "111",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+		    "nombre": "ECT009 (El Bosque)",
+		    "carpeta": "el bosque",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "nivel",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.740882052,
+		      "longitud": -75.44244535
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "4 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "112",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+		    "nombre": "ECT010 (La Argentina)",
+		    "carpeta": "la argentina",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "nivel",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.731862605,
+		      "longitud": -75.44713981
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "4 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "114",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+		    "nombre": "ECT011 (El Cedral)",
+		    "carpeta": "el cedral ect",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "nivel",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.702895856,
+		      "longitud": -75.53377329
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "4 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},/*  This one already exist I just need to change the position*/
+		{
+			"id" : "113",
+			"bd" : "bd_aguas",
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+		    "nombre": "ECT003 (San José)",
+		    "carpeta": "san jose ect",
+		    "variables": {
+		      "0": "temperatura",
+		      "1": "precipitacion",
+		      "2": "humedad",
+		      "3": "nivel",
+		      "4": "presion",
+		      "5": "velocidad",
+		      "6": "direccion",
+		      "7": "evapotranspiracion"
+		    },
+		    "coordenadas": {
+		      "latitud": 4.823268326,
+		      "longitud": -75.60587622
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "4 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		// End of 4 stations added Feb 4th 2018
 		{
 			"id" : "14",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
