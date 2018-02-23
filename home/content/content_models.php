@@ -48,7 +48,7 @@ switch ($_REQUEST['actionID']) {
  */
 
 function search_content($oMySQL,$page){
-    $query = "SELECT contenido FROM contenidos WHERE pagina='$page'";	
+    $query = "SELECT contenido FROM ti_contenidos WHERE pagina='$page'";	
     $resultado = $oMySQL -> ExecuteSQL($query);
 
     if($resultado){
@@ -80,11 +80,11 @@ function insert_content($oMySQL,$page,$texto){
     $search = search_content($oMySQL,$page);
     if($search == false){
         $txt = utf8_decode($texto);
-        $query = "INSERT INTO contenidos VALUES(null,'$page','$txt')";
+        $query = "INSERT INTO ti_contenidos VALUES(null,'$page','$txt')";
         $resultado = $oMySQL -> ExecuteSQL($query);                
     }else{
         $txt = utf8_decode($texto);
-        $query = "UPDATE contenidos SET contenido = '$txt' WHERE pagina = '$page';";	
+        $query = "UPDATE ti_contenidos SET contenido = '$txt' WHERE pagina = '$page';";	
         $resultado = $oMySQL -> ExecuteSQL($query);
     }
     if($resultado){

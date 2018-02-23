@@ -21,51 +21,52 @@ if($tipoEstacion=="SNS"){
 // Si la estación existe en la base de datos entonces arme el json para graficar
 if ($idEstacion != 0) {
 	// Inicializa array de variables a sensar y graficar
-	$variables = array("temperatura", "presion", "humedad", "precipitacion_real", "radiacion", "velocidad", "direccion", "evapo_real");
+	$variables = array("temperature", "presure", "humidity", "realPrecipitation", "radiation", "windSpeed", "windDirection", "realETO");
+	
 	//Temperatura, Precipitación, Humedad Relativa, Radiación Solar, Presión Barométrica, Velocidad y Dirección del Viento
 	// Dependiendo del tipo de estación, se debe revisar en estaciones o estacion_sensores
 	switch ($tipoEstacion) {
 		case 'ECT' :
-			$tablaEstaciones = "estaciones"; break;
+			$tablaEstaciones = "tdp_stations"; break;
 		case 'EHT' :
-			$tablaEstaciones = "estaciones";  
+			$tablaEstaciones = "tdp_stations";  
 			// Inicializa array de variables a sensar y graficar
-			$variables = array("temperatura", "precipitacion_real", "nivel"); break;
+			$variables = array("temperature", "realPrecipitation", "level"); break;
 		case 'ENT' :
-			$tablaEstaciones = "estaciones"; 
+			$tablaEstaciones = "tdp_stations"; 
 			$variables = array("nivel");
 			break;
 		case 'EQT' :
-			$tablaEstaciones = "estaciones"; 
-			$variables = array("caudal");
+			$tablaEstaciones = "tdp_stations"; 
+			$variables = array("riverFlow");
 			break;	
 		case 'EC' :
-			$tablaEstaciones = "estacion_sensores"; break;
+			$tablaEstaciones = "ti_estacion_sensores"; break;
 		case 'SN' :
-			$tablaEstaciones = "estacion_sensores"; break;
+			$tablaEstaciones = "ti_estacion_sensores"; break;
 		case 'SNS' :
-			$tablaEstaciones = "estacion_sensores";			
-			break;
+			$tablaEstaciones = "ti_estacion_sensores"; break;
 		case 'PD' :
-			$tablaEstaciones = "estacion_sensores"; 
+			$tablaEstaciones = "ti_estacion_sensores"; 
 			// Inicializa array de variables a sensar y graficar
-			$variables = array("temperatura", "presion", "humedad", "precipitacion_real", "nivel", "radiacion", "velocidad", "direccion", "evapo_real");
+			$variables = array("temperature", "presure", "humidity", "realPrecipitation", "level", "radiation", "windSpeed", "windDirection", "realETO");
 			break;	
 		case 'PDT' :
-			$tablaEstaciones = "estaciones"; 
+			$tablaEstaciones = "tdp_stations"; 
 			// Inicializa array de variables a sensar y graficar
-			$variables = array("temperatura", "precipitacion_real");
+			$variables = array("temperature", "realPrecipitation");
 			break;	
 		default :
-			$tablaEstaciones = "estaciones"; break;
+			$tablaEstaciones = "tdp_stations"; break;
 	}
 	
 	// Obtiene la estación según el tipo que define la tabla
-	$query = "SELECT * FROM " . $tablaEstaciones . " WHERE id=" . $idEstacion;	//." and activo='true'";
-	
+	$query = "SELECT * FROM " . $tablaEstaciones . " WHERE idStation=" . $idEstacion;	//." and activo='true'";
+	//var_dump($query);
 	$est = $oMySQL -> ExecuteSQL($query);
+	//var_dump($est);
 	// Obtiene el nombre de la estación
-	$tabla = $est["estNombreTb"];
+	$tabla = $est["tableName"];
 	
 	/**
 	 * Gets variables for area graphs
@@ -76,9 +77,14 @@ if ($idEstacion != 0) {
 	//echo $dt->format('Y-m-d H:i:s');
 	//echo "</br></br>";
 	$yesterday = $dt->format('Y-m-d');//date("Y-m-d", strtotime("yesterday"));//date("Y-m-d", strtotime("yesterday"));
-	// Get data from yesterday ordered from last measure	
-	$query = "SELECT * FROM " . $tabla . " where fecha >= '".$yesterday."' ORDER BY fecha ASC";//LIMIT 5
+	// Get data from yesterday ordered from last measure	// AND stationTime <= '2018-01-25'
+	$query = "SELECT * FROM " . $tabla . " WHERE stationTime >= '".$yesterday."' ORDER BY stationTime ASC";//LIMIT 5
+	
+	//var_dump($query);
+	
 	$estacionesInfoSinceYesterday = $oMySQL -> ExecuteSQL($query);
+	
+	
 	$oMySQL -> closeConnection();	
 	$lastValue = array();
 	foreach($variables as $v){
@@ -86,14 +92,19 @@ if ($idEstacion != 0) {
 	}
 	
 	foreach ($estacionesInfoSinceYesterday as $data) {
-		$fecha = explode("-", $data["fecha"]);
-		$dia = $fecha[2];
-		$mes = $fecha[1]-1;
+		$fecha = explode("-", $data["stationTime"]);
 		$ano = $fecha[0];
-		$hora = explode(":", $data["hora"]);
-		$seg = $hora[2];
-		$min = $hora[1];
-		$hora = $hora[0];
+		$mes = $fecha[1]-1;
+		
+		$diaHora = explode(" ", $fecha[2]);
+		$dia = $diaHora[0];
+		
+		$horaMinutoSegundo = explode(":", $diaHora[1]);
+		
+		$hora = $horaMinutoSegundo[0];
+		$min = $horaMinutoSegundo[1];
+		$seg = $horaMinutoSegundo[2];
+		
 		// Get values for each variable
 		foreach($variables as $v){
 			if($data[$v]!="-"){
@@ -103,7 +114,7 @@ if ($idEstacion != 0) {
 			}	
 		}	
 	}
-	
+
 	// Sets series variables for Area Graph
 	foreach($variables as $v){
 		//echo $estInfo[$v][0][1];
@@ -124,7 +135,7 @@ if ($idEstacion != 0) {
 		}
 	}
 	
-	$nombre_estacion = empty($nombre_estacion)?$est["estNombre"]:$nombre_estacion;	
+	$nombre_estacion = empty($nombre_estacion)?$est["stationName"]:$nombre_estacion;	
 }
 ?>
 <!DOCTYPE html> 
@@ -150,18 +161,18 @@ if ($idEstacion != 0) {
 	    <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <?php 
 	if($idEstacion!=0){
-		//var_dump($serieNew['presion']);
+		//var_dump($serieNew);
 		//echo "</br></br></br>"; 
 ?>
 	<script>
 	$(function () {
 		
-		var estacion = '<?php echo  $est["estNombre"];?>';
+		var estacion = '<?php echo  $est["stationName"];?>';
 	    
 	    // General options for chart    
 	    Highcharts.setOptions({
 	    	title: {
-	    		text: '<?php echo  $est["estNombre"];?>',
+	    		text: '<?php echo  $est["stationName"];?>',
 	            x: -20 //center
 	        },
 	        subtitle: {
@@ -188,16 +199,16 @@ if ($idEstacion != 0) {
 		// Create series	   
 	    var seriesArea = Array;
 	    <?php
-	    $variableTags=array("temperatura"=>array(0=>"Temperatura (°C)",1=>"(°C)"), 
-	    					"presion"=>array(0=>"Presión (mm/mg)",1=>"mm/mg"),
-							"humedad"=>array(0=>"Humedad Relativa (%)",1=>"%"),
-							"precipitacion_real"=>array(0=>"Precipitación (mm)",1=>"mm"),
-							"nivel"=>array(0=>"Nivel (cm)",1=>"cm"),
-							"radiacion"=>array(0=>"Radiación Solar (W/m²)",1=>"W/m²"),
-							"velocidad"=>array(0=>"Velocidad (m/s)",1=>"m/s"),
-							"direccion"=>array(0=>"Dirección (°)",1=>"°"),							
-							"evapo_real"=>array(0=>"Evapotranspiracion (mm)",1=>"mm"),
-							"caudal"=>array(0=>"Caudal (m3/s)",1=>"m3/s")
+	    $variableTags=array("temperature"=>array(0=>"Temperatura (°C)",1=>"(°C)"), 
+	    					"presure"=>array(0=>"Presión (mm/mg)",1=>"mm/mg"),
+							"humidity"=>array(0=>"Humedad Relativa (%)",1=>"%"),
+							"realPrecipitation"=>array(0=>"Precipitación (mm)",1=>"mm"),
+							"level"=>array(0=>"Nivel (cm)",1=>"cm"),
+							"radiation"=>array(0=>"Radiación Solar (W/m²)",1=>"W/m²"),
+							"windSpeed"=>array(0=>"Velocidad (m/s)",1=>"m/s"),
+							"windDirection"=>array(0=>"Dirección (°)",1=>"°"),							
+							"realETO"=>array(0=>"Evapotranspiracion (mm)",1=>"mm"),
+							"riverFlow"=>array(0=>"Caudal (m3/s)",1=>"m3/s")
 							);
 		//$variableTags["temperatura"][0]					
 	    foreach ($variables as $var) {
@@ -207,17 +218,18 @@ if ($idEstacion != 0) {
 		<?php
 		}
 	    ?>
+	    
 	    /*
-	    seriesArea['temperatura'] = [<?php echo $serieNew['temperatura']; ?>];
+	    seriesArea['temperatura'] = [<?php echo $serieNew['temperature']; ?>];
 	    createGraphArea('Temperatura (°C)', '°C', 'container-temperatura', seriesArea['temperatura']);
 	    
-	    seriesArea['presion'] = [<?php echo $serieNew['presion']; ?>];
-	    seriesArea['humedad'] = [<?php echo $serieNew['humedad']; ?>];
-	    seriesArea['precipitacion_real'] = [<?php echo $serieNew['precipitacion_real']; ?>];
+	    seriesArea['presion'] = [<?php echo $serieNew['presure']; ?>];
+	    seriesArea['humedad'] = [<?php echo $serieNew['humidity']; ?>];
+	    seriesArea['precipitacion_real'] = [<?php echo $serieNew['realPrecipitation']; ?>];
 	    seriesArea['nivel'] = [<?php echo $serieNew['nivel']; ?>];
 	    seriesArea['radiacion'] = [<?php echo $serieNew['radiacion']; ?>];
 	    seriesArea['velocidad'] = [<?php echo $serieNew['velocidad']; ?>];
-	    seriesArea['direccion'] = [<?php echo $serieNew['direccion']; ?>];
+	    seriesArea['direccion'] = [<?php echo $serieNew['windDirection']; ?>];
 	    seriesArea['evapo_real'] = [<?php echo $serieNew['evapo_real']; ?>];
 	    
 		createGraphArea('Presión (mm/mg)', 'mm/mg', 'container-presion', seriesArea['presion']);
@@ -384,9 +396,10 @@ if ($idEstacion != 0) {
 							$contaTabs = 1;
 							
 							foreach ($variables as $var) {
-						?>									
-								<input type="radio" name="sky-tabs-1" <?php echo ($var=="temperatura" || count($variables)==1)?"checked":""; ?> id="<?php echo "sky-tab1-".$contaTabs;?>" class="sky-tab-content-<?php echo $contaTabs;?>">
-								<label for="<?php echo "sky-tab1-".$contaTabs;?>"><span class="sky-tabs_custom_pad"><span><?php echo ($var=="precipitacion_real")?"Precipitación":(($var=="evapo_real")?"Evapotranspiración":(($var=="presion")?"Presión":(($var=="radiacion")?"Radiación":(($var=="direccion")?"Dirección":ucfirst($var) ) ) ) ); ?></span></span></label>
+						?>			
+						$variables = array("temperature", "presure", "humidity", "realPrecipitation", "radiation", "windDirection", "windDirection", "realETO");						
+								<input type="radio" name="sky-tabs-1" <?php echo ($var=="temperature" || count($variables)==1)?"checked":""; ?> id="<?php echo "sky-tab1-".$contaTabs;?>" class="sky-tab-content-<?php echo $contaTabs;?>">
+								<label for="<?php echo "sky-tab1-".$contaTabs;?>"><span class="sky-tabs_custom_pad"><span><?php echo ($var=="realPrecipitation")?"Precipitación":(($var=="realETO")?"Evapotranspiración":(($var=="presure")?"Presión":(($var=="radiation")?"Radiación":(($var=="windDirection")?"Dirección": ( ($var=="windSpeed")?"Velocidad" : ( ($var=="humidity")?"Humedad" : ucfirst($var) ) ) ) ) ) ); ?></span></span></label>
 						<?php	
 								$contaTabs++;		
 							}	
