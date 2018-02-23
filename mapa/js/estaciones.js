@@ -13,7 +13,7 @@ iconoPozo  = 'http://'+window.location.host+'/mapa/img/pozo.png'; // Estaciones 
 
 estacionesJSON = [
   		{
-  			"id" : "11",
+  			"id" : "46",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT001 (El Lago)",
 		    "variables": {
@@ -39,7 +39,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  
 		},
 		{
-			"id" : "6",
+			"id" : "45",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT002 (Cortaderal)",
 		    "variables": {
@@ -92,7 +92,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},*/
 		{
-			"id" : "26",
+			"id" : "47",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT004 (Alto del Nudo)",
 		    "variables": {
@@ -118,7 +118,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "30",
+			"id" : "48",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT005 (Quinchía - Seafield)",
 		    "variables": {
@@ -145,7 +145,7 @@ estacionesJSON = [
 		},
 		// Added March 2nd 2016
 		{
-			"id" : "86",
+			"id" : "51",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT006 (CAM)",
 		    "carpeta": "cam",
@@ -172,7 +172,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "85",
+			"id" : "50",
   			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
 		    "nombre": "ECT007 (Mairabajo - Belén de Umbría)",
 		    "carpeta": "mairabajo",
@@ -200,8 +200,8 @@ estacionesJSON = [
 		},
 		// 4 Next stations added Feb 4th 2018
 		{
-			"id" : "111",
-			"bd" : "bd_aguas",
+			"id" : "56",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
 		    "nombre": "ECT009 (El Bosque)",
 		    "carpeta": "el bosque",
@@ -228,8 +228,8 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "112",
-			"bd" : "bd_aguas",
+			"id" : "57",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
 		    "nombre": "ECT010 (La Argentina)",
 		    "carpeta": "la argentina",
@@ -256,8 +256,8 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "114",
-			"bd" : "bd_aguas",
+			"id" : "59",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
 		    "nombre": "ECT011 (El Cedral)",
 		    "carpeta": "el cedral ect",
@@ -284,8 +284,8 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},/*  This one already exist I just need to change the position*/
 		{
-			"id" : "113",
-			"bd" : "bd_aguas",
+			"id" : "58",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
 		    "nombre": "ECT003 (San José)",
 		    "carpeta": "san jose ect",
@@ -313,7 +313,7 @@ estacionesJSON = [
 		},
 		// End of 4 stations added Feb 4th 2018
 		{
-			"id" : "14",
+			"id" : "34",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT001 (El Cedral)",
 		    "variables": {
@@ -334,7 +334,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "17",
+			"id" : "17",// Pending for ID on new db
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT002 (San Juan)",
 		    "variables": {
@@ -356,7 +356,7 @@ estacionesJSON = [
 		},
 		// Added March 2nd 2016
 		{
-			"id" : "84",
+			"id" : "39", 
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT003 (Totui)",
 		     "carpeta": "totui",
@@ -379,7 +379,7 @@ estacionesJSON = [
 		},
 		// Last 4 stations created July 18th 2016
 		{
-			"id" : "87",
+			"id" : "40",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT004 (Río Guatica)",
 		    "carpeta": "rio guatica",
@@ -401,7 +401,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "88",
+			"id" : "41",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT005 (Rio Mistrató)",
 		     "carpeta": "rio mistrato",
@@ -423,9 +423,9 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "90",
+			"id" : "42",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT006 (Río Risaralda)",
+		    "nombre": "EHT006 (El Diamante - Río Risaralda)",
 		     "carpeta": "el diamante- rio risaralda",
 		    "variables": {
 		      "0": "temperatura",
@@ -446,8 +446,8 @@ estacionesJSON = [
 		},
 		// ESTACIONES SERVER 2		
 		{
-			"id" : "106",
-			"bd" : "bd_aguas",
+			"id" : "52",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT007 (Antes de Bocatoma Nuevo Libaré)",
 		    "carpeta": "antes de bocatoma nuevo libare",
@@ -469,8 +469,8 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "105",
-			"bd" : "bd_aguas",
+			"id" : "51",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT008 (Quebrada Volcanes - Las Mangas)",
 		    "carpeta": "quebrada volcanes - las mangas",
@@ -492,8 +492,8 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "109",
-			"bd" : "bd_aguas",
+			"id" : "54",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT009 (Río Azul - El Jordan)",
 		     "carpeta": "rio azul - el jordan",
@@ -515,8 +515,8 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "110",
-			"bd" : "bd_aguas",
+			"id" : "55",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT010 (Río Otún - El Jordan)",
 		    "carpeta": "rio otun - el jordan",
@@ -538,8 +538,8 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "107",
-			"bd" : "bd_aguas",
+			"id" : "53",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT011 (Río Barbo - Boc. Pezfresco)",
 		    "carpeta": "rio barbo - boc pezfresco",
@@ -561,8 +561,8 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "104",
-			"bd" : "bd_aguas",
+			"id" : "60",
+			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT012 (Río San Juan - Desembocadura)",
 		    "carpeta": "rio san juan - desembocadura",
@@ -586,7 +586,7 @@ estacionesJSON = [
 		// FIN ESTACIONES SERVER 2
 		// 2 Estaciónes agregadas el 26 de Diciembre de 2017
 		{
-			"id" : "91",
+			"id" : "43",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT013 (Casa de maquinas - Río Risaralda)",
 		    "carpeta": "Casa de maquinas - Rio Risaralda",
@@ -608,7 +608,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "92",
+			"id" : "44",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT 014 (La Nona)",
 		    "carpeta": "La Nona",
@@ -631,7 +631,7 @@ estacionesJSON = [
 		},
 		//
 		{
-			"id":"60",
+			"id":"35",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT001 (Bocatoma nuevo Libaré)",
             "carpeta": "bocatoma nuevo libare",
@@ -651,7 +651,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"62",
+			"id":"37",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT002 (Bocatoma Belmonte) ",
             "carpeta": "bocatoma belmonte",
@@ -671,7 +671,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"61",
+			"id":"36",
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT003 (Canal entrada Belmonte) ",
             "carpeta": "canal entrada belmonte",
@@ -690,7 +690,7 @@ estacionesJSON = [
 		    "fecha": "29 de julio de 2013",
 		    "estado": "Activa"	  		  
 		},{
-			"id":"59",
+			"id":"59",// Pending for ID 
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT004 (Canal Salida Belmonte) ",
             "carpeta": "canal salida belmonte",
@@ -712,7 +712,7 @@ estacionesJSON = [
 		
 		
 		{
-			"id":"63",
+			"id":"52",
   			"nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
 		    "nombre": "Planta de Generación electrica  Empresa de Energía de Pereira barrio Nuevo Libaré ",
             "carpeta": "planta nuevo libare",
@@ -732,7 +732,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"69",
+			"id":"53",
   			"nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
 		    "nombre": "Planta de Generación electrica belmonte Empresa de Energía de Pereira ",
             "carpeta": "planta belmonte",
@@ -755,7 +755,7 @@ estacionesJSON = [
 		
 				
 		{
-			"id" : "37",
+			"id" : "49",
   			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC001 (Acuaseo)",
 		    "variables": {
@@ -780,7 +780,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "38",
+			"id" : "0",//"id" : "38",// Its not anymore on the station`s table
   			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC002 (Mundo Nuevo)",
 		    "variables": {},
@@ -817,7 +817,7 @@ estacionesJSON = [
 		},
 		
 		{
-			"id" : "32",
+			"id" : "0",//"id" : "32",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN001 (Quebrada Dalí)",
 		    "variables": {
@@ -836,7 +836,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "34",
+			"id" : "0",//"id" : "34",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN002 (Quebrada Negra)",
 		    "variables": {
@@ -855,7 +855,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},
 		{
-			"id" : "31",
+			"id" : "0",//"id" : "31",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN003 (Quebrada El Manzano)",
 		    "variables": {
@@ -874,7 +874,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},
 		{
-			"id" : "35",
+			"id" : "0",//"id" : "35",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN004 (Quebrada Volcanes) ",
 		    "variables": {
@@ -893,7 +893,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id": "30",
+			"id" : "0",//"id" : "30",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN005  (Quebrada San Eustaquio)",
             "carpeta": "quebrada san eustaquio",
@@ -913,7 +913,7 @@ estacionesJSON = [
 		    "estado": "Inactiva"	  		  
 		},
 		{
-			"id":"33",
+			"id" : "0",//"id" : "33",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN006  (Quebrada El Oso)",
 		    "variables": {
@@ -1135,7 +1135,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},*/
 		{
-			"id":"39",
+			"id" : "0",//"id" : "39",// Its not anymore on the station`s table
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD008 (UTP)",
             "carpeta": "utp",
@@ -1355,7 +1355,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id":"83",
+			"id":"38",
   			"nombrelargo": "Pluviómetros con Datalogger, telemétricos (PDT)",
 		    "nombre": "PD019 (San Rafael)",
             //"carpeta": "planes de san rafael",

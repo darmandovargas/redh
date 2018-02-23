@@ -72,36 +72,36 @@ include_once ('../../lib/class.MySQL.php');
 
  mysql_set_charset('utf8');
 
-$publicEstations = array("tb_san_jose", "tb_ellago", "tb_cortaderal", "tb_el_cedral", "tb_san_juan", "tb_el_nudo", "tb_quinchia", "est_planes");
+$publicEstations = array("tb_san_jose", "tst_ellago", "tst_cortaderal", "tst_el_cedral", "tb_san_juan", "tst_el_nudo", "tst_quinchia", "tst_planes");
 
 // This will get rid of the test stations
 $idsToDelete = array(74,75,76,77,80);
 
 $estationTable = $privateEstationTable = array();
 
-$query = "SELECT * FROM estaciones";
+$query = "SELECT * FROM tdp_stations";
 
 $estacionesList = $oMySQL -> ExecuteSQL($query);
 
 foreach ($estacionesList as $estacion) {
-	$tabla = $estacion["estNombreTb"];
-	$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT 1";
+	$tabla = $estacion["tableName"];
+	$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 1";
 	$estacionesInfo = $oMySQL -> ExecuteSQL($query);
 	if (in_array($tabla, $publicEstations)) {		
 		$estationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
 	}else{
 		// This will delete the 4 stations Camilo asked
-		if(!in_array($estacion['id'], $idsToDelete)){
+		if(!in_array($estacion['idStation'], $idsToDelete)){
 			// This will keep until the last 2 hours valid record (different than '-')
-			if($estacionesInfo['nivel']=='-' /*&& $tabla=='bocatoma_nuevo_libare'*/){
+			if($estacionesInfo['level']=='-' /*&& $tabla=='bocatoma_nuevo_libare'*/){
 				$estacionesInfoLast = $estacionesInfo;
 				$counter = 1;
 				do{
-					$query = "SELECT * FROM " . $tabla . " ORDER BY fecha DESC LIMIT ".$counter.",1";
+					$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT ".$counter.",1";
 					$estacionesInfo = $oMySQL -> ExecuteSQL($query);
 					$counter++;
-				}while($estacionesInfo['nivel']=='-' && $counter <24);
-				if($estacionesInfo['nivel']=='-'){
+				}while($estacionesInfo['level']=='-' && $counter <24);
+				if($estacionesInfo['level']=='-'){
 					$estacionesInfo = $estacionesInfoLast;
 				}
 			}	
@@ -119,7 +119,8 @@ $oMySQL -> closeConnection();
 						<th>Estación</th>
 						<th><b>Temperatura (°C)</b></th>
 						<th><b>Fecha Última Transmisión</b></th>
-						<th><b>Hora Última Transmisión</b></th>
+						
+						
 						<th>Dirección (°)</th>
 						<th>Presión Barométrica (mm/mg)</th>
 						<th>Humedad Relativa (%)</th>
@@ -136,18 +137,18 @@ $oMySQL -> closeConnection();
 					foreach($estationTable as $et){
 					echo "
 					<tr align='center'>
-						<td>".$et['estacion']['estNombre']."</td>
-						<td>".$et['info']['temperatura']."</td>
-						<td>".$et['info']['fecha']."</td>
-						<td>".$et['info']['hora']."</td>
-						<td>".$et['info']['direccion']."</td>
-						<td>".$et['info']['presion']." </td>
-						<td>".$et['info']['humedad']."</td>						
-						<td>".$et['info']['precipitacion_real']."</td>
-						<td>".$et['info']['nivel']."</td>
-						<td>".$et['info']['radiacion']."</td>				
-						<td>".$et['info']['velocidad']."</td>				
-						<td>".$et['info']['evapo_real']."</td>						
+						<td>".$et['estacion']['stationName']."</td>
+						<td>".$et['info']['temperature']."</td>
+						<td>".$et['info']['stationTime']."</td>
+						
+						<td>".$et['info']['windDirection']."</td>
+						<td>".$et['info']['presure']." </td>
+						<td>".$et['info']['humidity']."</td>						
+						<td>".$et['info']['realPrecipitation']."</td>
+						<td>".$et['info']['level']."</td>
+						<td>".$et['info']['radiation']."</td>				
+						<td>".$et['info']['windSpeed']."</td>				
+						<td>".$et['info']['realETO']."</td>						
 					</tr>
 					";
 					}
@@ -172,17 +173,17 @@ $oMySQL -> closeConnection();
 						<th>Nivel (cm)</th>
 						<th>Caudal (m3/s)</th>
 						<th>Fecha Última Transmisión</th>
-						<th>Hora Última Transmisión</th>
+						
 					</tr>
 					<?php
 					foreach($privateEstationTable as $pet){
 					echo "
 					<tr align='center'>
-						<td>".$pet['estacion']['estNombre']."</td>
-						<td>".$pet['info']['nivel']."</td>
-						<td>".$pet['info']['caudal']."</td>
-						<td>".$pet['info']['fecha']."</td>
-						<td>".$pet['info']['hora']."</td>											
+						<td>".$pet['estacion']['stationName']."</td>
+						<td>".$pet['info']['level']."</td>
+						<td>".$pet['info']['riverFlow']."</td>
+						<td>".$pet['info']['stationTime']."</td>
+														
 					</tr>
 					";
 					}
