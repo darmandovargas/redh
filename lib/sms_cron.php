@@ -32,7 +32,10 @@ $currentLevelValue = 0;
 $objTemp = array();
 			
 // Get alarms of estaciones
-$estacionesList = $oMySQL->executeSQL('SELECT * FROM estaciones WHERE alarma IS NOT NULL AND alarma != ""');
+$estacionesList = $oMySQL->executeSQL("SELECT tdps.idStation, tdps.stationName, tdps.tableName, tia.station_id, tia.alarm FROM tdp_stations AS tdps
+JOIN ti_alarm AS tia ON tia.station_id = tdps.idStation");//$oMySQL->executeSQL('SELECT * FROM tdp_stations WHERE alarma IS NOT NULL AND alarma != ""');
+
+
 $alarmUpdateList = array();
 //var_dump($estacionesList);
 $updatedIds = array();
@@ -41,10 +44,10 @@ foreach($estacionesList as $el){
 	// This will ensure last alarm is sent once an hour
 	$now = time();
 	// Decode alarm json in order to analyze it
-	$alarmJSON = json_decode($el['alarma']);
+	$alarmJSON = json_decode($el['alarm']);
 	// Initialize some needed variables per station
-	$tabla = $el['estNombreTb'];
-	$stationName = $el['estNombre'];
+	$tabla = $el['tableName'];
+	$stationName = $el['stationName'];
 	$alarmJSONTemp = array();
 	
 	// Iterates the alarm json in order to send SMS
@@ -90,7 +93,7 @@ $oMySQL = new MySQL($dbsigName, $bdsigUser, $bdsigPassword, $bdsigIp);
 if(!empty($updatedIds)){
 	foreach ($alarmUpdateList as $key => $value) {
 		if(in_array($key, $updatedIds)){
-			$updateLastVariableAlarm = $oMySQL->executeSQL('UPDATE estaciones SET alarma = \''.$value.'\' WHERE id='.intval($key));	
+			$updateLastVariableAlarm = $oMySQL->executeSQL('UPDATE ti_alarm SET alarm = \''.$value.'\' WHERE id='.intval($key));	
 		}		
 	}	
 }
@@ -127,7 +130,7 @@ if(!empty($Message)){
 	// Set message format with the date of the sms
 	$msg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message."Visítanos redhidro.org";
 	// Get all the amount of remaining messages from the vendor
-	$smsCount = $oMySQL->executeSQL('SELECT messages FROM sms WHERE id = 2');	
+	$smsCount = $oMySQL->executeSQL('SELECT messages FROM ti_sms WHERE id = 2');	
 	// if I have more than 50 sms
 	if(intval($smsCount["messages"])>50){
 		$allStations = "573113858761,573137466206,573148216816,573128949483,573206310432,573163461538,573163609097,573223195922,573103545446,573148141462,573136355940,573116237381,573148331642,573206770012,573177342310,573163000496";
@@ -153,7 +156,7 @@ if(!empty($Message)){
 		$msgMultiple = ceil(strlen($msg)/160);
 		$totalSentSMSAll = $allStationsCount*$msgMultiple;
 		// Send all stations message
-		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSentSMSAll.' WHERE id=2');
+		$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = messages-'.$totalSentSMSAll.' WHERE id=2');
 		$resp["allstations"] = AltiriaSMS($allStations, $msg, "dvargas", false);
 		@error_log(PHP_EOL.PHP_EOL."All Stations: ".$msg.PHP_EOL.$resp["allstations"], 3, "/home/thinkclo/public_html/redh/sms.log");
 		echo "All Stations: ".$msg."</br>".$resp["allstations"]."</br>";
@@ -184,7 +187,7 @@ if(!empty($Message)){
 				}
 			}
 			// Update pending messages based on the total amount of specific messages sent on this iteraction
-			$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = messages-'.$totalSentSMSSpecific.' WHERE id=2');	
+			$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = messages-'.$totalSentSMSSpecific.' WHERE id=2');	
 		}
 		// Sets the total remined messages after the total station and specific table messages sent
 		$totalRemainMessages = $smsCount["messages"] - $totalSentSMSSpecific - $totalSentSMSAll;
@@ -208,7 +211,7 @@ if(!empty($Message)){
 		
 		
 		$outOfMessages = "573136355940,573234335384";//573108311240
-		$updateSMS = $oMySQL->executeSQL('UPDATE sms SET messages = '.$totalRemainMessages.' WHERE id=2');
+		$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = '.$totalRemainMessages.' WHERE id=2');
 		$resp["outofmessages"] = AltiriaSMS($outOfMessages, $outOfMessagesMsg, "dvargas", false);
 		@error_log(PHP_EOL.PHP_EOL."OUT OF MESSAGES: ".$outOfMessagesMsg.PHP_EOL.$resp["outofmessages"], 3, "/home/thinkclo/public_html/redh/sms.log");
 		echo "OUT OF MESSAGES: ".$msg."</br>".$resp["allstations"]."</br>";
@@ -221,7 +224,4 @@ if(!empty($Message)){
 }else{
 	echo "There is no alarm to be sent";
 }
-
-
-
 ?>
