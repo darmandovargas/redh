@@ -1514,5 +1514,296 @@ estacionesJSON = [
 		    "ubicacion": "",
 		    "fecha": "",
 		    "estado": "Activa"	  		  
-		}
+		},
+		// Wunderground Stations		
+		{
+			"id" : "ILACELIA2",
+			"bd" : "wunderground",
+  			"nombrelargo": "La Celia Patio Bonito",
+		    "nombre": "La Celia",
+		    "carpeta": "la celia patio bonito",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 4.993,
+			    "longitud": -75.982
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "IBELNDEU2",
+			"bd" : "wunderground",
+  			"nombrelargo": "Belén de Umbría",
+		    "nombre": "Belén de Umbría",
+		    "carpeta": "belen de umbria",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 5.203,
+			    "longitud": -75.867
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "IDOSQUEB2 ",
+			"bd" : "wunderground",
+  			"nombrelargo": "Dosqeubradas - Japon",
+		    "nombre": "Dosqeubradas - Japon",
+		    "carpeta": "dosqeubradas - japon",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 4.818,
+			    "longitud": -75.679
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "IMARSELL3",
+			"bd" : "wunderground",
+  			"nombrelargo": "Marsella",
+		    "nombre": "Marsella",
+		    "carpeta": "marsella",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 4.936,
+			    "longitud": -75.740
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "IMISTRAT2",
+			"bd" : "wunderground",
+  			"nombrelargo": "Mistrató",
+		    "nombre": "Mistrató",
+		    "carpeta": "mistrato",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 5.297,
+			    "longitud": -75.883
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "IPEREIRA2",
+			"bd" : "wunderground",
+  			"nombrelargo": "El Jardin Pereira",
+		    "nombre": "El Jardin Pereira",
+		    "carpeta": "el jardin pereira",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 4.807,
+			    "longitud": -75.719
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "IPEREIRA3",
+			"bd" : "wunderground",
+  			"nombrelargo": "Vereda La Convención",
+		    "nombre": "Vereda La Convención",
+		    "carpeta": "vereda la convencion",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 4.882,
+			    "longitud": -75.725
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "IPEREIRA4",
+			"bd" : "wunderground",
+  			"nombrelargo": "Vereda Altagracia",
+		    "nombre": "Vereda Altagracia",
+		    "carpeta": "Vereda Altagracia",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 4.745,
+			    "longitud": -75.713
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{
+			"id" : "IQUINCHA2",
+			"bd" : "wunderground",
+  			"nombrelargo": "Quinchía Naranjal",
+		    "nombre": "Quinchía Naranjal",
+		    "carpeta": "quinchia naranjal",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 5.324,
+			    "longitud": -75.712
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		}/*,
+		{
+			"id" : "IQUINCHA3",
+			"bd" : "wunderground",
+  			"nombrelargo": "Cartagueño, Quinchía",
+		    "nombre": "Cartagueño, Quinchía",
+		    "carpeta": "cartagueno quinchia",
+		    "variables": {
+			      "0": "temperatura",
+			      "1": "precipitacion",
+			      "2": "humedad",
+			      "3": "radiacion",
+			      "4": "presion",
+			      "5": "velocidad",
+			      "6": "direccion",
+			      "7": "evapotranspiracion"
+			},
+		    "coordenadas": {
+		    
+		    		"latitud": 5.333,
+			    "longitud": -75.688
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "25 de Febrero de 2018",
+		    "estado": "Activa"	  		  
+		}*/
 	];
