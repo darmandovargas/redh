@@ -10,8 +10,6 @@ if(isset($_GET['bd']) && !empty($_GET['bd']) && $_GET['bd'] != "undefined" &&  $
     $mes = intval($yesteray[1]);
     $dia = intval($yesteray[2]);
     $service_url = 'https://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID='.$idEstacion.'&day='.$dia.'&month='.$mes.'&year='.$ano.'&graphspan=day&format=1';
-    //var_dump($service_url);
-    //echo "</br></br></br>";
     $curl = curl_init($service_url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $curl_response = curl_exec($curl);
@@ -44,30 +42,19 @@ if(isset($_GET['bd']) && !empty($_GET['bd']) && $_GET['bd'] != "undefined" &&  $
                 $seg = $horaMinutoSegundo[2];
                 
                 
-                $estInfo["temperature"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")", floatval($w[1]) );
-                
-                $estInfo["presure"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[3]));
-                
-                $estInfo["humidity"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[8]));
-                
-                $estInfo["realPrecipitation"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[9]));
-                
-                $estInfo["radiation"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[13]));
-                
-                $estInfo["windSpeed"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[6]));
-                
+                $estInfo["temperature"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")", floatval($w[1]) );                
+                $estInfo["presure"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[3]));                
+                $estInfo["humidity"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[8]));                
+                $estInfo["realPrecipitation"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[9]));                
+                $estInfo["radiation"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[13]));                
+                $estInfo["windSpeed"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[6]));                
                 $estInfo["windDirection"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[4]));
-                
-                
             }
         }
         $counter++;
     }
     
-    
-    
-    
-    
+    $dt = new DateTime('', new DateTimeZone('America/Bogota'));
     //$dt->sub(new DateInterval('P1D'));
     $today = $dt->format('Y-m-d');
     $today = explode("-", $today);
@@ -109,40 +96,25 @@ if(isset($_GET['bd']) && !empty($_GET['bd']) && $_GET['bd'] != "undefined" &&  $
                 $seg = $horaMinutoSegundo[2];                
                
                 
-                $estInfo["temperature"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")", floatval($w[1]) );
-                
-                $estInfo["presure"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[3]));
-                
-                $estInfo["humidity"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[8]));
-                
-                $estInfo["realPrecipitation"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[9]));
-                
-                $estInfo["radiation"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[13]));
-                
-                $estInfo["windSpeed"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[6]));
-                
+                $estInfo["temperature"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")", floatval($w[1]) );                
+                $estInfo["presure"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[3]));                
+                $estInfo["humidity"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[8]));                
+                $estInfo["realPrecipitation"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[9]));                
+                $estInfo["radiation"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[13]));                
+                $estInfo["windSpeed"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[6]));                
                 $estInfo["windDirection"][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($w[4]));
-                
-                
             }
         }        
         $counter++;
     }
     
-    $serieNew["temperature"] = json_encode(array("data" => $estInfo["temperature"]));
-    
-    $serieNew["presure"] = json_encode(array("data" => $estInfo["presure"]));
-    
-    $serieNew["humidity"] = json_encode(array("data" => $estInfo["humidity"]));
-    
-    $serieNew["realPrecipitation"] = json_encode(array("data" => $estInfo["realPrecipitation"]));
-    
-    $serieNew["radiation"] = json_encode(array("data" => $estInfo["radiation"]));
-    
-    $serieNew["windSpeed"] = json_encode(array("data" => $estInfo["windSpeed"]));
-    
-    $serieNew["windDirection"] = json_encode(array("data" => $estInfo["windDirection"]));
-    
+    $serieNew["temperature"] = json_encode(array("data" => $estInfo["temperature"]));    
+    $serieNew["presure"] = json_encode(array("data" => $estInfo["presure"]));    
+    $serieNew["humidity"] = json_encode(array("data" => $estInfo["humidity"]));    
+    $serieNew["realPrecipitation"] = json_encode(array("data" => $estInfo["realPrecipitation"]));    
+    $serieNew["radiation"] = json_encode(array("data" => $estInfo["radiation"]));    
+    $serieNew["windSpeed"] = json_encode(array("data" => $estInfo["windSpeed"]));    
+    $serieNew["windDirection"] = json_encode(array("data" => $estInfo["windDirection"]));    
     $variables = array("temperature", "presure", "humidity", "realPrecipitation", "radiation", "windSpeed", "windDirection");
 }
 ?>

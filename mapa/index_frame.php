@@ -48,9 +48,9 @@
 		<script type="text/javascript" src="../home/js/jquery.js"></script>
                 <script src="jquery-ui/jquery-ui.js"></script>
 		<!-- &key=AIzaSyBA1M3-e9UO0KCvslfK44zM67ZPM77oy_o -->
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places,weather,drawing"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places,weather,drawing&key=AIzaSyBA1M3-e9UO0KCvslfK44zM67ZPM77oy_o"></script>
 		
-		<script src="js/estaciones.js"></script>
+		<script src="js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
 		<script src="js/mapa.js"></script>
 		<script src="js/desplaza.js"></script>
 <script>

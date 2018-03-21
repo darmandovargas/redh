@@ -28,7 +28,7 @@
  */
 
 function search_host($oMySQL,$ip){
-    $query = "SELECT id,last_date FROM visitas WHERE host='$ip' limit 1";
+    $query = "SELECT id,last_date FROM ti_visitas WHERE host='$ip' limit 1";
     $resultado = $oMySQL -> ExecuteSQL($query);
     if($oMySQL->records > 0){
         return $resultado;
@@ -58,7 +58,7 @@ function insert_host($oMySQL,$ip){
     $search = search_host($oMySQL,$ip);
     if($search == false){
         $ahora = date("Y-m-d H:i:s");
-        $query = "INSERT INTO visitas(host,last_date) VALUES('$ip','$ahora')";
+        $query = "INSERT INTO ti_visitas(host,last_date) VALUES('$ip','$ahora')";
         $resultado = $oMySQL -> ExecuteSQL($query);
         return search_num_visit($oMySQL);
     }else{
@@ -71,7 +71,7 @@ function insert_host($oMySQL,$ip){
         $diff=date_diff($date1,$date2);
         if($diff->format("%h") > 0 ){            
             $id = $search['id'];
-            $query = "UPDATE visitas SET last_date = NOW(),visitas=visitas+1 WHERE id = '$id';";	
+            $query = "UPDATE ti_visitas SET last_date = NOW(),visitas=visitas+1 WHERE id = '$id';";	
             $resultado = $oMySQL -> ExecuteSQL($query);
         }         
         return search_num_visit($oMySQL);
@@ -93,7 +93,7 @@ function insert_host($oMySQL,$ip){
  */
 
 function search_num_visit($oMySQL){
-    $query = "SELECT sum(visitas)as visitas FROM visitas";
+    $query = "SELECT sum(visitas)as visitas FROM ti_visitas";
     $resultado = $oMySQL -> ExecuteSQL($query);
     //return $oMySQL->lastError;
     if($oMySQL->records > 0){

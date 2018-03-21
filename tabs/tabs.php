@@ -1,7 +1,9 @@
 <?php
 // Obtiene la conexión a la bd
 include_once ('../lib/class.MySQL.php');
-mysql_query("set names 'utf8'");
+//if (isset($_GET['bd']) && !empty($_GET['bd']) && $_GET['bd'] != "wunderground") {
+	mysql_query("set names 'utf8'");
+//}
 // Obtiene id de la estación
 $idEstacion = $_GET['id'];
 // Obtiene las estaciones desde wunderground y la información asociada a cada variable
@@ -239,7 +241,7 @@ if($idEstacion!="0"){
 						?>			
 						$variables = array("temperature", "presure", "humidity", "realPrecipitation", "radiation", "windDirection", "windDirection", "realETO");						
 								<input type="radio" name="sky-tabs-1" <?php echo ($var=="temperature" || count($variables)==1)?"checked":""; ?> id="<?php echo "sky-tab1-".$contaTabs;?>" class="sky-tab-content-<?php echo $contaTabs;?>">
-								<label for="<?php echo "sky-tab1-".$contaTabs;?>"><span class="sky-tabs_custom_pad"><span><?php echo ($var=="realPrecipitation")?"Precipitación":(($var=="realETO")?"Evapotranspiración":(($var=="presure")?"Presión":(($var=="radiation")?"Radiación":(($var=="windDirection")?"Dirección": ( ($var=="windSpeed")?"Velocidad" : ( ($var=="humidity")?"Humedad" : ucfirst($var) ) ) ) ) ) ); ?></span></span></label>
+								<label for="<?php echo "sky-tab1-".$contaTabs;?>"><span class="sky-tabs_custom_pad"><span><?php echo ($var=="level")?"Nivel" : ( ($var=="temperature")?"Temperatura": ($var=="temperature")?"Temperatura": ( ($var=="realPrecipitation")?"Precipitación":(($var=="realETO")?"Evapotranspiración":(($var=="presure")?"Presión":(($var=="radiation")?"Radiación":(($var=="windDirection")?"Dirección": ( ($var=="windSpeed")?"Velocidad" : ( ($var=="humidity")?"Humedad" : ucfirst($var) ) ) ) ) ) ) ) ); ?></span></span></label>
 						<?php	
 								$contaTabs++;		
 							}	

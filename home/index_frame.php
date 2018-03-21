@@ -1,5 +1,8 @@
 <?php 
 session_start();
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 // Obtiene la conexión a la bd
 include_once ('visit_models.php');
 include_once ('../lib/class.MySQL.php');
@@ -70,7 +73,7 @@ $host = insert_host($oMySQL, $ip);
 		<script src="js/mapa.js"></script>
 		-->
 		
-    	<script src="../mapa/js/estaciones.js"></script>
+    	<script src="../mapa/js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
 		
 		
 		<style>

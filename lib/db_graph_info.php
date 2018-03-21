@@ -31,7 +31,7 @@ if(isset($_GET['carpeta']))
                 $variables = array("temperature", "realPrecipitation", "level"); break;
             case 'ENT' :
                 $tablaEstaciones = "tdp_stations";
-                $variables = array("nivel");
+                $variables = array("level");
                 break;
             case 'EQT' :
                 $tablaEstaciones = "tdp_stations";
@@ -62,6 +62,7 @@ if(isset($_GET['carpeta']))
         //var_dump($query);
         $est = $oMySQL -> ExecuteSQL($query);
         //var_dump($est);
+        
         // Obtiene el nombre de la estación
         $tabla = $est["tableName"];
         
@@ -70,16 +71,18 @@ if(isset($_GET['carpeta']))
          */
         // Get yesterday date like this 2014-10-03
         $dt = new DateTime('', new DateTimeZone('America/Bogota'));
-        $dt->sub(new DateInterval('P31D'));
+        $dt->sub(new DateInterval('P1D'));
         //echo $dt->format('Y-m-d H:i:s');
         //echo "</br></br>";
         $yesterday = $dt->format('Y-m-d');//date("Y-m-d", strtotime("yesterday"));//date("Y-m-d", strtotime("yesterday"));
         // Get data from yesterday ordered from last measure	// AND stationTime <= '2018-01-25'
-        $query = "SELECT * FROM " . $tabla . " WHERE stationTime >= '".$yesterday."' AND stationTime <= '2018-01-25' ORDER BY stationTime ASC";//LIMIT 5
+        $query = "SELECT * FROM " . $tabla . " WHERE stationTime >= '".$yesterday."' ORDER BY stationTime ASC";//LIMIT 5
         
-        //var_dump($query);
-        
+        //var_dump($query);        
         $estacionesInfoSinceYesterday = $oMySQL -> ExecuteSQL($query);
+        
+        //var_dump($estacionesInfoSinceYesterday);        
+		//echo "</br></br></br>";
         
         
         $oMySQL -> closeConnection();
@@ -101,14 +104,14 @@ if(isset($_GET['carpeta']))
             $hora = $horaMinutoSegundo[0];
             $min = $horaMinutoSegundo[1];
             $seg = $horaMinutoSegundo[2];
-            
+
             // Get values for each variable
             foreach($variables as $v){
-                if($data[$v]!="-"){
-                    $lastValue[$v] = $estInfo[$v][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval($data[$v]));
-                }else{
+                if($data[$v]!="-" && $data[$v] != NULL){
+                    $lastValue[$v] = $estInfo[$v][] = array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",round(floatval($data[$v]), 2));
+                }/*else{
                     $estInfo[$v][] = ($lastValue[$v]==0)?array("Date.UTC(".$ano.", ".$mes.", ".$dia.", ".$hora.",".$min.",".$seg.")",floatval(0)):$lastValue[$v];
-                }
+                }*/
             }
         }
         
