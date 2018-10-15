@@ -76,10 +76,12 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
                     $tipoEstacion = $_REQUEST["tipo"];
                     if($tipoEstacion == "PDNT")
                         $estacion = "pluv";
+                    elseif($_REQUEST["folder"] != "undefined")
+                        $estacion = $_REQUEST["folder"];
 //                    else if($tipoEstacion == "SNNT" || $tipoEstacion == "SN")
 //                        $estacion = "sensor";
 //                    else
-//                        $estacion = "sensor";
+//                        $estacion = "sensor";                   
                     $nombre  = $_REQUEST["name"];
                     $directory= "images/estaciones/".$estacion;
                     $dirint = dir($directory);

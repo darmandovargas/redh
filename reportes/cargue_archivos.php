@@ -1,6 +1,5 @@
 <?php
 /**
- * @author Juan manuel Mora <juan_manuel28@hotmail.com>
  * @date   05-09-214
  * @description
  *      Metodo en php para cargar los archivos que se encuentra en el directorio que se especifica en la 
@@ -22,6 +21,7 @@ if($_REQUEST["boletin"] != "" && $_REQUEST["estacion"] != "" && $_REQUEST["perio
     if(isset($_REQUEST['mes']))
         $path = "/".$_REQUEST['mes'];
     $directory = "boletines/".$_REQUEST["boletin"]."/".$_REQUEST["estacion"]."/".$_REQUEST["fecha"]."/".$_REQUEST["periocidad"].$path;
+	//echo $directory
     //$directory= "images/estaciones/".$estacion;
     $dirint = dir($directory);
     $vector = array();

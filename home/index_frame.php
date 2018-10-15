@@ -1,5 +1,8 @@
 <?php 
 session_start();
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 // Obtiene la conexión a la bd
 include_once ('visit_models.php');
 include_once ('../lib/class.MySQL.php');
@@ -19,6 +22,14 @@ $host = insert_host($oMySQL, $ip);
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- No Cache 
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+		-->
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>Red Hidroclimatológica de Risaralda</title>
@@ -44,7 +55,7 @@ $host = insert_host($oMySQL, $ip);
 		<!-- DEFAULT MAP 
 		<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
 		-->
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8&v=3.exp&sensor=false&libraries=places"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 		<!--
@@ -62,15 +73,17 @@ $host = insert_host($oMySQL, $ip);
 		<script src="js/mapa.js"></script>
 		-->
 		
-    	<script src="../mapa/js/estaciones.js"></script>
+    	<script src="../mapa/js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
 		
 		
 		<style>
 			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
 			.logout {			    
 			   	position: absolute;
-				top: -85px;
-				right: 38px;
+				/*top: -85px;
+				right: 38px;*/
+				top: -54px;
+				right: -435px;
 				/*background-color: #333333;
 				background-color: rgba(51, 51, 51, 0.8);
 				*/height: 50px;
@@ -80,14 +93,76 @@ $host = insert_host($oMySQL, $ip);
 			.waitLogout {	
 				opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */		    
 			   	position: absolute;
-				top: -85px;
+				/*top: -85px;
 				right: 130px;
+				*/
+				top: -53px;
+				right: 39px;
 				/*background-color: #333333;
 				background-color: rgba(51, 51, 51, 0.8);
 				*/height: 50px;
 				margin: 0 -45px;
 				margin-top: 20px;
+ 			}
+ 			a {text-decoration: none}
+ 			
+ 			.btn-custom-blue {
+			  background-color: hsl(201, 100%, 30%) !important;
+			  background-repeat: repeat-x;
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00a5ff", endColorstr="#006399");
+			  background-image: -khtml-gradient(linear, left top, left bottom, from(#00a5ff), to(#006399));
+			  background-image: -moz-linear-gradient(top, #00a5ff, #006399);
+			  background-image: -ms-linear-gradient(top, #00a5ff, #006399);
+			  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00a5ff), color-stop(100%, #006399));
+			  background-image: -webkit-linear-gradient(top, #00a5ff, #006399);
+			  background-image: -o-linear-gradient(top, #00a5ff, #006399);
+			  background-image: linear-gradient(#00a5ff, #006399);
+			  border-color: #006399 #006399 hsl(201, 100%, 25%);
+			  color: #fff !important;
+			  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+			  -webkit-font-smoothing: antialiased;
 			}
+
+			.btn-custom-green {
+			  
+			  /*opacity: 0.95;*/
+			  background-color: hsl(86, 79%, 44%) !important;
+			  background-repeat: repeat-x;
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#daf6b5", endColorstr="#7cc817");
+			  background-image: -khtml-gradient(linear, left top, left bottom, from(#daf6b5), to(#7cc817));
+			  background-image: -moz-linear-gradient(top, #daf6b5, #7cc817);
+			  background-image: -ms-linear-gradient(top, #daf6b5, #7cc817);
+			  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #daf6b5), color-stop(100%, #7cc817));
+			  background-image: -webkit-linear-gradient(top, #daf6b5, #7cc817);
+			  background-image: -o-linear-gradient(top, #daf6b5, #7cc817);
+			  background-image: linear-gradient(#daf6b5, #7cc817);
+			  border-color: #7cc817 #7cc817 hsl(86, 79%, 34%);
+			  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.66);
+			  color: #111 !important;
+			  -webkit-font-smoothing: antialiased;
+			  font-size:16px;
+			  margin-left: -10px;			  
+			  moz-border-radius: 15px;
+			  -webkit-border-radius: 2px;
+			}
+			.tcg{
+				padding: 2px 2px; 
+				position: absolute; 
+				bottom: -5px; 
+				right:45%; 
+				font-size:11px;  
+				color: rgb(68, 68, 68);
+				text-decoration: none; 
+				cursor: pointer; 
+				background-color: #fff;
+				border-top-right-radius: 5px;
+				border-top-left-radius: 5px; 
+				/*
+				-moz-border-radius: 5px; 
+				-webkit-border-radius: 5px;
+				 */
+			}		
+
 		</style>
 		
 		
@@ -100,9 +175,7 @@ $host = insert_host($oMySQL, $ip);
 				<div class="span5 main-wrapper">
 					<div class="row-fluid logo">
 						<div class="span12">
-							<img src="img/logos/ciencias ambientales.png" width="20%" />							
-							<img src="img/logos/red_hidroclimatologica.jpg" width="50%" />
-							<img src="img/logos/logo_utp.jpg" width="20%">
+							<img src="img/logos/red_hidroclimatologica.jpg" width="80%" />
 							<hr />
 							<!-- <h1>Red Hidroclimatológica de Risaralda</h1>-->
 						</div>
@@ -113,15 +186,15 @@ $host = insert_host($oMySQL, $ip);
 							<!--/floating-wrapper-->
 							<div class="row-fluid floating-boxes" style="/*overflow: scroll;*/">
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box"> <h3>Información General</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Información General</h3> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box"> <h3>Estado del Tiempo</h3> </a>
+									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Estado del Tiempo</h3> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box"> <h3>Noticias y Eventos</h3> </a>
+									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Noticias y Eventos</h3> </a>
 								</div>
 
 								<!--
@@ -152,19 +225,28 @@ $host = insert_host($oMySQL, $ip);
 								</div>
 								-->
 								<div align="center">
-									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box"> <h3>Recursos Humanos</h3> </a>
+									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Recursos Humanos</h3> </a>
 								</div>
+								<!--
 								<div align="center">
 
-									<a href="../mapa/" onclick="checkSessionClick();" target="_blank"> <h3>Ver Mapa Completo</h3> </a>
+									<a href="../mapa/" onclick="checkSessionClick();" target="_blank" style="text-decoration: none;"> <h3>Ver Mapa Completo</h3> </a>
 								</div>
+								-->
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box"> <h3>Contribuyen a la Red</h3> </a>
+									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Contribuyen a la Red</h3> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box"> <h3>Sitios y Documentos de Interés</h3> </a>
-								</div>								
+									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Sitios y Documentos de Interés</h3> </a>
+								</div>
+								
+								 <div align="center">
+								    Mayor Información: </br>
+								    Facultad de Ciencas Ambientales Of f-213 </br> 
+									Juan Camilo Berrio Carvajal </br>
+									Telefono: 3137249 </br></br></br>
+								</div> 								
 							</div>							
 						</div>								
 					</div>
@@ -395,11 +477,14 @@ $host = insert_host($oMySQL, $ip);
 
 					<div class="row-fluid leave-gap page-footer">
 				       <hr />
-						<div class="span12">
+						<div class="span12" style="margin-left:-10px;">
 							<div style="text-align: center; ">
+								<img src="img/logos/ciencias ambientales.png" width="20%" />	
 								<img src="img/logos/logo_acuaseo.jpg" width="13%">
 								<img src="img/logos/Alcaldia Pereira.jpg" width="15%">
 								<img src="img/logos/Carder.png" width="20%">
+								<!-- <img src="img/logos/logo_utp.jpg" width="20%"> -->
+								<img src="img/logos/identificador-vertical.jpg" width="20%">
 								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="22%">
 								<img src="img/logos/dopad.bmp" width="15%">
 								<img src="img/logos/Seafield_colour.jpg" width="25%">
@@ -416,6 +501,8 @@ $host = insert_host($oMySQL, $ip);
 					<div class="row-fluid" style="height: 100%;">
 						<div class="span12" style="height: 100%;">
 							<div id="map_canvas"></div>
+							<!--<div style="position: absolute; bottom: -2px; right:44%; font-size:11px;">Developed by <a href="http://thinkcloudgroup.com" target="_blank">Think Cloud Group</a></div>-->
+							<div class="tcg">Powered by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
 							<!--<iframe src="../mapa/" width="100%" height="800px"></iframe>-->
 						</div>
 					</div>
@@ -429,7 +516,7 @@ $host = insert_host($oMySQL, $ip);
 							</form>
 							-->
 							<!-- -->                                     
-                                                        <span id="logout" class="logout"></span>
+                            <span id="logout" class="logout"></span>
 							<input id="search"  type="text" placeholder="Ingrese Ubicación">
                                                         <div style="color:#929292;float:right;margin-top: 30px;margin-right: 3px;font-family: Roboto;">
                                                             Visitas <span><?php echo add_ceros($host,4); ?></span>
@@ -465,6 +552,9 @@ $host = insert_host($oMySQL, $ip);
 								<div id="directions-result"></div>
 							</div>
 						</div>
+						<div class="span12">
+							<input type="button" class="btn-custom-green" style="width: 100%;" value="Ver Herramientas del Mapa"/>
+						</div>
 					</div>
 
 					<!--/floating-search-->
@@ -481,6 +571,7 @@ $host = insert_host($oMySQL, $ip);
 						<h3>Contactenos</h3>
 						<p>Dejenos saber sus comentarios</p>
 						</a>
+						
 					</div>
 					<!--/floating-boxes-->
 					
@@ -504,6 +595,7 @@ $host = insert_host($oMySQL, $ip);
 							</div>
 						</div>
 					</div>
+					
 				</div>
 				<!-- end span-fixed-sidebar -->
 			</div><!--/main-row-->

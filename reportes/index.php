@@ -27,11 +27,19 @@
 	
         </script>
     </head>
-    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>')" style="background-color: #EAF5F3;height: 400px;">
-        <?php $hasta = "2007"; ?>
+    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>','<?php echo $_REQUEST['folder'];?>')" style="background-color: #EAF5F3;height: 400px;">
+        <?php $hasta = "2007"; //Color body #EAF5F3 ?>
         <div id="content">
                 <fieldset>
-                    <input type="hidden" value="<?php echo $_REQUEST['name']; ?>" id="name" name="name" />
+                    <?php
+                        $folder = "";
+                        if($_REQUEST['tipo'] == "PD" && $_REQUEST['folder'] != "undefined"){
+                            $folder = $_REQUEST['folder'];
+                        }else{
+                            $folder = $_REQUEST['name'];
+                        }
+                    ?>
+                    <input type="hidden" value="<?php echo $folder; ?>" id="name" name="name" />
                     <select class="input-xlarge" id="boletin">
                         <option value="">Seleccione tipo de boletin</option>
                         <option value="estaciones">Estaciones Hidroclimatológicas</option>
@@ -72,7 +80,8 @@
                     <button class="btn btn-primary" id="buscar">Buscar</button>
                 </fieldset>            
         </div>
-        <div id="mensaje" style="margin-left: 100px;display: none"><img src="images/cargando.gif" alt="cargando" />Buscando archivos, por favor espere un momento.</div>
+        <div id="modal_wait" style="position: absolute;width: 100%;height:100%;background-color: white;opacity: 0.5;z-index: 100;top:0;display: none;"></div>
+        <div id="mensaje" style="margin-left: 220px;display: none;opacity: 0.1;"><img src="../home/content/contactenos/wait.gif" alt="cargando" /></div>
         <div id="archive" style="margin-top: 30px;"></div>
     </body>
 </html>

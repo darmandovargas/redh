@@ -15,8 +15,8 @@ img {
 .panel1 {
 	opacity: 0.85;
 	position: absolute;
-	top: 82px;
-	left: 35px;
+	top: 30px;
+	right: -210px;
 	display: none;
 	background: #4d90fe;
 	border: 0px solid #111111;
@@ -24,7 +24,7 @@ img {
 	 -webkit-border-top-right-radius: 20px;
 	 -moz-border-radius-bottomright: 20px;
 	 -webkit-border-bottom-right-radius: 20px;*/
-	width: 525px;
+	width:490px;
 	height: auto;
 	color: #fff;
 	font-family: Roboto;
@@ -32,7 +32,8 @@ img {
 	font-size: 13px;
 	font-weight: 300;
 	padding: 3px 3px 3px 3px;
-	border-radius: 0.8px 0.8px;
+	/*border-radius: 0.8px 0.8px;*/
+	border-radius: 6px;
 	/*padding: 5px 11px 8px 11px;*/
 }
 
@@ -170,6 +171,7 @@ a.active.trigger {
 #panel {
 	opacity: 0.85;
 	background: #4d90fe;
+	border-radius: 6px;
 	/*border: 0px solid #4d90fe;*/
 	border: 1px solid transparent;
 	text-align: center;
@@ -179,21 +181,69 @@ a.active.trigger {
 	padding: 5px 11px 8px 11px;
 	z-index: 1;
 	position: absolute;
-	bottom: 20px;
-	right: 20px;
+	bottom: 15px;
+	right: 42px;
+}
+
+#panelInfo {
+	opacity: 0.85;
+	background: #ffffff;
+	border: 1px solid transparent;
+	text-align: center;
+	color: #000;
+	font-family: Roboto;
+	font-size: 12px;
+	padding: 0 11px 5px 10px;
+	z-index: 1;
+	position: absolute;
+	bottom: 25px;
+	left: 10px;
+	border-top-left-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+
+.coordinate{
+	width: 29px;
 }
 
 #panel_despl {
 	position: absolute;
-	top: 80%;
-	left: 0px;
+	top: -16px;
+	right: 235px;
 	z-index: 5;
+	color: black;
+	height: 21px;
+	margin: 0 -45px;
+	margin-top: 20px;
+}
+
+.weather {
+	position: absolute;
+	top: -15px;
+	right: 235px;
+	z-index: 5;
+	color: black;
+	height: 26px;
+	margin: 0 -45px;
+	margin-top: 20px;
+}
+
+.gallinazos {
+	position: absolute;
+	top: -15px;
+	right: 200px;
+	z-index: 5;
+	color: black;
+	height: 26px;
+	margin: 0 -45px;
+	margin-top: 20px;
 }
 
 #panel_log {
 	position: absolute;
-	top: -17px;
-	right: 313px;
+	top: -15px;
+	right: 285px;/*373px;*/
 	z-index: 5;
 	color: black;
 	height: 21px;
@@ -252,8 +302,8 @@ a.active.trigger {
 	opacity: 0.4;
 	filter: alpha(opacity=40); /* For IE8 and earlier */
 	position: absolute;
-	top: -17px;
-	right: 313px;
+	top: -15px;
+	right: 370px;
 	/*background-color: #333333;
 	 background-color: rgba(51, 51, 51, 0.8);
 	 */

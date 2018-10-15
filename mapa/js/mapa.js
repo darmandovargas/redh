@@ -1,11 +1,11 @@
 // Global variables
-var map, rectangle, infoWindow, htmlraw, historicalOverlay, overlay, input, map_actual, northEast, southWest, bounds;
+var map, rectangle, infoWindow, htmlraw, historicalOverlay, overlay, input, map_actual, northEast, southWest, bounds, showWeather, showBird = true;
 
 // This will create the second layer for the uploaded image
 DebugOverlay.prototype = new google.maps.OverlayView();
 
 // Initialize custom function for map
-function initialize(isRefresh, dynamicImage, estation) {	
+function initialize(isRefresh, dynamicImage, estation, loadBird){//loadWeather, loadBird) {	
 	
 	// This will paint or not the search (the seach input can´t be obtained by javascript on clean lines)
 	if ( typeof (isRefresh) === 'object'){
@@ -33,18 +33,24 @@ function initialize(isRefresh, dynamicImage, estation) {
 	}
 	//End Search Box
 
+	// DEPRECIATED
 	// Show Wheather Info
-	showWheather();
+	//showWheather(loadWeather);
 	// End Wheather
+	
+	// Show Birds Info
+	if(typeof loadBird !== undefined && loadBird){
+		showBirds();		
+	} 
+	// End Bird
 
 	// Tools
 	showTools();
 	// End Tools	
 	
 	// This will get the image if found
-	// TODO add function to upload kml format
 	showImage(dynamicImage);
-	// Fin Superposición de Imágenes
+	// Fin Superposición de Imágenes y kml
 	
 	// Show Stations
 	showStations(estation);
@@ -115,14 +121,27 @@ function showSearch(){
 /**
  * This will render wheather information on the map 
  */
-function showWheather(){	
-	/*	var weatherLayer = new google.maps.weather.WeatherLayer({
-		temperatureUnits : google.maps.weather.TemperatureUnit.CELSIUS
-	});
-	weatherLayer.setMap(map);
-	*/
+function showWheather(showW){	
+	showWeather = showW;
+	if(showW){
+		var weatherLayer = new google.maps.weather.WeatherLayer({
+			temperatureUnits : google.maps.weather.TemperatureUnit.CELSIUS
+		});
+		weatherLayer.setMap(map);	
+	}
+
 	var cloudLayer = new google.maps.weather.CloudLayer();
 	cloudLayer.setMap(map);
+}
+
+/**
+ * This will render bird information on the map
+ */
+function showBirds(){
+	var ctaLayer = new google.maps.KmlLayer({
+		url: 'http://redhidro.org/mapa/uploads/gallinazos.kml'
+	});
+	ctaLayer.setMap(map);
 }
 
 /**
@@ -171,73 +190,88 @@ function showImage(dynamicImage){
   		ctaLayer.setMap(map);
     }   
     */
-	// TODO add validations for specific extensions .jpeg, .jpg, kml... etc
-	if ( typeof (dynamicImage) === 'undefined'){
-		image = '';
-	}else{
-		image = dynamicImage[0].url;
-	}
-		
-	if(image!=''){
-		//var bounds = new google.maps.LatLngBounds(southWest, northEast);
-		var swBound = southWest;
-		var neBound = northEast;
-	
-		var srcImage = image;
-	
-		overlay = new DebugOverlay(bounds, srcImage, map);
-	
-		var markerA = new google.maps.Marker({
-			position : swBound,
-			map : map,
-			draggable : true,
-			icon : 'img/resize_icon_small.png'
-		});
-	
-		var markerB = new google.maps.Marker({
-			position : neBound,
-			map : map,
-			draggable : true,
-			icon : 'img/resize_icon_small.png'
-		});
-	
-		google.maps.event.addListener(markerA, 'drag', function() {
-	
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-			overlay.updateBounds(newBounds);
-		});
-	
-		google.maps.event.addListener(markerA, 'drag', function() {
-	
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-			overlay.updateBounds(newBounds);
-		});
-	
-		google.maps.event.addListener(markerB, 'drag', function() {
-	
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
-			overlay.updateBounds(newBounds);
-		});
-	
-		google.maps.event.addListener(markerA, 'dragend', function() {
-	
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			
-		});
-	
-		google.maps.event.addListener(markerB, 'dragend', function() {
-			var newPointA = markerA.getPosition();
-			var newPointB = markerB.getPosition();
-			
-		});
-	}
+   /**
+    * Se añade validación para subir archivo kml
+    * 
+    */
+        // TODO Render Kml from upload form
+        if(/*isRefresh &&*/ typeof dynamicImage !== 'undefined' && dynamicImage[0].type == "kml"){
+         //typeof data.error === 'undefined'
+        var url = dynamicImage[0].url;
+        var res = url.replace(/\s/g, "%20");
+        var ctaLayer = new google.maps.KmlLayer({
+             url: 'http://redhidro.org/mapa/'+res
+            });
+           ctaLayer.setMap(map);
+        }else{
+            // TODO add validations for specific extensions .jpeg, .jpg, kml... etc
+            if ( typeof (dynamicImage) === 'undefined'){
+                    image = '';
+            }else{
+                    image = dynamicImage[0].url;
+            }
+
+            if(image!=''){
+                    //var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                    var swBound = southWest;
+                    var neBound = northEast;
+
+                    var srcImage = image;
+
+                    overlay = new DebugOverlay(bounds, srcImage, map);
+
+                    var markerA = new google.maps.Marker({
+                            position : swBound,
+                            map : map,
+                            draggable : true,
+                            icon : 'img/resize_icon_small.png'
+                    });
+
+                    var markerB = new google.maps.Marker({
+                            position : neBound,
+                            map : map,
+                            draggable : true,
+                            icon : 'img/resize_icon_small.png'
+                    });
+
+                    google.maps.event.addListener(markerA, 'drag', function() {
+
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+                            var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+                            overlay.updateBounds(newBounds);
+                    });
+
+                    google.maps.event.addListener(markerA, 'drag', function() {
+
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+                            var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+                            overlay.updateBounds(newBounds);
+                    });
+
+                    google.maps.event.addListener(markerB, 'drag', function() {
+
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+                            var newBounds = new google.maps.LatLngBounds(newPointA, newPointB);
+                            overlay.updateBounds(newBounds);
+                    });
+
+                    google.maps.event.addListener(markerA, 'dragend', function() {
+
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+
+                    });
+
+                    google.maps.event.addListener(markerB, 'dragend', function() {
+                            var newPointA = markerA.getPosition();
+                            var newPointB = markerB.getPosition();
+
+                    });
+            }
+        }
 }
 
 /**
@@ -246,27 +280,47 @@ function showImage(dynamicImage){
 function showStations(estation) {
 	$.each(estacionesJSON, function(idx, obj) {
 		var n = -1;
+		
 		if ( typeof (estation) === 'undefined') {
 			n = 1;
 		} else {
-			n = estation.indexOf(obj.tipo);
+			if(estation[1]=="estation"){
+				n = estation[0].indexOf(obj.tipo);	
+			}else{
+				$.each(obj.variables, function(idy, variable) {
+					//console.log(variable);
+					senseVar = estation[0].indexOf(variable); 
+					if(senseVar>-1){
+						n=1;
+						return false;
+					}
+				});
+			}
 		}
+		
+		//console.log("n="+n);
+		//console.log("obj.isPublic: "+obj.isPublic);
 		if ((obj.isPublic && !session) || session) {
 			if (n !== -1) {
+				//console.log(obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
 				var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
 				var marker = new google.maps.Marker({
 					position : position,
 					animation : google.maps.Animation.DROP,
-					//icon:'icon.png',
 					icon : obj.icono,
 					map : map
 				});
 				google.maps.event.addListener(marker, 'click', toggleBounce);
 				marker.setTitle(obj.tipo + ": " + obj.nombre);
-				addPopUp(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo);
+				addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
 
+			}else{
+				//console.log(console.log("ELSE 1: ....... " + obj.tipo + ": " + obj.nombre));
 			}
+		}else{
+			//console.log(console.log("ELSE 2: ....... " + obj.tipo + ": " + obj.nombre));
 		}
+		
 		function toggleBounce() {
 			if (marker.getAnimation() != null) {
 				marker.setAnimation(null);
@@ -400,10 +454,10 @@ DebugOverlay.prototype.onRemove = function() {
 /**
  * Pop up of each station
  */
-function addPopUp(marker, message, id, tipo) {
+function addPopUp(marker, message, id, tipo, carpeta, bd) {
 
 	var infowindow = new google.maps.InfoWindow({
-		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'" height="560px" width="800px"></iframe>'
+		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'&carpeta='+carpeta+'&bd='+bd+'" height="560px" width="800px"></iframe>'
 	});
 	
 	google.maps.event.addListener(marker, 'click', function() {
@@ -427,14 +481,38 @@ function loadImageOrKml(imageInfo) {
 }
 
 /**
- * Funcion que se llama para filtrar por tipos de estaciones según los checkbox seleccionados
+ * Funcion que se llama para filtrar por tipos de estaciones según los checkbox seleccionados 
  */
-function filter_estation(){
-    var checkboxValues = "";
-    $('input[name="estation[]"]:checked').each(function() {
-            checkboxValues += $(this).val() + " ";
-    });        
-    initialize(true, undefined, checkboxValues);
+function filter_estation(isVariable){
+	var checkboxValues = [];
+	if(typeof isVariable !== 'undefined'){		
+		checkboxValues[1] = "variable";
+	    $('input[name="estation[]"]:checked').each(function() {	    		
+	            checkboxValues[0] += $(this).val() + " ";
+	    });
+	    initialize(true, undefined, checkboxValues);	
+	}else{
+		checkboxValues[1] = "estation";
+	    $('input[name="estation[]"]:checked').each(function() {
+	            checkboxValues[0] += $(this).val() + " ";
+	    });
+	    initialize(true, undefined, checkboxValues);
+	}    
+}
+
+/**
+ * Función para mostrar u ocultar variables o tipos de estaciones como filtro
+ */
+function showHideVariables(){
+	if($("#estationsOrVariables").is(':checked')){
+		$("#estationsDiv").fadeOut("slow").hide();
+		$("#variablesDiv").fadeIn("slow").show();	
+		filter_estation(true);			
+	}else{
+		$("#estationsDiv").fadeIn("slow").show();
+		$("#variablesDiv").fadeOut("slow").hide();
+		filter_estation();
+	}	
 }
 
 // This will load the map on window load event
@@ -453,7 +531,7 @@ $(document).ready(function() {
 	function prepareUpload(event){
 		files = event.target.files;
 		imageName = files[0].name;
-		console.log(files[0].name);
+		//console.log(files[0].name);
 	}
 	// Event submit image form
 	$('#uploadForm').on('submit', uploadFiles);
@@ -536,19 +614,19 @@ $(document).ready(function() {
 			success : function(data, textStatus, jqXHR) {
 				if ( typeof data.error === 'undefined') {
 					// Success so call function to process the form
-					console.log('SUCCESS: ' + data.success);
-					console.log("data");
-					console.log(data);
+					//console.log('SUCCESS: ' + data.success);
+					//console.log("data");
+					//console.log(data);
 					//console.log(imageName);
 					tipo = imageName.split(".");
 					tipo = tipo[1];
-					console.log(tipo);
+					//console.log(tipo);
 					imageInfo = [{
 						'url' : 'uploads/' + imageName,
 						'type' : tipo
 					}];
-					console.log("imageName");
-					console.log(imageName);
+					//console.log("imageName");
+					//console.log(imageName);
 					loadImageOrKml(imageInfo);
 				} else {
 					imageName = "";
@@ -565,6 +643,55 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	
+	// Toogle weather layer
+	/* Get rid of this because google`s api doesn´t work anymore with weather library
+	$(".weather").click(function(){
+		if(typeof showWeather === undefined){
+			initialize(true, undefined, undefined,true);
+			$(this).attr("src","img/Weather-icon-gray.png");
+		}else{
+			showWeather = !showWeather;
+			initialize(true, undefined, undefined,showWeather);
+			$(this).attr("src","img/Weather-icon.png");
+		}        
+    });
+    
+    $(".weather").hover(function(){
+    	$(this).attr("src","img/Weather-icon-gray.png");
+    });
+    
+    $(".weather").mouseout(function(){
+    	if(typeof showWeather === undefined){
+    		$(this).attr("src","img/Weather-icon.png");
+    	}else{
+    		if(showWeather){
+    			$(this).attr("src","img/Weather-icon-gray.png");
+    		}else{
+    			$(this).attr("src","img/Weather-icon.png");
+    		}
+    	}
+    	
+    });
+    
+    $(".weather").load(function(){
+    	if(typeof showWeather === undefined){
+    		$(this).attr("src","img/Weather-icon.png");
+    	}else{
+    		if(showWeather){
+    			$(this).attr("src","img/Weather-icon-gray.png");
+    		}else{
+    			$(this).attr("src","img/Weather-icon.png");
+    		}
+    	}
+    });*/
+    
+    // Toogle gallinazos layer
+	$(".gallinazos").click(function(){
+		initialize(true, undefined, undefined, showBird);
+		showBird = !showBird;
+    });
 });
 // End Upload Image
 

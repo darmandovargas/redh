@@ -4,6 +4,7 @@ $(function(){
     $( "#buscar" ).click(function(){ 
         $('#archive').html("");
         $("#mensaje").show();
+        $("#modal_wait").show();
         var boletin = $("#boletin").val();
         var estacion = $("#estacion").val();
         var periocidad = $("#periocidad").val();
@@ -31,9 +32,11 @@ $(function(){
                         if(response.respuesta == false){
                                 $('#archive').html("<div class='alert alert-info'>No se encontraron resultados en la busqueda</div>");
                                 $("#mensaje").hide();
+                                $("#modal_wait").hide();
                         }else{
                                 $('#archive').html(response.salida);
                                 $("#mensaje").hide();
+                                $("#modal_wait").hide();
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
@@ -86,11 +89,15 @@ $(function(){
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
-                                $("#fecha").html("");
+                                $("#fecha").fadeOut('slow').html("");
+                                $("#periocidad").fadeOut('slow');
+                                $("#mes").fadeOut('slow');  
+                                                              
                                 $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");                                
                         }else{
-                                $("#fecha").html("");
-                                $('#fecha').html(response.salida);
+                                $("#fecha").fadeIn('slow').html(response.salida);
+                                $("#periocidad").fadeIn('slow');
+                                $("#mes").fadeIn('slow');
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
@@ -115,11 +122,10 @@ $(function(){
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
-                                $("#periocidad").html("");
+                                $("#periocidad").fadeOut('slow');
                                 $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");                                
                         }else{
-                                $("#periocidad").html("");
-                                $('#periocidad').html(response.salida);
+                                $("#periocidad").fadeIn('slow').html(response.salida);
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
@@ -328,15 +334,18 @@ function preseleccionar(name){
 
 });
 
-function preseleccionar(name,tipoestacion){
+function preseleccionar(name,tipoestacion,carpeta){
            var estacion = name;
            var tipo = tipoestacion;
+           var folder = carpeta;
+           //console.log("estacion: "+estacion+" tipo: "+tipo+" folder: "+folder);
+           
            $.ajax({					
                 cache: false,
                 type: "POST",
                 dataType: "json",
                 url: "load_directory.php",
-                data: {name : estacion,actionID : 'search_directory'},
+                data: {name : estacion,actionID : 'search_directory',folder : folder,tipo : tipo},
                 success: function(response){
                         // Validar mensaje de error
                         if(response.respuesta == false){
@@ -346,20 +355,22 @@ function preseleccionar(name,tipoestacion){
                                 }else if(estacion == "" && (tipo == "SN" || tipo == "SNNT")){
                                     $("#boletin option[value=sensores]").attr("selected",true);
                                     $( "#boletin" ).trigger( "change" );
-                                }else if(estacion == "" && (tipo == "ECT" || tipo == "EHT" || tipo == "EC")){
+                                }else if(estacion == "" && (tipo == "ECT" || tipo == "EHT" || tipo == "ENT" || tipo == "EQT" || tipo == "EC")){
                                     $("#boletin option[value=estaciones]").attr("selected",true);
                                     $( "#boletin" ).trigger( "change" );
                                 }else{
                                     $("#boletin option[value=pluviometros]").attr("selected",true);
                                     $( "#boletin" ).trigger( "change" );
                                 }
-                                $("#archive").html("");
-                                $('#archive').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");
+                                $("#archive").fadeOut('slow').html("<div class='alert alert-info'>La estación no cuenta con boletines para ser visualizados</div>");
                         }else{
-                                $("#archive").html("");
-                                $('#archive').html(response.salida);
+                                $("#archive").fadeIn('slow').html(response.salida);
                                 $("#boletin option[value="+ response.salida +"]").attr("selected",true);
-                                $( "#boletin" ).trigger( "change" ); 
+                                $( "#boletin" ).trigger( "change" );
+                                setTimeout(function(){
+                                	$('#buscar').click();
+                                }, 1000);
+                                
                                 search_preselect();
                         }
                 },
@@ -375,6 +386,7 @@ function preseleccionar(name,tipoestacion){
 function search_preselect(){
         $('#archive').html("");
         $("#mensaje").show();
+        $("#modal_wait").show();
         var boletin = $("#boletin").val();
         var estacion = $("#name").val();
         var periocidad = $("#periocidad").val();
@@ -402,9 +414,11 @@ function search_preselect(){
                         if(response.respuesta == false){
                                 $('#archive').html("<div class='alert alert-info'>No se encontraron resultados en la busqueda</div>");
                                 $("#mensaje").hide();
+                                $("#modal_wait").hide();
                         }else{
                                 $('#archive').html(response.salida);
                                 $("#mensaje").hide();
+                                $("#modal_wait").hide();
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){

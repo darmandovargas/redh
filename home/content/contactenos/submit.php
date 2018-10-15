@@ -61,9 +61,8 @@ if(count($err))
 	exit;
 }
 
-
-$msg=
-'Nombre: '.$_POST['name'].'<br />Email:	'.$_POST['email'].'<br />IP: '.$_SERVER['REMOTE_ADDR'].'<br /><br />Mensaje:<br />'.nl2br($_POST['message']).'';
+// Based on clients need
+$msg = $_POST['name'].'-*'.$_POST['email'].'-*'.$_SERVER['REMOTE_ADDR'].'-*'.nl2br($_POST['message']);
 
 
 $mail = new PHPMailer();

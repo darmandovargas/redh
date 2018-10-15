@@ -22,7 +22,7 @@ $_CONFIG = array(
 // GENERAL SETTINGS
 
     'disabled' => false,
-    'uploadURL' => "/home/content/upload",
+    'uploadURL' => "/home/content/pdf",
     'uploadDir' => "",
     'theme' => "default",
 
@@ -32,6 +32,7 @@ $_CONFIG = array(
         'files'   =>  "",
         'flash'   =>  "swf",
         'images'  =>  "*img",
+        'misc'      => "! pdf doc docx xls xlsx",
 
     // TinyMCE types
         'file'    =>  "",
