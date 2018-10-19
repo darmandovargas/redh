@@ -12,7 +12,8 @@ if(isset($_GET['carpeta']))
     
     if($tipoEstacion=="SNS"){
         $nombre_estacion = $carpeta;
-    }
+    }   	
+    
     
     // Si la estación existe en la base de datos entonces arme el json para graficar
     if ($idEstacion != "0" && !isset($serieNew["temperature"])) {//
@@ -38,13 +39,13 @@ if(isset($_GET['carpeta']))
                 $variables = array("riverFlow");
                 break;
             case 'EC' :
-                $tablaEstaciones = "ti_estacion_sensores"; break;
+                $tablaEstaciones = "tdp_stations"; break;
             case 'SN' :
-                $tablaEstaciones = "ti_estacion_sensores"; break;
+                $tablaEstaciones = "tdp_stations"; break;
             case 'SNS' :
-                $tablaEstaciones = "ti_estacion_sensores"; break;
+                $tablaEstaciones = "tdp_stations"; break;
             case 'PD' :
-                $tablaEstaciones = "ti_estacion_sensores";
+                $tablaEstaciones = "tdp_stations";
                 // Inicializa array de variables a sensar y graficar
                 $variables = array("temperature", "presure", "humidity", "realPrecipitation", "level", "radiation", "windSpeed", "windDirection", "realETO");
                 break;
@@ -63,8 +64,10 @@ if(isset($_GET['carpeta']))
         $est = $oMySQL -> ExecuteSQL($query);
         //var_dump($est);
         
-        // Obtiene el nombre de la estación
+        // Obtiene el nombre de la tabla de la estación
         $tabla = $est["tableName"];
+		
+		//$nombre_estacion = $est["stationName"];
         
         /**
          * Gets variables for area graphs
@@ -135,6 +138,6 @@ if(isset($_GET['carpeta']))
             }
         }
         
-        $nombre_estacion = empty($nombre_estacion)?$est["stationName"]:$nombre_estacion;
+      	$nombre_estacion = empty($nombre_estacion)?$est["stationName"]:$nombre_estacion;		
     }
 ?>
