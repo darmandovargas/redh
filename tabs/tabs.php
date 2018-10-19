@@ -6,6 +6,7 @@ include_once ('../lib/class.MySQL.php');
 //}
 // Obtiene id de la estación
 $idEstacion = $_GET['id'];
+$nombre_estacion = "";
 // Obtiene las estaciones desde wunderground y la información asociada a cada variable
 include_once ('../lib/wunderground.php');
 // Obtiene las estaciones desde las bases de datos de la UTP y la de Aguas y Aguas y la información asociada a cada variable
@@ -30,7 +31,7 @@ include_once ('../lib/db_graph_info.php');
 	    <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <?php 
 if($idEstacion!="0"){	     
-    $est["stationName"]=isset($est["stationName"])?$est["stationName"]:$idEstacion;
+    $est["stationName"]=isset($est["stationName"])?$est["stationName"]:$idEstacion;	
 ?>
 <script>
 	$(function () {
@@ -93,11 +94,16 @@ if($idEstacion!="0"){
 	     */
 	    function createGraphArea(title, unit, container, seriesValues, minYValue){
     		var new_obj = [{"data": []}];
-	    	$.each(seriesValues[0].data, function(key, value) {
-	    		time = eval(value[0]);
-	    		new_obj[0].data.push([time, value[1]]);
-			});
-	    		// Parche para el bug del primer valor cero cuando en la bd es "-" 
+    		//if(seriesValues[0].data != null){
+    			$.each(seriesValues[0].data, function(key, value) {
+    				if(value != null){
+    					time = eval(value[0]);
+		    			new_obj[0].data.push([time, value[1]]);	
+    				}		    		
+				});	
+    		//}
+	    	
+	    	// Parche para el bug del primer valor cero cuando en la bd es "-" 
 			if(minYValue==undefined){
 				maxMinPresion = getMaxMinVal(new_obj);
 				//console.log(title);
