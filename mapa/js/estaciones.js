@@ -820,6 +820,7 @@ estacionesJSON = [
 			"id" : "0",//"id" : "32",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN001 (Quebrada Dalí)",
+		    "carpeta": "quebrada dali",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -839,6 +840,7 @@ estacionesJSON = [
 			"id" : "0",//"id" : "34",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN002 (Quebrada Negra)",
+		    "carpeta": "quebrada la negra",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -858,6 +860,7 @@ estacionesJSON = [
 			"id" : "0",//"id" : "31",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN003 (Quebrada El Manzano)",
+		    "carpeta": "quebrada el manzano",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -877,6 +880,7 @@ estacionesJSON = [
 			"id" : "0",//"id" : "35",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN004 (Quebrada Volcanes) ",
+		    "carpeta": "quebrada volcanes",
 		    "variables": {
 		    	"0": "nivel"
 		    },
@@ -916,6 +920,7 @@ estacionesJSON = [
 			"id" : "0",//"id" : "33",// Its not anymore on the station`s table
   			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
 		    "nombre": "SN006  (Quebrada El Oso)",
+		    "carpeta": "quebrada el oso",
 		    "variables": {
 		    	"0": "nivel"
 		    },
