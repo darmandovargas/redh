@@ -72,7 +72,7 @@
 		// Set 
 		$firstCicleAlarm = isset($objTemp["first_cicle_alarm"]) ? $objTemp["first_cicle_alarm"] : 0;
 		// If we are evaluating the rierFlow, and last value and first cicle alarm are more than zero 
-		if($variable == "riverFlow" && intval($lastValue) > 0 && intval($firstCicleAlarm) > 0){
+		if($variable == "level" && intval($lastValue) > 0 && intval($firstCicleAlarm) > 0){
 			// If the last value is below the alarm value then reset the variables
 			if( $currentValue < floatval($moreThan) ){				
 				$objTemp["last_value"] = 0;	
@@ -88,14 +88,16 @@
 				// if last value is below the second to last value it means the river flow is decreasing so avoid the alarm
 				if($currentValue <= $penultimateValue){
 					return false;
-				}else{
+				}else if( !empty($lessThan) && $currentValue > floatval($lessThan) && $penultimateValue > floatval($lessThan) ){
+					return false;
+				}else {
 					// Second solution, first cicle alarm value and last value
 					// If the last value is over the last registered value on the alarm json, 
 					// set $activeMoreThan as true, otherway avoid the alarm
 					if($currentValue > floatval($lastValue)){
 						// Possitive slope
 						$activeMoreThan = true;
-					}else{
+					}else {
 						return false;
 					}
 				}
@@ -130,11 +132,11 @@
 									   $moreThan = $moreThan * 60 / 5; 
 									   $customMsg = "alta temperatura,"; 
 									  break;
-			case 'riverFlow': $measureSymbol = "cm"; 
+			case 'level': $measureSymbol = "cm"; 
 						  $variable = "Nivel"; 
-						  $valor = $currentValue; 
+						  $valor = round($currentValue); 
 						 break;
-			default: $measureSymbol = "grados C"; 
+			default: $measureSymbol = ""; 
 					 $valor = $currentValue; 
 					break;
 		}

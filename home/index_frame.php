@@ -22,13 +22,13 @@ $host = insert_host($oMySQL, $ip);
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!-- No Cache 
+		<!-- No Cache -->
 		<meta http-equiv="cache-control" content="max-age=0" />
 		<meta http-equiv="cache-control" content="no-cache" />
 		<meta http-equiv="expires" content="0" />
 		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 		<meta http-equiv="pragma" content="no-cache" />
-		-->
+		
 
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
@@ -73,8 +73,9 @@ $host = insert_host($oMySQL, $ip);
 		<script src="js/mapa.js"></script>
 		-->
 		
-    	<script src="../mapa/js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
+		<script src="../mapa/js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
 		
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 		
 		<style>
 			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
@@ -170,18 +171,25 @@ $host = insert_host($oMySQL, $ip);
 		<script src="js/mapa/mapa.js"></script>
 	</head>
 	<body>
+	<!-- <i style="display:none;" class="fas fa-angle-double-right"></i> -->
+	<span id="sidebar-in" style="display:none;"><i style="float:left; margin: 20px 5px;" class="fas fa-angle-double-right"></i></span>
+	
 		<div class="container-fluid">
-			<div class="row-fluid main-row">
+			<div class="row-fluid main-row">			
 				<div class="span5 main-wrapper">
 					<div class="row-fluid logo">
 						<div class="span12">
-							<img src="img/logos/red_hidroclimatologica.jpg" width="80%" />
-							<hr />
+							<img src="img/logos/red_hidroclimatologica.jpg" width="70%" />
+							<i id="sidebar-out" style="float:right; margin: 10px 10px;" class="fas fa-angle-double-left"></i>							
+							
+							<hr />							
 							<!-- <h1>Red Hidroclimatológica de Risaralda</h1>-->
 						</div>
+						
+						
 					</div><!--/logo-->
-
-					<div class="row-fluid block-wrapper" style="margin: -30px 0 0 0; /*height: 57%; overflow: scroll;*/ " >
+					<!-- /*height: 57%; overflow: scroll;*/ -->
+					<div class="row-fluid block-wrapper" style="margin: -30px 0 0 0;" >
 						<div class="block" id="section-1">
 							<!--/floating-wrapper-->
 							<div class="row-fluid floating-boxes" style="/*overflow: scroll;*/">
@@ -242,10 +250,9 @@ $host = insert_host($oMySQL, $ip);
 								</div>
 								
 								 <div align="center">
-								    Mayor Información: </br>
 								    Facultad de Ciencas Ambientales Of f-213 </br> 
 									Juan Camilo Berrio Carvajal </br>
-									Telefono: 3137249 </br></br></br>
+									Teléfono: 3137249 </br></br></br>
 								</div> 								
 							</div>							
 						</div>								
@@ -460,17 +467,7 @@ $host = insert_host($oMySQL, $ip);
 								</div>
 							</div>
 						</div>
-						<!-- end block -->		
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+						<!-- end block -->	
 					
 					
 					<!-- end block-wrapper -->
@@ -479,18 +476,18 @@ $host = insert_host($oMySQL, $ip);
 				       <hr />
 						<div class="span12" style="margin-left:-10px;">
 							<div style="text-align: center; ">
-								<img src="img/logos/ciencias ambientales.png" width="20%" />	
-								<img src="img/logos/logo_acuaseo.jpg" width="13%">
-								<img src="img/logos/Alcaldia Pereira.jpg" width="15%">
-								<img src="img/logos/Carder.png" width="20%">
+								<img src="img/logos/ciencias ambientales.png" width="18%" />	
+								<img src="img/logos/logo_acuaseo.jpg" width="11%">
+								<img src="img/logos/Alcaldia Pereira.jpg" width="13%">
+								<img src="img/logos/Carder.png" width="18%">
 								<!-- <img src="img/logos/logo_utp.jpg" width="20%"> -->
-								<img src="img/logos/identificador-vertical.jpg" width="20%">
-								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="22%">
-								<img src="img/logos/dopad.bmp" width="15%">
-								<img src="img/logos/Seafield_colour.jpg" width="25%">
-								<img src="img/logos/EEP.jpg" width="20%" style="margin: 0 0 0 10px;">
-								<img src="img/logos/Grupos EIS.png" width="12%">
-								<img src="img/logos/LOGO ASAMUN.jpg" width="30%">
+								<img src="img/logos/identificador-vertical.jpg" width="18%">
+								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="20%">
+								<img src="img/logos/dopad.bmp" width="13%">
+								<img src="img/logos/Seafield_colour.jpg" width="23%">
+								<img src="img/logos/EEP.jpg" width="18%" style="margin: 0 0 0 10px;">
+								<img src="img/logos/Grupos EIS.png" width="10%">
+								<img src="img/logos/LOGO ASAMUN.jpg" width="28%">
 							</div>
 						</div>
 					</div><!--/page-footer-->
@@ -506,58 +503,21 @@ $host = insert_host($oMySQL, $ip);
 							<!--<iframe src="../mapa/" width="100%" height="800px"></iframe>-->
 						</div>
 					</div>
-
-					<div class="floating-search span4">
-						<div>
-							<!--
-							<form action="" id="search_directions" method="post">
-								<input type="text" id="search" placeholder="Enter your location..."/>
-								<a href="#" id="search-btn"><i class="icon-search"></i></a>
-							</form>
-							-->
-							<!-- -->                                     
-                            <span id="logout" class="logout"></span>
-							<input id="search"  type="text" placeholder="Ingrese Ubicación">
-                                                        <div style="color:#929292;float:right;margin-top: 30px;margin-right: 3px;font-family: Roboto;">
-                                                            Visitas <span><?php echo add_ceros($host,4); ?></span>
-                                                            
-                                                            <?php
-                                                            function add_ceros($numero,$ceros) {
-                                                                $order_diez = explode(".",$numero);
-                                                                $dif_diez = $ceros - strlen($order_diez[0]);
-                                                                for($m = 0 ; $m < $dif_diez; $m++)
-                                                                {
-                                                                        $insertar_ceros .= 0;
-                                                                }
-                                                                return $insertar_ceros .= $numero;
-                                                            }
-                                                            
-                                                            ?>
-                                                        </div>
-						    <div id="type-selector" class="controls" hidden="hidden">
+					<div id="type-selector" class="controls" hidden="hidden">
 						      <input type="radio" name="type" id="changetype-all" checked="checked">
 						      <label for="changetype-all">All</label>
 						      <input type="radio" name="type" id="changetype-establishment">
 						      <label for="changetype-establishment">Establishments</label>
 						      <input type="radio" name="type" id="changetype-geocode">
 						      <label for="changetype-geocode">Geocodes</label>
-						    </div>
-						</div>
-
-						<div id="directions-panel" class="span12">
-							<button type="button" class="close">
-								&times;
-							</button>
-							<div id="directions-wrapper">
-								<div id="directions-result"></div>
 							</div>
-						</div>
-						<div class="span12">
-							<input type="button" class="btn-custom-green" style="width: 100%;" value="Ver Herramientas del Mapa"/>
-						</div>
-					</div>
 
-					<!--/floating-search-->
+					<div style="font-size: 28px; color: Dodgerblue; position:absolute; top:10px; right:55px; background-color:#FFFFFF; padding: 6px; border-radius: 2px; box-shadow:0px 1px 1px #b6b6b6; -webkit-box-shadow:0px 1px 1px #b6b6b6; -moz-box-shadow:0px 1px 1px #b6b6b6;">
+						<!-- style="float:right; margin: 10px 10px;" -->
+						<a href="/mapa" target="_blank"><i class="fas fa-map-marked-alt" title="Ver Herramienta de Mapa"></i></a>
+					</div>					
+
+					<!--/floating-search
 					<div class="row-fluid floating-boxes">		
 						<a href="#" data-section="5" onclick="checkSessionClick();" data-title="" class="offset1 span3 floating-box">
 						<h3>Estado del Tiempo</h3>
@@ -570,9 +530,9 @@ $host = insert_host($oMySQL, $ip);
 						<a href="#" data-section="8" data-title="" class="span3 floating-box">
 						<h3>Contactenos</h3>
 						<p>Dejenos saber sus comentarios</p>
-						</a>
-						
+						</a>						
 					</div>
+					-->
 					<!--/floating-boxes-->
 					
 					<div class="row-fluid floating-wrapper" style="top: -600px">

@@ -1,14 +1,17 @@
 var overlay;
-
-console.log("session: "+session);
+var isFirstOne = true;
+var isSecondOne = false;
+var lastLat = 0;
+var lastLong = 0;
+var openedStations = [];
 
 DebugOverlay.prototype = new google.maps.OverlayView();
 
 function initialize() {
 
 	var mapOptions = {
-		zoom : 12,
-		center : new google.maps.LatLng(4.814168323, -75.69444586)
+		zoom: 12,
+		center: new google.maps.LatLng(4.814168323, -75.69444586)
 	};
 
 	var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
@@ -19,7 +22,7 @@ function initialize() {
 	var bounds = new google.maps.LatLngBounds(southWest, northEast);
 
 	// Search Box
-	var input = /** @type {HTMLInputElement} */(document.getElementById('search'));
+	var input = /** @type {HTMLInputElement} */ (document.getElementById('search'));
 
 	var types = document.getElementById('type-selector');
 	//map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -30,11 +33,11 @@ function initialize() {
 
 	var infowindow = new google.maps.InfoWindow();
 	var marker = new google.maps.Marker({
-		map : map,
-		anchorPoint : new google.maps.Point(0, -29)
+		map: map,
+		anchorPoint: new google.maps.Point(0, -29)
 	});
 
-	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
 		infowindow.close();
 		marker.setVisible(false);
 		var place = autocomplete.getPlace();
@@ -50,12 +53,12 @@ function initialize() {
 			map.setZoom(17);
 			// Why 17? Because it looks good.
 		}
-		marker.setIcon(/** @type {google.maps.Icon} */( {
-			url : place.icon,
-			size : new google.maps.Size(71, 71),
-			origin : new google.maps.Point(0, 0),
-			anchor : new google.maps.Point(17, 34),
-			scaledSize : new google.maps.Size(35, 35)
+		marker.setIcon( /** @type {google.maps.Icon} */ ({
+			url: place.icon,
+			size: new google.maps.Size(71, 71),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(17, 34),
+			scaledSize: new google.maps.Size(35, 35)
 		}));
 		marker.setPosition(place.geometry.location);
 		marker.setVisible(true);
@@ -73,7 +76,7 @@ function initialize() {
 	// Autocomplete.
 	function setupClickListener(id, types) {
 		var radioButton = document.getElementById(id);
-		google.maps.event.addDomListener(radioButton, 'click', function() {
+		google.maps.event.addDomListener(radioButton, 'click', function () {
 			autocomplete.setTypes(types);
 		});
 	}
@@ -88,34 +91,35 @@ function initialize() {
 
 	map.fitBounds(bounds);
 
-	$.each(estacionesJSON, function(idx, obj) {	
+	$.each(estacionesJSON, function (idx, obj) {
 		//console.log("session EACH: "+session);	
 		//console.log("(obj.isPublic='true' && session==false): "+(obj.isPublic="true" && session==false) );
 		//console.log("session==true: "+session==true);
-		if( (obj.isPublic && !session) || session){		
+		if ((obj.isPublic && !session) || session) {
 			var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
 			var marker = new google.maps.Marker({
-				position : position,
-				animation : google.maps.Animation.DROP,
-				icon : obj.icono,
-				map : map
+				position: position,
+				animation: google.maps.Animation.DROP,
+				icon: obj.icono,
+				map: map
 			});
 			google.maps.event.addListener(marker, 'click', toggleBounce);
-			marker.setTitle(/*obj.tipo + ": " + */obj.nombre);
-			attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.nombre, obj.carpeta, obj.bd);
-	
-			
-		}
-		
-		function toggleBounce() {
-				if (marker.getAnimation() != null) {
-					marker.setAnimation(null);
-				} else {
-					marker.setAnimation(google.maps.Animation.BOUNCE);
-				}
+			marker.setTitle( /*obj.tipo + ": " + */ obj.nombre);
+			if (obj.carpeta == "cam") {
+				addPopUpCAM(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
+			} else {
+				attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.nombre, obj.carpeta, obj.bd);
 			}
-	});
+		}
 
+		function toggleBounce() {
+			if (marker.getAnimation() != null) {
+				marker.setAnimation(null);
+			} else {
+				marker.setAnimation(google.maps.Animation.BOUNCE);
+			}
+		}
+	});
 }
 
 //Calcula ruta
@@ -123,12 +127,12 @@ function calc_route() {
 	var start = $('#search').val();
 	var end = $('meta[name="geo.placename"]').attr("content");
 	var request = {
-		origin : start,
-		destination : end,
-		travelMode : google.maps.DirectionsTravelMode.DRIVING
+		origin: start,
+		destination: end,
+		travelMode: google.maps.DirectionsTravelMode.DRIVING
 	};
 	$('#directions-panel').fadeOut('slow');
-	directionsService.route(request, function(response, status) {
+	directionsService.route(request, function (response, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			directionsDisplay.setDirections(response);
 			$('#directions-panel').fadeIn('slow');
@@ -146,7 +150,7 @@ function DebugOverlay(bounds, image, map) {
 	this.setMap(map);
 }
 
-DebugOverlay.prototype.onAdd = function() {
+DebugOverlay.prototype.onAdd = function () {
 
 	var div = document.createElement('div');
 	div.style.borderStyle = 'none';
@@ -164,7 +168,7 @@ DebugOverlay.prototype.onAdd = function() {
 	panes.overlayLayer.appendChild(div);
 };
 
-DebugOverlay.prototype.draw = function() {
+DebugOverlay.prototype.draw = function () {
 	var overlayProjection = this.getProjection();
 	var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
 	var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
@@ -175,12 +179,12 @@ DebugOverlay.prototype.draw = function() {
 	div.style.height = (sw.y - ne.y) + 'px';
 };
 
-DebugOverlay.prototype.updateBounds = function(bounds) {
+DebugOverlay.prototype.updateBounds = function (bounds) {
 	this.bounds_ = bounds;
 	this.draw();
 };
 
-DebugOverlay.prototype.onRemove = function() {
+DebugOverlay.prototype.onRemove = function () {
 	this.div_.parentNode.removeChild(this.div_);
 	this.div_ = null;
 };
@@ -188,31 +192,100 @@ DebugOverlay.prototype.onRemove = function() {
 
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data
-function attachSecretMessage(marker, message, id, tipo, nombre,carpeta,bd) {
-	content = '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'&carpeta='+carpeta+'&bd='+bd+'" height="560px" width="800px"></iframe>'
-	//if(id==0){
-	//	content = '<h2>'+nombre+'</h2><h3>No existe información almacenada referente a ésta estación</h3>';
-	//}
+function attachSecretMessage(marker, message, id, tipo, nombre, carpeta, bd) {
 	
-	var infowindow = new google.maps.InfoWindow({
-		//style: 'position: absolute; left: 12px; top: 9px; overflow: auto; width: 250%; height: 412px;',
-		//width: '2500px',
-		content : content//'<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'" height="560px" width="800px"></iframe>'
-	});
-	//console.log(htmlraw);
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.open(marker.get('map'), marker);
-		$.get({
-			url : "../tabs/tabs.php?id="+id+"&tipo="+tipo,
-			success : function(data) {
+	content = '<div class="scrollFix"><iframe class="infoWindow" src="../tabs/tabs.php?id=' + id + '&tipo=' + tipo + '&carpeta=' + carpeta + '&bd=' + bd + '" height="485px" width="700px"  scrolling="no"></iframe></div>'
 
+	var infowindow = new google.maps.InfoWindow({
+		content: content,
+		maxWidth: 605
+	});
+
+	google.maps.event.addListener(marker, 'click', function () {
+
+		if (isFirstOne) {
+			if (openedStations.length > 0) {
+				let popToClose = openedStations[0];
+				popToClose.close();
+				openedStations.push(infowindow);
+				openedStations.shift();
+			} else {
+				openedStations.push(infowindow);
+			}
+		} else if (isSecondOne) {
+			if (openedStations.length > 1) {
+				let popToClose = openedStations[0];
+				popToClose.close();
+				openedStations.push(infowindow);
+				openedStations.shift();
+			} else {
+				openedStations.push(infowindow);
+			}
+		} else {
+			isFirstOne = true;
+			let popToClose = openedStations[0];
+			popToClose.close();
+			openedStations.push(infowindow);
+			openedStations.shift();
+		}
+		
+		infowindow.open(marker.get('map'), setPopupPosition(marker));
+
+		$.get({
+			url: "../tabs/tabs.php?id=" + id + "&tipo=" + tipo,
+			success: function (data) {
 				htmlraw = data;
-				//alert(htmlraw)  /// should print the raw test.html
 				$("#ta").html(htmlraw);
 			}
 		});
 	});
 }
+
+function setPopupPosition(marker) {
+	var marker2 = marker;
+
+	if (isFirstOne) {
+		marker2 = new google.maps.Marker({
+			position: new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng() - 0.4),
+			animation: marker.animation,
+			opacity: 0,
+			icon: marker.get('icon'),
+			map: marker.get('map')
+		});
+		isFirstOne = false;
+		isSecondOne = true;
+		lastLat = marker.getPosition().lat();
+		lastLong = marker.getPosition().lng();
+	} else {
+		isSecondOne = false;
+
+		console.log(marker.getPosition().lng());
+		marker2 = new google.maps.Marker({
+			position: new google.maps.LatLng(lastLat, lastLong + 0.5),
+			animation: marker.animation,
+			opacity: 0,
+			icon: marker.get('icon'),
+			map: marker.get('map')
+		});
+	}
+
+	return marker2;
+}
+
+/**
+ * Pop up of each station
+ */
+function addPopUpCAM(marker, message, id, tipo, carpeta, bd) {
+
+	var infowindow = new google.maps.InfoWindow({
+		content: '<img src="img/imagen-no-disponible.jpg" height="200px" width="200px" ></img>'
+	});
+
+	google.maps.event.addListener(marker, 'click', function () {
+		infowindow.open(marker.get('map'), marker);
+	});
+}
+
 
 // Show the new coordinates for the rectangle in an info window.
 
@@ -244,20 +317,23 @@ function addLatLng(event) {
 
 	// Add a new marker at the new plotted point on the polyline.
 	var marker = new google.maps.Marker({
-		position : event.latLng,
-		title : '#' + path.getLength(),
-		map : map
+		position: event.latLng,
+		title: '#' + path.getLength(),
+		map: map
 	});
 }
 
-$( document ).ready(function() {
-				checkSessionClick('firstLoad');
-			    //lookForSession();
-			    //showLogout(true);
-			    //showLogout(false);	
-			    //Click event handler for green button
-			    $(".btn-custom-green").click(function() {
-				  window.open("../mapa", '_blank');
-				});	    
-			});
-google.maps.event.addDomListener(window, 'load', initialize); 
+$(document).ready(function () {
+	checkSessionClick('firstLoad');
+	//lookForSession();
+	//showLogout(true);
+	//showLogout(false);	
+	//Click event handler for green button
+	$(".btn-custom-green").click(function () {
+		window.open("../mapa", '_blank');
+	});
+
+});
+
+
+google.maps.event.addDomListener(window, 'load', initialize);

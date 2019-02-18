@@ -70,7 +70,7 @@ foreach($estacionesList as $el){
 			} 
 		}
 		// If the last sms for this specific variable is older than 2 hours ago, then it check for alarms on this variable
-		if($now > $objTemp["last_sms"]+2*60*60){
+		if($now > $objTemp["last_sms"]+4*60*60){
 			// Check alarm for this variable and add it to the general alarm message
 			$response = checkAlarms($oMySQL, $tabla, $stationName, $variable, $lessThan, $moreThan, $el['id']);
 			//echo  "tabla: ".$tabla." - stationName: ".$stationName." - variable: ".$variable." - lessThan: ".$lessThan." - moreThan: ".$moreThan." - id: ".$el['id']."</br>";
@@ -137,6 +137,27 @@ $dt = new DateTime('', new DateTimeZone('America/Bogota'));
 	
 // I check if there is a pending to send message
 if(!empty($Message)){
+	
+	/* Prueba de mensajes solo a Camilo y a mí 	
+	// Get all the amount of remaining messages from the vendor
+	$smsCount = $oMySQL->executeSQL('SELECT messages FROM ti_sms WHERE id = 2');
+	
+	$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message."Visítanos redhidro.org";
+	
+	$cantidad = 2;
+	if(strlen($outOfMessagesMsg) > 160){
+		$cantidad = 4;	
+	}	
+		
+	$totalRemainMessages = intval($smsCount["messages"]) - $cantidad;
+	$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = '.$totalRemainMessages.' WHERE id=2');
+	$outOfMessages = "573136355940,573108311240";	
+	$resp["outofmessages"] = AltiriaSMS($outOfMessages, $outOfMessagesMsg, "dvargas", false);
+	@error_log(PHP_EOL.PHP_EOL."TEST MESSAGES TO CAMILO AND DIEGO CELL: ".$outOfMessagesMsg.PHP_EOL.$resp["outofmessages"], 3, "/home/thinkclo/public_html/redh/sms.log");
+	@error_log(PHP_EOL.PHP_EOL."2->".$smsCount["messages"].":".$totalRemainMessages, 3, "/home/thinkclo/public_html/redh/sms.log");
+	exit();
+	*/
+	
 	// Set message format with the date of the sms
 	$msg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message."Visítanos redhidro.org";
 	// Get all the amount of remaining messages from the vendor
@@ -151,19 +172,19 @@ if(!empty($Message)){
 		// Get all stations dynamic count
 		$allStationsCount = count(explode(",",$allStations));
 
-		$allTablesNumbers = array('tb_cortaderal'      =>'573108982236,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143',
-								'tb_el_cedral'         =>'573108982236,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143',
-								'tb_san_juan'          =>'573108982236,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143',
-								'rio_azul_eljordan'    =>'573108982236,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143',
-								'rio_otun_eljordan'    =>'573108982236,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143',
-								'rio_barbo_pezfresco'  =>'573108982236,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143',
-								'q_volcanes'	       =>'573108982236,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143',
-								'bocatoma_belmonte'	   =>'573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143',
-								'bocatoma_nuevo_libare'=>'573108982236,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143', 
-								'tb_rioguatica'        =>'573112163678,573108152873,573128468859', 
-								'tb_riomistrato'       =>'573112163678,573108152873,573128468859', 
-								'tb_eldiamante'        =>'573112163678,573108152873,573128468859', 
-								'tb_mairabajo'         =>'573112163678,573108152873,573128468859');
+		$allTablesNumbers = array('tst_cortaderal'      =>'573113530751,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421',
+								'tst_el_cedral'         =>'573113530751,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421',
+								'tst_san_juan'          =>'573113530751,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421',
+								'tst_rio_azul_eljordan'    =>'573113530751,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421',
+								'tst_rio_otun_eljordan'    =>'573113530751,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421',
+								'tst_rio_barbo_pezfresco'  =>'573113530751,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421',
+								'tst_q_volcanes'	       =>'573113530751,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421',
+								'tst_bocatoma_belmonte'	   =>'573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421',
+								'tst_bocatoma_nuevo_libare'=>'573113530751,573113529335,573117486394,573113801014,573174743771,573218949324,573137433664,573206911116,573207198793,573104725992,573186953212,573122838488,573154910741,573183659258,573127942143,573206650421', 
+								'tst_rioguatica'        =>'573112163678,573108152873,573128468859', 
+								'tst_riomistrato'       =>'573112163678,573108152873,573128468859', 
+								'tst_eldiamante'        =>'573112163678,573108152873,573128468859', 
+								'tst_mairabajo'         =>'573112163678,573108152873,573128468859');
 
 		// This calculates how many SMS are necessary in order to send the whole message
 		$msgMultiple = ceil(strlen($msg)/160);
@@ -213,21 +234,31 @@ if(!empty($Message)){
 	}else if(intval($smsCount["messages"])<30){
 		// Send out of messages warning
 		$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan xx, comuníquese con Think Cloud Group para comprar un paquete adicional.";
-
+	
 		$cantidad = 2;
 		if(strlen($outOfMessagesMsg) > 160){
 			$cantidad = 4;	
 		}
-
-		$totalRemainMessages = intval($smsCount["messages"]) - $cantidad;
-		$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan ".$totalRemainMessages.", comuníquese con Think Cloud Group para comprar un paquete adicional.";	
 		
+		if(intval($smsCount["messages"])>$cantidad){
+			
+	
+			$totalRemainMessages = intval($smsCount["messages"]) - $cantidad;
+			$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan ".$totalRemainMessages.", comuníquese con Think Cloud Group para comprar un paquete adicional.";	
+			
+			
+			$outOfMessages = "573136355940,573234335384,573108311240";
+			$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = '.$totalRemainMessages.' WHERE id=2');
+			$resp["outofmessages"] = AltiriaSMS($outOfMessages, $outOfMessagesMsg, "dvargas", false);
+			@error_log(PHP_EOL.PHP_EOL."OUT OF MESSAGES: ".$outOfMessagesMsg.PHP_EOL.$resp["outofmessages"], 3, "/home/thinkclo/public_html/redh/sms.log");
+			echo "OUT OF MESSAGES: ".$msg."</br>".$resp["allstations"]."</br>";	
+		}else{
+			
+			$response = $dt->format("Y-m-d H:i:s")." Alarma(s) NO ENVIADAS POR FALTA DE SALDO: ".$Message."Visítanos redhidro.org";
+			@error_log(PHP_EOL.PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
+			echo $response."</br></br>";			
+		}
 		
-		$outOfMessages = "573136355940,573234335384,573108311240";
-		$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = '.$totalRemainMessages.' WHERE id=2');
-		$resp["outofmessages"] = AltiriaSMS($outOfMessages, $outOfMessagesMsg, "dvargas", false);
-		@error_log(PHP_EOL.PHP_EOL."OUT OF MESSAGES: ".$outOfMessagesMsg.PHP_EOL.$resp["outofmessages"], 3, "/home/thinkclo/public_html/redh/sms.log");
-		echo "OUT OF MESSAGES: ".$msg."</br>".$resp["allstations"]."</br>";
 
 	}else{
 		$response = $dt->format("Y-m-d H:i:s")." Alarma(s) NO ENVIADAS POR FALTA DE SALDO: ".$Message."Visítanos redhidro.org";

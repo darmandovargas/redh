@@ -3,6 +3,24 @@ $(function(){
 	$('#directions-wrapper').perfectScrollbar();
 	$('.floating-container').perfectScrollbar();
 
+	/**
+	 * Show/Hide sidebar menu
+	 */
+	$('#sidebar-out').click(function(){
+		$('.span5').animate({width:"2%"});
+		$('.span5').animate({left:"-6%"});
+		$('.span7').animate({width:"98%"});
+		$('#sidebar-out').fadeOut();
+		$('#sidebar-in').delay(800).fadeIn(2000);		
+	});
+
+	$('#sidebar-in').click(function(){
+		$('#sidebar-in').hide();
+		$('.span7').animate({width:"73%"});
+		$('.span5').animate({left:"-1.2%"});
+		$('.span5').animate({width:"27%"});
+		$('#sidebar-out').fadeIn();
+	});
 	
 	$(".block-wrapper").bind("mousewheel",function(ev, delta) {
     	var scrollTop = $(this).scrollTop();

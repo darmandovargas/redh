@@ -7676,7 +7676,7 @@ h2 {
   font-weight: 100;
 }
 h3 {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 40px;
 }
 h4 {
@@ -10039,4 +10039,11 @@ footer {
 }
 #color_switcher .box.red_box {
   background: #4B0000;
+}
+
+/* CSS definitions for the wrapping div */
+.scrollFix {
+  line-height: 1.35;
+  overflow: hidden;
+  white-space: nowrap;
 }

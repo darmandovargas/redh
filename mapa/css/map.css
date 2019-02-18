@@ -323,3 +323,10 @@ a.active.trigger {
         z-index: 5;
         display: none;
 }
+
+/* CSS definitions for the wrapping div */
+.scrollFix {
+	line-height: 1.35;
+	overflow: hidden;
+	white-space: nowrap;
+  }

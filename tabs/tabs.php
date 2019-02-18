@@ -57,6 +57,7 @@ if($idEstacion!="0"){
 	            }]
 	        },
 	        legend: {
+				enabled:false,
 	        	layout: 'vertical',
 	            align: 'right',
 	            verticalAlign: 'middle',
@@ -232,13 +233,14 @@ if($idEstacion!="0"){
 				<label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>Galería</span></span></label>
 				<input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
 				<label for="sky-tab3"><span><span><i class="fa fa-cogs"></i>Reportes</span></span></label>
+				<!-- style="margin: 0 0 0 -20px;" -->
 				<ul>
 						<?php
 						
 						
 						if($idEstacion!="0" && $nullDataValidation){						
 						?>
-						<li class="sky-tab-content-1">
+						<li class="sky-tab-content-1" style="width:90.5%;">
 						<div class="sky-tabs sky-tabs-internal sky-tabs-pos-top-left sky-tabs-anim-slide-top sky-tabs-response-to-stack background">
 						<?php	
 							$contaTabs = 1;
@@ -262,7 +264,7 @@ if($idEstacion!="0"){
 									<?php 
 										if($idEstacion!="0" && $nullDataValidation){ 
 									?>
-											<div id="container-<?php echo $var;?>" style="min-width: 400px; height: 380px; margin: 0 auto"></div>
+											<div id="container-<?php echo $var;?>" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
 									<?php 
 										}else{ 
 									?>
@@ -283,12 +285,12 @@ if($idEstacion!="0"){
 					<?php
 	  				}
 	  				?>	
-					<li class="sky-tab-content-2">
-						<div class="typography" style="margin: 0 0 0 60px;">
-							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="500px" width="420px"></iframe>
+					<li class="sky-tab-content-2" style="width:90.5%; height: 376px;">
+						<div class="typography" style="margin: 0 0 0 52px;">
+							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="500px" width="90%"></iframe>
 						</div>
 					</li>
-					<li class="sky-tab-content-3">
+					<li class="sky-tab-content-3" style="width:90.5%; height: 376px;">
 						<div class="typography"  >
 						<?php
 							$nombre_estacion = (empty($nombre_estacion))?$carpeta:$nombre_estacion;

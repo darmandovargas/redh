@@ -16,7 +16,7 @@ if(isset($_GET['carpeta']))
     
     
     // Si la estación existe en la base de datos entonces arme el json para graficar
-    if ($idEstacion != "0" && !isset($serieNew["temperature"])) {//
+    if ($idEstacion != "0" && !isset($serieNew["temperature"]) && $carpeta != "cam") {//
         
         // Inicializa array de variables a sensar y graficar
         $variables = array("temperature", "presure", "humidity", "realPrecipitation", "radiation", "windSpeed", "windDirection", "realETO");

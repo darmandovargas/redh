@@ -16,6 +16,7 @@ estacionesJSON = [
   			"id" : "46",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT001 (El Lago)",
+		    "carpeta": "el lago",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -42,6 +43,7 @@ estacionesJSON = [
 			"id" : "45",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT002 (Cortaderal)",
+		    "carpeta": "cortaderal",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -63,38 +65,12 @@ estacionesJSON = [
 		    "ubicacion": "Cuenca alta del Río Otún, Parque NN Los Nevados",
 		    "fecha": "23 de Diciembre de 2009",
 		    "estado": "Inactiva"	  		  
-		},
-		/*	Old position of the San José Station	
-		{
-			"id" : "16",
-  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
-		    "nombre": "ECT003 (San José)",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "radiacion",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    "coordenadas": {
-		      "latitud": 4.823268326,
-		      "longitud": -75.60587622
-		    },
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "1900 m.s.n.m",
-		    "ubicacion": "Finca San José, municipio de Santa Rosa de Cabal",
-		    "fecha": "26 de Enero de 2010",
-		    "estado": "Activa"	  		  
-		},*/
+		},		
 		{
 			"id" : "47",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT004 (Alto del Nudo)",
+		    "carpeta": "el nudo",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -121,6 +97,7 @@ estacionesJSON = [
 			"id" : "48",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
 		    "nombre": "ECT005 (Quinchía - Seafield)",
+		    "carpeta": "quinchia seafield",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -312,6 +289,96 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		// End of 4 stations added Feb 4th 2018
+		{ // Station added Nov 26 2018, it was just an EC and it was converted to ECT and fixed the coordinates
+			"id" : "57",// New table id Nov 26 2018 its at UTP
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+		    "nombre": "ECT012 (Mundo Nuevo)",
+		    "carpeta":"mundo nuevo",
+		    "variables": {},
+		    "coordenadas": {
+		      "latitud": 4.773618228, 
+		      "longitud": -75.66105968  
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "1550 m.s.n.m",
+		    "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
+		    "fecha": "Diciembre de 2007",
+		    "estado": "Activa"	  		  
+		},
+		{ // Station added Nov 26 2018
+			"id" : "59",// New table id Nov 26 2018 its at UTP
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+		    "nombre": "ECT013 (La Colonia)",
+		    "carpeta":"la colonia",
+		    "variables": {},
+		    "coordenadas": {
+		      "latitud": 4.751043171, 
+		      "longitud": -75.62707072  
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "Noviembre 26 de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{ // Station added Nov 26 2018
+			"id" : "60",// New table id Nov 26 2018 its at UTP
+  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+		    "nombre": "ECT014 (Ukumarí)",
+		    "carpeta":"ukumari",
+		    "variables": {},
+		    "coordenadas": {
+		      "latitud": 4.803568281, 
+		      "longitud": -75.8103572  
+		    },
+		    "isPublic": true,
+		    "tipo":"ECT",
+		    "icono": iconoECT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "Noviembre 26 de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{ // Station added Nov 26 2018
+			"id" : "61",// New table id Nov 26 2018 its at UTP
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT015 (La Curva)",
+		    "carpeta":"la curva",
+		    "variables": {},
+		    "coordenadas": {
+		      "latitud": 4.783115488, 
+		      "longitud": -75.68810416
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "Noviembre 26 de 2018",
+		    "estado": "Activa"	  		  
+		},
+		{ // Station added Nov 26 2018
+			"id" : "62",// New table id Nov 26 2018 its at UTP
+  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+		    "nombre": "EHT016 (La Católica)",
+		    "carpeta":"la catolica",
+		    "variables": {},
+		    "coordenadas": {
+		      "latitud": 4.806909961, 
+		      "longitud": -75.72643758
+		    },
+		    "isPublic": true,
+		    "tipo":"EHT",
+		    "icono": iconoEHT,
+		    "altitud": "",
+		    "ubicacion": "",
+		    "fecha": "Noviembre 26 de 2018",
+		    "estado": "Activa"	  		  
+		},
 		{
 			"id" : "34",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
@@ -332,11 +399,12 @@ estacionesJSON = [
 		    "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
 		    "fecha": "27 de Marzo de 2010",
 		    "estado": "Activa"	  		  
-		},
+		},/*
 		{
-			"id" : "17",// Pending for ID on new db
+			"id" : "0",// Pending for ID on new db
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT002 (San Juan)",
+		    "carpeta": "san juan",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -353,7 +421,7 @@ estacionesJSON = [
 		    "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
 		    "fecha": "27 de Marzo de 2010",
 		    "estado": "Activa"	  		  
-		},
+		},*/
 		// Added March 2nd 2016
 		{
 			"id" : "39", 
@@ -589,7 +657,7 @@ estacionesJSON = [
 			"id" : "43",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT013 (Casa de maquinas - Río Risaralda)",
-		    "carpeta": "Casa de maquinas - Rio Risaralda",
+		    "carpeta": "casa de maquinas - rio risaralda",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -611,7 +679,7 @@ estacionesJSON = [
 			"id" : "44",
   			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
 		    "nombre": "EHT 014 (La Nona)",
-		    "carpeta": "La Nona",
+		    "carpeta": "la nona",
 		    "variables": {
 		      "0": "temperatura",
 		      "1": "precipitacion",
@@ -690,7 +758,7 @@ estacionesJSON = [
 		    "fecha": "29 de julio de 2013",
 		    "estado": "Activa"	  		  
 		},{
-			"id":"59",// Pending for ID 
+			"id":"0",// Pending for ID 
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
 		    "nombre": "ENT004 (Canal Salida Belmonte) ",
             "carpeta": "canal salida belmonte",
@@ -750,14 +818,12 @@ estacionesJSON = [
 		    "ubicacion": "Belmonte ",
 		    "fecha": "29 de julio de 2013",
 		    "estado": "Activa"	  		  
-		},
-		
-		
-				
+		},				
 		{
 			"id" : "49",
   			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
 		    "nombre": "EC001 (Acuaseo)",
+		    "carpeta": "acuaseo",
 		    "variables": {
 		      "0": "Temperatura",
 		      "1": "Precipitacion",
@@ -778,25 +844,7 @@ estacionesJSON = [
 		    "ubicacion": "Planta de Tratamiento de Agua, compañía de servicios públicos Acuaseo, Dosquebradas",
 		    "fecha": "Diciembre de 2007",
 		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "0",//"id" : "38",// Its not anymore on the station`s table
-  			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
-		    "nombre": "EC002 (Mundo Nuevo)",
-		    "variables": {},
-		    "coordenadas": {
-		      "latitud": 4.756890416,
-		      "longitud": -75.66111246
-		    },
-		    "isPublic": true,
-		    "tipo":"EC",
-		    "icono": iconoEC,
-		    "altitud": "1550 m.s.n.m",
-		    "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
-		    "fecha": "Diciembre de 2007",
-		    "estado": "Activa"	  		  
-		},
-		
+		},		
 		{
 			"id" : "0",
   			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
@@ -811,7 +859,7 @@ estacionesJSON = [
 		    "tipo":"EC",
 		    "icono": iconoEC,
 		    "altitud": "1550 m.s.n.m",
-		    "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
+		    "ubicacion": "",
 		    "fecha": "Diciembre de 2007",
 		    "estado": "Activa"	  		  
 		},
@@ -1303,7 +1351,7 @@ estacionesJSON = [
 			"id":"0",
   			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
 		    "nombre": "PD016 (Tanque Villa Santana)",
-            "carpeta": "calicanto",
+            "carpeta": "tanque villasantana",
 		    "variables": {
 		    	"0": "precipitacion"
 		    },

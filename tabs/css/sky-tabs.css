@@ -24,7 +24,7 @@
 }
 .sky-tabs-position{
 	/*margin:-30px 0 0 -30px;*/
-	margin: -15px -15px 0 -19px;
+	margin: -9px -15px 0 -9px;
 }
 .sky-tabs > input {
 	position: absolute;
@@ -661,7 +661,7 @@
 /**/
 /* phone */
 /**/
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 500px) {/*767px*/
 	
 	.sky-tabs .grid-col,
 	.sky-tabs .grid-col:first-child {

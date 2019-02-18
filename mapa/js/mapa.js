@@ -1,6 +1,12 @@
 // Global variables
 var map, rectangle, infoWindow, htmlraw, historicalOverlay, overlay, input, map_actual, northEast, southWest, bounds, showWeather, showBird = true;
 
+var isFirstOne = true;
+var isSecondOne = false;
+var lastLat = 0;
+var lastLong = 0;
+var openedStations = [];
+
 // This will create the second layer for the uploaded image
 DebugOverlay.prototype = new google.maps.OverlayView();
 
@@ -301,6 +307,7 @@ function showStations(estation) {
 		//console.log("n="+n);
 		//console.log("obj.isPublic: "+obj.isPublic);
 		if ((obj.isPublic && !session) || session) {
+			//console.log("n: "+ n + obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
 			if (n !== -1) {
 				//console.log(obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta);
 				var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
@@ -312,7 +319,13 @@ function showStations(estation) {
 				});
 				google.maps.event.addListener(marker, 'click', toggleBounce);
 				marker.setTitle(obj.tipo + ": " + obj.nombre);
-				addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
+				
+				if(obj.carpeta=="cam"){
+					addPopUpCAM(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
+				}else{
+					addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);	
+				}
+				
 
 			}else{
 				//console.log(console.log("ELSE 1: ....... " + obj.tipo + ": " + obj.nombre));
@@ -457,7 +470,80 @@ DebugOverlay.prototype.onRemove = function() {
 function addPopUp(marker, message, id, tipo, carpeta, bd) {
 
 	var infowindow = new google.maps.InfoWindow({
-		content : '<iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'&carpeta='+carpeta+'&bd='+bd+'" height="560px" width="800px"></iframe>'
+		content : '<div class="scrollFix"><iframe src="../tabs/tabs.php?id='+id+'&tipo='+tipo+'&carpeta='+carpeta+'&bd='+bd+'" height="485px" width="700px"></iframe></div>',
+		maxWidth: 605
+	});
+	
+	google.maps.event.addListener(marker, 'click', function() {
+
+		if (isFirstOne) {
+			if (openedStations.length > 0) {
+				let popToClose = openedStations[0];
+				popToClose.close();
+				openedStations.push(infowindow);
+				openedStations.shift();
+			} else {
+				openedStations.push(infowindow);
+			}
+		} else if (isSecondOne) {
+			if (openedStations.length > 1) {
+				let popToClose = openedStations[0];
+				popToClose.close();
+				openedStations.push(infowindow);
+				openedStations.shift();
+			} else {
+				openedStations.push(infowindow);
+			}
+		} else {
+			isFirstOne = true;
+			let popToClose = openedStations[0];
+			popToClose.close();
+			openedStations.push(infowindow);
+			openedStations.shift();
+		}
+
+		infowindow.open(marker.get('map'), setPopupPosition(marker));
+	});
+}
+
+function setPopupPosition(marker) {
+	var marker2 = marker;
+
+	if (isFirstOne) {
+		marker2 = new google.maps.Marker({
+			position: new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng() - 0.4),
+			animation: marker.animation,
+			opacity: 0,
+			icon: marker.get('icon'),
+			map: marker.get('map')
+		});
+		isFirstOne = false;
+		isSecondOne = true;
+		lastLat = marker.getPosition().lat();
+		lastLong = marker.getPosition().lng();
+	} else {
+		isSecondOne = false;
+
+		console.log(marker.getPosition().lng());
+		marker2 = new google.maps.Marker({
+			position: new google.maps.LatLng(lastLat, lastLong + 0.5),
+			animation: marker.animation,
+			opacity: 0,
+			icon: marker.get('icon'),
+			map: marker.get('map')
+		});
+	}
+
+	return marker2;
+}
+
+/**
+ * Pop up of CAM Station temporary solution for client
+ */
+function addPopUpCAM(marker, message, id, tipo, carpeta, bd) {
+
+	var infowindow = new google.maps.InfoWindow({
+		content : '<img src="img/imagen-no-disponible.jpg" height="200px" width="200px" ></img>'
 	});
 	
 	google.maps.event.addListener(marker, 'click', function() {

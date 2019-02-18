@@ -72,12 +72,15 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
                     *      $_REQUEST['id'] = Id de la estacion
                     *      $_REQUEST['tipo'] = Tipo de la estacion 
                     */
+                    //error_reporting(-1);
+					//ini_set('display_errors', 'On');
+                    
                     $estacion = $_REQUEST["id"];
                     $tipoEstacion = $_REQUEST["tipo"];
                     if($tipoEstacion == "PDNT")
                         $estacion = "pluv";
                     elseif($_REQUEST["folder"] != "undefined")
-                        $estacion = $_REQUEST["folder"];
+                        $estacion = $_REQUEST["folder"];                        					
 //                    else if($tipoEstacion == "SNNT" || $tipoEstacion == "SN")
 //                        $estacion = "sensor";
 //                    else
@@ -85,10 +88,14 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
                     $nombre  = $_REQUEST["name"];
                     $directory= "images/estaciones/".$estacion;
                     $dirint = dir($directory);
-                    if(!empty($dirint)){
-                        while (($archivo = $dirint->read()) !== false)
-                        {
-                            if (eregi("gif", $archivo) || eregi("jpg", $archivo) || eregi("png", $archivo)){
+					
+					//print_r($dirint);
+					
+					$isEmpty = true;
+					if(file_exists($directory)) {
+                    	while (($archivo = $dirint->read()) !== false){
+                            if (!in_array($archivo, array('.', '..')) &&  (eregi("gif", $archivo) || eregi("jpg", $archivo) || eregi("png", $archivo))){
+                            	$isEmpty = false;
                                 ?>
                                 <li>
                                     <h4><?php echo $nombre; ?></h4>
@@ -101,8 +108,9 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
                                  <?php                            
                             }
                         }
-                    }else{
-                        ?>
+                    }
+						if($isEmpty){
+								?>
                                 <li>
                                     <h4></h4>
                                     <div class="tn3 description"></div>
@@ -111,7 +119,9 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
                                     </a>
                                 </li>     
                                  <?php   
-                    }
+                            
+						}
+                    
                     $dirint->close();
                 ?>
 	    </ol>
@@ -123,6 +133,11 @@ body {/*margin:50px 0px;*/margin:0px 0px; padding:0px; /*background-color: #0000
     </div>
     -->
 </div>
+
+<?php
+//echo $filecount;
+//echo "directory: ".$directory;
+?>
 </body>
 </html>
 
