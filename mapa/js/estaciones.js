@@ -233,7 +233,7 @@ estacionesJSON = [
 		    "estado": "Activa"	  		  
 		},
 		{
-			"id" : "59",
+			"id" : "61",
 			"bd" : "bd_aguas_new",
   			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
 		    "nombre": "ECT011 (El Cedral)",

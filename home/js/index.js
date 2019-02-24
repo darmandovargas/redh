@@ -10,34 +10,6 @@ function closePage() {
 }
 
 /**
- * This function will do the ajax call to see if there is session
- * @return boolean
- */
-function checkSessionClick(url) {
-	isSession = false;
-
-	$.ajax({
-		type : "POST",
-		url : "content/login/validate.php",
-		async : false
-	}).success(function(msg) {
-		if (msg == "success") {
-			session = true;
-			showLogout(true);
-			if (isMapOutOfDate && url != 'isFirstLoad') {
-				initialize();
-				isMapOutOfDate = false;
-			}
-		} else {
-			session = false;
-			showLogout(false);
-		}
-	});
-
-	return isSession;
-}
-
-/**
  * This function will logout and will hide the icon smoothly, if the logout is
  * successful, then the lookForSession function will start looking for a new session
  */
@@ -47,7 +19,7 @@ function logout() {
 	$.ajax({
 		type : "POST",
 		url : "content/login/logout.php"
-	}).success(function(msg) {
+	}).done(function(msg) {
 		session = false;
 		initialize();
 		isMapOutOfDate = true;

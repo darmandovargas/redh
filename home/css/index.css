@@ -1,0 +1,95 @@
+.loader {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    /* For IE8 and earlier */
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: url('/home/content/contactenos/wait.gif') no-repeat rgb(255, 255, 255) center center;
+}
+
+.logout {
+    position: absolute;
+    top: -54px;
+    right: -435px;
+    height: 50px;
+    margin: 0 -45px;
+    margin-top: 20px;
+}
+
+.waitLogout {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    /* For IE8 and earlier */
+    position: absolute;
+    top: -53px;
+    right: 39px;
+    height: 50px;
+    margin: 0 -45px;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none
+}
+
+.btn-custom-blue {
+    background-color: hsl(201, 100%, 30%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00a5ff", endColorstr="#006399");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#00a5ff), to(#006399));
+    background-image: -moz-linear-gradient(top, #00a5ff, #006399);
+    background-image: -ms-linear-gradient(top, #00a5ff, #006399);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00a5ff), color-stop(100%, #006399));
+    background-image: -webkit-linear-gradient(top, #00a5ff, #006399);
+    background-image: -o-linear-gradient(top, #00a5ff, #006399);
+    background-image: linear-gradient(#00a5ff, #006399);
+    border-color: #006399 #006399 hsl(201, 100%, 25%);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+    -webkit-font-smoothing: antialiased;
+}
+
+.btn-custom-green {
+
+    /*opacity: 0.95;*/
+    background-color: hsl(86, 79%, 44%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#daf6b5", endColorstr="#7cc817");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#daf6b5), to(#7cc817));
+    background-image: -moz-linear-gradient(top, #daf6b5, #7cc817);
+    background-image: -ms-linear-gradient(top, #daf6b5, #7cc817);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #daf6b5), color-stop(100%, #7cc817));
+    background-image: -webkit-linear-gradient(top, #daf6b5, #7cc817);
+    background-image: -o-linear-gradient(top, #daf6b5, #7cc817);
+    background-image: linear-gradient(#daf6b5, #7cc817);
+    border-color: #7cc817 #7cc817 hsl(86, 79%, 34%);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.66);
+    color: #111 !important;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    margin-left: -10px;
+    moz-border-radius: 15px;
+    -webkit-border-radius: 2px;
+}
+
+.tcg {
+    padding: 2px 2px;
+    position: absolute;
+    bottom: -5px;
+    right: 45%;
+    font-size: 11px;
+    color: rgb(68, 68, 68);
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #fff;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    /*
+				-moz-border-radius: 5px; 
+				-webkit-border-radius: 5px;
+				 */
+}

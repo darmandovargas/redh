@@ -4,6 +4,12 @@ var isSecondOne = false;
 var lastLat = 0;
 var lastLong = 0;
 var openedStations = [];
+var map="";
+var lastZoom = 0;
+
+//$(document).ready(function () {
+
+
 
 DebugOverlay.prototype = new google.maps.OverlayView();
 
@@ -14,77 +20,23 @@ function initialize() {
 		center: new google.maps.LatLng(4.814168323, -75.69444586)
 	};
 
-	var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
 	var northEast = new google.maps.LatLng(5.295278392, -75.490426);
 	var southWest = new google.maps.LatLng(4.70917919, -75.78304604);
 
 	var bounds = new google.maps.LatLngBounds(southWest, northEast);
 
-	// Search Box
-	var input = /** @type {HTMLInputElement} */ (document.getElementById('search'));
-
 	var types = document.getElementById('type-selector');
 	//map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 	//map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
-	var autocomplete = new google.maps.places.Autocomplete(input);
-	autocomplete.bindTo('bounds', map);
-
 	var infowindow = new google.maps.InfoWindow();
+	
 	var marker = new google.maps.Marker({
 		map: map,
 		anchorPoint: new google.maps.Point(0, -29)
 	});
-
-	google.maps.event.addListener(autocomplete, 'place_changed', function () {
-		infowindow.close();
-		marker.setVisible(false);
-		var place = autocomplete.getPlace();
-		if (!place.geometry) {
-			return;
-		}
-
-		// If the place has a geometry, then present it on a map.
-		if (place.geometry.viewport) {
-			map.fitBounds(place.geometry.viewport);
-		} else {
-			map.setCenter(place.geometry.location);
-			map.setZoom(17);
-			// Why 17? Because it looks good.
-		}
-		marker.setIcon( /** @type {google.maps.Icon} */ ({
-			url: place.icon,
-			size: new google.maps.Size(71, 71),
-			origin: new google.maps.Point(0, 0),
-			anchor: new google.maps.Point(17, 34),
-			scaledSize: new google.maps.Size(35, 35)
-		}));
-		marker.setPosition(place.geometry.location);
-		marker.setVisible(true);
-
-		var address = '';
-		if (place.address_components) {
-			address = [(place.address_components[0] && place.address_components[0].short_name || ''), (place.address_components[1] && place.address_components[1].short_name || ''), (place.address_components[2] && place.address_components[2].short_name || '')].join(' ');
-		}
-
-		infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-		infowindow.open(map, marker);
-	});
-
-	// Sets a listener on a radio button to change the filter type on Places
-	// Autocomplete.
-	function setupClickListener(id, types) {
-		var radioButton = document.getElementById(id);
-		google.maps.event.addDomListener(radioButton, 'click', function () {
-			autocomplete.setTypes(types);
-		});
-	}
-
-	setupClickListener('changetype-all', []);
-	setupClickListener('changetype-establishment', ['establishment']);
-	setupClickListener('changetype-geocode', ['geocode']);
-	//End Search Box
 
 	// Define an info window on the map.
 	infoWindow = new google.maps.InfoWindow();
@@ -103,13 +55,15 @@ function initialize() {
 				icon: obj.icono,
 				map: map
 			});
-			google.maps.event.addListener(marker, 'click', toggleBounce);
-			marker.setTitle( /*obj.tipo + ": " + */ obj.nombre);
+			
+			marker.setTitle(obj.nombre);//obj.tipo + ": " +  
 			if (obj.carpeta == "cam") {
 				addPopUpCAM(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
 			} else {
 				attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.nombre, obj.carpeta, obj.bd);
 			}
+
+			google.maps.event.addListener(marker, 'click', toggleBounce);
 		}
 
 		function toggleBounce() {
@@ -246,7 +200,7 @@ function setPopupPosition(marker) {
 
 	if (isFirstOne) {
 		marker2 = new google.maps.Marker({
-			position: new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng() - 0.4),
+			position: new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng()),
 			animation: marker.animation,
 			opacity: 0,
 			icon: marker.get('icon'),
@@ -259,15 +213,54 @@ function setPopupPosition(marker) {
 	} else {
 		isSecondOne = false;
 
-		console.log(marker.getPosition().lng());
+		$('#sidebar-out').click();
+
 		marker2 = new google.maps.Marker({
-			position: new google.maps.LatLng(lastLat, lastLong + 0.5),
+			position: new google.maps.LatLng(lastLat, lastLong + 0.9), //0.5 (0.2*map.getZoom()/10)
 			animation: marker.animation,
 			opacity: 0,
 			icon: marker.get('icon'),
 			map: marker.get('map')
 		});
+
+		switch (map.getZoom()) {
+			case 11: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.45)); break;
+			case 12: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.22)); break;
+			case 13: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.11)); break;
+			case 14: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.055)); break;
+			case 15: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.0275)); break;
+			case 16: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.01375)); break;
+		}
 	}
+
+	map.addListener('zoom_changed', function() {
+		// 3 seconds after the center of the map has changed, pan back to the
+		// marker.
+		window.setTimeout(function() {					
+			// Zoom out  
+			if(lastZoom > map.getZoom()){
+				switch(map.getZoom()){
+					case 11: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.45)); break;
+					case 12: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.22)); break;
+					case 13: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.11)); break;
+					case 14: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.055)); break;
+					case 15: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.0275)); break;
+					case 16: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.01375)); break;
+				}
+	 	    // Zoom in
+			}else if(lastZoom < map.getZoom()){					
+				switch(map.getZoom()){
+					case 11: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.45)); break;
+					case 12: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.22)); break;
+					case 13: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.11)); break;
+					case 14: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.055)); break;
+					case 15: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.0275)); break;
+					case 16: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.01375)); break;
+				}					
+			}
+			lastZoom = map.getZoom();
+		}, 1000);	
+	});
 
 	return marker2;
 }
@@ -323,7 +316,37 @@ function addLatLng(event) {
 	});
 }
 
-$(document).ready(function () {
+	/**
+	 * This function will do the ajax call to see if there is session
+	 * @return boolean
+	 */
+	function checkSessionClick(url) {
+		isSession = false;
+
+		$.ajax({
+			type : "POST",
+			url : "content/login/validate.php"
+		}).done(function(msg) {
+			if (msg == "success") {
+				session = true;
+				showLogout(true);
+				if (isMapOutOfDate && url != 'isFirstLoad') {
+					//initialize();				
+					isMapOutOfDate = false;
+				}
+			} else {
+				session = false;
+				showLogout(false);
+			}
+			//setTimeout("google.maps.event.addDomListener(window, 'load', initialize);",5000);
+			google.maps.event.addDomListener(window, 'load', initialize);
+			
+		});
+
+		return isSession;
+	}
+
+$(function(){
 	checkSessionClick('firstLoad');
 	//lookForSession();
 	//showLogout(true);
@@ -333,7 +356,9 @@ $(document).ready(function () {
 		window.open("../mapa", '_blank');
 	});
 
+	
+
 });
 
 
-google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addDomListener(window, 'load', initialize);

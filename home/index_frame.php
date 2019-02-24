@@ -17,19 +17,17 @@ if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
 }
 
 $host = insert_host($oMySQL, $ip);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!-- No Cache -->
+		<!-- No Cache 
 		<meta http-equiv="cache-control" content="max-age=0" />
 		<meta http-equiv="cache-control" content="no-cache" />
 		<meta http-equiv="expires" content="0" />
 		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 		<meta http-equiv="pragma" content="no-cache" />
-		
-
+		-->
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>Red Hidroclimatológica de Risaralda</title>
@@ -40,135 +38,22 @@ $host = insert_host($oMySQL, $ip);
 		<meta name="geo.position" content="51.51954;-0.125549" />
 		
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />
-
 		<link rel="stylesheet" href="css/themes/default/bootstrap.css" type="text/css">
 		<link rel="stylesheet" href="css/themes/default/bootstrap-responsive.css" type="text/css">
-
-
 		<link href="js/perfect-scrollbar-0.3.3/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="css/font/fontawesome_v5.7.2.css">
+		<link rel="stylesheet" href="css/index.css">
 
-		<!--[if lt IE 9]>
-		<link rel="stylesheet" href="css/bootstrap_ie7.css" type="text/css">
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-
-		<!-- DEFAULT MAP 
-		<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
-		-->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8&v=3.exp&sensor=false&libraries=places"></script>
-		<script type="text/javascript" src="js/jquery.js"></script>
+		<script src="/lib/jquery.min.2.2.4.js"></script>
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-		<!--
-		<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-		-->
 		<script type="text/javascript" src="js/perfect-scrollbar-0.3.3/perfect-scrollbar.js"></script>
 		<script type="text/javascript" src="js/global.js"></script>
-		
-		
-		<!-- CUSTOM MAP -->
-		<!--
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<!--<script src="js/estaciones.js"></script>
-		<script src="js/mapa.js"></script>
-		-->
-		
 		<script src="../mapa/js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
 		
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-		
-		<style>
-			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('content/contactenos/wait.gif') no-repeat rgb(255,255,255) center center;}
-			.logout {			    
-			   	position: absolute;
-				/*top: -85px;
-				right: 38px;*/
-				top: -54px;
-				right: -435px;
-				/*background-color: #333333;
-				background-color: rgba(51, 51, 51, 0.8);
-				*/height: 50px;
-				margin: 0 -45px;
-				margin-top: 20px;
-			}
-			.waitLogout {	
-				opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */		    
-			   	position: absolute;
-				/*top: -85px;
-				right: 130px;
-				*/
-				top: -53px;
-				right: 39px;
-				/*background-color: #333333;
-				background-color: rgba(51, 51, 51, 0.8);
-				*/height: 50px;
-				margin: 0 -45px;
-				margin-top: 20px;
- 			}
- 			a {text-decoration: none}
- 			
- 			.btn-custom-blue {
-			  background-color: hsl(201, 100%, 30%) !important;
-			  background-repeat: repeat-x;
-			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00a5ff", endColorstr="#006399");
-			  background-image: -khtml-gradient(linear, left top, left bottom, from(#00a5ff), to(#006399));
-			  background-image: -moz-linear-gradient(top, #00a5ff, #006399);
-			  background-image: -ms-linear-gradient(top, #00a5ff, #006399);
-			  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00a5ff), color-stop(100%, #006399));
-			  background-image: -webkit-linear-gradient(top, #00a5ff, #006399);
-			  background-image: -o-linear-gradient(top, #00a5ff, #006399);
-			  background-image: linear-gradient(#00a5ff, #006399);
-			  border-color: #006399 #006399 hsl(201, 100%, 25%);
-			  color: #fff !important;
-			  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
-			  -webkit-font-smoothing: antialiased;
-			}
-
-			.btn-custom-green {
-			  
-			  /*opacity: 0.95;*/
-			  background-color: hsl(86, 79%, 44%) !important;
-			  background-repeat: repeat-x;
-			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#daf6b5", endColorstr="#7cc817");
-			  background-image: -khtml-gradient(linear, left top, left bottom, from(#daf6b5), to(#7cc817));
-			  background-image: -moz-linear-gradient(top, #daf6b5, #7cc817);
-			  background-image: -ms-linear-gradient(top, #daf6b5, #7cc817);
-			  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #daf6b5), color-stop(100%, #7cc817));
-			  background-image: -webkit-linear-gradient(top, #daf6b5, #7cc817);
-			  background-image: -o-linear-gradient(top, #daf6b5, #7cc817);
-			  background-image: linear-gradient(#daf6b5, #7cc817);
-			  border-color: #7cc817 #7cc817 hsl(86, 79%, 34%);
-			  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.66);
-			  color: #111 !important;
-			  -webkit-font-smoothing: antialiased;
-			  font-size:16px;
-			  margin-left: -10px;			  
-			  moz-border-radius: 15px;
-			  -webkit-border-radius: 2px;
-			}
-			.tcg{
-				padding: 2px 2px; 
-				position: absolute; 
-				bottom: -5px; 
-				right:45%; 
-				font-size:11px;  
-				color: rgb(68, 68, 68);
-				text-decoration: none; 
-				cursor: pointer; 
-				background-color: #fff;
-				border-top-right-radius: 5px;
-				border-top-left-radius: 5px; 
-				/*
-				-moz-border-radius: 5px; 
-				-webkit-border-radius: 5px;
-				 */
-			}		
-
-		</style>
-		
-		
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8&v=3.exp"></script> <!-- &libraries=places&sensor=false -->
 		<script src="js/index.js"></script>
 		<script src="js/mapa/mapa.js"></script>
+		
 	</head>
 	<body>
 	<!-- <i style="display:none;" class="fas fa-angle-double-right"></i> -->
@@ -205,42 +90,10 @@ $host = insert_host($oMySQL, $ip);
 									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Noticias y Eventos</h3> </a>
 								</div>
 
-								<!--
-								<div align="center">
-
-								<a href="#" data-section="4" data-title="" class="floating-box"> <h3>Boletines</h3> </a>
-								</div>
-								-->
-								
-								
-								<!--
-								<div align="center">
-								<a href="#" data-section="6" data-title="" class="floating-box"> <h3>Galería</h3> </a>
-								</div>
-								-->
-								
-
-								<!--
-								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="8" data-title="" class="floating-box"> <h3>Contáctenos</h3> </a>
-								</div>
-								-->
-								
-																
-								<!--
-								<div align="center">
-									<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="floating-box"> <h3>Login</h3> </a>
-								</div>
-								-->
 								<div align="center">
 									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Recursos Humanos</h3> </a>
 								</div>
-								<!--
-								<div align="center">
-
-									<a href="../mapa/" onclick="checkSessionClick();" target="_blank" style="text-decoration: none;"> <h3>Ver Mapa Completo</h3> </a>
-								</div>
-								-->
+								
 								<div align="center">
 									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Contribuyen a la Red</h3> </a>
 								</div>
@@ -248,12 +101,10 @@ $host = insert_host($oMySQL, $ip);
 								<div align="center">
 									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Sitios y Documentos de Interés</h3> </a>
 								</div>
-								
-								 <div align="center">
-								    Facultad de Ciencas Ambientales Of f-213 </br> 
-									Juan Camilo Berrio Carvajal </br>
-									Teléfono: 3137249 </br></br></br>
-								</div> 								
+
+								<div align="center">
+									<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="floating-box" style="text-decoration: none;"><h3>Acceso a Empresa</h3></a>								
+								</div>								
 							</div>							
 						</div>								
 					</div>
@@ -476,18 +327,9 @@ $host = insert_host($oMySQL, $ip);
 				       <hr />
 						<div class="span12" style="margin-left:-10px;">
 							<div style="text-align: center; ">
-								<img src="img/logos/ciencias ambientales.png" width="18%" />	
-								<img src="img/logos/logo_acuaseo.jpg" width="11%">
-								<img src="img/logos/Alcaldia Pereira.jpg" width="13%">
-								<img src="img/logos/Carder.png" width="18%">
-								<!-- <img src="img/logos/logo_utp.jpg" width="20%"> -->
-								<img src="img/logos/identificador-vertical.jpg" width="18%">
-								<img src="img/logos/NUEVO LOGO AGUAS Y AGUAS DE PEREIRA.jpg" width="20%">
-								<img src="img/logos/dopad.bmp" width="13%">
-								<img src="img/logos/Seafield_colour.jpg" width="23%">
-								<img src="img/logos/EEP.jpg" width="18%" style="margin: 0 0 0 10px;">
-								<img src="img/logos/Grupos EIS.png" width="10%">
-								<img src="img/logos/LOGO ASAMUN.jpg" width="28%">
+								<video width="90%" src="img/logos/LOGOSUTP6.mp4" autoplay muted loop>
+									Tu navegador no implementa el elemento <code>video</code>.									
+								</video>
 							</div>
 						</div>
 					</div><!--/page-footer-->
@@ -498,9 +340,7 @@ $host = insert_host($oMySQL, $ip);
 					<div class="row-fluid" style="height: 100%;">
 						<div class="span12" style="height: 100%;">
 							<div id="map_canvas"></div>
-							<!--<div style="position: absolute; bottom: -2px; right:44%; font-size:11px;">Developed by <a href="http://thinkcloudgroup.com" target="_blank">Think Cloud Group</a></div>-->
-							<div class="tcg">Powered by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
-							<!--<iframe src="../mapa/" width="100%" height="800px"></iframe>-->
+							<div class="tcg">Powered by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>							
 						</div>
 					</div>
 					<div id="type-selector" class="controls" hidden="hidden">
@@ -515,25 +355,7 @@ $host = insert_host($oMySQL, $ip);
 					<div style="font-size: 28px; color: Dodgerblue; position:absolute; top:10px; right:55px; background-color:#FFFFFF; padding: 6px; border-radius: 2px; box-shadow:0px 1px 1px #b6b6b6; -webkit-box-shadow:0px 1px 1px #b6b6b6; -moz-box-shadow:0px 1px 1px #b6b6b6;">
 						<!-- style="float:right; margin: 10px 10px;" -->
 						<a href="/mapa" target="_blank"><i class="fas fa-map-marked-alt" title="Ver Herramienta de Mapa"></i></a>
-					</div>					
-
-					<!--/floating-search
-					<div class="row-fluid floating-boxes">		
-						<a href="#" data-section="5" onclick="checkSessionClick();" data-title="" class="offset1 span3 floating-box">
-						<h3>Estado del Tiempo</h3>
-						<p>Revisa las últimas mediciones</p>
-						</a>
-						<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="span3 floating-box">
-						<h3>Empresa</h3>
-						<p>Acceso a empresa</p>						
-						</a>
-						<a href="#" data-section="8" data-title="" class="span3 floating-box">
-						<h3>Contactenos</h3>
-						<p>Dejenos saber sus comentarios</p>
-						</a>						
 					</div>
-					-->
-					<!--/floating-boxes-->
 					
 					<div class="row-fluid floating-wrapper" style="top: -600px">
 						<div class="offset1 span10 top-span">

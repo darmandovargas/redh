@@ -6,6 +6,8 @@ var isSecondOne = false;
 var lastLat = 0;
 var lastLong = 0;
 var openedStations = [];
+var map="";
+var lastZoom = 0;
 
 // This will create the second layer for the uploaded image
 DebugOverlay.prototype = new google.maps.OverlayView();
@@ -511,7 +513,7 @@ function setPopupPosition(marker) {
 
 	if (isFirstOne) {
 		marker2 = new google.maps.Marker({
-			position: new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng() - 0.4),
+			position: new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng()),
 			animation: marker.animation,
 			opacity: 0,
 			icon: marker.get('icon'),
@@ -524,15 +526,53 @@ function setPopupPosition(marker) {
 	} else {
 		isSecondOne = false;
 
-		console.log(marker.getPosition().lng());
+		//console.log(marker.getPosition().lng());
 		marker2 = new google.maps.Marker({
-			position: new google.maps.LatLng(lastLat, lastLong + 0.5),
+			position: new google.maps.LatLng(lastLat, lastLong + 0.9),
 			animation: marker.animation,
 			opacity: 0,
 			icon: marker.get('icon'),
 			map: marker.get('map')
 		});
+
+		switch (map.getZoom()) {
+			case 11: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.45)); break;
+			case 12: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.22)); break;
+			case 13: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.11)); break;
+			case 14: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.055)); break;
+			case 15: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.0275)); break;
+			case 16: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.01375)); break;
+		}
 	}
+
+	map.addListener('zoom_changed', function() {
+		// 3 seconds after the center of the map has changed, pan back to the
+		// marker.
+		window.setTimeout(function() {					
+			// Zoom out  
+			if(lastZoom > map.getZoom()){
+				switch(map.getZoom()){
+					case 11: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.45)); break;
+					case 12: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.22)); break;
+					case 13: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.11)); break;
+					case 14: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.055)); break;
+					case 15: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.0275)); break;
+					case 16: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.01375)); break;
+				}
+	 	    // Zoom in
+			}else if(lastZoom < map.getZoom()){					
+				switch(map.getZoom()){
+					case 11: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.45)); break;
+					case 12: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.22)); break;
+					case 13: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.11)); break;
+					case 14: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.055)); break;
+					case 15: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.0275)); break;
+					case 16: openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()-0.01375)); break;
+				}					
+			}
+			lastZoom = map.getZoom();
+		}, 1000);	
+	});
 
 	return marker2;
 }

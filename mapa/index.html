@@ -30,16 +30,16 @@ $( window ).resize( function () {
 }).resize();
 
 			$(window).load(function () {
-				console.log(screen.height);
+				//console.log(screen.height);
 			    //setIframeHeight(document.getElementById('preview'));
 			    
 			    function setIframeHeight(iframe) {
 				    if (iframe) {
 				        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
 				        if (iframeWin.document.body) {
-				        	console.log(iframeWin.document.documentElement.scrollHeight);
-				        	console.log(iframeWin.document.body.scrollHeight);
-				        	//
+				        	//console.log(iframeWin.document.documentElement.scrollHeight);
+				        	//console.log(iframeWin.document.body.scrollHeight);
+				        	
 				            iframe.height = screen.height*0.84;//iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
 				        }
 				    }

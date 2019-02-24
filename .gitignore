@@ -7,3 +7,8 @@ lib/.DS_Store
 mapa/.DS_Store
 .project
 mapa/uploads
+.vscode/ftp-kr.json
+.vscode/ftp-kr.sync.cache.json
+.vscode/ftp-sync.json
+.gitignore.swp
+.project

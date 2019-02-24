@@ -26,13 +26,18 @@ include_once ('../lib/db_graph_info.php');
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 			<script src="js/sky-tabs-ie8.js"></script>
 		<![endif]-->		
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src="js/highcharts.js"></script>
-	    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+		<!--
+		<script src="js/jquery.min_1.9.1.js"></script>
+-->
+		
 <?php 
 if($idEstacion!="0"){	     
     $est["stationName"]=isset($est["stationName"])?$est["stationName"]:$idEstacion;	
 ?>
+	<script src="/lib/jquery.min.2.2.4.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="js/highcharts-more.src.js"></script>
+	<script src="js/exporting.js"></script>
 <script>
 	$(function () {
 		
@@ -119,7 +124,7 @@ if($idEstacion!="0"){
 			var currentMonth = d.getMonth();
 			var currentDay = d.getDate();
 			
-			// Opciones Generales Gráfico
+			// Opciones Generales Gráfico #EAF7F4
 		  	opcionesGenerales = { 
 		  		yAxis: yAxisJSON,
 		    	tooltip: {
@@ -128,8 +133,8 @@ if($idEstacion!="0"){
 		    	xAxis: {
 		            type: 'datetime',
 		            tickInterval: 24 * 3600 * 1000
-		        },
-		        plotOptions: {
+				},
+				plotOptions: {
 		            area: {
 		                fillColor: {
 		                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
@@ -162,16 +167,21 @@ if($idEstacion!="0"){
 		  	// Opciones Gráfico
 		  	opcionesGrafico = {
 		    	chart: {
+					backgroundColor: '#EAF7F4',
 		      		renderTo: container         
 		    	},
 		    	series: new_obj
-		  	};
+			  };
+			  
+			  //console.log(container);
 		  	
 		  	opcionesGrafico = jQuery.extend(true, {}, opcionesGenerales, opcionesGrafico);
-		  	grafico = new Highcharts.Chart(opcionesGrafico);
+			grafico = new Highcharts.Chart(opcionesGrafico);
 	    	
 	    	return grafico;
-	    }
+		}
+		
+		//console.log("test4");
 	 });
 	
 	/**
@@ -283,8 +293,28 @@ if($idEstacion!="0"){
 					</div>
 					</li>		
 					<?php
-	  				}
-	  				?>	
+	  				}else{
+					  ?>
+						  
+						  
+					<li class="sky-tab-content-1" style="width:90.5%; height: 376px;">
+						<div class="typography" style="margin: 0 0 0 52px;">
+							<div id="container-temperature" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-presure" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-humidity" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-realPrecipitation" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-level" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-radiation" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-windSpeed" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-windDirection" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-windDirection" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-realETO" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+							<div id="container-riverFlow" style="min-width: 300px; height: 285px; margin: 0 auto"></div>
+						</div>
+					</li>
+					<?php 
+					}
+					?>
 					<li class="sky-tab-content-2" style="width:90.5%; height: 376px;">
 						<div class="typography" style="margin: 0 0 0 52px;">
 							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="500px" width="90%"></iframe>

@@ -17,7 +17,7 @@
             h3{color: red;}
         </style>
         <!-- include tn3 plugin -->
-        <script type="text/javascript" src="../lib/jquery-1.11.1.min.js"></script>
+        <script src="/lib/jquery.min.2.2.4.js"></script>
         <script type="text/javascript" src="js/reporte.js"></script>
         <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <script type="text/javascript" src="css/bootstrap/js/bootstrap.min.js"></script>
