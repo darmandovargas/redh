@@ -1,4 +1,3 @@
-var session = false;
 var isMapOutOfDate = true;
 
 /**

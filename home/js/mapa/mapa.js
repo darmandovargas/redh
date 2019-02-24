@@ -9,8 +9,6 @@ var lastZoom = 0;
 
 //$(document).ready(function () {
 
-
-
 DebugOverlay.prototype = new google.maps.OverlayView();
 
 function initialize() {
@@ -44,9 +42,7 @@ function initialize() {
 	map.fitBounds(bounds);
 
 	$.each(estacionesJSON, function (idx, obj) {
-		//console.log("session EACH: "+session);	
-		//console.log("(obj.isPublic='true' && session==false): "+(obj.isPublic="true" && session==false) );
-		//console.log("session==true: "+session==true);
+
 		if ((obj.isPublic && !session) || session) {
 			var position = new google.maps.LatLng(obj.coordenadas.latitud, obj.coordenadas.longitud);
 			var marker = new google.maps.Marker({
@@ -96,7 +92,6 @@ function calc_route() {
 
 // Superposición Funciones
 function DebugOverlay(bounds, image, map) {
-
 	this.bounds_ = bounds;
 	this.image_ = image;
 	this.map_ = map;
@@ -279,43 +274,6 @@ function addPopUpCAM(marker, message, id, tipo, carpeta, bd) {
 	});
 }
 
-
-// Show the new coordinates for the rectangle in an info window.
-
-/** @this {google.maps.Rectangle} */
-function showNewRect(event) {
-	var ne = rectangle.getBounds().getNorthEast();
-	var sw = rectangle.getBounds().getSouthWest();
-
-	var contentString = '<b>Rectangle moved.</b><br>' + 'New north-east corner: ' + ne.lat() + ', ' + ne.lng() + '<br>' + 'New south-west corner: ' + sw.lat() + ', ' + sw.lng();
-
-	// Set the info window's content and position.
-	infoWindow.setContent(contentString);
-	infoWindow.setPosition(ne);
-
-	infoWindow.open(map);
-}
-
-/**
- * Handles click events on a map, and adds a new point to the Polyline.
- * @param {google.maps.MouseEvent} event
- */
-function addLatLng(event) {
-
-	var path = poly.getPath();
-
-	// Because path is an MVCArray, we can simply append a new coordinate
-	// and it will automatically appear.
-	path.push(event.latLng);
-
-	// Add a new marker at the new plotted point on the polyline.
-	var marker = new google.maps.Marker({
-		position: event.latLng,
-		title: '#' + path.getLength(),
-		map: map
-	});
-}
-
 	/**
 	 * This function will do the ajax call to see if there is session
 	 * @return boolean
@@ -324,9 +282,9 @@ function addLatLng(event) {
 		isSession = false;
 
 		$.ajax({
-			type : "POST",
-			url : "content/login/validate.php"
-		}).done(function(msg) {
+			type: "POST",
+			url: "content/login/validate.php"
+		}).done(function (msg) {
 			if (msg == "success") {
 				session = true;
 				showLogout(true);
@@ -339,7 +297,6 @@ function addLatLng(event) {
 				showLogout(false);
 			}
 			//setTimeout("google.maps.event.addDomListener(window, 'load', initialize);",5000);
-			google.maps.event.addDomListener(window, 'load', initialize);
 			
 		});
 
@@ -347,18 +304,15 @@ function addLatLng(event) {
 	}
 
 $(function(){
-	checkSessionClick('firstLoad');
-	//lookForSession();
+	//checkSessionClick('firstLoad');
 	//showLogout(true);
 	//showLogout(false);	
 	//Click event handler for green button
 	$(".btn-custom-green").click(function () {
 		window.open("../mapa", '_blank');
 	});
-
-	
-
 });
 
+google.maps.event.addDomListener(window, 'load', initialize);
 
 //google.maps.event.addDomListener(window, 'load', initialize);

@@ -6,6 +6,14 @@ session_start();
 // Obtiene la conexión a la bd
 include_once ('visit_models.php');
 include_once ('../lib/class.MySQL.php');
+
+session_start();
+if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
+	$_SESSION['sess'] = true;		
+}else{
+	$_SESSION['sess'] = false;
+}
+
 $ip = "";   
 // De esta forma se obtiene la Ip de host del usuario
 if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -49,6 +57,10 @@ $host = insert_host($oMySQL, $ip);
 		<script type="text/javascript" src="js/perfect-scrollbar-0.3.3/perfect-scrollbar.js"></script>
 		<script type="text/javascript" src="js/global.js"></script>
 		<script src="../mapa/js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
+
+		<script>			
+			var session = '<?php echo  $_SESSION['sess'];?>';
+		</script>
 		
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8&v=3.exp"></script> <!-- &libraries=places&sensor=false -->
 		<script src="js/index.js"></script>
