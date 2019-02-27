@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
+	$_SESSION['sess'] = true;		
+}else{
+	$_SESSION['sess'] = false;
+}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,6 +25,8 @@
 
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="css/map.css" type="text/css">
+
+		<link rel="stylesheet" href="/home/css/font/fontawesome_v5.7.2.css">
 		
 		<!-- MAP -->
 		<style>
@@ -47,7 +58,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		-->
                 <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
-				<script src="/tabs/js/jquery.min.2.2.4.js"></script>
+				<script src="/lib/jquery.min.2.2.4.js"></script>
                 <script src="jquery-ui/jquery-ui.js"></script>
 		<!-- &key=AIzaSyBA1M3-e9UO0KCvslfK44zM67ZPM77oy_o -->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8&v=3.exp&libraries=places,weather,drawing"></script>
@@ -56,14 +67,13 @@
 		<script src="js/mapa.js"></script>
 		<script src="js/desplaza.js"></script>
 <script>
-			var session = false;
+			var session = '<?php echo  $_SESSION['sess'];?>';
 			var isMapOutOfDate = true;
 
-			$(document).ready(function() {
+			//$(document).ready(function() {
 				//$("#panel_log").html("Clic<img src='../home/img/wait_logout.gif' width='70%'>");
-				checkSessionClick();
-
-			});
+				//checkSessionClick();
+			//});
 
 			function checkSessionClick(url) {
 				isSession = false;
@@ -74,9 +84,6 @@
 					async : false
 				}).success(function(msg) {
 					if (msg == "success") {
-						
-						
-
 						session = true;
 						showLogout(true);
 						if (isMapOutOfDate && url != 'isFirstLoad') {
@@ -125,11 +132,11 @@
 			 */
 			function showLogout(showIcon) {
 				if (showIcon) {
-					$("#panel_log").removeClass("waitLogout").addClass("logout").hide().html("<span id='logoutImage'><a href='#' onclick='logout();'><img src='../home/img/logout_blue.png' title='Cerrar Sesión' style='width:28px;height:28px;' ></a></span>").fadeIn("slow");
+					$("#logout").fadeIn("slow");
 				} else {
-					$("#panel_log").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='../home/img/wait_logout.gif' width='130%'>");
+					$("#logout").fadeOut("slow");
 				}
-                        }                        
+            }                        
 		</script>
 		
 	<style>
@@ -219,8 +226,13 @@
 				<span class="check_labels">Caudal</span>				
 			</div>
 		</div>
+		<!--
 		<div id="panel_log">
 			<span id="logout" class="logout">
+		</div>
+	-->
+		<div id="logout"  onclick='logout();' style="">
+			<i class="fas fa-sign-out-alt" title="Logout"></i>
 		</div>
 		<!--<img class="weather" src="img/Weather-icon.png" title="Ver Clima Según Google" />-->
 		<img class="gallinazos" src="img/gallinazos.png" title="Ver Gallinazos" /> 

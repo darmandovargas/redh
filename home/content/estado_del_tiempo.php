@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta charset="utf-8">
 		<title>Estado del Tiempo REDH</title>
-		<script src='../../lib/jquery-1.11.1.min.js'></script>
+		<script src="/lib/jquery.min.2.2.4.js"></script>
 		<style>
 			th {
 				font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
@@ -58,8 +58,8 @@
 		</style>
 		<script>
 		$( document ).ready(function() {
-		    $(".loader").fadeOut("slow");
-		   setTimeout("location.reload();",60000*5);		   		    
+			$(".loader").fadeOut("slow");
+		    setTimeout("location.reload();",60000*5);		   		    
 		});	
 			
 		</script>
@@ -119,8 +119,6 @@ $oMySQL -> closeConnection();
 						<th>Estación</th>
 						<th><b>Temperatura (°C)</b></th>
 						<th><b>Fecha Última Transmisión</b></th>
-						
-						
 						<th>Dirección (°)</th>
 						<th>Presión Barométrica (mm/mg)</th>
 						<th>Humedad Relativa (%)</th>
@@ -139,8 +137,7 @@ $oMySQL -> closeConnection();
 					<tr align='center'>
 						<td>".$et['estacion']['stationName']."</td>
 						<td>".$et['info']['temperature']."</td>
-						<td>".$et['info']['stationTime']."</td>
-						
+						<td>".$et['info']['stationTime']."</td>						
 						<td>".$et['info']['windDirection']."</td>
 						<td>".$et['info']['presure']." </td>
 						<td>".$et['info']['humidity']."</td>						

@@ -30,9 +30,9 @@ function logout() {
  */
 function showLogout(showIcon) {
 	if (showIcon) {
-		$("#logout").removeClass("waitLogout").addClass("logout").hide().html("<span id='logoutImage'><a href='#' onclick='logout();'><img src='/home/img/logout_blue.png' width='6%' title='Cerrar Sesión'></a></span>").fadeIn("slow");
+		$("#logout").fadeIn("slow"); 
 	} else {
-		$("#logout").removeClass("logout").addClass("waitLogout").fadeOut("slow").html("<img src='/home/img/wait_logout.gif' width='70%'>");
+		$("#logout").fadeOut("slow");
 	}
 }
 

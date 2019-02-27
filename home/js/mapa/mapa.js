@@ -191,16 +191,8 @@ function attachSecretMessage(marker, message, id, tipo, nombre, carpeta, bd) {
 }
 
 function setPopupPosition(marker) {
-	var marker2 = marker;
-
 	if (isFirstOne) {
-		marker2 = new google.maps.Marker({
-			position: new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng()),
-			animation: marker.animation,
-			opacity: 0,
-			icon: marker.get('icon'),
-			map: marker.get('map')
-		});
+		//marker.set
 		isFirstOne = false;
 		isSecondOne = true;
 		lastLat = marker.getPosition().lat();
@@ -210,21 +202,15 @@ function setPopupPosition(marker) {
 
 		$('#sidebar-out').click();
 
-		marker2 = new google.maps.Marker({
-			position: new google.maps.LatLng(lastLat, lastLong + 0.9), //0.5 (0.2*map.getZoom()/10)
-			animation: marker.animation,
-			opacity: 0,
-			icon: marker.get('icon'),
-			map: marker.get('map')
-		});
+		marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.9));
 
 		switch (map.getZoom()) {
-			case 11: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.45)); break;
-			case 12: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.22)); break;
-			case 13: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.11)); break;
-			case 14: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.055)); break;
-			case 15: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.0275)); break;
-			case 16: marker2.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.01375)); break;
+			case 11: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.45)); break;
+			case 12: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.22)); break;
+			case 13: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.11)); break;
+			case 14: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.055)); break;
+			case 15: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.0275)); break;
+			case 16: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.01375)); break;
 		}
 	}
 
@@ -257,7 +243,7 @@ function setPopupPosition(marker) {
 		}, 1000);	
 	});
 
-	return marker2;
+	return marker;
 }
 
 /**
@@ -289,7 +275,7 @@ function addPopUpCAM(marker, message, id, tipo, carpeta, bd) {
 				session = true;
 				showLogout(true);
 				if (isMapOutOfDate && url != 'isFirstLoad') {
-					//initialize();				
+					initialize();				
 					isMapOutOfDate = false;
 				}
 			} else {
@@ -305,7 +291,7 @@ function addPopUpCAM(marker, message, id, tipo, carpeta, bd) {
 
 $(function(){
 	//checkSessionClick('firstLoad');
-	//showLogout(true);
+	showLogout(session);
 	//showLogout(false);	
 	//Click event handler for green button
 	$(".btn-custom-green").click(function () {

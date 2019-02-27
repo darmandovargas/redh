@@ -7,7 +7,7 @@ session_start();
 include_once ('visit_models.php');
 include_once ('../lib/class.MySQL.php');
 
-session_start();
+// session_start();
 if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
 	$_SESSION['sess'] = true;		
 }else{
@@ -214,8 +214,11 @@ $host = insert_host($oMySQL, $ip);
 												<div class="span6">
 													<div class="media">
 														<div class="media-body" style="margin: 0 0 0 -30px;">	
-															<div class="loader"></div>														
-															<iframe src="content/estado_del_tiempo.php" onload="$('.loader').fadeOut('slow');" width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>
+															<!--
+															<div class="loader"></div>					
+															onload="$('.loader').fadeOut('slow');" 
+															-->									
+															<iframe src="content/estado_del_tiempo.php"  width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>
 														</div>
 													</div>
 												</div>
@@ -367,6 +370,10 @@ $host = insert_host($oMySQL, $ip);
 					<div style="font-size: 28px; color: Dodgerblue; position:absolute; top:10px; right:55px; background-color:#FFFFFF; padding: 6px; border-radius: 2px; box-shadow:0px 1px 1px #b6b6b6; -webkit-box-shadow:0px 1px 1px #b6b6b6; -moz-box-shadow:0px 1px 1px #b6b6b6;">
 						<!-- style="float:right; margin: 10px 10px;" -->
 						<a href="/mapa" target="_blank"><i class="fas fa-map-marked-alt" title="Ver Herramienta de Mapa"></i></a>
+					</div>
+
+					<div id="logout"  onclick='logout();' style="font-size: 28px; color: Dodgerblue; position:absolute; top:10px; right:103px; background-color:#FFFFFF; padding: 6px; border-radius: 2px; box-shadow:0px 1px 1px #b6b6b6; -webkit-box-shadow:0px 1px 1px #b6b6b6; -moz-box-shadow:0px 1px 1px #b6b6b6;">
+						<a href="#"><i class="fas fa-sign-out-alt" title="Logout"></i></a>
 					</div>
 					
 					<div class="row-fluid floating-wrapper" style="top: -600px">
