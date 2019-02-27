@@ -247,7 +247,7 @@ if(!empty($Message)){
 			$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan ".$totalRemainMessages.", comuníquese con Think Cloud Group para comprar un paquete adicional.";	
 			
 			
-			$outOfMessages = "573136355940,573234335384,573108311240";
+			$outOfMessages = "573136355940,573234335384";
 			$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = '.$totalRemainMessages.' WHERE id=2');
 			$resp["outofmessages"] = AltiriaSMS($outOfMessages, $outOfMessagesMsg, "dvargas", false);
 			@error_log(PHP_EOL.PHP_EOL."OUT OF MESSAGES: ".$outOfMessagesMsg.PHP_EOL.$resp["outofmessages"], 3, "/home/thinkclo/public_html/redh/sms.log");
