@@ -67,7 +67,6 @@ if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
 		<script src="js/mapa.js"></script>
 		<script src="js/desplaza.js"></script>
 <script>
-			console.log("BEFORE!");
 			var session = '<?php echo  $_SESSION['sess'];?>';
 			var isMapOutOfDate = true;
 
