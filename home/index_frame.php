@@ -117,6 +117,10 @@ $host = insert_host($oMySQL, $ip);
 								<div align="center">
 									<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="floating-box" style="text-decoration: none;"><h3>Acceso a Empresa</h3></a>								
 								</div>								
+
+								<div align="center">
+									<a href="#" onclick="checkSessionClick();" data-section="8" data-title="" class="floating-box" style="text-decoration: none;"><h3>Contáctenos</h3></a>								
+								</div>								
 							</div>							
 						</div>								
 					</div>

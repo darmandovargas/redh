@@ -67,13 +67,15 @@ if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
 		<script src="js/mapa.js"></script>
 		<script src="js/desplaza.js"></script>
 <script>
+			console.log("BEFORE!");
 			var session = '<?php echo  $_SESSION['sess'];?>';
 			var isMapOutOfDate = true;
 
-			//$(document).ready(function() {
+			$(document).ready(function() {
 				//$("#panel_log").html("Clic<img src='../home/img/wait_logout.gif' width='70%'>");
 				//checkSessionClick();
-			//});
+				showLogout(session);
+			});
 
 			function checkSessionClick(url) {
 				isSession = false;
@@ -231,7 +233,7 @@ if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
 			<span id="logout" class="logout">
 		</div>
 	-->
-		<div id="logout"  onclick='logout();' style="">
+		<div id="logout"  onclick='logout();'>
 			<i class="fas fa-sign-out-alt" title="Logout"></i>
 		</div>
 		<!--<img class="weather" src="img/Weather-icon.png" title="Ver Clima Según Google" />-->
