@@ -3,11 +3,11 @@ var isFirstOne = true;
 var isSecondOne = false;
 var lastLat = 0;
 var lastLong = 0;
+var openedStationsWindows = [];
 var openedStations = [];
-var map="";
-var lastZoom = 0;
-
-//$(document).ready(function () {
+var openedStationsPositions = [];
+var map = "";
+var lastZoom = 10;
 
 DebugOverlay.prototype = new google.maps.OverlayView();
 
@@ -30,7 +30,7 @@ function initialize() {
 	//map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
 	var infowindow = new google.maps.InfoWindow();
-	
+
 	var marker = new google.maps.Marker({
 		map: map,
 		anchorPoint: new google.maps.Point(0, -29)
@@ -51,8 +51,8 @@ function initialize() {
 				icon: obj.icono,
 				map: map
 			});
-			
-			marker.setTitle(obj.nombre);//obj.tipo + ": " +  
+
+			marker.setTitle(obj.nombre); //obj.tipo + ": " +  
 			if (obj.carpeta == "cam") {
 				addPopUpCAM(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.coordenadas.latitud + "longitud: " + obj.coordenadas.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
 			} else {
@@ -60,6 +60,7 @@ function initialize() {
 			}
 
 			google.maps.event.addListener(marker, 'click', toggleBounce);
+
 		}
 
 		function toggleBounce() {
@@ -139,45 +140,50 @@ DebugOverlay.prototype.onRemove = function () {
 };
 // Fin Superposición Funciones
 
+
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data
 function attachSecretMessage(marker, message, id, tipo, nombre, carpeta, bd) {
-	
 	content = '<div class="scrollFix"><iframe class="infoWindow" src="../tabs/tabs.php?id=' + id + '&tipo=' + tipo + '&carpeta=' + carpeta + '&bd=' + bd + '" height="485px" width="700px"  scrolling="no"></iframe></div>'
 
 	var infowindow = new google.maps.InfoWindow({
 		content: content,
 		maxWidth: 605
 	});
+	//infoWindowPosition++;
+
+
 
 	google.maps.event.addListener(marker, 'click', function () {
-
 		if (isFirstOne) {
-			if (openedStations.length > 0) {
-				let popToClose = openedStations[0];
+			if (openedStationsWindows.length > 1) {
+				let popToClose = openedStationsWindows[0];
 				popToClose.close();
-				openedStations.push(infowindow);
 				openedStations.shift();
-			} else {
-				openedStations.push(infowindow);
+				openedStationsPositions.shift();
+				openedStationsWindows.shift();
 			}
-		} else if (isSecondOne) {
-			if (openedStations.length > 1) {
-				let popToClose = openedStations[0];
-				popToClose.close();
-				openedStations.push(infowindow);
-				openedStations.shift();
-			} else {
-				openedStations.push(infowindow);
-			}
+
 		} else {
-			isFirstOne = true;
-			let popToClose = openedStations[0];
-			popToClose.close();
-			openedStations.push(infowindow);
-			openedStations.shift();
+			if (openedStationsWindows.length > 1) {
+				let popToClose = openedStationsWindows[0];
+				popToClose.close();
+
+				openedStations[0].setOpacity(1);
+				openedStations[0].setPosition(openedStationsPositions[0]);
+				openedStations.pop();
+				openedStationsPositions.pop();
+				openedStationsWindows.pop();
+			}
 		}
-		
+
+		openedStationsWindows.push(infowindow);
+		openedStations.push(marker);
+
+		var lat = marker.getPosition().lat();
+		var lng = marker.getPosition().lng();
+		openedStationsPositions.push(new google.maps.LatLng(lat, lng));
+
 		infowindow.open(marker.get('map'), setPopupPosition(marker));
 
 		$.get({
@@ -187,37 +193,106 @@ function attachSecretMessage(marker, message, id, tipo, nombre, carpeta, bd) {
 				$("#ta").html(htmlraw);
 			}
 		});
+
+		google.maps.event.addListener(infowindow, 'closeclick', function () {
+			// If the window we are closing is the second one we opened, then return the marker to the initial position and make it visible
+			if (openedStationsWindows[0] != undefined && openedStationsWindows[0].content != infowindow.content) {
+				if (openedStations[1] != undefined) {
+					openedStations[1].setOpacity(1);
+					openedStations[1].setPosition(openedStationsPositions[1]);
+					isFirstOne = false;
+					openedStationsWindows.pop();
+					openedStations.pop();
+					openedStationsPositions.pop();
+				} 				
+			} else {
+				openedStationsWindows.shift();
+				openedStations.shift();
+				openedStationsPositions.shift();
+				if (openedStationsWindows.length == 0) {
+					isFirstOne = true;
+				}
+			}
+			//console.log("closeclick: "+openedStationsWindows.length);		
+		});
 	});
 }
 
+/**
+ * This function allows to perform the position of the marker infow
+ * @param {*} marker 
+ */
 function setPopupPosition(marker) {
-	if (isFirstOne) {
-		//marker.set
+	
+	if (isFirstOne) { // && openedStationsWindows.length < 2
 		isFirstOne = false;
-		isSecondOne = true;
 		lastLat = marker.getPosition().lat();
 		lastLong = marker.getPosition().lng();
 	} else {
-		isSecondOne = false;
+		isFirstOne = true;
 
 		$('#sidebar-out').click();
 
-		marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.9));
+		//console.log("lastZoom:"+lastZoom+" map.getZoom():"+map.getZoom());
+		let factor = 0.9;
 
-		switch (map.getZoom()) {
-			case 11: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.45)); break;
-			case 12: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.22)); break;
-			case 13: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.11)); break;
-			case 14: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.055)); break;
-			case 15: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.0275)); break;
-			case 16: marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.01375)); break;
+		if ((map.getZoom() - 10) > 0) {
+			for (var i = 0; i < (map.getZoom() - 10); i++) {
+				factor = factor / 2;
+			}
+			marker.setPosition(new google.maps.LatLng(lastLat, lastLong + factor));
+		} else if ((map.getZoom() - 10) == 0) {
+			marker.setPosition(new google.maps.LatLng(lastLat, lastLong + 0.9));
+
 		}
+		/*else if((map.getZoom() - 10)<0){
+						for (var i = 0; i < (map.getZoom() - 10); i--) {
+							factor = factor2;	
+						}
+
+						marker.setPosition(new google.maps.LatLng(lastLat, lastLong - factor));
+					}*/
+
+
+		marker.setOpacity(0);
+		lastZoom = map.getZoom();
+
 	}
 
-	map.addListener('zoom_changed', function() {
+	map.addListener('zoom_changed', function () {
+
+		//console.log("zoom has changed");
+		//console.log("lastZoom:"+lastZoom+" map.getZoom():"+map.getZoom());
+		let factor = 0.9;
+		if (lastZoom != map.getZoom() && openedStations.length > 0) {
+
+			//let factor = 0.9;
+			if (openedStations[1] != undefined) {
+
+				if ((map.getZoom() - 10) > 0) {
+					for (var i = 0; i < (map.getZoom() - 10); i++) {
+						factor = factor / 2;
+					}
+					openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng() - factor));
+				} else if ((map.getZoom() - 10) == 0) {
+					openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng() + factor));
+
+				}
+				/*else if((map.getZoom() - 10)<0){
+											//let factor = 0.9;
+											for (var i = 0; i > (map.getZoom() - 10); i--) {
+												factor = factor*1.1;	
+											}
+											openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+factor));
+										}*/
+
+			}
+		}
+		lastZoom = map.getZoom();
+		//openedStations[1].setPosition(new google.maps.LatLng(openedStations[1].getPosition().lat(), openedStations[1].getPosition().lng()+0.45));
 		// 3 seconds after the center of the map has changed, pan back to the
-		// marker.
-		window.setTimeout(function() {					
+		// marker._________
+		/*window.setTimeout(function() {					
 			// Zoom out  
 			if(lastZoom > map.getZoom()){
 				switch(map.getZoom()){
@@ -240,7 +315,17 @@ function setPopupPosition(marker) {
 				}					
 			}
 			lastZoom = map.getZoom();
-		}, 1000);	
+		}, 1000);*/
+
+		/*
+		zoom*factor = lngFactor
+		11 = 0.0409
+		12 = 0.0183
+		13 = 0.00846
+		14 = 0.00392
+		15 = 0.00183
+		16 = 0.000859375
+		*/
 	});
 
 	return marker;
@@ -260,39 +345,37 @@ function addPopUpCAM(marker, message, id, tipo, carpeta, bd) {
 	});
 }
 
-	/**
-	 * This function will do the ajax call to see if there is session
-	 * @return boolean
-	 */
-	function checkSessionClick(url) {
-		isSession = false;
+/**
+ * This function will do the ajax call to see if there is session
+ * @return boolean
+ */
+function checkSessionClick(url) {
+	isSession = false;
 
-		$.ajax({
-			type: "POST",
-			url: "content/login/validate.php"
-		}).done(function (msg) {
-			if (msg == "success") {
-				session = true;
-				showLogout(true);
-				if (isMapOutOfDate && url != 'isFirstLoad') {
-					initialize();				
-					isMapOutOfDate = false;
-				}
-			} else {
-				session = false;
-				showLogout(false);
+	$.ajax({
+		type: "POST",
+		url: "content/login/validate.php"
+	}).done(function (msg) {
+		if (msg == "success") {
+			session = true;
+			showLogout(true);
+			if (isMapOutOfDate && url != 'isFirstLoad') {
+				initialize();
+				isMapOutOfDate = false;
 			}
-			//setTimeout("google.maps.event.addDomListener(window, 'load', initialize);",5000);
-			
-		});
+		} else {
+			session = false;
+			showLogout(false);
+		}
+		//setTimeout("google.maps.event.addDomListener(window, 'load', initialize);",5000);
 
-		return isSession;
-	}
+	});
 
-$(function(){
-	//checkSessionClick('firstLoad');
+	return isSession;
+}
+
+$(function () {
 	showLogout(session);
-	//showLogout(false);	
 	//Click event handler for green button
 	$(".btn-custom-green").click(function () {
 		window.open("../mapa", '_blank');
@@ -300,5 +383,3 @@ $(function(){
 });
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
-//google.maps.event.addDomListener(window, 'load', initialize);
