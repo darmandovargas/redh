@@ -1,5 +1,6 @@
 <?php
-
+// Timezone fix so now time creation returns a Colombian (Panama) Timezone in order to avoid issues with the diff
+date_default_timezone_set("America/Pangnirtung");
 /**
  * @author Juan manuel Mora <juan_manuel28@hotmail.com>
  * @date   29-10-214
@@ -11,7 +12,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * @author Juan manuel Mora <juan_manuel28@hotmail.com>
  * @date   29-10-214
@@ -63,12 +63,18 @@ function insert_host($oMySQL,$ip){
         return search_num_visit($oMySQL);
     }else{
         $fecha_host = date($search['last_date']);
-        $nuevafecha = strtotime ( '+1 hour' , strtotime ( $fecha_host ) ) ;
+        $nuevafecha = strtotime ( '+1 hour' , strtotime ( $fecha_host ) ) ;        
         $nuevafecha = date ( 'Y-m-d H:i:s' , $nuevafecha );
+        //print_r($nuevafecha);
         $ahora = date("Y-m-d H:i:s");
         $date1=date_create($nuevafecha);
         $date2=date_create($ahora);
-        $diff=date_diff($date1,$date2);
+        $diff=date_diff($date1,$date2);        
+        /*print_r($date1);
+        print_r($date2);
+        print_r($diff->format("%h"));
+        */        
+        
         if($diff->format("%h") > 0 ){            
             $id = $search['id'];
             $query = "UPDATE ti_visitas SET last_date = NOW(),visitas=visitas+1 WHERE id = '$id';";	

@@ -24,6 +24,8 @@ if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
     $ip=$_SERVER['REMOTE_ADDR'];
 }
 
+//echo $ip; 
+
 $host = insert_host($oMySQL, $ip);
 ?>
 <!DOCTYPE html>
@@ -117,10 +119,11 @@ $host = insert_host($oMySQL, $ip);
 								<div align="center">
 									<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="floating-box" style="text-decoration: none;"><h3>Acceso a Empresa</h3></a>								
 								</div>								
-
+								<!--
 								<div align="center">
 									<a href="#" onclick="checkSessionClick();" data-section="8" data-title="" class="floating-box" style="text-decoration: none;"><h3>Contáctenos</h3></a>								
-								</div>								
+								</div>
+								-->
 							</div>							
 						</div>								
 					</div>
@@ -343,10 +346,13 @@ $host = insert_host($oMySQL, $ip);
 					<!-- end block-wrapper -->
 
 					<div class="row-fluid leave-gap page-footer">
-				       <hr />
+					<div style="color: #929292; text-align:center; margin-top: 5px;">
+						Visitas <span><?php echo $host; ?></span>
+                    </div>
+					<hr/>
 						<div class="span12" style="margin-left:-10px;">
 							<div style="text-align: center; ">
-								<video width="90%" src="img/logos/LOGOSUTP6.mp4" autoplay muted loop>
+								<video width="90%" src="img/logos/LOGOSUTP6.mp4" autoplay muted loop preload="none">
 									Tu navegador no implementa el elemento <code>video</code>.									
 								</video>
 							</div>
@@ -377,7 +383,7 @@ $host = insert_host($oMySQL, $ip);
 					</div>
 
 					<div id="logout"  onclick='logout();' style="font-size: 28px; color: Dodgerblue; position:absolute; top:10px; right:103px; background-color:#FFFFFF; padding: 6px; border-radius: 2px; box-shadow:0px 1px 1px #b6b6b6; -webkit-box-shadow:0px 1px 1px #b6b6b6; -moz-box-shadow:0px 1px 1px #b6b6b6;">
-						<a href="#"><i class="fas fa-sign-out-alt" title="Logout"></i></a>
+						<i class="fas fa-sign-out-alt" title="Logout"></i>
 					</div>
 					
 					<div class="row-fluid floating-wrapper" style="top: -600px">
