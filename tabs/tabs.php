@@ -315,17 +315,17 @@ if($idEstacion!="0"){
 					<?php 
 					}
 					?>
-					<li class="sky-tab-content-2" style="width:90.5%; height: 376px;">
+					<li class="sky-tab-content-2" style="width:90.5%; height: 400px;">
 						<div class="typography" style="margin: 0 0 0 52px;">
-							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="500px" width="90%"></iframe>
+							<iframe src="../galeria/index.php?id=<?php echo $idEstacion."&name=".$nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="500px" width="90%" scrolling="no" frameBorder="0"></iframe>
 						</div>
 					</li>
-					<li class="sky-tab-content-3" style="width:90.5%; height: 376px;">
+					<li class="sky-tab-content-3" style="width:90.5%; height: 425px;">
 						<div class="typography"  >
 						<?php
 							$nombre_estacion = (empty($nombre_estacion))?$carpeta:$nombre_estacion;
 						?>
-							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="400px" width="540px"></iframe>
+							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="700px" width="540px" scrolling="no" frameBorder="0"></iframe>
 						</div>
 					</li>
 				</ul>
