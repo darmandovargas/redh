@@ -6,6 +6,7 @@ session_start();
 // Obtiene la conexión a la bd
 include_once ('visit_models.php');
 include_once ('../lib/class.MySQL.php');
+include_once ('../lib/redhadmin_connection.php');
 
 // session_start();
 if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
@@ -58,8 +59,18 @@ $host = insert_host($oMySQL, $ip);
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 		<script type="text/javascript" src="js/perfect-scrollbar-0.3.3/perfect-scrollbar.js"></script>
 		<script type="text/javascript" src="js/global.js"></script>
-		<script src="../mapa/js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
-
+		<!-- -->
+		<script src="../mapa/js/estaciones_new.js?rndstr=<?php  echo uniqid(); ?>"></script>
+			
+		<script>
+		<?php 
+		if(!empty($stations)){ ?>
+			estacionesJSON = <?php echo empty($stations)?"[]":$stations; ?>;
+		<?php
+		} 
+		?>					
+		</script>
+		
 		<script>			
 			var session = '<?php echo  $_SESSION['sess'];?>';
 		</script>
@@ -67,6 +78,7 @@ $host = insert_host($oMySQL, $ip);
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8&v=3.exp"></script> <!-- &libraries=places&sensor=false -->
 		<script src="js/index.js"></script>
 		<script src="js/mapa/mapa.js"></script>
+		
 		
 	</head>
 	<body>
@@ -377,12 +389,11 @@ $host = insert_host($oMySQL, $ip);
 						      <label for="changetype-geocode">Geocodes</label>
 							</div>
 
-					<div style="font-size: 28px; color: Dodgerblue; position:absolute; top:10px; right:55px; background-color:#FFFFFF; padding: 6px; border-radius: 2px; box-shadow:0px 1px 1px #b6b6b6; -webkit-box-shadow:0px 1px 1px #b6b6b6; -moz-box-shadow:0px 1px 1px #b6b6b6;">
-						<!-- style="float:right; margin: 10px 10px;" -->
-						<a href="/mapa" target="_blank"><i class="fas fa-map-marked-alt" title="Ver Herramienta de Mapa"></i></a>
+					<div class="map-icon">
+						<a href="/mapa" target="_blank" style="text-decoration:none;" class="a-map-icon"><i class="fas fa-map-marked-alt" title="Ver Herramienta de Mapa"></i></a>
 					</div>
 
-					<div id="logout"  onclick='logout();' style="font-size: 28px; color: Dodgerblue; position:absolute; top:10px; right:103px; background-color:#FFFFFF; padding: 6px; border-radius: 2px; box-shadow:0px 1px 1px #b6b6b6; -webkit-box-shadow:0px 1px 1px #b6b6b6; -moz-box-shadow:0px 1px 1px #b6b6b6;">
+					<div id="logout"  onclick='logout();' class="logout-icon">
 						<i class="fas fa-sign-out-alt" title="Logout"></i>
 					</div>
 					

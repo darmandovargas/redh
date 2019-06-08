@@ -1,3 +1,4 @@
+reportes/
 lib/sms.php
 lib/class.MySQL.php
 .settings/org.eclipse.core.resources.prefs
@@ -12,3 +13,9 @@ mapa/uploads
 .vscode/ftp-sync.json
 .gitignore.swp
 .project
+home/cookie.txt
+tmp.js
+reportes/boletines/estaciones/example tree folder structure/2017/mensual/stationame_YYYY-MM.pdf
+reportes/boletines/estaciones/example tree folder structure/2017/diarios/abril/stationname_YYYY-MM-DD.pdf
+reportes/boletines/estaciones/el cedral ect/2017/mensual/stationame_YYYY-MM.pdf
+reportes/boletines/estaciones/el cedral ect/2017/diarios/abril/stationname_YYYY-MM-DD.pdf

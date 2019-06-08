@@ -210,6 +210,8 @@ if($idEstacion!="0"){
 	}
 	 </script>
 <?php 
+
+//mysqli_close($oMySQL);
 } 
 ?>
 	</head>
@@ -325,7 +327,7 @@ if($idEstacion!="0"){
 						<?php
 							$nombre_estacion = (empty($nombre_estacion))?$carpeta:$nombre_estacion;
 						?>
-							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="700px" width="540px" scrolling="no" frameBorder="0"></iframe>
+							<iframe src="../reportes/index.php?name=<?php echo $nombre_estacion."&tipo=".$tipoEstacion."&folder=".$carpeta; ?>" height="740px" width="540px" scrolling="no" frameBorder="0"></iframe>
 						</div>
 					</li>
 				</ul>

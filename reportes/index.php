@@ -82,6 +82,6 @@
         </div>
         <div id="modal_wait" style="position: absolute;width: 100%;height:100%;background-color: white;opacity: 0.5;z-index: 100;top:0;display: none;"></div>
         <div id="mensaje" style="margin-left: 220px;display: none;opacity: 0.1;"><img src="../home/content/contactenos/wait.gif" alt="cargando" /></div>
-        <div id="archive" style="margin-top: 30px;"></div>
+        <div id="archive" style="margin-top: 10px;"></div>
     </body>
 </html>

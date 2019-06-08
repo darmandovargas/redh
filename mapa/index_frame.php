@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+
+include_once ('../lib/redhadmin_connection.php');
+
 if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
 	$_SESSION['sess'] = true;		
 }else{
@@ -63,18 +66,25 @@ if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
 		<!-- &key=AIzaSyBA1M3-e9UO0KCvslfK44zM67ZPM77oy_o -->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8&v=3.exp&libraries=places,weather,drawing"></script>
 		
-		<script src="js/estaciones.js?rndstr=<?php  echo uniqid(); ?>"></script>
+		<script src="js/estaciones_new.js?rndstr=<?php  echo uniqid(); ?>"></script>
 		<script src="js/mapa.js"></script>
 		<script src="js/desplaza.js"></script>
+
+		
 <script>
 			var session = '<?php echo  $_SESSION['sess'];?>';
 			var isMapOutOfDate = true;
 
-			$(document).ready(function() {
-				//$("#panel_log").html("Clic<img src='../home/img/wait_logout.gif' width='70%'>");
-				//checkSessionClick();
+			$(document).ready(function() {				
 				showLogout(session);
 			});
+
+			<?php 
+			if(!empty($stations)){ ?>
+				estacionesJSON = <?php echo empty($stations)?"[]":$stations; ?>;				
+			<?php
+			} 
+			?>		
 
 			function checkSessionClick(url) {
 				isSession = false;

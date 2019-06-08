@@ -11,7 +11,7 @@ iconoEQT  = 'http://'+window.location.host+'/mapa/img/caudal.png'; // Estaciones
 // Pozos added 27-07-2017
 iconoPozo  = 'http://'+window.location.host+'/mapa/img/pozo.png'; // Estaciones de Pozo similar a las de Nivel
 
-estacionesJSON = [
+var estacionesJSON = [
   		{
   			"id" : "46",
   			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
@@ -27,10 +27,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.814751659,
 		      "longitud": -75.69949032
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -54,10 +54,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.750273723,
 		      "longitud": -75.490426
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -81,10 +81,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.872101755,
 		      "longitud": -75.70935144
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -108,10 +108,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 5.295278392,
 		      "longitud": -75.69944588
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -136,10 +136,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.833718335,
 		      "longitud": -75.67106802
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -163,10 +163,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 5.257036639,
 		      "longitud": -75.83335167
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -192,10 +192,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.740882052,
 		      "longitud": -75.44244535
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -220,10 +220,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.731862605,
 		      "longitud": -75.44713981
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -248,10 +248,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.702895856,
 		      "longitud": -75.53377329
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -276,10 +276,10 @@ estacionesJSON = [
 		      "6": "direccion",
 		      "7": "evapotranspiracion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.823268326,
 		      "longitud": -75.60587622
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -295,10 +295,9 @@ estacionesJSON = [
 		    "nombre": "ECT012 (Mundo Nuevo)",
 		    "carpeta":"mundo nuevo",
 		    "variables": {},
-		    "coordenadas": {
+		    
 		      "latitud": 4.773618228, 
-		      "longitud": -75.66105968  
-		    },
+		      "longitud": -75.66105968,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -313,10 +312,9 @@ estacionesJSON = [
 		    "nombre": "ECT013 (La Colonia)",
 		    "carpeta":"la colonia",
 		    "variables": {},
-		    "coordenadas": {
+		    
 		      "latitud": 4.751043171, 
-		      "longitud": -75.62707072  
-		    },
+		      "longitud": -75.62707072,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -331,10 +329,10 @@ estacionesJSON = [
 		    "nombre": "ECT014 (Ukumarí)",
 		    "carpeta":"ukumari",
 		    "variables": {},
-		    "coordenadas": {
+		    
 		      "latitud": 4.803568281, 
-		      "longitud": -75.8103572  
-		    },
+		      "longitud": -75.8103572  ,
+		    
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -349,10 +347,10 @@ estacionesJSON = [
 		    "nombre": "EHT015 (La Curva)",
 		    "carpeta":"la curva",
 		    "variables": {},
-		    "coordenadas": {
+		    
 		      "latitud": 4.783115488, 
 		      "longitud": -75.68810416
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -367,10 +365,10 @@ estacionesJSON = [
 		    "nombre": "EHT016 (La Católica)",
 		    "carpeta":"la catolica",
 		    "variables": {},
-		    "coordenadas": {
+		    
 		      "latitud": 4.806909961, 
 		      "longitud": -75.72643758
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -388,10 +386,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.70317919,
 		      "longitud": -75.53658441
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -410,10 +408,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.756979306,
 		      "longitud": -75.59752067
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -433,10 +431,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.970768616,
 		      "longitud": -75.93162134
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -456,10 +454,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 5.278800582,
 		      "longitud": -75.82782112
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -478,10 +476,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 5.248022748,
 		      "longitud": -75.84114614
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -500,10 +498,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 5.23686437,
 		      "longitud": -75.81181276
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -524,10 +522,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.78061548,
 		      "longitud": -75.64479298
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -547,10 +545,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.78345435,
 		      "longitud": -75.63460127
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -570,10 +568,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.73277094,
 		      "longitud": -75.45494814
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -593,10 +591,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.73420425,
 		      "longitud": -75.45445092
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -616,10 +614,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.73219872,
 		      "longitud": -75.56929003
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -639,10 +637,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.75697931,
 		      "longitud": -75.59752067
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -663,10 +661,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 5.18854483,
 		      "longitud": -75.81336554
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -685,10 +683,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.88294624,
 		      "longitud": -75.7169181
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EHT",
 		    "icono": iconoEHT,
@@ -706,10 +704,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.781601593,
 		      "longitud": -75.64497076
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ENT",
 		    "icono": iconoENT, 
@@ -726,10 +724,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.818462752,
 		      "longitud": -75.72730703
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ENT",
 		    "icono": iconoENT, 
@@ -746,10 +744,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.818390529,
 		      "longitud": -75.7277487
-		    },
+,
 		    "isPublic": false,
 		    "tipo":"ENT",
 		    "icono": iconoENT,  
@@ -758,17 +756,17 @@ estacionesJSON = [
 		    "fecha": "29 de julio de 2013",
 		    "estado": "Activa"	  		  
 		},{
-			"id":"78",
+			"id":"78",// Pending for ID 
   			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
-				"nombre": "ENT004 (Canal Exceso Belmonte) ",				
+		    "nombre": "ENT004 (Canal Exceso Belmonte) ",
         "carpeta": "canal de excesos belmonte",
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.817629415,
 		      "longitud": -75.7734599
-		    },
+,
 		    "isPublic": false,
 		    "tipo":"ENT",
 		    "icono": iconoENT, 
@@ -785,10 +783,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "caudal"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.804343284,
 		      "longitud": -75.66661526
-		    },
+,
 		    "isPublic": false,
 		    "tipo":"EQT",
 		    "icono": iconoEQT, 
@@ -805,10 +803,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "caudal"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.815651663,
 		      "longitud": -75.77360156
-		    },
+,
 		    "isPublic": false,
 		    "tipo":"EQT",
 		    "icono": iconoEQT, 
@@ -831,10 +829,10 @@ estacionesJSON = [
 		      "5": "Velocidad del Viento",
 		      "6": "Dirección del Viento"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.861723969,
 		      "longitud": -75.65464021
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EC",
 		    "icono": iconoECT,
@@ -849,10 +847,10 @@ estacionesJSON = [
 		    "nombre": "EC005 (Universidad Católica)",
 		    "carpeta": "universidad catolica",
 		    "variables": {},
-		    "coordenadas": {
+		    
 		      "latitud": 4.80414884,
 		      "longitud": -75.72504036
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EC",
 		    "icono": iconoEC,
@@ -870,10 +868,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.741718167,
 		      "longitud": -75.59009842
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SN",
 		    "icono": iconoSN,
@@ -890,10 +888,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.744059843,
 		      "longitud": -75.60326232
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SN",
 		    "icono": iconoSN,
@@ -910,10 +908,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.759279315,
 		      "longitud": -75.61186236
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SN",
 		    "icono": iconoSN,
@@ -930,10 +928,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.783696013,
 		      "longitud": -75.63461238
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SN",
 		    "icono": iconoSN,
@@ -950,10 +948,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.769723768,
 		      "longitud": -75.60855679
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SN",
 		    "icono": iconoSN,
@@ -970,10 +968,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.800371046,
 		      "longitud": -75.73376536
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SN",
 		    "icono": iconoSN,
@@ -991,10 +989,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.736584813,
 		      "longitud": -75.56916781
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SN",
 		    "icono": iconoSN,
@@ -1012,10 +1010,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.738834822,
 		      "longitud": -75.58364006
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SNNT",
 		    "icono": iconoSN,
@@ -1032,10 +1030,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.738368153,
 		      "longitud": -75.58307064
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SNNT",
 		    "icono": iconoSN,
@@ -1052,10 +1050,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.744045954,
 		      "longitud": -75.60941513
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD, 
@@ -1072,10 +1070,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.738934822,
 		      "longitud": -75.6177679
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1092,10 +1090,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.711854225,
 		      "longitud": -75.66235135
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1112,10 +1110,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.744709846,
 		      "longitud": -75.70915421
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1132,10 +1130,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.874440653,
 		      "longitud": -75.78304604
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1153,10 +1151,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.740557051,
 		      "longitud": -75.58052897
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1173,10 +1171,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.742445948,
 		      "longitud": -75.58047341
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1193,10 +1191,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.793668275,
 		      "longitud": -75.69079306
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,//iconoEC,
@@ -1213,10 +1211,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.813973878,
 		      "longitud": -75.68077917
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1233,10 +1231,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.821334985,
 		      "longitud": -75.70369586
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1253,10 +1251,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.821909988,
 		      "longitud": -75.7247848
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1273,10 +1271,10 @@ estacionesJSON = [
 		    "variables": {
 		      "0": "Precipitación"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.801954386,
 		      "longitud": -75.7249348
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1293,10 +1291,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.802251609,
 		      "longitud": -75.70397364
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1313,10 +1311,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.792168269,
 		      "longitud": -75.71141256
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1333,10 +1331,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.792140491,
 		      "longitud": -75.7269987
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1353,10 +1351,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.796982177,
 		      "longitud": -75.66864301
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1373,10 +1371,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.807421074,
 		      "longitud": -75.69224029
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1393,10 +1391,10 @@ estacionesJSON = [
 		    "variables": {
 		    	"0": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.781084924,
 		      "longitud": -75.69473475
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"PD",
 		    "icono": iconoPD,
@@ -1414,10 +1412,10 @@ estacionesJSON = [
 		    	"0": "temperatura",
 		    	"1": "precipitacion"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 5.125555824,
 		      "longitud": -76.0019139
-		    },
+,
 		    "isPublic": true,
 		    //"tipo":"PDT", Changed in order to allow reports to autoselect
 		    "tipo":"PDT",
@@ -1433,10 +1431,10 @@ estacionesJSON = [
 		    "nombre": "EC004 (Lisbrán)",
 		    "carpeta": "lisbran",
 		    "variables": {},
-		    "coordenadas": {
+		    
 		      "latitud": 4.73788204,
 		      "longitud": -75.58422895
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"EC",
 		    "icono": iconoEC,
@@ -1466,10 +1464,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.77801546,
 		      "longitud": -75.6959792
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SNS",
 		    "icono": iconoPozo,
@@ -1488,10 +1486,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.80373773,
 		      "longitud": -75.84493227
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SNS",
 		    "icono": iconoPozo,
@@ -1510,10 +1508,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.76209322,
 		      "longitud": -75.9066546
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SNS",
 		    "icono": iconoPozo,
@@ -1532,10 +1530,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.815996108,
 		      "longitud": -75.80399328
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SNS",
 		    "icono": iconoPozo,
@@ -1554,10 +1552,10 @@ estacionesJSON = [
 		      "1": "precipitacion",
 		      "2": "nivel"
 		    },
-		    "coordenadas": {
+		    
 		      "latitud": 4.80924886,
 		      "longitud": -75.79177382
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"SNS",
 		    "icono": iconoPozo,
@@ -1583,11 +1581,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 4.993,
 			    "longitud": -75.982
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1612,11 +1610,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 5.203,
 			    "longitud": -75.867
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1641,11 +1639,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 4.818,
 			    "longitud": -75.679
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1670,11 +1668,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 4.936,
 			    "longitud": -75.740
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1699,11 +1697,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 5.297,
 			    "longitud": -75.883
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1728,11 +1726,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 4.807,
 			    "longitud": -75.719
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1757,11 +1755,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 4.882,
 			    "longitud": -75.725
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1786,11 +1784,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 4.745,
 			    "longitud": -75.713
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1815,11 +1813,11 @@ estacionesJSON = [
 			      "6": "direccion",
 			      "7": "evapotranspiracion"
 			},
-		    "coordenadas": {
+		    
 		    
 		    		"latitud": 5.324,
 			    "longitud": -75.712
-		    },
+,
 		    "isPublic": true,
 		    "tipo":"ECT",
 		    "icono": iconoECT,
@@ -1827,34 +1825,5 @@ estacionesJSON = [
 		    "ubicacion": "",
 		    "fecha": "25 de Febrero de 2018",
 		    "estado": "Activa"	  		  
-		}/*,
-		{
-			"id" : "IQUINCHA3",
-			"bd" : "wunderground",
-  			"nombrelargo": "Cartagueño, Quinchía",
-		    "nombre": "Cartagueño, Quinchía",
-		    "carpeta": "cartagueno quinchia",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    "coordenadas": {
-		    
-		    		"latitud": 5.333,
-			    "longitud": -75.688
-		    },
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		}*/
+		}
 	];

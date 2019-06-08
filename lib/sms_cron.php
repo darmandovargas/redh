@@ -270,4 +270,6 @@ if(!empty($Message)){
 	//error_log(PHP_EOL.PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
 	echo "</br>There is no alarm to be sent</br>";
 }
+
+$oMySQL->closeConnection();
 ?>
