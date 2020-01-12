@@ -71,15 +71,20 @@ function scandirectory($path,$name){
     if($path != ""){
         $directorio = "boletines/".$path;
         $gestor_dir = opendir($directorio);
+        //echo "1</br>";        
         if($gestor_dir){
+            //echo "2</br>";        
         	$files = scandir($directorio);
             foreach ($files as $nombre_fichero) {	
-                if($nombre_fichero != "." && $nombre_fichero != ".." && $nombre_fichero != ".DS_Store" && $nombre_fichero != "Icon_"){
+                //echo $nombre_fichero."</br>"; 
+                $weirdChar = strpos($nombre_fichero, "Catalu");
+                $weirdChar2 = strpos($nombre_fichero, "testcu");       
+                if ($nombre_fichero != "." && $nombre_fichero != ".." && $nombre_fichero != ".DS_Store" && $nombre_fichero != "Icon_" && $weirdChar === false && $weirdChar2 === false){
                     $selected = "";
                     if($name != "" && $nombre_fichero == strtolower($name))
                         $selected = "selected='selected'";
 					//Filtra estaciones privadas 
-					if($_SESSION['sess']){
+					if(isset($_SESSION['sess']) && $_SESSION['sess']){
 						$salida .= "<option value='".$nombre_fichero."' $selected >".ucwords($nombre_fichero)."</option>";	
 					}else{
 						if(!in_array($nombre_fichero, $GLOBALS['privateStations'])){
@@ -157,9 +162,9 @@ function search_directory($path,$name,$carpeta,$tipo){
 
 function normaliza ($cadena){
     $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞ
-ßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ';
+ßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ�';
     $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuy
-bsaaaaaaaceeeeiiiidnoooooouuuyybyRr';
+bsaaaaaaaceeeeiiiidnoooooouuuyybyRr_';
     $cadena = utf8_decode($cadena);
     $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
     $cadena = strtolower($cadena);

@@ -1,0 +1,64 @@
+<!-- wrapper -->
+<mat-sidenav-container>
+  <mat-sidenav-content>
+      
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate >
+      <!-- Name -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nombre" formControlName="name">
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('name', 'required')">
+          Debe ingresar un <strong>nombre</strong> válido
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('email', 'required') || errorHandling('email', 'email')">
+            Debe ingresar un <strong>email</strong> válido
+        </mat-error>       
+      </mat-form-field>
+
+      <!-- Class 
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="Teléfono" formControlName="telephone">
+      -->
+        <!-- error 
+        <mat-error *ngIf="errorHandling('telephone', 'required')">
+            Debe ingresar un <strong>teléfono</strong> válido
+        </mat-error>
+      </mat-form-field>
+      -->
+
+      <!-- Class -->
+      <mat-form-field>
+          <mat-label>Asunto</mat-label>
+          <input matInput placeholder="Asunto" formControlName="subject">
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('subject', 'required')">
+              Debe ingresar un <strong>asunto</strong> válido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput placeholder="Mensaje" formControlName="message"></textarea>
+             <!-- error -->
+            <mat-error *ngIf="errorHandling('message', 'required')">
+              Debe ingresar un <strong>mensaje</strong> válido
+          </mat-error>
+          </mat-form-field>
+
+        <re-captcha (resolved)="resolved($event)" siteKey="6LdZdbUUAAAAADeUyTZhHrGeBdcWG9U_ZQSSRTWX" formControlName="recaptcha"></re-captcha>
+        
+      <!-- Submit -->
+      <div class="button-wrapper">
+        <button mat-flat-button color="basic" [disabled]="myForm.invalid">Enviar Mensaje</button>
+      </div>
+      <div *ngIf="message!=''" style="color: #4CAF4F; text-align: center;">{{message}}</div> 
+    </form>
+  </mat-sidenav-content>
+</mat-sidenav-container>

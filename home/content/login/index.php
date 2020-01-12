@@ -33,8 +33,9 @@
 		
 	</style>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script> 
+	<script src="../../../lib/jquery-1.11.1.min.js"></script>
+	<script src="../../../lib/jquery.form.js"></script>	
+
 	<script> 
         // wait for the DOM to be loaded 
 /*        $(document).ready(function() { 
@@ -127,6 +128,8 @@ function showRequest(formData, jqForm, options) {
  
 // post-submit callback 
 function showResponse(responseText, statusText, xhr, $form)  { 
+	console.log(responseText);
+	console.log(statusText);
     // for normal html responses, the first argument to the success callback 
     // is the XMLHttpRequest object's responseText property 
  

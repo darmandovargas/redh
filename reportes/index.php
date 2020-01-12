@@ -1,5 +1,13 @@
 <?php
-
+/*var_dump($_REQUEST);
+echo "</br>";
+var_dump($_GET);*/
+ /*if($_SERVER['REMOTE_ADDR']=="181.59.128.98"){
+     echo "<br><br><br>ITS YOU DIEGO<br><br><br>";
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);    
+ }*/
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.

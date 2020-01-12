@@ -16,7 +16,7 @@ if(isset($_GET['carpeta']))
     
     
     // Si la estación existe en la base de datos entonces arme el json para graficar
-    if ($idEstacion != "0" && !isset($serieNew["temperature"]) && $carpeta != "cam") {//
+    if ($idEstacion != "0" && !isset($serieNew["temperature"]) ){//&& $carpeta != "cam") {//
         
         // Inicializa array de variables a sensar y graficar
         $variables = array("temperature", "presure", "humidity", "realPrecipitation", "radiation", "windSpeed", "windDirection", "realETO");
@@ -60,9 +60,13 @@ if(isset($_GET['carpeta']))
         
         // Obtiene la estación según el tipo que define la tabla
         $query = "SELECT * FROM " . $tablaEstaciones . " WHERE idStation=" . $idEstacion;	//." and activo='true'";
+
+        
         //var_dump($query);
         $est = $oMySQL -> ExecuteSQL($query);
         //var_dump($est);
+
+        
         
         // Obtiene el nombre de la tabla de la estación
         $tabla = $est["tableName"];
@@ -83,6 +87,9 @@ if(isset($_GET['carpeta']))
         
         //var_dump($query);        
         $estacionesInfoSinceYesterday = $oMySQL -> ExecuteSQL($query);
+
+        //var_dump($estacionesInfoSinceYesterday);        
+        //echo "</br>".$query."</br></br></br>"; 
         
         //var_dump($estacionesInfoSinceYesterday);        
 		//echo "</br></br></br>";
@@ -137,7 +144,16 @@ if(isset($_GET['carpeta']))
                 $x[] = $data["hora"];
             }
         }
-        
-      	$nombre_estacion = empty($nombre_estacion)?$est["stationName"]:$nombre_estacion;		
+
+        $nombre_estacion = empty($nombre_estacion)?$est["stationName"]:$nombre_estacion;		
+/*
+        print_r($serieNew);
+        echo "</br></br></br>----------</br></br></br>";
+        print_r($jsonData);
+        print_r($x);
+        echo "</br></br></br>----------</br></br></br>";
+        echo $nombre_estacion;
+        echo "</br></br></br>----------</br></br></br>";
+        */
     }
 ?>

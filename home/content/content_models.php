@@ -47,13 +47,59 @@ switch ($_REQUEST['actionID']) {
  * 
  */
 
+include_once('error.php');
+include '../../lib/db.php';
+
 function search_content($oMySQL,$page){
+    //echo "flusing...";
+    $query = "mysqladmin flush-hosts";	
+    $resultado = $oMySQL -> ExecuteSQL($query);    
+    //echo "connecting to the database...";
     $query = "SELECT contenido FROM ti_contenidos WHERE pagina='$page'";	
     $resultado = $oMySQL -> ExecuteSQL($query);
+    
 
     if($resultado){
+        //echo "Successful...";
         return $resultado['contenido'];
     }else{
+        //echo "ERROR...";
+        return false;
+    }
+}
+
+function search_contentImproved($oMySQL,$page){
+
+    $dbhost = '201.131.90.140';
+    $dbuser = 'usrAdmin';
+    $dbpass = '$admin2018.';
+    $dbname = 'albatros_db_utp';
+
+    $db = new db($dbhost, $dbuser, $dbpass, $dbname);
+
+    
+
+    //echo "flusing...";
+    //$query = "mysqladmin flush-hosts";	
+    //$resultado = $oMySQL -> ExecuteSQL($query);    
+    //echo "connecting to the database...";
+    $query = "SELECT contenido FROM ti_contenidos WHERE pagina='$page'";	
+    //echo $query;
+
+    $resultado = $db->query($query)->fetchAll();
+
+    //print_r($resultado);
+
+    $db->close();
+    
+    //$resultado = $oMySQL -> ExecuteSQL($query);
+    
+
+    if($resultado){
+        //echo "Successful...";
+        return $resultado[0]['contenido'];
+    }else{
+        //echo "ERROR...";
         return false;
     }
 }

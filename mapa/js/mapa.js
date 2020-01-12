@@ -320,11 +320,11 @@ function showStations(estation) {
 				google.maps.event.addListener(marker, 'click', toggleBounce);
 				marker.setTitle(obj.tipo + ": " + obj.nombre);
 
-				if (obj.carpeta == "cam") {
+				/*if (obj.carpeta == "cam") {
 					addPopUpCAM(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.latitud + "longitud: " + obj.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
-				} else {
-					addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.latitud + "longitud: " + obj.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
-				}
+				} else {*/
+				addPopUp(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.latitud + "longitud: " + obj.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
+				//}
 			} 
 		} 
 

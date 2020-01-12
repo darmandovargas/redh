@@ -40,7 +40,7 @@ $(function(){
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
-//						alert('Error General del Sistema, Intente Mas Tarde');
+//						alert('Error general del sistema, intente más tarde');
                         $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }
@@ -68,7 +68,7 @@ $(function(){
                              }
                      },
                      error:function(xhr,ajaxOptions,thrownError){
-     //						alert('Error General del Sistema, Intente Mas Tarde');
+     //						alert('Error general del sistema, intente más tarde');
                              $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                              return false;
                      }
@@ -101,7 +101,7 @@ $(function(){
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
-//						alert('Error General del Sistema, Intente Mas Tarde');
+//						alert('Error general del sistema, intente más tarde');
                         $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }
@@ -129,7 +129,7 @@ $(function(){
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
-//						alert('Error General del Sistema, Intente Mas Tarde');
+//						alert('Error general del sistema, intente más tarde');
                         $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }
@@ -422,7 +422,7 @@ function search_preselect(){
                         }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
-//						alert('Error General del Sistema, Intente Mas Tarde');
+//						alert('Error general del sistema, intente más tarde');
                         $('#archive').html("<div class='alert alert-error'>Error al conectar con la base de datos, vuelva a intentar</div>");
                         return false;
                 }

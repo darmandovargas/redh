@@ -53,11 +53,11 @@ function initialize() {
 			});
 
 			marker.setTitle(obj.nombre); 
-			if (obj.carpeta == "cam") {
+			/*if (obj.carpeta == "cam") {
 				addPopUpCAM(marker, obj.tipo + ": " + obj.nombre + "latitud: " + obj.latitud + "longitud: " + obj.longitud, obj.id, obj.tipo, obj.carpeta, obj.bd);
-			} else {
-				attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.latitud + "longitud: " + obj.longitud, obj.id, obj.tipo, obj.nombre, obj.carpeta, obj.bd);
-			}
+			} else {*/
+			attachSecretMessage(marker, obj.tipo + ": " + obj.nombr + "latitud: " + obj.latitud + "longitud: " + obj.longitud, obj.id, obj.tipo, obj.nombre, obj.carpeta, obj.bd);
+			//} 
 			google.maps.event.addListener(marker, 'click', toggleBounce);
 		}
 

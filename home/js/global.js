@@ -42,8 +42,21 @@ $(function(){
     //close the directions box
     $('#directions-panel .close').bind('click',function(){
     	$('#directions-panel').fadeOut('slow');
-    }); 
+	}); 
 
+	$('#estado_tiempo').bind('click',function(){
+		$('#estado_del_tiempo').html('<iframe src="content/estado_del_tiempo.php"  width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>');				
+	});
+	
+	$('#recursos_boton').bind('click',function(){
+		$('#recursos_humanos').html('<iframe src="content/recursos_humanos.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>');				
+	});
+
+	$('#notice_boton').bind('click',function(){
+		$('#noticias').html('<iframe src="content/noticias.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>');				
+	});
+
+	
 
     //this toggles the inline content boxes
     $('.floating-box').bind('click',function(){

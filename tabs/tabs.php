@@ -1,6 +1,10 @@
 <?php
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 // Obtiene la conexión a la bd
 include_once ('../lib/class.MySQL.php');
+
 //if (isset($_GET['bd']) && !empty($_GET['bd']) && $_GET['bd'] != "wunderground") {
 	mysql_query("set names 'utf8'");
 //}

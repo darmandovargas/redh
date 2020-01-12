@@ -8,14 +8,26 @@
  * @license Think Cloud Group
  * @since 2017-02-11
  */
- 
+
+// Validates database server, if its down it sends a SMS every 8 hours
+include_once('error.php');
+include 'db.php';
+
+$dbhost = '201.131.90.140';
+$dbuser = 'usrAdmin';
+//$dbpass = '\$admin2018.';
+$dbpass = '$admin2018.';
+$dbname = 'albatros_db_utp';
+
+$db = new db($dbhost, $dbuser, $dbpass, $dbname);
+$db->close();
+
 // Obtiene la conexión a la bd
 include ('class.MySQL.php');
 // Get sms libs
 include_once('sms.php');
 include_once('alarm.php');
-// Get log lib
-include_once('error.php');
+
 // Set encoding
 mysql_query("set names 'utf8'");
 // Inicializa variables
@@ -193,7 +205,10 @@ if(!empty($Message)){
 		$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = messages-'.$totalSentSMSAll.' WHERE id=2');
 		$resp["allstations"] = AltiriaSMS($allStations, $msg, "dvargas", false);
 		@error_log(PHP_EOL.PHP_EOL."All Stations: ".$msg.PHP_EOL.$resp["allstations"], 3, "/home/thinkclo/public_html/redh/sms.log");
-		echo "All Stations: ".$msg."</br>".$resp["allstations"]."</br>";
+		//echo "All Stations: ".$msg."</br>".$resp["allstations"]."</br>";
+		$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
+		$jsonResponse["message"] = $Message;	
+		echo json_encode($jsonResponse);
 		// Check if there are specific tables alarm
 		if($specificMessage){
 			// This is an specific tables messages counter
@@ -217,7 +232,7 @@ if(!empty($Message)){
 					// Save logs
 					@error_log(PHP_EOL.PHP_EOL.$tab." : ".$ms.PHP_EOL.$allTablesNumbers[$tab].PHP_EOL.$resp[$tab], 3, "/home/thinkclo/public_html/redh/sms.log");
 					// Return response on manual cron run
-					echo $tab.": ".$ms."</br>".$allTablesNumbers[$tab]."</br>";
+					//echo $tab.": ".$ms."</br>".$allTablesNumbers[$tab]."</br>";
 				}
 			}
 			// Update pending messages based on the total amount of specific messages sent on this iteraction
@@ -230,7 +245,7 @@ if(!empty($Message)){
 		// Save logs
 		@error_log(PHP_EOL.PHP_EOL.$totalMessages."->".$smsCount["messages"].":".$totalRemainMessages, 3, "/home/thinkclo/public_html/redh/sms.log");
 		// Return response on manual cron run
-		echo $totalMessages."->".$smsCount["messages"].":".$totalRemainMessages."</br>";
+		//echo $totalMessages."->".$smsCount["messages"].":".$totalRemainMessages."</br>";
 	}else if(intval($smsCount["messages"])<30){
 		// Send out of messages warning
 		$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan xx, comuníquese con Think Cloud Group para comprar un paquete adicional.";
@@ -251,24 +266,36 @@ if(!empty($Message)){
 			$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = '.$totalRemainMessages.' WHERE id=2');
 			$resp["outofmessages"] = AltiriaSMS($outOfMessages, $outOfMessagesMsg, "dvargas", false);
 			@error_log(PHP_EOL.PHP_EOL."OUT OF MESSAGES: ".$outOfMessagesMsg.PHP_EOL.$resp["outofmessages"], 3, "/home/thinkclo/public_html/redh/sms.log");
-			echo "OUT OF MESSAGES: ".$msg."</br>".$resp["allstations"]."</br>";	
+			//echo "OUT OF MESSAGES: ".$msg."</br>".$resp["allstations"]."</br>";	
+			$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
+			$jsonResponse["message"] = $Message;	
+			echo json_encode($jsonResponse);
 		}else{
 			
 			$response = $dt->format("Y-m-d H:i:s")." Alarma(s) NO ENVIADAS POR FALTA DE SALDO: ".$Message."Visítanos redhidro.org";
 			@error_log(PHP_EOL.PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
-			echo $response."</br></br>";			
+			//echo $response."</br></br>";			
+			$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
+			$jsonResponse["message"] = $Message;
+			echo json_encode($jsonResponse);
 		}
 		
 
 	}else{
 		$response = $dt->format("Y-m-d H:i:s")." Alarma(s) NO ENVIADAS POR FALTA DE SALDO: ".$Message."Visítanos redhidro.org";
 		@error_log(PHP_EOL.PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
-		echo $response."</br></br>";
+		//echo $response."</br></br>";
+		$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
+		$jsonResponse["message"] = $Message;
+		echo json_encode($jsonResponse);
 	}
 }else{
 	//$response = $dt->format("Y-m-d H:i:s")." No hay alarmas pendientes para enviar. Visítanos redhidro.org";
 	//error_log(PHP_EOL.PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
-	echo "</br>There is no alarm to be sent</br>";
+	//echo "</br>There is no alarm to be sent</br>";
+	$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
+	$jsonResponse["message"] = "";	
+	echo json_encode($jsonResponse);
 }
 
 $oMySQL->closeConnection();

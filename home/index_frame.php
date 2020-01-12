@@ -59,9 +59,13 @@ $host = insert_host($oMySQL, $ip);
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 		<script type="text/javascript" src="js/perfect-scrollbar-0.3.3/perfect-scrollbar.js"></script>
 		<script type="text/javascript" src="js/global.js"></script>
-		<!-- -->
-		<script src="../mapa/js/estaciones_new.js?rndstr=<?php  echo uniqid(); ?>"></script>
-			
+		<?php 
+		if(empty($stations)){ ?>
+		<script type="text/javascript" src="../mapa/js/estaciones_new.js"></script>
+		<?php
+		} 
+		?>	
+
 		<script>
 		<?php 
 		if(!empty($stations)){ ?>
@@ -75,7 +79,7 @@ $host = insert_host($oMySQL, $ip);
 			var session = '<?php echo  $_SESSION['sess'];?>';
 		</script>
 		
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8&v=3.exp"></script> <!-- &libraries=places&sensor=false -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5yDKoirZb5OXV-0l0OkpC_ZlsfgwEZG8"></script> <!-- &libraries=places&sensor=false -->
 		<script src="js/index.js"></script>
 		<script src="js/mapa/mapa.js"></script>
 		
@@ -90,7 +94,7 @@ $host = insert_host($oMySQL, $ip);
 				<div class="span5 main-wrapper">
 					<div class="row-fluid logo">
 						<div class="span12">
-							<img src="img/logos/red_hidroclimatologica.jpg" width="70%" />
+							<img src="img/logos/red_hidroclimatologica.jpg" width="50%" style="margin-right:-30px;" />
 							<i id="sidebar-out" style="float:right; margin: 10px 10px;" class="fas fa-angle-double-left"></i>							
 							
 							<hr />							
@@ -100,42 +104,40 @@ $host = insert_host($oMySQL, $ip);
 						
 					</div><!--/logo-->
 					<!-- /*height: 57%; overflow: scroll;*/ -->
-					<div class="row-fluid block-wrapper" style="margin: -30px 0 0 0;" >
+					<div class="row-fluid block-wrapper" style="margin: -160px 0 0 0;" >
 						<div class="block" id="section-1">
 							<!--/floating-wrapper-->
-							<div class="row-fluid floating-boxes" style="/*overflow: scroll;*/">
+							<div class="row-fluid floating-boxes" style="margin-top:-10px;"><!-- /*overflow: scroll;*/ -->
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="1" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Información General</h3> </a>
+									<a href="#" data-section="1" data-title="" class="floating-box" style="text-decoration: none;"> <h6>Información General</h6> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" id="estado_tiempo" onclick="checkSessionClick();" data-section="5" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Estado del Tiempo</h3> </a>
+									<a href="#" id="estado_tiempo" data-section="5" data-title="" class="floating-box" style="text-decoration: none;"> <h6>Estado del Tiempo</h6> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" id="notice_boton" onclick="checkSessionClick();" data-section="2" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Noticias y Eventos</h3> </a>
+									<a href="#" id="notice_boton" data-section="2" data-title="" class="floating-box" style="text-decoration: none;"> <h6>Noticias y Eventos</h6> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" id="recursos_boton" onclick="checkSessionClick();" data-section="3" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Recursos Humanos</h3> </a>
+									<a href="#" id="recursos_boton" data-section="3" data-title="" class="floating-box" style="text-decoration: none;"> <h6>Recursos Humanos</h6> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="7" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Contribuyen a la Red</h3> </a>
+									<a href="#" data-section="7" data-title="" class="floating-box" style="text-decoration: none;"> <h6>Contribuyen a la Red</h6> </a>
 								</div>
 								
 								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="10" data-title="" class="floating-box" style="text-decoration: none;"> <h3>Sitios y Documentos de Interés</h3> </a>
+									<a href="#" data-section="10" data-title="" class="floating-box" style="text-decoration: none;"> <h6>Sitios y Documentos de Interés</h6> </a>
 								</div>
 
 								<div align="center">
-									<a href="#" onclick="checkSessionClick('login');" data-section="9" data-title="" class="floating-box" style="text-decoration: none;"><h3>Acceso a Empresa</h3></a>								
+									<a href="#" data-section="9" data-title="" class="floating-box" style="text-decoration: none;"><h6>Acceso a Empresa</h6></a>								
+								</div>
+								<div align="center">
+									<a href="#" data-section="8" data-title="" class="floating-box" style="text-decoration: none;"><h6>Contáctenos</h6></a>								
 								</div>								
-								<!--
-								<div align="center">
-									<a href="#" onclick="checkSessionClick();" data-section="8" data-title="" class="floating-box" style="text-decoration: none;"><h3>Contáctenos</h3></a>								
-								</div>
-								-->
 							</div>							
 						</div>								
 					</div>
@@ -170,8 +172,10 @@ $host = insert_host($oMySQL, $ip);
 										<div class="row-fluid">
 											<div class="span6">
 												<div class="media">
-													<div class="media-body">
+													<div class="media-body" id="noticias">
+														<!--
 														<iframe src="content/noticias.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+														-->
 													</div>
 												</div>
 											</div>
@@ -190,8 +194,10 @@ $host = insert_host($oMySQL, $ip);
 											<div class="row-fluid">
 												<div class="span6">
 													<div class="media">
-														<div class="media-body">
-															<iframe src="content/recursos_humanos.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>
+														<div class="media-body" id="recursos_humanos">
+															<!--															
+															<iframe src="content/recursos_humanos.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>															
+															-->
 														</div>
 													</div>
 												</div>
@@ -202,7 +208,7 @@ $host = insert_host($oMySQL, $ip);
 							</div>
 						</div>
 						<!-- end block -->
-
+						<!--
 						<div class="block" id="section-4">
 							<div class="row-fluid leave-gap">
 								<div class="span12">
@@ -222,6 +228,7 @@ $host = insert_host($oMySQL, $ip);
 								</div>
 							</div>
 						</div>
+						-->
 						<!-- end block -->
 
 						<div class="block" id="section-5">
@@ -232,12 +239,14 @@ $host = insert_host($oMySQL, $ip);
 											<div class="row-fluid">
 												<div class="span6">
 													<div class="media">
-														<div class="media-body" style="margin: 0 0 0 -30px;">	
+														<div class="media-body" style="margin: 0 0 0 -30px;" id="estado_del_tiempo">	
 															<!--
 															<div class="loader"></div>					
 															onload="$('.loader').fadeOut('slow');" 
-															-->									
+															-->	
+															<!--								
 															<iframe src="content/estado_del_tiempo.php"  width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>
+															-->
 														</div>
 													</div>
 												</div>
@@ -248,7 +257,7 @@ $host = insert_host($oMySQL, $ip);
 							</div>
 						</div>
 						<!-- end block -->
-
+						<!--
 						<div class="block" id="section-6">
 							<div class="row-fluid leave-gap">
 								<div class="span12">
@@ -268,6 +277,7 @@ $host = insert_host($oMySQL, $ip);
 								</div>
 							</div>
 						</div>
+						-->
 						<!-- end block -->
 
 						<div class="block" id="section-7">
@@ -300,7 +310,7 @@ $host = insert_host($oMySQL, $ip);
 												<div class="span6">
 													<div class="media">
 														<div class="media-body">
-															<iframe src="content/contactenos/demo.php" width="100%" height="500px" scrolling="yes" frameBorder="0"></iframe>
+															<iframe src="content/contactenos/index.html" width="100%" height="500px" scrolling="yes" frameBorder="0"></iframe>
 														</div>
 													</div>
 												</div>
@@ -358,16 +368,18 @@ $host = insert_host($oMySQL, $ip);
 					<!-- end block-wrapper -->
 
 					<div class="row-fluid leave-gap page-footer">
-					<div style="color: #929292; text-align:center; margin-top: 5px;">
-						Visitas <span><?php echo $host; ?></span>
-                    </div>
 					<hr/>
-						<div class="span12" style="margin-left:-10px;">
-							<div style="text-align: center; ">
-								<video width="90%" src="img/logos/LOGOSUTP6.mp4" autoplay muted loop preload="none">
+						
+						<div class="span12" style="margin-left:-10px;margin-top:-15px;">
+							<span style="color: #929292; text-align:center; margin-top: 0px; font-size: 10px;">
+								Visitas <span><?php echo $host; ?></span>
+							</span>
+							<br/>
+							<span style="text-align: center; ">
+								<video width="70%" src="img/logos/LOGOSUTP6.mp4" autoplay muted loop preload="none">
 									Tu navegador no implementa el elemento <code>video</code>.									
 								</video>
-							</div>
+							</span>
 						</div>
 					</div><!--/page-footer-->
 				</div>
@@ -396,21 +408,21 @@ $host = insert_host($oMySQL, $ip);
 					<div id="logout"  onclick='logout();' class="logout-icon">
 						<i class="fas fa-sign-out-alt" title="Logout"></i>
 					</div>
-					
-					<div class="row-fluid floating-wrapper" style="top: -600px">
+						
+					<div class="row-fluid floating-wrapper" style="display:none; top: -600px">
 						<div class="offset1 span10 top-span">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								&times;
 							</button>
-							<h3>Video</h3>
+							<h6></h6>
 							<p>
-								Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+								
 							</p>
 							<div class="row-fluid">
 								<div class="floating-container">
 									<div class="span12 floating-content">
 										<div class="row-fluid">
-											Empty
+											
 										</div>
 									</div>
 								</div>

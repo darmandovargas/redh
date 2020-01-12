@@ -124,7 +124,7 @@
 		switch ($variable) {
 			case 'temperature': $measureSymbol = "grados C"; 
 								$variable = "Temperatura"; 
-								$valor = $currentValue;  
+								$valor = round($currentValue,1);  
 							break;
 			case 'realPrecipitation': $measureSymbol = "mm/h"; 
 									   $variable = "Precipitación"; 
@@ -160,12 +160,12 @@
 				case 'Temperatura': $customMsg = 'alta temperatura,'; break;
 				case 'Precipitación': $customMsg = "alta precipitación,"; break;
 				case 'Nivel': $customMsg = " alerta  ".$alarmType." de nivel del río,";  
-							  // Sets first cicle alarm value
-							  if(!$activeMoreThan){
-							  	$updatedIds[] = $stationId;
+							// Sets first cicle alarm value
+							if(!$activeMoreThan){
+								$updatedIds[] = $stationId;
 							  	$objTemp["first_cicle_alarm"]=$valor; 
 							  	$objTemp["last_value"] = $valor;		
-							  }
+							}
 							break;
 			}
 			

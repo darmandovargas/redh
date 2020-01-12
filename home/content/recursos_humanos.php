@@ -9,8 +9,9 @@ include 'content_models.php';
 
 $contenido = search_content($oMySQL,'recursos_humanos');
 ?>
+
 <link rel="stylesheet" href="css/style.css" type="text/css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="../../lib/jquery.min.2.2.4.js"></script>
 <script src="ckeditor/ckeditor.js"></script>
 <span style="font-family: Helvetica, Arial, Sans-Serif; font-weight: 100">
 	<?php session_start(); ?>
@@ -26,6 +27,8 @@ $contenido = search_content($oMySQL,'recursos_humanos');
     <?php if(isset($_REQUEST['edit'])){ ?>
     <link rel="stylesheet" href="../../home/css/themes/default/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="../../home/css/themes/default/bootstrap-responsive.css" type="text/css">
+
+    <!--
     <link rel="alternate stylesheet" href="../../home/css/themes/default/bootstrap.css" title="default" type="text/css">
     <link rel="alternate stylesheet" href="../../home/css/themes/default/bootstrap-responsive.css" title="default" type="text/css">
     <link rel="alternate stylesheet" href="../../home/css/themes/blue/bootstrap.css" title="blue" type="text/css">
@@ -38,7 +41,10 @@ $contenido = search_content($oMySQL,'recursos_humanos');
     <link rel="alternate stylesheet" href="../../home/css/themes/eco/bootstrap-responsive.css" title="eco" type="text/css">
     <link rel="alternate stylesheet" href="../../home/css/themes/red/bootstrap.css" title="red" type="text/css">
     <link rel="alternate stylesheet" href="../../home/css/themes/red/bootstrap-responsive.css" title="red" type="text/css">
+    -->
+    
     <div id="recursos_edit" style="height: 95%;"><textarea name="editor1" id="editor1" rows="1000" cols="1000">
+            
             <?php echo utf8_encode($contenido); ?>
         </textarea>
         <div id="msg" style="margin: 0px auto;display: none">
