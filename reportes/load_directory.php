@@ -31,8 +31,8 @@ switch ($_POST['actionID']) {
     case 'chargue_dp':
             $path = $_POST['path'];
             if(isset($_POST['name']))
-                $name = normaliza($_POST['name']);
-            
+                $name = normaliza($_POST['name']);           
+
             $search = scandirectory($path,$name);
             if($search != ""){
                 $respuesta = true;
@@ -43,7 +43,9 @@ switch ($_POST['actionID']) {
             $name = normaliza($_POST['name']);
             $carpeta = $_POST['folder'];
             $tipo = $_POST['tipo'];
+
             $search = search_directory_estation($name,$carpeta,$tipo);
+            
             if($search != ""){
                 $respuesta = true;
                 $salida = $search;
@@ -77,11 +79,11 @@ function scandirectory($path,$name){
         	$files = scandir($directorio);
             foreach ($files as $nombre_fichero) {	
                 //echo $nombre_fichero."</br>"; 
-                $weirdChar = strpos($nombre_fichero, "Catalu");
+                //$weirdChar = strpos($nombre_fichero, "Catalu");
                 $weirdChar2 = strpos($nombre_fichero, "testcu");       
-                if ($nombre_fichero != "." && $nombre_fichero != ".." && $nombre_fichero != ".DS_Store" && $nombre_fichero != "Icon_" && $weirdChar === false && $weirdChar2 === false){
+                if ($nombre_fichero != "." && $nombre_fichero != ".." && $nombre_fichero != ".DS_Store" && $nombre_fichero != "Icon_" && $weirdChar2 === false){ // $weirdChar === false &&
                     $selected = "";
-                    if($name != "" && $nombre_fichero == strtolower($name))
+                    if($name != "" && strtolower($nombre_fichero) == strtolower($name))
                         $selected = "selected='selected'";
 					//Filtra estaciones privadas 
 					if(isset($_SESSION['sess']) && $_SESSION['sess']){
@@ -151,7 +153,7 @@ function search_directory($path,$name,$carpeta,$tipo){
             while (false !== ($nombre_fichero = readdir($gestor_dir))) {
             	$parameterName = strtolower($name);
                 //if($nombre_fichero == strtolower($name)){
-                if(strcmp($nombre_fichero, $parameterName) === 0){
+                if(strcmp(strtolower($nombre_fichero), $parameterName) === 0){
                     $respuesta = true;
                 }
             }   
