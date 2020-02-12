@@ -45,6 +45,7 @@ if($_REQUEST["boletin"] != "" && $_REQUEST["estacion"] != "" && $_REQUEST["perio
         foreach ($vector as $valor)
         { 
                   $salida .= '<li><a target="_blank" href="'.$directory."/".$valor.'">'.$valor.'</a></li>';                                      
+                  //$salida .= '<li><a target="#" onClick="'.$directory."/".$valor.'">'.$valor.'</a></li>';                                      
         }
         $salida .= "</ul>";
     } 

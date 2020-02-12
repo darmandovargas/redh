@@ -20,7 +20,19 @@
 	
         </script>
     </head>
-    <body onLoad="preseleccionar(name)" style="background-color: #EAF5F3;height: 400px;">
+    <body onLoad="preseleccionar(name)" >
+        <script type="text/javascript">
+            var ua = navigator.userAgent.toLowerCase();
+            var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+            if(isAndroid) {
+            // Do something!
+            $("body").css("background-color","#FFFFFF");
+            $("body").css("height","1000px");
+            }else{
+                $("body").css("background-color","#EAF5F3");
+                $("body").css("height","400px");                
+            }
+        </script>
         <div id="content">
                 <fieldset>
                     <select class="input-xlarge" id="boletin">

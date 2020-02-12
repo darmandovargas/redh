@@ -31,11 +31,24 @@ var_dump($_GET);*/
         <script type="text/javascript" src="css/bootstrap/js/bootstrap.min.js"></script>
         <!--  initialize the TN3 when the DOM is ready -->
         
-        <script type="text/javascript">
-	
-        </script>
+        
     </head>
-    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>','<?php echo $_REQUEST['folder'];?>')" style="background-color: #EAF5F3;height: 400px;">
+    <body onLoad="preseleccionar('<?php echo $_REQUEST['name']; ?>','<?php echo $_REQUEST['tipo'];?>','<?php echo $_REQUEST['folder'];?>')" >
+    <script type="text/javascript">
+            //alert(navigator.userAgent.con);
+
+            var ua = navigator.userAgent.toLowerCase();
+            var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+            if(isAndroid) {
+            // Do something!
+            //$("body").attr("style","background-color: #FFFFFF;height: 1000px;")
+            $("body").css("background-color","#FFFFFF");
+            $("body").css("height","1000px");
+            }else{
+                $("body").css("background-color","#EAF5F3");
+                $("body").css("height","400px");                
+            }
+        </script>
         <?php $hasta = "2007"; //Color body #EAF5F3 ?>
         <div id="content">
                 <fieldset>
