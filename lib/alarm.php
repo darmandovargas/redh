@@ -5,10 +5,12 @@
 	 */
 	function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan='', $moreThan='', $stationId){
 		global $Message, $objTemp, $db_aguasName, $bd_aguasUser, $bd_aguasPassword, $bd_aguasIp, $dbsigName, $bdsigUser, $bdsigPassword, $bdsigIp, $updatedIds;
+		$dbName = "utp";
 		// Create a list of the tables that are on the second database
 		$bd_aguas = array("tst_san_juan", "tst_rio_azul_eljordan", "tst_rio_otun_eljordan", "tst_rio_barbo_pezfresco", "tst_q_volcanes");
 		// If the current alarm we are checking is on the array then the conexion must be on the second database, otherway use the first one, the UTP
 		if(in_array($tabla, $bd_aguas)){
+			$dbName="aguas";
 			$oMySQL->closeConnection();
 			unset($oMySQL);
 			$oMySQL = new MySQL($db_aguasName, $bd_aguasUser, $bd_aguasPassword, $bd_aguasIp);	
@@ -169,7 +171,8 @@
 							break;
 			}
 			
-			$Message .= empty($msg)?"'".$stationName."' ".$customMsg."  ".$valor." ".$measureSymbol.".  ":$msg;
+			//$Message .= empty($msg)?"'".$stationName."' ".$customMsg."  ".$valor." ".$measureSymbol.".  ":$msg;
+			$Message .= $stationId."-".$dbName."__".$stationName." ".$customMsg."  ".$valor." ".$measureSymbol.".  ";
 			setMessage($tabla,"'".$stationName."' ".$customMsg." ".$valor." ".$measureSymbol.". ");
 			$response = true;
 		}

@@ -17,7 +17,7 @@ $dbhost = '201.131.90.140';
 $dbuser = 'usrAdmin';
 //$dbpass = '\$admin2018.';
 $dbpass = '$admin2018.';
-$dbname = 'albatros_db_utp';
+$dbname = 'albatros_db_v1_2_utp';
 
 $db = new db($dbhost, $dbuser, $dbpass, $dbname);
 $db->close();
@@ -295,6 +295,7 @@ if(!empty($Message)){
 	//echo "</br>There is no alarm to be sent</br>";
 	$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
 	$jsonResponse["message"] = "";	
+	//$jsonResponse["message"] = "51-aguas__Rí­o Otún - El Jordan alta precipitación, 18.6 grados C";	
 	echo json_encode($jsonResponse);
 }
 
