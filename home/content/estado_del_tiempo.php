@@ -54,7 +54,9 @@
 				color: #B4AA9D;
 			}
 			
-			.loader {opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('contactenos/wait.gif') no-repeat rgb(255,255,255) center center;
+			.loader {
+				opacity: 0.4;	filter: alpha(opacity=40); /* For IE8 and earlier */ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1000; background: url('contactenos/wait.gif') no-repeat rgb(255,255,255) center center;
+			}
 		</style>
 		<script>
 		$( document ).ready(function() {
@@ -62,81 +64,108 @@
 		    setTimeout("location.reload();",60000*5);		   		    
 		});	
 			
-		</script>
+		</script>		
 	</head>
 	<body>
 		<h3 style="font-family: Helvetica, Arial, Sans-Serif; font-weight: 100; margin-left:10px;">La información se actualiza automáticamente cada 5 minutos</h3>
 		<div class="loader"></div>
 <?php
-
+/*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+*/
 include_once ('../../lib/class.MySQL.php');
+//include_once ('../../lib/redhadmin_connection.php');
 
-
-
+//$idsPublicUTP = $idsPublicAguas = array();
+/*
+foreach(json_decode($stations, true) as $adminStation){	
+	if(intval($adminStation["id"]) != 0 && $adminStation["bd"]!="wunderground" && $adminStation["isPublic"] ){
+		if($adminStation["bd"] == "bd_aguas_new"){
+			$idsPublicAguas[] = intval($adminStation["id"]);
+		}else{
+			$idsPublicUTP[] = intval($adminStation["id"]);
+		}	
+	}
+}*/
+/*
+print_r($idsPublicUTP);
+echo "</br></br>";
+print_r($idsPublicAguas);
+echo "</br></br>";
+*/
 mysql_set_charset('utf8');
-// "tb_san_jose",  "tb_san_juan", these are in the other database, TODO implement this time status
-$publicEstations = array("tst_el_cedral", "tst_planes", "tst_cortaderal", "tst_ellago", "tst_el_nudo", "tst_quinchia");
 
 // This will get rid of the test stations
-$idsToDelete = array(74,75,76,77,80);
+//$idsToDelete = array(74,75,76,77,80);
 
 // All private stations ids from UTP database
-$idsPrivateStations = array(36,78,53); //,  39,40,41,42,44,52,53,61,62,73);
+//$idsPrivateStations = array(36,78,53); //,39,40,41,42,44,52,53,61,62,73);
 
 $estationTable = $privateEstationTable = array();
 
-$query = "SELECT * FROM tdp_stations";
+//$query = "SELECT * FROM tdp_stations WHERE idStation IN (".implode(",", $idsPublicUTP).",".implode(",",$idsPrivateStations).")";
 
-//echo "</br>".$query;
+//echo $query;
 
-//echo "-------------------"; exit();
+$query = "CALL sp_estado_del_tiempo();";
 
-$estacionesList = $oMySQL -> ExecuteSQL($query);
+$estacionesListUTP = $oMySQL -> ExecuteSQL($query);
+
+$oMySQL->closeConnection();
+unset($oMySQL);
+
+session_start();			
+
+if($_SESSION['sessid']== session_id()){		
+$oMySQL = new MySQL($dbsigName, $bdsigUser, $bdsigPassword, $bdsigIp);
+
+mysql_set_charset('utf8');
+
+$query = "CALL sp_estado_del_tiempo_private();";
+
+$estacionesListUTPPrivate = $oMySQL -> ExecuteSQL($query);
+
+$oMySQL->closeConnection();
+unset($oMySQL);
+}
+//var_dump($estacionesListUTPPrivate);
+
+
+$oMySQL = new MySQL($db_aguasName, $bd_aguasUser, $bd_aguasPassword, $bd_aguasIp);	
+
+mysql_set_charset('utf8');
+
+$query = "CALL sp_estado_del_tiempo();";
+
+$estacionesListAguas = $oMySQL -> ExecuteSQL($query);
 
 //var_dump($estacionesList);
 
-//echo "-------------------"; exit();
-
-//session_start();
-
-//echo "-------------------"; exit();
-
+//exit(0);
+/*
 foreach ($estacionesList as $estacion) {
-	var_dump($estacion);
+	//var_dump($estacion);
 	$tabla = $estacion["tableName"];
-	//echo "-------------------"; exit();
-	
-	//echo "</br>-------------------".$tabla."</br>";
-	//exit();
+	$tableId = $estacion["idStation"];
 
-	if (in_array($tabla, $publicEstations)) {		
-		
-		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 1";
-		
-		//echo "</br>".$query."</br>";		
+	//echo "TableID:".$tableId."-".$tabla."-".$estacion["stationName"]."</br>";
 
-		$estacionesInfo = $oMySQL -> ExecuteSQL($query);
+	//if (in_array($tabla, $publicEstations)) {		
+	if (in_array(intval($tableId), $idsPublicUTP)) {				
+		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 1";			
+		$estacionesInfo = $oMySQL->ExecuteSQL($query);
 		$estationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
-	}else if(/*$_SESSION['sessid'] == session_id() && in_array($estacion["idStation"], $idsPrivateStations) &&*/ false){
+	}else if($_SESSION['sessid'] == session_id() && in_array($estacion["idStation"], $idsPrivateStations)){
 
 		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 10";
 		//echo "</br>".$query."</br>";
 		$estacionesInfoList = $oMySQL -> ExecuteSQL($query);
 
-		//var_dump($estacionesInfo);
-
 		// This will delete the 4 stations Camilo asked		
 		if(!in_array($estacion['idStation'], $idsToDelete)){
 			foreach($estacionesInfoList as $estacionInfo){
-				/*
-				echo $tabla."</br></br>";
-				var_dump($estacionInfo);
-				echo "</br></br>";
-				*/
 				$estacionesInfo = $estacionInfo;
 				if($estacionesInfo['level']=='-' ||  $estacionesInfo['level']==NULL){ 					
 					continue;
@@ -145,47 +174,50 @@ foreach ($estacionesList as $estacion) {
 				}
 			}
 
-			// This will keep until the last 2 hours valid record (different than '-')
-			/*
-			if($estacionesInfo['level']=='-' ){ //&& $tabla=='bocatoma_nuevo_libare'
-				echo "LEVEL==-</br>";
-				$estacionesInfoLast = $estacionesInfo;
-				$counter = 1;
-				do{
-					$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT ".$counter.",1";					
-					$estacionesInfo = $oMySQL -> ExecuteSQL($query);
-					$counter++;
-				}while($estacionesInfo['level']=='-' && $counter <24);
-				if($estacionesInfo['level']=='-'){
-					$estacionesInfo = $estacionesInfoLast;
-				}
-			}*/
-
-			//echo "</br>".$estacion."</br>";	
-			//var_dump($estacion);
-			//echo "</br>";
+			
 			$privateEstationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
-			//var_dump(array("estacion" => $estacion, "info" => $estacionesInfo));
 		}
 	}
 }
 
-//echo "-------------------"; exit();
+$oMySQL->closeConnection();
+unset($oMySQL);
+$oMySQL = new MySQL($db_aguasName, $bd_aguasUser, $bd_aguasPassword, $bd_aguasIp);	
 
-// /*tdp_stations,*/ /*tb_san_jose, tb_san_juan,*/
-// $query = "SELECT FROM  tst_ellago, tst_cortaderal, tst_el_cedral,  tst_el_nudo, tst_quinchia, tst_planes LIMIT 1
+mysql_set_charset('utf8');
 
-/*ORDER BY tst_el_cedral.stationTime*/
-/*
-CALL GetEstadoDelTiempo();
-";*/
+$query = "SELECT * FROM tdp_stations WHERE idStation IN (".implode(",", $idsPublicAguas).")";
 
-//$estacionesList = $oMySQL -> ExecuteSQL($query);
+$estacionesList = $oMySQL -> ExecuteSQL($query);
 
+foreach ($estacionesList as $estacion) {
+	$tabla = $estacion["tableName"];
+	$tableId = $estacion["idStation"];
 
-
-
-$oMySQL -> closeConnection();
+	if (in_array(intval($tableId), $idsPublicAguas)) {		
+		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 1";			
+		$estacionesInfo = $oMySQL->ExecuteSQL($query);		
+		$estationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
+	}else if($_SESSION['sessid'] == session_id() && in_array($estacion["idStation"], $idsPrivateStations)){
+		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 10";
+		$estacionesInfoList = $oMySQL -> ExecuteSQL($query);
+		// This will delete the 4 stations Camilo asked		
+		if(!in_array($estacion['idStation'], $idsToDelete)){
+			foreach($estacionesInfoList as $estacionInfo){
+				$estacionesInfo = $estacionInfo;
+				if($estacionesInfo['level']=='-' ||  $estacionesInfo['level']==NULL){ 					
+					continue;
+ 	 			}else{					
+					break;
+				}
+			}
+			$privateEstationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);			
+		}
+	}
+}
+*/
+$oMySQL->closeConnection();
+unset($oMySQL);
 ?>
 		<span style="font-family: Helvetica, Arial, Sans-Serif; font-weight: 100">
 			<table style="width: 100%;">
@@ -207,28 +239,46 @@ $oMySQL -> closeConnection();
 						<th><b>Símbolo</b></th> -->
 					</tr>
 					<?php
-					foreach($estationTable as $et){
+					foreach($estacionesListUTP as $et){
 					echo "
 					<tr align='center'>
-						<td>".$et['estacion']['stationName']."</td>
-						<td>".$et['info']['temperature']."</td>
-						<td>".$et['info']['stationTime']."</td>						
-						<td>".$et['info']['windDirection']."</td>
-						<td>".$et['info']['presure']." </td>
-						<td>".$et['info']['humidity']."</td>						
-						<td>".$et['info']['realPrecipitation']."</td>
-						<td>".$et['info']['level']."</td>
-						<td>".$et['info']['radiation']."</td>				
-						<td>".$et['info']['windSpeed']."</td>				
-						<td>".$et['info']['realETO']."</td>						
+						<td>".$et['tableName']."</td>
+						<td>".$et['temperature']."</td>
+						<td>".$et['stationTime']."</td>						
+						<td>".$et['windDirection']."</td>
+						<td>".$et['presure']." </td>
+						<td>".$et['humidity']."</td>						
+						<td>".$et['realPrecipitation']."</td>
+						<td>".$et['level']."</td>
+						<td>".$et['radiation']."</td>				
+						<td>".$et['windSpeed']."</td>				
+						<td>".$et['realETO']."</td>						
 					</tr>
 					";
 					}
+
+					foreach($estacionesListAguas as $et){
+						echo "
+						<tr align='center'>
+							<td>".$et['tableName']."</td>
+							<td>".$et['temperature']."</td>
+							<td>".$et['stationTime']."</td>						
+							<td>".$et['windDirection']."</td>
+							<td>".$et['presure']." </td>
+							<td>".$et['humidity']."</td>						
+							<td>".$et['realPrecipitation']."</td>
+							<td>".$et['level']."</td>
+							<td>".$et['radiation']."</td>				
+							<td>".$et['windSpeed']."</td>				
+							<td>".$et['realETO']."</td>						
+						</tr>
+						";
+						}
 					?>
 				</tbody>
 			</table> </span>
 <?php
-	session_start();			
+	
 	if($_SESSION['sessid']== session_id()){		
 ?>		
 			</br></br>
@@ -247,18 +297,18 @@ $oMySQL -> closeConnection();
 						
 					</tr>
 					<?php
-					foreach($privateEstationTable as $pet){
-						if(!empty($pet['info']['level']) || !empty($pet['info']['riverFlow'])){
+					foreach($estacionesListUTPPrivate as $pet){
+						//if(!empty($pet['level']) || !empty($pet['riverFlow'])){
 							echo "
 							<tr align='center'>
-								<td>".$pet['estacion']['stationName']."</td>
-								<td>".$pet['info']['level']."</td>
-								<td>".$pet['info']['riverFlow']."</td>
-								<td>".$pet['info']['stationTime']."</td>
+								<td>".$pet['tableName']."</td>
+								<td>".$pet['level']."</td>
+								<td>".$pet['riverFlow']."</td>
+								<td>".$pet['stationTime']."</td>
 																
 							</tr>
 							";
-						}
+						//}
 					}
 					?>
 				</tbody>
@@ -267,4 +317,6 @@ $oMySQL -> closeConnection();
 }
 ?>
 		</body>
+
+		
 </html>

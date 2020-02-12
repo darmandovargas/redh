@@ -239,14 +239,15 @@ $host = insert_host($oMySQL, $ip);
 											<div class="row-fluid">
 												<div class="span6">
 													<div class="media">
-														<div class="media-body" style="margin: 0 0 0 -30px;" id="estado_del_tiempo">	
+														<div class="media-body" style="margin: 0 0 0 -30px;" id="estado_del_tiempo">
 															<!--
 															<div class="loader"></div>					
 															onload="$('.loader').fadeOut('slow');" 
 															-->	
-															<!--								
+															<!--	
 															<iframe src="content/estado_del_tiempo.php"  width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>
-															-->
+															-->							
+															
 														</div>
 													</div>
 												</div>

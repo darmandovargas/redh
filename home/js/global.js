@@ -44,9 +44,10 @@ $(function(){
     	$('#directions-panel').fadeOut('slow');
 	}); 
 
+	/*
 	$('#estado_tiempo').bind('click',function(){
 		$('#estado_del_tiempo').html('<iframe src="content/estado_del_tiempo.php"  width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>');				
-	});
+	});*/
 	
 	$('#recursos_boton').bind('click',function(){
 		$('#recursos_humanos').html('<iframe src="content/recursos_humanos.php" width="99%" height="480px" scrolling="yes" frameBorder="0"></iframe>');				
@@ -59,22 +60,28 @@ $(function(){
 	
 
     //this toggles the inline content boxes
-    $('.floating-box').bind('click',function(){
+    $('.floating-box').bind('click',function(){		
+
     	$('.floating-search').fadeOut('slow');
-    	$('.floating-wrapper').queue("fx");
-    	
+    	$('.floating-wrapper').queue("fx");    	
 
 		var el = $(this);
+		
     	if($('.floating-wrapper').position().top > 0) {
 			$('.floating-wrapper').animate(
 				{ top: -600 },
 				300,
 				function() {
-	    			// Animation complete.
-	    			$('.floating-wrapper h3').html( el.find('h3').text() );
+					// Animation complete.
+					$('.floating-wrapper h3').html( el.find('h3').text() );
 					$('.floating-wrapper p:eq(0)').html( el.data('title') );
+					//$('.floating-content').html($('#section-' + el.data('section') + ' .section-content').html());
 					
-					$('.floating-content').html($('#section-' + el.data('section') + ' .section-content').html());
+					if(el.attr("id")=="estado_tiempo"){
+						$('.floating-content').html('<iframe src="content/estado_del_tiempo.php" id="iframe_estdo_del_tiempo"  width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>');
+					}else{
+						$('.floating-content').html($('#section-' + el.data('section') + ' .section-content').html());
+					}
 	    		}
 
 			);
@@ -82,7 +89,12 @@ $(function(){
 			$('.floating-wrapper h3').html( el.find('h3').text() );
 			$('.floating-wrapper p:eq(0)').html( el.data('title') );
 
-			$('.floating-content').html($('#section-' + el.data('section') + ' .section-content').html());
+			if(el.attr("id")=="estado_tiempo"){
+				$('.floating-content').html('<iframe src="content/estado_del_tiempo.php" id="iframe_estdo_del_tiempo"  width="100%" height="480px" scrolling="yes" frameBorder="0"><div class="loader"></div></iframe>');
+			}else{
+				$('.floating-content').html($('#section-' + el.data('section') + ' .section-content').html());
+			}
+			//$('.floating-content').html($('#section-' + el.data('section') + ' .section-content').html());
 		}
 		
 		$('.floating-wrapper').show().animate(
