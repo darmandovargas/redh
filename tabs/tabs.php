@@ -89,7 +89,7 @@ if($idEstacion!="0"){
 							"realETO"=>array(0=>"Evapotranspiracion (mm)",1=>"mm"),
 							"riverFlow"=>array(0=>"Caudal (m3/s)",1=>"m3/s")
 							);
-	    
+							
 	    foreach ($variables as $var) {
 	    ?>
 			seriesArea['<?php echo $var; ?>'] = [<?php echo $serieNew[$var]; ?>];
@@ -251,9 +251,7 @@ if($idEstacion!="0"){
 				<label for="sky-tab3"><span><span><i class="fa fa-cogs"></i>Reportes</span></span></label>
 				<!-- style="margin: 0 0 0 -20px;" -->
 				<ul>
-						<?php
-						
-						
+						<?php					
 						if($idEstacion!="0" && $nullDataValidation){						
 						?>
 						<li class="sky-tab-content-1" style="width:90.5%;">
@@ -262,10 +260,24 @@ if($idEstacion!="0"){
 							$contaTabs = 1;
 							
 							foreach ($variables as $var) {
-						?>			
-						$variables = array("temperature", "presure", "humidity", "realPrecipitation", "radiation", "windDirection", "windDirection", "realETO");						
-								<input type="radio" name="sky-tabs-1" <?php echo ($var=="temperature" || count($variables)==1)?"checked":""; ?> id="<?php echo "sky-tab1-".$contaTabs;?>" class="sky-tab-content-<?php echo $contaTabs;?>">
-								<label for="<?php echo "sky-tab1-".$contaTabs;?>"><span class="sky-tabs_custom_pad"><span><?php echo ($var=="level")?"Nivel" : ( ($var=="temperature")?"Temperatura": ($var=="temperature")?"Temperatura": ( ($var=="realPrecipitation")?"Precipitación":(($var=="realETO")?"Evapotranspiración":(($var=="presure")?"Presión":(($var=="radiation")?"Radiación":(($var=="windDirection")?"Dirección": ( ($var=="windSpeed")?"Velocidad" : ( ($var=="humidity")?"Humedad" : ucfirst($var) ) ) ) ) ) ) ) ); ?></span></span></label>
+								$tabTitle = "";
+								switch($var){
+									case "level": $tabTitle = "Nivel"; break;
+									case "temperature": $tabTitle = "Temperatura"; break;
+									case "realPrecipitation": $tabTitle = "Precipitación"; break;
+									case "realETO": $tabTitle = "Evapotranspiración"; break;
+									case "presure": $tabTitle = "Presión"; break;
+									case "radiation": $tabTitle = "Radiación"; break;
+									case "windDirection": $tabTitle = "Dirección"; break;
+									case "windSpeed": $tabTitle = "Velocidad"; break;
+									case "humidity": $tabTitle = "Humedad"; break;
+									case "level": $tabTitle = "Nivel"; break;
+									case "riverFlow": $tabTitle = "Caudal"; break;
+									default: $tabTitle = ucfirst($var);
+								}								
+						?>
+								<input type="radio" name="sky-tabs-1" <?php echo ($contaTabs==1)?"checked":""; ?> id="<?php echo "sky-tab1-".$contaTabs;?>" class="sky-tab-content-<?php echo $contaTabs;?>">
+								<label for="<?php echo "sky-tab1-".$contaTabs;?>"><span class="sky-tabs_custom_pad"><span><?php echo $tabTitle; ?></span></span></label>
 						<?php	
 								$contaTabs++;		
 							}	

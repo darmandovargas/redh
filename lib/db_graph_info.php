@@ -32,7 +32,7 @@ if(isset($_GET['carpeta']))
                 $variables = array("temperature", "realPrecipitation", "level"); break;
             case 'ENT' :
                 $tablaEstaciones = "tdp_stations";
-                $variables = array("level");
+                $variables = array("level", "riverFlow");
                 break;
             case 'EQT' :
                 $tablaEstaciones = "tdp_stations";
@@ -124,17 +124,18 @@ if(isset($_GET['carpeta']))
                 }*/
             }
         }
-        
+        //var_dump($serieNew);
         // Sets series variables for Area Graph
         foreach($variables as $v){
             //echo $estInfo[$v][0][1];
             // This will patch the bug when the first value is 0, this is because on the db the first value is "-"
             if($estInfo[$v][0][1]==0){
                 $estInfo[$v][0] = $estInfo[$v][1];
+            }
+            // This sets the jsons arrays values
+            $serieNew[$v] = json_encode(array("data" => $estInfo[$v]));
         }
-        // This sets the jsons arrays values
-        $serieNew[$v] = json_encode(array("data" => $estInfo[$v]));
-        }
+        //var_dump($serieNew["riverFlow"]);
         
         // Arrange the variable data for OLD graph
         foreach($variables as $var){
