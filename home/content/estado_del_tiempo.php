@@ -76,146 +76,27 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 */
 include_once ('../../lib/class.MySQL.php');
-//include_once ('../../lib/redhadmin_connection.php');
-
-//$idsPublicUTP = $idsPublicAguas = array();
-/*
-foreach(json_decode($stations, true) as $adminStation){	
-	if(intval($adminStation["id"]) != 0 && $adminStation["bd"]!="wunderground" && $adminStation["isPublic"] ){
-		if($adminStation["bd"] == "bd_aguas_new"){
-			$idsPublicAguas[] = intval($adminStation["id"]);
-		}else{
-			$idsPublicUTP[] = intval($adminStation["id"]);
-		}	
-	}
-}*/
-/*
-print_r($idsPublicUTP);
-echo "</br></br>";
-print_r($idsPublicAguas);
-echo "</br></br>";
-*/
 mysql_set_charset('utf8');
-
-// This will get rid of the test stations
-//$idsToDelete = array(74,75,76,77,80);
-
-// All private stations ids from UTP database
-//$idsPrivateStations = array(36,78,53); //,39,40,41,42,44,52,53,61,62,73);
-
 $estationTable = $privateEstationTable = array();
-
-//$query = "SELECT * FROM tdp_stations WHERE idStation IN (".implode(",", $idsPublicUTP).",".implode(",",$idsPrivateStations).")";
-
-//echo $query;
-
-$query = "CALL sp_estado_del_tiempo();";
-
+$query = "SELECT * FROM ti_estado_del_tiempo";
 $estacionesListUTP = $oMySQL -> ExecuteSQL($query);
-
 $oMySQL->closeConnection();
 unset($oMySQL);
-
 session_start();			
 
 if($_SESSION['sessid']== session_id()){		
-$oMySQL = new MySQL($dbsigName, $bdsigUser, $bdsigPassword, $bdsigIp);
-
-mysql_set_charset('utf8');
-
-$query = "CALL sp_estado_del_tiempo_private();";
-
-$estacionesListUTPPrivate = $oMySQL -> ExecuteSQL($query);
-
-$oMySQL->closeConnection();
-unset($oMySQL);
+	$oMySQL = new MySQL($dbsigName, $bdsigUser, $bdsigPassword, $bdsigIp);
+	mysql_set_charset('utf8');
+	$query = "SELECT * FROM ti_estado_del_tiempo_private";
+	$estacionesListUTPPrivate = $oMySQL -> ExecuteSQL($query);
+	$oMySQL->closeConnection();
+	unset($oMySQL);
 }
-//var_dump($estacionesListUTPPrivate);
-
 
 $oMySQL = new MySQL($db_aguasName, $bd_aguasUser, $bd_aguasPassword, $bd_aguasIp);	
-
 mysql_set_charset('utf8');
-
-$query = "CALL sp_estado_del_tiempo();";
-
+$query = "SELECT * FROM ti_estado_del_tiempo";
 $estacionesListAguas = $oMySQL -> ExecuteSQL($query);
-
-//var_dump($estacionesList);
-
-//exit(0);
-/*
-foreach ($estacionesList as $estacion) {
-	//var_dump($estacion);
-	$tabla = $estacion["tableName"];
-	$tableId = $estacion["idStation"];
-
-	//echo "TableID:".$tableId."-".$tabla."-".$estacion["stationName"]."</br>";
-
-	//if (in_array($tabla, $publicEstations)) {		
-	if (in_array(intval($tableId), $idsPublicUTP)) {				
-		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 1";			
-		$estacionesInfo = $oMySQL->ExecuteSQL($query);
-		$estationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
-	}else if($_SESSION['sessid'] == session_id() && in_array($estacion["idStation"], $idsPrivateStations)){
-
-		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 10";
-		//echo "</br>".$query."</br>";
-		$estacionesInfoList = $oMySQL -> ExecuteSQL($query);
-
-		// This will delete the 4 stations Camilo asked		
-		if(!in_array($estacion['idStation'], $idsToDelete)){
-			foreach($estacionesInfoList as $estacionInfo){
-				$estacionesInfo = $estacionInfo;
-				if($estacionesInfo['level']=='-' ||  $estacionesInfo['level']==NULL){ 					
-					continue;
- 	 			}else{					
-					break;
-				}
-			}
-
-			
-			$privateEstationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
-		}
-	}
-}
-
-$oMySQL->closeConnection();
-unset($oMySQL);
-$oMySQL = new MySQL($db_aguasName, $bd_aguasUser, $bd_aguasPassword, $bd_aguasIp);	
-
-mysql_set_charset('utf8');
-
-$query = "SELECT * FROM tdp_stations WHERE idStation IN (".implode(",", $idsPublicAguas).")";
-
-$estacionesList = $oMySQL -> ExecuteSQL($query);
-
-foreach ($estacionesList as $estacion) {
-	$tabla = $estacion["tableName"];
-	$tableId = $estacion["idStation"];
-
-	if (in_array(intval($tableId), $idsPublicAguas)) {		
-		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 1";			
-		$estacionesInfo = $oMySQL->ExecuteSQL($query);		
-		$estationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);
-	}else if($_SESSION['sessid'] == session_id() && in_array($estacion["idStation"], $idsPrivateStations)){
-		$query = "SELECT * FROM " . $tabla . " ORDER BY stationTime DESC LIMIT 10";
-		$estacionesInfoList = $oMySQL -> ExecuteSQL($query);
-		// This will delete the 4 stations Camilo asked		
-		if(!in_array($estacion['idStation'], $idsToDelete)){
-			foreach($estacionesInfoList as $estacionInfo){
-				$estacionesInfo = $estacionInfo;
-				if($estacionesInfo['level']=='-' ||  $estacionesInfo['level']==NULL){ 					
-					continue;
- 	 			}else{					
-					break;
-				}
-			}
-			$privateEstationTable[] = array("estacion" => $estacion, "info" => $estacionesInfo);			
-		}
-	}
-}
-*/
 $oMySQL->closeConnection();
 unset($oMySQL);
 ?>
@@ -233,8 +114,7 @@ unset($oMySQL);
 						<th>Nivel (cm)</th>
 						<th>Radiación Solar ( W/m²)</th>				
 						<th>Velocidad (m/s)</th>
-						<th>Evapotranspiración (mm)</th>
-						
+						<th>Evapotranspiración (mm)</th>						
 						<!-- <th><b>Enlaces</b></th>
 						<th><b>Símbolo</b></th> -->
 					</tr>
