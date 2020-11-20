@@ -266,8 +266,7 @@ if(isset($_SESSION['sessid']) && $_SESSION['sessid'] == session_id()){
 			-->
 		</div>
 		<div id="map-canvas"></div>
-		
-		<div class="tcg">Powered by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>
+		<div class="tcg">Powered by <a href="http://tcloudg.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">TCloudG</a></div>
 		<input id="search"  type="text" class="controls" placeholder="Ingrese Ubicación">
 
 		<div id="type-selector" class="controls" >
