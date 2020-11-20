@@ -3,7 +3,7 @@
 	 * This function will build the SMS to be sent to the system operator(s)
 	 *
 	 */
-	function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan='', $moreThan='', $stationId){
+	function checkAlarms (&$oMySQL, $tabla, $stationName, $variable, $lessThan='', $moreThan='', $alarmId, $idStation){
 		global $Message, $objTemp, $db_aguasName, $bd_aguasUser, $bd_aguasPassword, $bd_aguasIp, $dbsigName, $bdsigUser, $bdsigPassword, $bdsigIp, $updatedIds;
 		$dbName = "utp";
 		// Create a list of the tables that are on the second database
@@ -14,6 +14,10 @@
 			$oMySQL->closeConnection();
 			unset($oMySQL);
 			$oMySQL = new MySQL($db_aguasName, $bd_aguasUser, $bd_aguasPassword, $bd_aguasIp);	
+			$query = "SELECT * FROM tdp_stations WHERE tableName='".$tabla."'";
+			$result = $oMySQL->executeSQL($query);
+			$idStation = $result["idStation"];
+
 		}else{
 			$oMySQL->closeConnection();
 			unset($oMySQL);
@@ -84,7 +88,7 @@
 				$objTemp["last_value"] = $currentValue;	
 			}
 			// Add the id to the updateIds array in order to override json value for the current alarm
-			$updatedIds[] = $stationId;
+			$updatedIds[] = $alarmId;
 			// If the last value is greater than last value registered in the alarm json and is greater than the alarm value and the second to last value is graeter than the alarm value
 			if( $currentValue > floatval($lastValue) && $currentValue > floatval($moreThan) && $penultimateValue > floatval($moreThan)){
 				// if last value is below the second to last value it means the river flow is decreasing so avoid the alarm
@@ -164,7 +168,7 @@
 				case 'Nivel': $customMsg = " alerta  ".$alarmType." de nivel del río,";  
 							// Sets first cicle alarm value
 							if(!$activeMoreThan){
-								$updatedIds[] = $stationId;
+								$updatedIds[] = $alarmId;
 							  	$objTemp["first_cicle_alarm"]=$valor; 
 							  	$objTemp["last_value"] = $valor;		
 							}
@@ -172,8 +176,8 @@
 			}
 			
 			//$Message .= empty($msg)?"'".$stationName."' ".$customMsg."  ".$valor." ".$measureSymbol.".  ":$msg;
-			$Message .= $stationId."-".$dbName."__".$stationName." ".$customMsg."  ".$valor." ".$measureSymbol.".  ";
-			setMessage($tabla,"'".$stationName."' ".$customMsg." ".$valor." ".$measureSymbol.". ");
+			$Message .= $idStation."-".$dbName."__".$stationName." ".$customMsg."  ".$valor." ".$measureSymbol.".  ";
+			setMessage($tabla,$idStation."-".$dbName."__".$stationName." ".$customMsg." ".$valor." ".$measureSymbol.". ");
 			$response = true;
 		}
 
@@ -181,7 +185,8 @@
 	}
 
 	function setMessage($table, $ms){
-		global $specificMessage;
+		global $specificMessage, $allMessages;
 		$specificMessage[$table] .= $ms;
+		$allMessages[] = $ms;
 	}
 ?>
