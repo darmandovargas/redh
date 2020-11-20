@@ -22,3 +22,6 @@ reportes/boletines/estaciones/el cedral ect/2017/diarios/abril/stationname_YYYY-
 .vscode/ftp-kr.task.json
 tabsapp/
 app-galeria/
+lib/sms_cron.php
+lib/sms_cron_dev.php
+lib/sms_cron_test.php
