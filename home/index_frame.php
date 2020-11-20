@@ -25,8 +25,6 @@ if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
     $ip=$_SERVER['REMOTE_ADDR'];
 }
 
-//echo $ip; 
-
 $host = insert_host($oMySQL, $ip);
 ?>
 <!DOCTYPE html>
@@ -390,9 +388,10 @@ $host = insert_host($oMySQL, $ip);
 					<div class="row-fluid" style="height: 100%;">
 						<div class="span12" style="height: 100%;">
 							<div id="map_canvas"></div>
-							<div class="tcg">Powered by <a href="http://thinkcloudgroup.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">Think Cloud Group</a></div>							
+							<div class="tcg">Powered by <a href="http://tcloudg.com" target="_blank" style="color:#1C5EA0; background-color: #fff;">TCloudG</a></div>							
 						</div>
 					</div>
+					
 					<div id="type-selector" class="controls" hidden="hidden">
 						      <input type="radio" name="type" id="changetype-all" checked="checked">
 						      <label for="changetype-all">All</label>
