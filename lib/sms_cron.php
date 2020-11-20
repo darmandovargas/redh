@@ -30,9 +30,10 @@ include_once('alarm.php');
 
 // Set encoding
 mysql_query("set names 'utf8'");
+
 // Inicializa variables
 $Message = "";
-$specificMessage = array();
+$allMessages = $specificMessage = array();
 
 $currentTime = new DateTime('', new DateTimeZone('America/Bogota'));
 $startDate = $currentTime->format("Y-m-d H:i:s");
@@ -84,7 +85,7 @@ foreach($estacionesList as $el){
 		// If the last sms for this specific variable is older than 2 hours ago, then it check for alarms on this variable
 		if($now > $objTemp["last_sms"]+4*60*60){
 			// Check alarm for this variable and add it to the general alarm message
-			$response = checkAlarms($oMySQL, $tabla, $stationName, $variable, $lessThan, $moreThan, $el['id']);
+			$response = checkAlarms($oMySQL, $tabla, $stationName, $variable, $lessThan, $moreThan, $el['id'], $el['idStation']);
 			//echo  "tabla: ".$tabla." - stationName: ".$stationName." - variable: ".$variable." - lessThan: ".$lessThan." - moreThan: ".$moreThan." - id: ".$el['id']."</br>";
 			// If there were any alarm detected for this variable then update the last sms variable of the json for the specific variable
 			if($response){
@@ -206,9 +207,10 @@ if(!empty($Message)){
 		$resp["allstations"] = AltiriaSMS($allStations, $msg, "dvargas", false);
 		@error_log(PHP_EOL.PHP_EOL."All Stations: ".$msg.PHP_EOL.$resp["allstations"], 3, "/home/thinkclo/public_html/redh/sms.log");
 		//echo "All Stations: ".$msg."</br>".$resp["allstations"]."</br>";
-		$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
-		$jsonResponse["message"] = $Message;	
-		echo json_encode($jsonResponse);
+		//$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
+		//$jsonResponse["message"] = $Message;	
+		//echo json_encode($jsonResponse);
+		echo json_encode($allMessages);
 		// Check if there are specific tables alarm
 		if($specificMessage){
 			// This is an specific tables messages counter
@@ -255,49 +257,38 @@ if(!empty($Message)){
 			$cantidad = 4;	
 		}
 		
-		if(intval($smsCount["messages"])>$cantidad){
-			
+		if(intval($smsCount["messages"])>$cantidad){			
 	
 			$totalRemainMessages = intval($smsCount["messages"]) - $cantidad;
 			$outOfMessagesMsg = $dt->format("Y-m-d H:i:s")." Alarma: ".$Message.". Sus mensajes se están agotando, solo le quedan ".$totalRemainMessages.", comuníquese con Think Cloud Group para comprar un paquete adicional.";	
-			
 			
 			$outOfMessages = "573136355940,573234335384";
 			$updateSMS = $oMySQL->executeSQL('UPDATE ti_sms SET messages = '.$totalRemainMessages.' WHERE id=2');
 			$resp["outofmessages"] = AltiriaSMS($outOfMessages, $outOfMessagesMsg, "dvargas", false);
 			@error_log(PHP_EOL.PHP_EOL."OUT OF MESSAGES: ".$outOfMessagesMsg.PHP_EOL.$resp["outofmessages"], 3, "/home/thinkclo/public_html/redh/sms.log");
 			//echo "OUT OF MESSAGES: ".$msg."</br>".$resp["allstations"]."</br>";	
-			$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
-			$jsonResponse["message"] = $Message;	
-			echo json_encode($jsonResponse);
+			//$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
+			//$jsonResponse["message"] = $Message;	
+			//echo json_encode($jsonResponse);
+			echo json_encode($allMessages);
 		}else{
 			
 			$response = $dt->format("Y-m-d H:i:s")." Alarma(s) NO ENVIADAS POR FALTA DE SALDO: ".$Message."Visítanos redhidro.org";
 			@error_log(PHP_EOL.PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
 			//echo $response."</br></br>";			
-			$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
-			$jsonResponse["message"] = $Message;
-			echo json_encode($jsonResponse);
+			//$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
+			//$jsonResponse["message"] = $Message;
+			//echo json_encode($jsonResponse);
+			echo json_encode($allMessages);
 		}
-		
-
-	}else{
-		$response = $dt->format("Y-m-d H:i:s")." Alarma(s) NO ENVIADAS POR FALTA DE SALDO: ".$Message."Visítanos redhidro.org";
-		@error_log(PHP_EOL.PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
-		//echo $response."</br></br>";
-		$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
-		$jsonResponse["message"] = $Message;
-		echo json_encode($jsonResponse);
 	}
 }else{
-	//$response = $dt->format("Y-m-d H:i:s")." No hay alarmas pendientes para enviar. Visítanos redhidro.org";
-	//error_log(PHP_EOL.PHP_EOL.$response, 3, "/home/thinkclo/public_html/redh/sms.log");
-	//echo "</br>There is no alarm to be sent</br>";
-	$jsonResponse["date"] = $dt->format("Y-m-d H:i:s");
-	$jsonResponse["message"] = "";	
-	//$jsonResponse["message"] = "51-aguas__Rí­o Otún - El Jordan alta precipitación, 18.6 grados C";	
-	echo json_encode($jsonResponse);
+	//$allMessages[] = "46-utp__El Lago alta temperatura,  29.5 grados C.";
+	//$allMessages[] = "47-utp__El Nudo alta temperatura,  27.8 grados C.";	
+	echo json_encode($allMessages);
+	
 }
 
 $oMySQL->closeConnection();
+unset($oMySQL);
 ?>
