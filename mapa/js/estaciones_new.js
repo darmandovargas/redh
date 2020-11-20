@@ -12,1818 +12,1347 @@ iconoEQT  = 'http://'+window.location.host+'/mapa/img/caudal.png'; // Estaciones
 iconoPozo  = 'http://'+window.location.host+'/mapa/img/pozo.png'; // Estaciones de Pozo similar a las de Nivel
 
 var estacionesJSON = [
-  		{
-  			"id" : "46",
-  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
-		    "nombre": "ECT001 (El Lago)",
-		    "carpeta": "el lago",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "radiacion",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 4.814751659,
-		      "longitud": -75.69949032
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "1450 m.s.n.m",
-		    "ubicacion": "Centro Administrativo el Lago, Centro del municipio de Pereira",
-		    "fecha": "Septiembre de 2006",
-		    "estado": "Activa"	  
-		},
-		{
-			"id" : "45",
-  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
-		    "nombre": "ECT002 (Cortaderal)",
-		    "carpeta": "cortaderal",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "radiacion",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 4.750273723,
-		      "longitud": -75.490426
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "3700 m.s.n.m",
-		    "ubicacion": "Cuenca alta del Río Otún, Parque NN Los Nevados",
-		    "fecha": "23 de Diciembre de 2009",
-		    "estado": "Inactiva"	  		  
-		},		
-		{
-			"id" : "47",
-  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
-		    "nombre": "ECT004 (Alto del Nudo)",
-		    "carpeta": "el nudo",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "radiacion",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 4.872101755,
-		      "longitud": -75.70935144
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "2002 m.s.n.m",
-		    "ubicacion": "Vereda Las Hortensias, PRN Alto del Nudo",
-		    "fecha": "1 de Abril de 2011",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "48",
-  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
-		    "nombre": "ECT005 (Quinchía - Seafield)",
-		    "carpeta": "quinchia seafield",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "radiacion",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 5.295278392,
-		      "longitud": -75.69944588
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "1673 m.s.n.m",
-		    "ubicacion": "Vereda Miraflores, Municipo de Quinchia, Risaralda",
-		    "fecha": "15 de Marzo de 2012",
-		    "estado": "Activa"	  		  
-		},
-		// Added March 2nd 2016
-		{
-			"id" : "51",
-  			"nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
-		    "nombre": "ECT006 (CAM)",
-		    "carpeta": "cam",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "radiacion",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 4.833718335,
-		      "longitud": -75.67106802
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "2 de Marzo de 2016",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "50",
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
-		    "nombre": "ECT007 (Mairabajo - Belén de Umbría)",
-		    "carpeta": "mairabajo",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "nivel",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 5.257036639,
-		      "longitud": -75.83335167
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "18 de Julio de 2016",
-		    "estado": "Activa"	  		  
-		},
-		// 4 Next stations added Feb 4th 2018
-		{
-			"id" : "56",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
-		    "nombre": "ECT009 (El Bosque)",
-		    "carpeta": "el bosque",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "nivel",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 4.740882052,
-		      "longitud": -75.44244535
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "4 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "57",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
-		    "nombre": "ECT010 (La Argentina)",
-		    "carpeta": "la argentina",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "nivel",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 4.731862605,
-		      "longitud": -75.44713981
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "4 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "61",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
-		    "nombre": "ECT011 (El Cedral)",
-		    "carpeta": "el cedral ect - dvja2",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "nivel",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 4.702895856,
-		      "longitud": -75.53377329
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "4 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},/*  This one already exist I just need to change the position*/
-		{
-			"id" : "58",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
-		    "nombre": "ECT003 (San José)",
-		    "carpeta": "san jose ect",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "humedad",
-		      "3": "nivel",
-		      "4": "presion",
-		      "5": "velocidad",
-		      "6": "direccion",
-		      "7": "evapotranspiracion"
-		    },
-		    
-		      "latitud": 4.823268326,
-		      "longitud": -75.60587622
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "4 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		// End of 4 stations added Feb 4th 2018
-		{ // Station added Nov 26 2018, it was just an EC and it was converted to ECT and fixed the coordinates
-			"id" : "57",// New table id Nov 26 2018 its at UTP
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
-		    "nombre": "ECT012 (Mundo Nuevo)",
-		    "carpeta":"mundo nuevo",
-		    "variables": {},
-		    
-		      "latitud": 4.773618228, 
-		      "longitud": -75.66105968,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "1550 m.s.n.m",
-		    "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
-		    "fecha": "Diciembre de 2007",
-		    "estado": "Activa"	  		  
-		},
-		{ // Station added Nov 26 2018
-			"id" : "59",// New table id Nov 26 2018 its at UTP
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
-		    "nombre": "ECT013 (La Colonia)",
-		    "carpeta":"la colonia",
-		    "variables": {},
-		    
-		      "latitud": 4.751043171, 
-		      "longitud": -75.62707072,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "Noviembre 26 de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{ // Station added Nov 26 2018
-			"id" : "60",// New table id Nov 26 2018 its at UTP
-  			"nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
-		    "nombre": "ECT014 (Ukumarí)",
-		    "carpeta":"ukumari",
-		    "variables": {},
-		    
-		      "latitud": 4.803568281, 
-		      "longitud": -75.8103572  ,
-		    
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "Noviembre 26 de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{ // Station added Nov 26 2018
-			"id" : "61",// New table id Nov 26 2018 its at UTP
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT015 (La Curva)",
-		    "carpeta":"la curva",
-		    "variables": {},
-		    
-		      "latitud": 4.783115488, 
-		      "longitud": -75.68810416
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "Noviembre 26 de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{ // Station added Nov 26 2018
-			"id" : "62",// New table id Nov 26 2018 its at UTP
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT016 (La Católica)",
-		    "carpeta":"la catolica",
-		    "variables": {},
-		    
-		      "latitud": 4.806909961, 
-		      "longitud": -75.72643758
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "Noviembre 26 de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "34",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT001 (El Cedral)",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.70317919,
-		      "longitud": -75.53658441
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "2080 m.s.n.m",
-		    "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
-		    "fecha": "27 de Marzo de 2010",
-		    "estado": "Activa"	  		  
-		},/*
-		{
-			"id" : "0",// Pending for ID on new db
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT002 (San Juan)",
-		    "carpeta": "san juan",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.756979306,
-		      "longitud": -75.59752067
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "2080 m.s.n.m",
-		    "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
-		    "fecha": "27 de Marzo de 2010",
-		    "estado": "Activa"	  		  
-		},*/
-		// Added March 2nd 2016
-		{
-			"id" : "39", 
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT003 (Totui)",
-		     "carpeta": "totui",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.970768616,
-		      "longitud": -75.93162134
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "2 de Marzo de 2016",
-		    "estado": "Activa"	  		  
-		},
-		// Last 4 stations created July 18th 2016
-		{
-			"id" : "40",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT004 (Río Guatica)",
-		    "carpeta": "rio guatica",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 5.278800582,
-		      "longitud": -75.82782112
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "18 de Julio de 2016",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "41",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT005 (Rio Mistrató)",
-		     "carpeta": "rio mistrato",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 5.248022748,
-		      "longitud": -75.84114614
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "18 de Julio de 2016",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "42",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT006 (El Diamante - Río Risaralda)",
-		     "carpeta": "el diamante- rio risaralda",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 5.23686437,
-		      "longitud": -75.81181276
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "18 de Julio de 2016",
-		    "estado": "Activa"	  		  
-		},
-		// ESTACIONES SERVER 2		
-		{
-			"id" : "52",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT007 (Antes de Bocatoma Nuevo Libaré)",
-		    "carpeta": "antes de bocatoma nuevo libare",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.78061548,
-		      "longitud": -75.64479298
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "9 de Agosto de 2016",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "51",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT008 (Quebrada Volcanes - Las Mangas)",
-		    "carpeta": "quebrada volcanes - las mangas",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.78345435,
-		      "longitud": -75.63460127
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "9 de Agosto de 2016",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "54",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT009 (Río Azul - El Jordan)",
-		     "carpeta": "rio azul - el jordan",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.73277094,
-		      "longitud": -75.45494814
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "9 de Agosto de 2016",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "55",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT010 (Río Otún - El Jordan)",
-		    "carpeta": "rio otun - el jordan",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.73420425,
-		      "longitud": -75.45445092
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "9 de Agosto de 2016",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "53",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT011 (Río Barbo - Boc. Pezfresco)",
-		    "carpeta": "rio barbo - boc pezfresco",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.73219872,
-		      "longitud": -75.56929003
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "9 de Agosto de 2016",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "60",
-			"bd" : "bd_aguas_new",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT012 (Río San Juan - Desembocadura)",
-		    "carpeta": "rio san juan - desembocadura",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.75697931,
-		      "longitud": -75.59752067
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "9 de Agosto de 2016",
-		    "estado": "Activa"	  		  
-		},
-		// FIN ESTACIONES SERVER 2
-		// 2 Estaciónes agregadas el 26 de Diciembre de 2017
-		{
-			"id" : "43",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT013 (Casa de maquinas - Río Risaralda)",
-		    "carpeta": "casa de maquinas - rio risaralda",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 5.18854483,
-		      "longitud": -75.81336554
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "26 de Diciembre de 2017",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "44",
-  			"nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
-		    "nombre": "EHT 014 (La Nona)",
-		    "carpeta": "la nona",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.88294624,
-		      "longitud": -75.7169181
-,
-		    "isPublic": true,
-		    "tipo":"EHT",
-		    "icono": iconoEHT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "26 de Diciembre de 2017",
-		    "estado": "Activa"	  		  
-		},
-		//
-		{
-			"id":"35",
-  			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
-		    "nombre": "ENT001 (Bocatoma nuevo Libaré)",
-            "carpeta": "bocatoma nuevo libare",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.781601593,
-		      "longitud": -75.64497076
-,
-		    "isPublic": true,
-		    "tipo":"ENT",
-		    "icono": iconoENT, 
-		    "altitud": "1535 m.s.n.m",
-		    "ubicacion": "Bocatoma nuevo Libaré ",
-		    "fecha": "14 de Junio de 2013",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"37",
-  			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
-		    "nombre": "ENT002 (Bocatoma Belmonte) ",
-            "carpeta": "bocatoma belmonte",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.818462752,
-		      "longitud": -75.72730703
-,
-		    "isPublic": true,
-		    "tipo":"ENT",
-		    "icono": iconoENT, 
-		    "altitud": "1278 m.s.n.m",
-		    "ubicacion": "Bocatoma Belmonte ",
-		    "fecha": "14 de Junio de 2013",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"36",
-  			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
-		    "nombre": "ENT003 (Canal entrada Belmonte) ",
-            "carpeta": "canal entrada belmonte",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.818390529,
-		      "longitud": -75.7277487
-,
-		    "isPublic": false,
-		    "tipo":"ENT",
-		    "icono": iconoENT,  
-		    "altitud": "1277 m.s.n.m",
-		    "ubicacion": "Canal entrada Belmonte ",
-		    "fecha": "29 de julio de 2013",
-		    "estado": "Activa"	  		  
-		},{
-			"id":"78",// Pending for ID 
-  			"nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
-		    "nombre": "ENT004 (Canal Exceso Belmonte) ",
+    {
+        "stationId": 1,
+        "id": "46",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológica Telemétrica (ECT) updated 2",
+        "nombre": "ECT001 (El Lago)",
+        "carpeta": "el lago",
+        "latitud": 4.81475,
+        "longitud": -75.6995,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "1450 m.s.n.m",
+        "ubicacion": "Centro Administrativo el Lago, Centro del municipio de Pereira",
+        "fecha": "2019-05-16T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 2,
+        "id": "45",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
+        "nombre": "ECT002 (Cortaderal)",
+        "carpeta": "cortaderal",
+        "latitud": 4.75027,
+        "longitud": -75.4904,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "3700 m.s.n.m",
+        "ubicacion": "Cuenca alta del Río Otún, Parque NN Los Nevados",
+        "fecha": "2009-12-23T05:00:00.000Z",
+        "estado": "Inactiva"
+    },
+    {
+        "stationId": 3,
+        "id": "47",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
+        "nombre": "ECT004 (Alto del Nudo)",
+        "carpeta": "el nudo",
+        "latitud": 4.8721,
+        "longitud": -75.7094,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "2002 m.s.n.m",
+        "ubicacion": "Vereda Las Hortensias, PRN Alto del Nudo",
+        "fecha": "2011-12-23T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 4,
+        "id": "48",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
+        "nombre": "ECT005 (Quinchía - Seafield)",
+        "carpeta": "quinchia seafield",
+        "latitud": 5.29528,
+        "longitud": -75.6994,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "1673 m.s.n.m",
+        "ubicacion": "Vereda Miraflores, Municipo de Quinchia, Risaralda",
+        "fecha": "2012-03-15T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 5,
+        "id": "51",
+        "bd": "utp",
+        "nombrelargo": "Estaciones Climatológica Telemétrica (ECT)",
+        "nombre": "ECT007 (CAM)",
+        "carpeta": "cam",
+        "latitud": 4.83372,
+        "longitud": -75.6711,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-03-02T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 6,
+        "id": "50",
+        "bd": "utp",
+        "nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+        "nombre": "ECT008 (Mairabajo - Belén de Umbría)",
+        "carpeta": "mairabajo",
+        "latitud": 5.25704,
+        "longitud": -75.8334,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-07-18T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 7,
+        "id": "56",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+        "nombre": "ECT009 (El Bosque)",
+        "carpeta": "el bosque",
+        "latitud": 4.74088,
+        "longitud": -75.4424,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-04T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 8,
+        "id": "57",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+        "nombre": "ECT010 (La Argentina)",
+        "carpeta": "la argentina",
+        "latitud": 4.73186,
+        "longitud": -75.4471,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-04T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 9,
+        "id": "61",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+        "nombre": "ECT011 (El Cedral)",
+        "carpeta": "el cedral ect",
+        "latitud": 4.7029,
+        "longitud": -75.5338,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-04T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 10,
+        "id": "58",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+        "nombre": "ECT003 (San José)",
+        "carpeta": "san jose ect",
+        "latitud": 4.82327,
+        "longitud": -75.6059,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-04T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 11,
+        "id": "57",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+        "nombre": "ECT012 (Mundo Nuevo)",
+        "carpeta": "mundo nuevo",
+        "latitud": 4.77362,
+        "longitud": -75.6611,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "1550 m.s.n.m",
+        "ubicacion": "Planta de Tratamiento de Aguas, Vereda Mundo Nuevo",
+        "fecha": "2007-12-01T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 12,
+        "id": "59",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+        "nombre": "ECT013 (La Colonia)",
+        "carpeta": "la colonia",
+        "latitud": 4.75104,
+        "longitud": -75.6271,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-11-26T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 13,
+        "id": "60",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológicas Telemétricas (ECT)",
+        "nombre": "ECT014 (Ukumarí)",
+        "carpeta": "ukumari",
+        "latitud": 4.80357,
+        "longitud": -75.8104,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-11-26T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 14,
+        "id": "61",
+        "bd": null,
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT015 (La Curva)",
+        "carpeta": "la curva",
+        "latitud": 4.78312,
+        "longitud": -75.6881,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-11-26T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 15,
+        "id": "62",
+        "bd": null,
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT016 (La Católica)",
+        "carpeta": "la catolica",
+        "latitud": 4.80691,
+        "longitud": -75.7264,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-11-26T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 16,
+        "id": "34",
+        "bd": "utp",
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT001 (El Cedral)",
+        "carpeta": "el cedral",
+        "latitud": 4.70318,
+        "longitud": -75.5366,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "2080 m.s.n.m",
+        "ubicacion": "Cuenca Media-Alta Río Otún Estación Hidrobiológica Aguas y Aguas",
+        "fecha": "2010-03-27T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 17,
+        "id": "39",
+        "bd": null,
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT003 (Totui)",
+        "carpeta": "totui",
+        "latitud": 4.97077,
+        "longitud": -75.9316,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-03-02T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 18,
+        "id": "40",
+        "bd": null,
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT004 (Río Guatica)",
+        "carpeta": "rio guatica",
+        "latitud": 5.2788,
+        "longitud": -75.8278,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-07-18T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 19,
+        "id": "41",
+        "bd": null,
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT005 (Rio Mistrató)",
+        "carpeta": "rio mistrato",
+        "latitud": 5.24802,
+        "longitud": -75.8411,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-07-18T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 20,
+        "id": "42",
+        "bd": null,
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT006 (El Diamante - Río Risaralda)",
+        "carpeta": "el diamante- rio risaralda",
+        "latitud": 5.23686,
+        "longitud": -75.8118,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-07-18T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 21,
+        "id": "52",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT007 (Antes de Bocatoma Nuevo Libaré)",
+        "carpeta": "antes de bocatoma nuevo libare",
+        "latitud": 4.78062,
+        "longitud": -75.6448,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-08-09T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 22,
+        "id": "51",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT008 (Quebrada Volcanes - Las Mangas)",
+        "carpeta": "quebrada volcanes - las mangas",
+        "latitud": 4.78345,
+        "longitud": -75.6346,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-08-09T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 23,
+        "id": "54",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT009 (Río Azul - El Jordan)",
+        "carpeta": "rio azul - el jordan",
+        "latitud": 4.73277,
+        "longitud": -75.4549,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-08-09T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 24,
+        "id": "55",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT010 (Río Otún - El Jordan)",
+        "carpeta": "rio otun - el jordan",
+        "latitud": 4.7342,
+        "longitud": -75.4545,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-08-09T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 25,
+        "id": "53",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT011 (Río Barbo - Boc. Pezfresco)",
+        "carpeta": "rio barbo - boc pezfresco",
+        "latitud": 4.7322,
+        "longitud": -75.5693,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-08-09T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 26,
+        "id": "60",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT002 (Río San Juan - Desembocadura)",
+        "carpeta": "rio san juan - desembocadura",
+        "latitud": 4.75698,
+        "longitud": -75.5975,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2016-08-09T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 27,
+        "id": "43",
+        "bd": null,
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT013 (Casa de maquinas - Río Risaralda)",
+        "carpeta": "casa de maquinas - rio risaralda",
+        "latitud": 5.18854,
+        "longitud": -75.8134,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2017-12-26T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 28,
+        "id": "44",
+        "bd": null,
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT 014 (La Nona)",
+        "carpeta": "la nona",
+        "latitud": 4.88295,
+        "longitud": -75.7169,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2017-12-26T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 29,
+        "id": "35",
+        "bd": null,
+        "nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
+        "nombre": "ENT001 (Bocatoma nuevo Libaré)",
+        "carpeta": "bocatoma nuevo libare",
+        "latitud": 4.7816,
+        "longitud": -75.645,
+        "isPublic": true,
+        "tipo": "ENT",
+        "icono": "ENT.png",
+        "altitud": "1535 m.s.n.m",
+        "ubicacion": "Bocatoma nuevo Libaré ",
+        "fecha": "2013-06-14T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 30,
+        "id": "37",
+        "bd": null,
+        "nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
+        "nombre": "ENT002 (Bocatoma Belmonte) ",
+        "carpeta": "bocatoma belmonte",
+        "latitud": 4.81846,
+        "longitud": -75.7273,
+        "isPublic": true,
+        "tipo": "ENT",
+        "icono": "ENT.png",
+        "altitud": "1278 m.s.n.m",
+        "ubicacion": "Bocatoma Belmonte ",
+        "fecha": "2013-06-14T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 31,
+        "id": "36",
+        "bd": null,
+        "nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
+        "nombre": "ENT003 (Canal entrada Belmonte) ",
+        "carpeta": "canal entrada belmonte",
+        "latitud": 4.81839,
+        "longitud": -75.7277,
+        "isPublic": false,
+        "tipo": "ENT",
+        "icono": "ENT.png",
+        "altitud": "1277 m.s.n.m",
+        "ubicacion": "Canal entrada Belmonte ",
+        "fecha": "2013-07-29T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 32,
+        "id": "78",
+        "bd": "utp",
+        "nombrelargo": "Estaciones de Nivel Telemétricas (ENT)",
+        "nombre": "ENT004 (Canal de execeso Belmonte) ",
         "carpeta": "canal de excesos belmonte",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.817629415,
-		      "longitud": -75.7734599
-,
-		    "isPublic": false,
-		    "tipo":"ENT",
-		    "icono": iconoENT, 
-		    "altitud": "1240 m.s.n.m",
-		    "ubicacion": "4°49'3.46\" N  75°46'24.45\" O",
-		    "fecha": "29 de julio de 2013",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"52",
-  			"nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
-		    "nombre": "Planta de Generación electrica  Empresa de Energía de Pereira barrio Nuevo Libaré ",
-            "carpeta": "planta nuevo libare",
-		    "variables": {
-		    	"0": "caudal"
-		    },
-		    
-		      "latitud": 4.804343284,
-		      "longitud": -75.66661526
-,
-		    "isPublic": false,
-		    "tipo":"EQT",
-		    "icono": iconoEQT, 
-		    "altitud": "1240 m.s.n.m",
-		    "ubicacion": "Nuevo Libaré ",
-		    "fecha": "29 de julio de 2013",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"53",
-  			"nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
-		    "nombre": "Planta de Generación electrica belmonte Empresa de Energía de Pereira ",
-            "carpeta": "planta belmonte",
-		    "variables": {
-		    	"0": "caudal"
-		    },
-		    
-		      "latitud": 4.815651663,
-		      "longitud": -75.77360156
-,
-		    "isPublic": false,
-		    "tipo":"EQT",
-		    "icono": iconoEQT, 
-		    "altitud": "1240 m.s.n.m",
-		    "ubicacion": "Belmonte ",
-		    "fecha": "29 de julio de 2013",
-		    "estado": "Activa"	  		  
-		},				
-		{
-			"id" : "49",
-  			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
-		    "nombre": "EC001 (Acuaseo)",
-		    "carpeta": "acuaseo",
-		    "variables": {
-		      "0": "Temperatura",
-		      "1": "Precipitacion",
-		      "2": "Humedad Relativa",
-		      "3": "Radiación Solar",
-		      "4": "Presión Barométrica",
-		      "5": "Velocidad del Viento",
-		      "6": "Dirección del Viento"
-		    },
-		    
-		      "latitud": 4.861723969,
-		      "longitud": -75.65464021
-,
-		    "isPublic": true,
-		    "tipo":"EC",
-		    "icono": iconoECT,
-		    "altitud": "1550 m.s.n.m",
-		    "ubicacion": "Planta de Tratamiento de Agua, compañía de servicios públicos Acuaseo, Dosquebradas",
-		    "fecha": "Diciembre de 2007",
-		    "estado": "Activa"	  		  
-		},		
-		{
-			"id" : "0",
-  			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
-		    "nombre": "EC005 (Universidad Católica)",
-		    "carpeta": "universidad catolica",
-		    "variables": {},
-		    
-		      "latitud": 4.80414884,
-		      "longitud": -75.72504036
-,
-		    "isPublic": true,
-		    "tipo":"EC",
-		    "icono": iconoEC,
-		    "altitud": "1550 m.s.n.m",
-		    "ubicacion": "",
-		    "fecha": "Diciembre de 2007",
-		    "estado": "Activa"	  		  
-		},
-		
-		{
-			"id" : "0",//"id" : "32",// Its not anymore on the station`s table
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN001 (Quebrada Dalí)",
-		    "carpeta": "quebrada dali",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.741718167,
-		      "longitud": -75.59009842
-,
-		    "isPublic": true,
-		    "tipo":"SN",
-		    "icono": iconoSN,
-		    "altitud": "1800 m.s.n.m",
-		    "ubicacion": "Finca Lisbrán, Cuenca Media Río Otún ",
-		    "fecha": "12 de Febrero de 2010 (cambio de ubicación Octubre 2012)",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "0",//"id" : "34",// Its not anymore on the station`s table
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN002 (Quebrada Negra)",
-		    "carpeta": "quebrada la negra",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.744059843,
-		      "longitud": -75.60326232
-,
-		    "isPublic": true,
-		    "tipo":"SN",
-		    "icono": iconoSN,
-		    "altitud": "1750 m.s.n.m",
-		    "ubicacion": "Cerca al Centro Aguas y Aguas Vía al Cedral.",
-		    "fecha": "12 de Febrero de 2010",
-		    "estado": "Inactiva"	  		  
-		},
-		{
-			"id" : "0",//"id" : "31",// Its not anymore on the station`s table
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN003 (Quebrada El Manzano)",
-		    "carpeta": "quebrada el manzano",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.759279315,
-		      "longitud": -75.61186236
-,
-		    "isPublic": true,
-		    "tipo":"SN",
-		    "icono": iconoSN,
-		    "altitud": "1700 m.s.n.m",
-		    "ubicacion": "Corregimiento de La Florida, Cuenca Media Río Otún ",
-		    "fecha": "12 de Febrero de 2010",
-		    "estado": "Inactiva"	  		  
-		},
-		{
-			"id" : "0",//"id" : "35",// Its not anymore on the station`s table
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN004 (Quebrada Volcanes) ",
-		    "carpeta": "quebrada volcanes",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.783696013,
-		      "longitud": -75.63461238
-,
-		    "isPublic": true,
-		    "tipo":"SN",
-		    "icono": iconoSN,
-		    "altitud": "1600 m.s.n.m",
-		    "ubicacion": "Cuenca media Río Otún ",
-		    "fecha": "3 de Marzo de 2010",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "0",//"id" : "30",// Its not anymore on the station`s table
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN005  (Quebrada San Eustaquio)",
-            "carpeta": "quebrada san eustaquio",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.769723768,
-		      "longitud": -75.60855679
-,
-		    "isPublic": true,
-		    "tipo":"SN",
-		    "icono": iconoSN,
-		    "altitud": "1700 m.s.n.m",
-		    "ubicacion": "Cuenca media Río Otún ",
-		    "fecha": "12 de Febrero de 2010",
-		    "estado": "Inactiva"	  		  
-		},
-		{
-			"id" : "0",//"id" : "33",// Its not anymore on the station`s table
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN006  (Quebrada El Oso)",
-		    "carpeta": "quebrada el oso",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.800371046,
-		      "longitud": -75.73376536
-,
-		    "isPublic": true,
-		    "tipo":"SN",
-		    "icono": iconoSN,
-		    "altitud": "1290 m.s.n.m",
-		    "ubicacion": "Barrio La Habana Cuba.",
-		    "fecha": "23 de Febrero de 2010",
-		    "estado": "Activa"	  		  
-		},
-		
-		{
-			"id" : "0",
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN011 (Quebrada Callejones) ",
-		    "carpeta": "quebrada callejones",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.736584813,
-		      "longitud": -75.56916781
-,
-		    "isPublic": true,
-		    "tipo":"SN",
-		    "icono": iconoSN,
-		    "altitud": "1600 m.s.n.m",
-		    "ubicacion": "Cuenca media Río Otún ",
-		    "fecha": "3 de Marzo de 2010",
-		    "estado": "Activa"	  		  
-		},
-		/*
-		{
-			"id":"0",
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN007  (Humedal Lisbran 1)",
-            "carpeta": "01_finca_lisbran",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.738834822,
-		      "longitud": -75.58364006
-,
-		    "isPublic": true,
-		    "tipo":"SNNT",
-		    "icono": iconoSN,
-		    "altitud": "1847 m.s.n.m",
-		    "ubicacion": "Finca Lisbran",
-		    "fecha": "17 de febrero de 2012",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
-		    "nombre": "SN008 (Humedal Lisbran 2)",
-		    "carpeta": "02_finca_lisbran",
-		    "variables": {
-		    	"0": "nivel"
-		    },
-		    
-		      "latitud": 4.738368153,
-		      "longitud": -75.58307064
-,
-		    "isPublic": true,
-		    "tipo":"SNNT",
-		    "icono": iconoSN,
-		    "altitud": "",
-		    "ubicacion": "Finca Lisbran",
-		    "fecha": "30 de Enero de 2014",
-		    "estado": "Activa"	  		  
-		},*/
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
-            "carpeta": "boc acueducto la florida",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.744045954,
-		      "longitud": -75.60941513
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD, 
-		    "altitud": "1750 m.s.n.m",
-		    "ubicacion": "Corregimiento de la Florida ",
-		    "fecha": "12 de Noviembre de 2009",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
-            "carpeta": "boc acueducto la bella",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.738934822,
-		      "longitud": -75.6177679
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1950 m.s.n.m",
-		    "ubicacion": "Vereda La Bella",
-		    "fecha": "12 de Noviembre de 2009",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD003 (Bocatoma Acueducto Pérez Alto) ",
-                    "carpeta": "boc acueducto perez alto",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.711854225,
-		      "longitud": -75.66235135
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1700 m.s.n.m",
-		    "ubicacion": "Vereda Yarumal ",
-		    "fecha": "12 de Noviembre de 2009",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
-            "carpeta": "boc acueducto acuasat tinajas",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.744709846,
-		      "longitud": -75.70915421
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1500 m.s.n.m",
-		    "ubicacion": "Corregimiento de Altagracia",
-		    "fecha": "12 de Noviembre de 2009",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
-            "carpeta": "boc acueducto la honda",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.874440653,
-		      "longitud": -75.78304604
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1250 m.s.n.m",
-		    "ubicacion": "Vereda La Honda",
-		    "fecha": "13 de Noviembre de 2009",
-		    "estado": "Activa"	  		  
-		},
-		/*
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD006 (Finca Lisbran 1)",
-            "carpeta": "01_finca_lisbran",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.740557051,
-		      "longitud": -75.58052897
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1890 m.s.n.m.",
-		    "ubicacion": "Finca Lisbran",
-		    "fecha": "28 deMayo 2012",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD007 (Finca Lisbran 2)",
-            "carpeta": "02_finca_lisbran",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.742445948,
-		      "longitud": -75.58047341
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1861 m.s.n.m.",
-		    "ubicacion": "Finca Lisbran",
-		    "fecha": "28 deMayo 2012",
-		    "estado": "Activa"	  		  
-		},*/
-		{
-			"id" : "0",//"id" : "39",// Its not anymore on the station`s table
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD008 (UTP)",
-            "carpeta": "utp",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.793668275,
-		      "longitud": -75.69079306
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,//iconoEC,
-		    "altitud": "1861 m.s.n.m.",
-		    "ubicacion": "UTP",
-		    "fecha": "28 deMayo 2012",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD009 (Ormaza)",
-            "carpeta": "bomberos ormaza",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.813973878,
-		      "longitud": -75.68077917
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1389 m.s.n.m.",
-		    "ubicacion": "Cuerpo de bomberos barrio Ormaza ",
-		    "fecha": "14 de Marzo de 2014",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD010 (CAI Galan)",
-            "carpeta": "cai galan",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.821334985,
-		      "longitud": -75.70369586
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1330 m.s.n.m.",
-		    "ubicacion": "CAI Barrio Galan, Calle 31 con AV del río",
-		    "fecha": "14 de Marzo de 2014",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD011 (Parque Industrial)",
-            "carpeta": "parque industrial",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.821909988,
-		      "longitud": -75.7247848
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1348 m.s.n.m.",
-		    "ubicacion": "Parque Industrial, Manzana 13 sector B",
-		    "fecha": "20 de Marzo de 2014",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD012 (CAI Consota)",
-            "carpeta": "cai consota",
-		    "variables": {
-		      "0": "Precipitación"
-		    },
-		    
-		      "latitud": 4.801954386,
-		      "longitud": -75.7249348
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1333 m.s.n.m.",
-		    "ubicacion": "CAI, Barrio Padre Valencia",
-		    "fecha": "14 de Marzo de 2014",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD013 (CAI Poblado)",
-            "carpeta": "cai poblado",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.802251609,
-		      "longitud": -75.70397364
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1314 m.s.n.m.",
-		    "ubicacion": "CAI Barrio Poblado I",
-		    "fecha": "14 de Marzo de 2014",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD014 (CAI Villa Verde)",
-            "carpeta": "cai villaverde",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.792168269,
-		      "longitud": -75.71141256
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1402 m.s.n.m.",
-		    "ubicacion": "CAI Barrio Villa Verde",
-		    "fecha": "10 de Junio de 2014",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD015 (Bosque de Cuba)",
-            "carpeta": "bosques de cuba",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.792140491,
-		      "longitud": -75.7269987
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1321 m.s.n.m.",
-		    "ubicacion": "Conjunto cerrado Bosque de Cuba",
-		    "fecha": "10 de Junio de 2014",
-		    "estado": "Activa"	  		  
-		},		
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD016 (Tanque Villa Santana)",
-            "carpeta": "tanque villasantana",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.796982177,
-		      "longitud": -75.66864301
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1561 m.s.n.m.",
-		    "ubicacion": "Taque de reserva de Agua Barrio Villa Santana",
-		    "fecha": "14 de Abril de 2014",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD017 (Cruz Roja)",
-            "carpeta": "cruz roja",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.807421074,
-		      "longitud": -75.69224029
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1400 m.s.n.m.",
-		    "ubicacion": "Carrera 15 con Calle 16",
-		    "fecha": "21 de Abril de 2014",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"0",
-  			"nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
-		    "nombre": "PD018 (Saint George School)",
-            "carpeta": "colegio saint george",
-		    "variables": {
-		    	"0": "precipitacion"
-		    },
-		    
-		      "latitud": 4.781084924,
-		      "longitud": -75.69473475
-,
-		    "isPublic": true,
-		    "tipo":"PD",
-		    "icono": iconoPD,
-		    "altitud": "1480 m.s.n.m.",
-		    "ubicacion": "Saint George School, vía hacia municipio de Armenia",
-		    "fecha": "",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id":"38",
-  			"nombrelargo": "Pluviómetros con Datalogger, telemétricos (PDT)",
-		    "nombre": "PD019 (San Rafael)",
-            //"carpeta": "planes de san rafael",
-		    "variables": {
-		    	"0": "temperatura",
-		    	"1": "precipitacion"
-		    },
-		    
-		      "latitud": 5.125555824,
-		      "longitud": -76.0019139
-,
-		    "isPublic": true,
-		    //"tipo":"PDT", Changed in order to allow reports to autoselect
-		    "tipo":"PDT",
-		    "icono": iconoPDT,
-		    "altitud": "1480 m.s.n.m.",
-		    "ubicacion": "",
-		    "fecha": "",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "0",
-  			"nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
-		    "nombre": "EC004 (Lisbrán)",
-		    "carpeta": "lisbran",
-		    "variables": {},
-		    
-		      "latitud": 4.73788204,
-		      "longitud": -75.58422895
-,
-		    "isPublic": true,
-		    "tipo":"EC",
-		    "icono": iconoEC,
-		    "altitud": "1550 m.s.n.m",
-		    "ubicacion": "",
-		    "fecha": "Diciembre 4 de 2015",
-		    "estado": "Activa"	  		  
-		},
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		{
-			"id" : "0",
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
-		    "nombre": "SNS001 (Pozo Jamaica)",
-		    "carpeta": "jamaica",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.77801546,
-		      "longitud": -75.6959792
-,
-		    "isPublic": true,
-		    "tipo":"SNS",
-		    "icono": iconoPozo,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "0",
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
-		    "nombre": "SNS002 (Pozo Cerritos)",
-		    "carpeta": "cerritos",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.80373773,
-		      "longitud": -75.84493227
-,
-		    "isPublic": true,
-		    "tipo":"SNS",
-		    "icono": iconoPozo,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "0",
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
-		    "nombre": "SNS003 (Pozo Alen+ pro)",
-		    "carpeta": "alenpro",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.76209322,
-		      "longitud": -75.9066546
-,
-		    "isPublic": true,
-		    "tipo":"SNS",
-		    "icono": iconoPozo,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "0",
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
-		    "nombre": "SNS005 (Pozo Linares)",
-		    "carpeta": "linares",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.815996108,
-		      "longitud": -75.80399328
-,
-		    "isPublic": true,
-		    "tipo":"SNS",
-		    "icono": iconoPozo,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "0",
-  			"nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
-		    "nombre": "SNS004 (Pozo Coca Cola)",
-		    "carpeta": "cocacola",
-		    "variables": {
-		      "0": "temperatura",
-		      "1": "precipitacion",
-		      "2": "nivel"
-		    },
-		    
-		      "latitud": 4.80924886,
-		      "longitud": -75.79177382
-,
-		    "isPublic": true,
-		    "tipo":"SNS",
-		    "icono": iconoPozo,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "",
-		    "estado": "Activa"	  		  
-		},
-		// Wunderground Stations		
-		{
-			"id" : "ILACELIA2",
-			"bd" : "wunderground",
-  			"nombrelargo": "La Celia Patio Bonito",
-		    "nombre": "La Celia",
-		    "carpeta": "la celia patio bonito",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 4.993,
-			    "longitud": -75.982
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "IBELNDEU2",
-			"bd" : "wunderground",
-  			"nombrelargo": "Belén de Umbría",
-		    "nombre": "Belén de Umbría",
-		    "carpeta": "belen de umbria",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 5.203,
-			    "longitud": -75.867
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "IDOSQUEB2 ",
-			"bd" : "wunderground",
-  			"nombrelargo": "Dosqeubradas - Japon",
-		    "nombre": "Dosqeubradas - Japon",
-		    "carpeta": "dosqeubradas - japon",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 4.818,
-			    "longitud": -75.679
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "IMARSELL3",
-			"bd" : "wunderground",
-  			"nombrelargo": "Marsella",
-		    "nombre": "Marsella",
-		    "carpeta": "marsella",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 4.936,
-			    "longitud": -75.740
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "IMISTRAT2",
-			"bd" : "wunderground",
-  			"nombrelargo": "Mistrató",
-		    "nombre": "Mistrató",
-		    "carpeta": "mistrato",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 5.297,
-			    "longitud": -75.883
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "IPEREIRA2",
-			"bd" : "wunderground",
-  			"nombrelargo": "El Jardin Pereira",
-		    "nombre": "El Jardin Pereira",
-		    "carpeta": "el jardin pereira",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 4.807,
-			    "longitud": -75.719
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "IPEREIRA3",
-			"bd" : "wunderground",
-  			"nombrelargo": "Vereda La Convención",
-		    "nombre": "Vereda La Convención",
-		    "carpeta": "vereda la convencion",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 4.882,
-			    "longitud": -75.725
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "IPEREIRA4",
-			"bd" : "wunderground",
-  			"nombrelargo": "Vereda Altagracia",
-		    "nombre": "Vereda Altagracia",
-		    "carpeta": "Vereda Altagracia",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 4.745,
-			    "longitud": -75.713
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		},
-		{
-			"id" : "IQUINCHA2",
-			"bd" : "wunderground",
-  			"nombrelargo": "Quinchía Naranjal",
-		    "nombre": "Quinchía Naranjal",
-		    "carpeta": "quinchia naranjal",
-		    "variables": {
-			      "0": "temperatura",
-			      "1": "precipitacion",
-			      "2": "humedad",
-			      "3": "radiacion",
-			      "4": "presion",
-			      "5": "velocidad",
-			      "6": "direccion",
-			      "7": "evapotranspiracion"
-			},
-		    
-		    
-		    		"latitud": 5.324,
-			    "longitud": -75.712
-,
-		    "isPublic": true,
-		    "tipo":"ECT",
-		    "icono": iconoECT,
-		    "altitud": "",
-		    "ubicacion": "",
-		    "fecha": "25 de Febrero de 2018",
-		    "estado": "Activa"	  		  
-		}
-	];
+        "latitud": 4.8176,
+        "longitud": -75.7725,
+        "isPublic": false,
+        "tipo": "ENT",
+        "icono": "ENT.png",
+        "altitud": "1240 m.s.n.m",
+        "ubicacion": "Canal Salida Belmonte ",
+        "fecha": "2013-07-29T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 33,
+        "id": "52",
+        "bd": "utp",
+        "nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
+        "nombre": "(EQT 001) Planta de Generación eléctrica Nuevo Libaré ",
+        "carpeta": "planta nuevo libare",
+        "latitud": 4.80434,
+        "longitud": -75.6666,
+        "isPublic": false,
+        "tipo": "EQT",
+        "icono": "caudal.png",
+        "altitud": "1240 m.s.n.m",
+        "ubicacion": "Nuevo Libaré ",
+        "fecha": "2013-07-29T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 34,
+        "id": "53",
+        "bd": "utp",
+        "nombrelargo": "Estaciones de Caudal Telemétricas (EQT)",
+        "nombre": "(EQT002) Planta de Generación eléctrica Belmonte",
+        "carpeta": "planta belmonte",
+        "latitud": 4.81565,
+        "longitud": -75.7736,
+        "isPublic": false,
+        "tipo": "EQT",
+        "icono": "caudal.png",
+        "altitud": "1240 m.s.n.m",
+        "ubicacion": "Belmonte ",
+        "fecha": "2013-07-29T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 35,
+        "id": "49",
+        "bd": "utp",
+        "nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
+        "nombre": "ECT006 (Acuaseo)",
+        "carpeta": "acuaseo",
+        "latitud": 4.86172,
+        "longitud": -75.6546,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "1550 m.s.n.m",
+        "ubicacion": "Planta de Tratamiento de Agua, compañía de servicios públicos Acuaseo, Dosquebradas",
+        "fecha": "2007-12-01T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 36,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
+        "nombre": "EC005 (Universidad Católica)",
+        "carpeta": "universidad catolica",
+        "latitud": 4.80415,
+        "longitud": -75.725,
+        "isPublic": true,
+        "tipo": "EC",
+        "icono": "ECnew2.png",
+        "altitud": "1550 m.s.n.m",
+        "ubicacion": "",
+        "fecha": "2007-12-01T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 37,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+        "nombre": "SN001 (Quebrada Dalí)",
+        "carpeta": "quebrada dali",
+        "latitud": 4.74172,
+        "longitud": -75.5901,
+        "isPublic": true,
+        "tipo": "SN",
+        "icono": "nivelb23.png",
+        "altitud": "1800 m.s.n.m",
+        "ubicacion": "Finca Lisbrán, Cuenca Media Río Otún ",
+        "fecha": "2010-02-12T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 38,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+        "nombre": "SN002 (Quebrada Negra)",
+        "carpeta": "quebrada la negra",
+        "latitud": 4.74406,
+        "longitud": -75.6033,
+        "isPublic": true,
+        "tipo": "SN",
+        "icono": "nivelb23.png",
+        "altitud": "1750 m.s.n.m",
+        "ubicacion": "Cerca al Centro Aguas y Aguas Vía al Cedral.",
+        "fecha": "2010-02-12T05:00:00.000Z",
+        "estado": "Inactiva"
+    },
+    {
+        "stationId": 39,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+        "nombre": "SN003 (Quebrada El Manzano)",
+        "carpeta": "quebrada el manzano",
+        "latitud": 4.75928,
+        "longitud": -75.6119,
+        "isPublic": true,
+        "tipo": "SN",
+        "icono": "nivelb23.png",
+        "altitud": "1700 m.s.n.m",
+        "ubicacion": "Corregimiento de La Florida, Cuenca Media Río Otún ",
+        "fecha": "2010-02-12T05:00:00.000Z",
+        "estado": "Inactiva"
+    },
+    {
+        "stationId": 40,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+        "nombre": "SN004 (Quebrada Volcanes) ",
+        "carpeta": "quebrada volcanes",
+        "latitud": 4.7837,
+        "longitud": -75.6346,
+        "isPublic": true,
+        "tipo": "SN",
+        "icono": "nivelb23.png",
+        "altitud": "1600 m.s.n.m",
+        "ubicacion": "Cuenca media Río Otún ",
+        "fecha": "2010-03-03T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 41,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+        "nombre": "SN005  (Quebrada San Eustaquio)",
+        "carpeta": "quebrada san eustaquio",
+        "latitud": 4.76972,
+        "longitud": -75.6086,
+        "isPublic": true,
+        "tipo": "SN",
+        "icono": "nivelb23.png",
+        "altitud": "1700 m.s.n.m",
+        "ubicacion": "Cuenca media Río Otún ",
+        "fecha": "2010-02-12T05:00:00.000Z",
+        "estado": "Inactiva"
+    },
+    {
+        "stationId": 42,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+        "nombre": "SN006  (Quebrada El Oso)",
+        "carpeta": "quebrada el oso",
+        "latitud": 4.80037,
+        "longitud": -75.7338,
+        "isPublic": true,
+        "tipo": "SN",
+        "icono": "nivelb23.png",
+        "altitud": "1290 m.s.n.m",
+        "ubicacion": "Barrio La Habana Cuba.",
+        "fecha": "2010-02-23T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 43,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua, no telemétricos (SN)",
+        "nombre": "SN011 (Quebrada Callejones) ",
+        "carpeta": "quebrada callejones",
+        "latitud": 4.73658,
+        "longitud": -75.5692,
+        "isPublic": true,
+        "tipo": "SN",
+        "icono": "nivelb23.png",
+        "altitud": "1600 m.s.n.m",
+        "ubicacion": "Cuenca media Río Otún ",
+        "fecha": "2010-03-03T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 44,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD001  (Bocatoma Acueducto La Florida) ",
+        "carpeta": "boc acueducto la florida",
+        "latitud": 4.74405,
+        "longitud": -75.6094,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1750 m.s.n.m",
+        "ubicacion": "Corregimiento de la Florida ",
+        "fecha": "2009-11-12T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 45,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD002 (Bocatoma Acueducto La Bella) ",
+        "carpeta": "boc acueducto la bella",
+        "latitud": 4.73893,
+        "longitud": -75.6178,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1950 m.s.n.m",
+        "ubicacion": "Vereda La Bella",
+        "fecha": "2009-11-12T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 46,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD003 (Bocatoma Acueducto Pérez Alto) ",
+        "carpeta": "boc acueducto perez alto",
+        "latitud": 4.71185,
+        "longitud": -75.6624,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1700 m.s.n.m",
+        "ubicacion": "Vereda Yarumal ",
+        "fecha": "2009-11-12T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 47,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD004 (Bocatoma Acueducto Acuasat Tinajas) ",
+        "carpeta": "boc acueducto acuasat tinajas",
+        "latitud": 4.74471,
+        "longitud": -75.7092,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1500 m.s.n.m",
+        "ubicacion": "Corregimiento de Altagracia",
+        "fecha": "2009-11-12T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 48,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD005 (Bocatoma Acueducto La Honda) ",
+        "carpeta": "boc acueducto la honda",
+        "latitud": 4.87444,
+        "longitud": -75.783,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1250 m.s.n.m",
+        "ubicacion": "Vereda La Honda",
+        "fecha": "2009-11-12T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 49,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD008 (UTP)",
+        "carpeta": "utp",
+        "latitud": 4.79367,
+        "longitud": -75.6908,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1861 m.s.n.m.",
+        "ubicacion": "UTP",
+        "fecha": "2012-05-28T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 50,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD009 (Ormaza)",
+        "carpeta": "bomberos ormaza",
+        "latitud": 4.81397,
+        "longitud": -75.6808,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1389 m.s.n.m.",
+        "ubicacion": "Cuerpo de bomberos barrio Ormaza ",
+        "fecha": "2014-03-14T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 51,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD010 (CAI Galan)",
+        "carpeta": "cai galan",
+        "latitud": 4.82133,
+        "longitud": -75.7037,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1330 m.s.n.m.",
+        "ubicacion": "CAI Barrio Galan, Calle 31 con AV del río",
+        "fecha": "2014-03-14T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 52,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD011 (Parque Industrial)",
+        "carpeta": "parque industrial",
+        "latitud": 4.82191,
+        "longitud": -75.7248,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1348 m.s.n.m.",
+        "ubicacion": "Parque Industrial, Manzana 13 sector B",
+        "fecha": "2014-03-20T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 53,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD012 (CAI Consota)",
+        "carpeta": "cai consota",
+        "latitud": 4.80195,
+        "longitud": -75.7249,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1333 m.s.n.m.",
+        "ubicacion": "CAI, Barrio Padre Valencia",
+        "fecha": "2014-03-14T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 54,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD013 (CAI Poblado)",
+        "carpeta": "cai poblado",
+        "latitud": 4.80225,
+        "longitud": -75.704,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1314 m.s.n.m.",
+        "ubicacion": "CAI Barrio Poblado I",
+        "fecha": "2014-03-14T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 55,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD014 (CAI Villa Verde)",
+        "carpeta": "cai villaverde",
+        "latitud": 4.79217,
+        "longitud": -75.7114,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1402 m.s.n.m.",
+        "ubicacion": "CAI Barrio Villa Verde",
+        "fecha": "2014-06-10T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 56,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD015 (Bosque de Cuba)",
+        "carpeta": "bosques de cuba",
+        "latitud": 4.79214,
+        "longitud": -75.727,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1321 m.s.n.m.",
+        "ubicacion": "Conjunto cerrado Bosque de Cuba",
+        "fecha": "2014-06-10T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 57,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD016 (Tanque Villa Santana)",
+        "carpeta": "tanque villasantana",
+        "latitud": 4.79698,
+        "longitud": -75.6686,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1561 m.s.n.m.",
+        "ubicacion": "Taque de reserva de Agua Barrio Villa Santana",
+        "fecha": "2014-04-14T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 58,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD017 (Cruz Roja)",
+        "carpeta": "cruz roja",
+        "latitud": 4.80742,
+        "longitud": -75.6922,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1400 m.s.n.m.",
+        "ubicacion": "Carrera 15 con Calle 16",
+        "fecha": "2014-04-21T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 59,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, no telemétricos (PD)",
+        "nombre": "PD018 (Saint George School)",
+        "carpeta": "colegio saint george",
+        "latitud": 4.78109,
+        "longitud": -75.6947,
+        "isPublic": true,
+        "tipo": "PD",
+        "icono": "PD30.png",
+        "altitud": "1480 m.s.n.m.",
+        "ubicacion": "Saint George School, vía hacia municipio de Armenia",
+        "fecha": "",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 60,
+        "id": "38",
+        "bd": null,
+        "nombrelargo": "Pluviómetros con Datalogger, telemétricos (PDT)",
+        "nombre": "PD019 (San Rafael)",
+        "carpeta": null,
+        "latitud": 5.12556,
+        "longitud": -76.0019,
+        "isPublic": true,
+        "tipo": "PDT",
+        "icono": "PDT.png",
+        "altitud": "1480 m.s.n.m.",
+        "ubicacion": "",
+        "fecha": "",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 61,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Estaciones Climatológicas no Telemétricas (EC)",
+        "nombre": "EC004 (Lisbrán)",
+        "carpeta": "lisbran",
+        "latitud": 4.73788,
+        "longitud": -75.5842,
+        "isPublic": true,
+        "tipo": "EC",
+        "icono": "ECnew2.png",
+        "altitud": "1550 m.s.n.m",
+        "ubicacion": "",
+        "fecha": "2015-12-04T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 62,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+        "nombre": "SNS001 (Pozo Jamaica)",
+        "carpeta": "jamaica",
+        "latitud": 4.77802,
+        "longitud": -75.696,
+        "isPublic": true,
+        "tipo": "SNS",
+        "icono": "pozo.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 63,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+        "nombre": "SNS002 (Pozo Cerritos)",
+        "carpeta": "cerritos",
+        "latitud": 4.80374,
+        "longitud": -75.8449,
+        "isPublic": true,
+        "tipo": "SNS",
+        "icono": "pozo.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 64,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+        "nombre": "SNS003 (Pozo Alen+ pro)",
+        "carpeta": "alenpro",
+        "latitud": 4.76209,
+        "longitud": -75.9067,
+        "isPublic": true,
+        "tipo": "SNS",
+        "icono": "pozo.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 65,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+        "nombre": "SNS005 (Pozo Linares)",
+        "carpeta": "linares",
+        "latitud": 4.816,
+        "longitud": -75.804,
+        "isPublic": true,
+        "tipo": "SNS",
+        "icono": "pozo.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 66,
+        "id": "0",
+        "bd": null,
+        "nombrelargo": "Sensores de Nivel por Presión de Lamina de Agua Subterráneos, no telemétricos (SNS)",
+        "nombre": "SNS004 (Pozo Coca Cola)",
+        "carpeta": "cocacola",
+        "latitud": 4.80925,
+        "longitud": -75.7918,
+        "isPublic": true,
+        "tipo": "SNS",
+        "icono": "pozo.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 67,
+        "id": "ILACELIA2",
+        "bd": "wunderground",
+        "nombrelargo": "La Celia Patio Bonito",
+        "nombre": "La Celia",
+        "carpeta": "la celia patio bonito",
+        "latitud": 4.993,
+        "longitud": -75.982,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 68,
+        "id": "IBELNDEU2",
+        "bd": "wunderground",
+        "nombrelargo": "Belén de Umbría",
+        "nombre": "Belén de Umbría",
+        "carpeta": "belen de umbria",
+        "latitud": 5.203,
+        "longitud": -75.867,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 69,
+        "id": "IDOSQUEB2 ",
+        "bd": null,
+        "nombrelargo": "Dosqeubradas - Japon",
+        "nombre": "Dosqeubradas - Japon",
+        "carpeta": "dosqeubradas - japon",
+        "latitud": 4.818,
+        "longitud": -75.679,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 70,
+        "id": "IMARSELL3",
+        "bd": "wunderground",
+        "nombrelargo": "Marsella",
+        "nombre": "Marsella",
+        "carpeta": "marsella",
+        "latitud": 4.936,
+        "longitud": -75.74,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 71,
+        "id": "IMISTRAT2",
+        "bd": "wunderground",
+        "nombrelargo": "Mistrató",
+        "nombre": "Mistrató",
+        "carpeta": "mistrato",
+        "latitud": 5.297,
+        "longitud": -75.883,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 72,
+        "id": "IPEREIRA2",
+        "bd": "wunderground",
+        "nombrelargo": "El Jardin Pereira",
+        "nombre": "El Jardin Pereira",
+        "carpeta": "el jardin pereira",
+        "latitud": 4.807,
+        "longitud": -75.719,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 73,
+        "id": "IPEREIRA3",
+        "bd": "wunderground",
+        "nombrelargo": "Vereda La Convención",
+        "nombre": "Vereda La Convención",
+        "carpeta": "vereda la convencion",
+        "latitud": 4.882,
+        "longitud": -75.725,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 74,
+        "id": "IPEREIRA4",
+        "bd": "wunderground",
+        "nombrelargo": "Vereda Altagracia",
+        "nombre": "Vereda Altagracia",
+        "carpeta": "Vereda Altagracia",
+        "latitud": 4.745,
+        "longitud": -75.713,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 75,
+        "id": "IQUINCHA2",
+        "bd": "wunderground",
+        "nombrelargo": "Quinchía Naranjal",
+        "nombre": "Quinchía Naranjal",
+        "carpeta": "quinchia naranjal",
+        "latitud": 5.324,
+        "longitud": -75.712,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "",
+        "ubicacion": "",
+        "fecha": "2018-02-25T05:00:00.000Z",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 81,
+        "id": "64",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estación instalada en la planta de tratamiento de agua potable de Aguas y Aguas de Pereira",
+        "nombre": "ECT015 (Planta de tratamiento)",
+        "carpeta": "planta de tratamiento",
+        "latitud": 4.80435,
+        "longitud": -75.6736,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "1502",
+        "ubicacion": "",
+        "fecha": "",
+        "estado": "Risaralda"
+    },
+    {
+        "stationId": 84,
+        "id": "63",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estaciones Hidroclimatológicas telemétricas (EHT)",
+        "nombre": "EHT017 (Cataluña)",
+        "carpeta": "cataluna",
+        "latitud": 4.74625,
+        "longitud": -75.604,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "1738",
+        "ubicacion": "Río Otún vía al Cedral",
+        "fecha": "",
+        "estado": "Activa"
+    },
+    {
+        "stationId": 88,
+        "id": "66",
+        "bd": "bd_aguas_new",
+        "nombrelargo": "Estación climatológica Telemétrica ubicada en el Nevado Santa Isabel.",
+        "nombre": "ECT016 (Nevado Santa Isabel)",
+        "carpeta": "Santa Isabel",
+        "latitud": 4.79528,
+        "longitud": -75.3783,
+        "isPublic": true,
+        "tipo": "ECT",
+        "icono": "ECTnewblued.png",
+        "altitud": "4814",
+        "ubicacion": "",
+        "fecha": "",
+        "estado": "Risaralda"
+    },
+    {
+        "stationId": 89,
+        "id": "81",
+        "bd": "utp",
+        "nombrelargo": "Estación Hidroclimatológica ",
+        "nombre": "EHT 18 (La Dulcera)",
+        "carpeta": "La Dulcera",
+        "latitud": 4.80164,
+        "longitud": -75.6866,
+        "isPublic": true,
+        "tipo": "EHT",
+        "icono": "EHT25.png",
+        "altitud": "1420",
+        "ubicacion": "Clinica Pinares Medica",
+        "fecha": "",
+        "estado": ""
+    }
+];
